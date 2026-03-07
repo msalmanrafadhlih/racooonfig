@@ -49,6 +49,7 @@
 
     # ======= NETWORKING
     curl
+    psmisc # Port kill
     dnsutils # dig
     inetutils
     iputils # ping

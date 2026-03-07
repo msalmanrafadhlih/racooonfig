@@ -36,6 +36,7 @@
   ## Xutils
   CLASS = "xprop | grep CLASS";
   NAME = "xprop | grep NAME";
+  WMINFO = "nix-shell -p xwininfo --run xwininfo";
 
   ## LINK BOOKMARKS
   PERSONAL = "hx ~/.config/bookmarks/personal.txt";
