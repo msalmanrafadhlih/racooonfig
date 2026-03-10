@@ -25,10 +25,10 @@
   SYSMDL = "yazi ~/.dotfiles/system/modules";
 
   ## USER CONFIGURATIONS {EDIT}
-  DOTS = "yazi ~/.dotfiles/$XDG_CURRENT_DESKTOP/home";
-  INSTALL = "hx ~/.dotfiles/$XDG_CURRENT_DESKTOP/modules/packages.nix";
+  DOTS = "yazi ~/.dotfiles/$XDG_CURRENT_DESKTOP/configs";
+  INSTALL = "hx ~/.dotfiles/$XDG_CURRENT_DESKTOP/configs/packages.nix";
   HOMEFLAKE = "cd ~/.dotfiles/$XDG_CURRENT_DESKTOP && ls && hx ~/.dotfiles/$XDG_CURRENT_DESKTOP/flake.nix";
-  MDL = "yazi ~/.dotfiles/$XDG_CURRENT_DESKTOP/modules";
+  MDL = "yazi ~/.dotfiles/$XDG_CURRENT_DESKTOP/scripts";
 
   ## USER CONFIGURATIONS {SAVE}
   BIN = "chmod +x ~/.local/bin/*.sh";

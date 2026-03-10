@@ -6,8 +6,8 @@
     stable.url = "github:nixos/nixpkgs/nixos-25.11";
 
     bspwm = {
-      # url = "github:msalmanrafadhlih/Dotfiles/bspwm";
-      url = "path:./bspwm"; # for testing
+      url = "github:msalmanrafadhlih/Dotfiles/bspwm";
+      # url = "path:./bspwm"; # for testing
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -27,7 +27,7 @@
   outputs = { self, nixpkgs, ... }@inputs:
   let
     ############################
-    # - Set your System, Username and Hostname here!!
+    # - Set your System and Username here!!
     system    = "x86_64-linux";
     username  = "tquilla";
 

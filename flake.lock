@@ -110,14 +110,19 @@
         "zjstatus": "zjstatus"
       },
       "locked": {
-        "path": "./bspwm",
-        "type": "path"
+        "lastModified": 1773126804,
+        "narHash": "sha256-8cgFKZqySYNYN61iCKXcx5zQkSh43dkKROKje7Rx18Q=",
+        "owner": "msalmanrafadhlih",
+        "repo": "Dotfiles",
+        "rev": "7907f8263159dc5011defd4ff973050eba040a62",
+        "type": "github"
       },
       "original": {
-        "path": "./bspwm",
-        "type": "path"
-      },
-      "parent": []
+        "owner": "msalmanrafadhlih",
+        "ref": "bspwm",
+        "repo": "Dotfiles",
+        "type": "github"
+      }
     },
     "crane": {
       "locked": {
@@ -375,11 +380,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773120746,
-        "narHash": "sha256-R+AEoR+hry9CcOL9xjvgi4L/DqLX5AGsWCN3YE9L6Q8=",
+        "lastModified": 1773125907,
+        "narHash": "sha256-kpXUVOl0X4QZFoabTFN2lYPba/c7Lh0Qck53/7y7XmA=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "3b2d7de9ea2ca3b72eeba2182c801c1d4a524cb8",
+        "rev": "28f932db20f5ba62d84bf306d9048de3bdb37429",
         "type": "github"
       },
       "original": {
@@ -496,11 +501,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772960087,
-        "narHash": "sha256-4LH1naNO7Gsnhemt7rt+Z50g3ZOSPiiHkQOx3GKTnuk=",
+        "lastModified": 1773126566,
+        "narHash": "sha256-aOHsLkh89/U2F91fqyD7Ha/PKwltSXD2ZSbji4A4jEg=",
         "owner": "TQ-See",
         "repo": "st-flexipatch",
-        "rev": "e7b2de3c7c469113c91cc7f9c962c6b4dbe5ebc8",
+        "rev": "bf2bbaba6b10a1e835a00a590eee7ac398a8a691",
         "type": "github"
       },
       "original": {
