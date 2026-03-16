@@ -61,34 +61,38 @@
     };
   };
 
-  outputs = { home-manager, ... }@inputs:
+  outputs = { self, home-manager, ... }@inputs:
   let
-    dotfiles = "bspwm";
-    mkUser = user: extraModules: home-manager.lib.homeManagerConfiguration {
-      extraSpecialArgs = { inherit inputs dotfiles; username = user; };
-      modules = [ ./configs ./scripts ] ++ extraModules;
-    };
-  in
-  {
-    # a NixOS module that root flake can import in mkHost
-    nixosModules.default = { hostname, system, ... }:
-    {
-      imports = [ home-manager.nixosModules.home-manager ];
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        extraSpecialArgs = { inherit inputs system hostname; };
-        backupFileExtension = "backup";
+    mkUser = { user ? "tquilla", system ? "x86_64-linux", module }: {
+      ${user}   = home-manager.lib.homeManagerConfiguration {
+        pkgs    = inputs.nixpkgs.legacyPackages.${system};
+        modules = module; 
       };
     };
 
+    mkModule = extraModules: {
+      _module.args = {
+        inherit inputs;
+      };
+      imports = [ ./modules ] ++ extraModules;
+    };
+  in
+  {
+    homeModules = {
+      default  = mkModule [ ./users/bspwm ];
+      niri     = mkModule [ ./users/niri ];
+      hyprland = mkModule [ ./users/hyprland ];
+    }; 
+
     # keep standalone homeConfigurations
-    # for `home-manager switch --flake .#dev / gamin / server / work`
+    # for `home-manager switch --flake .#dev / mode / service / work`
     homeConfigurations = {
-      dev     = mkUser "dev"    [ ./users/dev.nix ];
-      mode    = mkUser "gaming" [ ./users/gaming.nix ];
-      service = mkUser "server" [ ./users/server.nix ];
-      default = mkUser "work"   [ ./users/work.nix ];
+      bspwm    = mkUser { module = [ self.homeModules.default ]; };
+      niri     = mkUser { module = [ self.homeModules.niri ]; };
+      hyprland = mkUser { module = [ self.homeModules.hyprland ]; };
+    # i rarely use this homeConfigurations code, i use specialisations instead
+    # so, this code is useless, u can delete it.
+    # for me, i just want keep it.
     };
   };
 }
