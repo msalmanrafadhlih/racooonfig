@@ -17,15 +17,15 @@
 <details close>
     <summary><h2>Widgets<h2></summary>
 
-|                     Desktop Preview                      |                        IDE & File Manager                        |
-| :------------------------------------------------------: | :--------------------------------------------------------------: |
-| [Desktop](./configs/Assets/Previews/desktop-preview.png) |       [IDE](./configs/Assets/Previews/IDE-filemanager.png)       |
-|                      Terminal Apps                       |                        Discord (vesktop)                         |
-|   [Home](./configs/Assets/Previews/Terminal-Apps.png)    | [Apps Bar](./configs/Assets/Previews/vivaldi&discord-themed.png) |
+|                       Desktop Preview                        |                        IDE & File Manager                        |
+| :----------------------------------------------------------: | :--------------------------------------------------------------: |
+|  ![Desktop](./configs/Assets/Previews/desktop-preview.png)   |      ![IDE](./configs/Assets/Previews/IDE-filemanager.png)       |
+|                        Terminal Apps                         |                        Discord (vesktop)                         |
+| ![TerminalApps](./configs/Assets/Previews/Terminal-Apps.png) | ![Discord](./configs/Assets/Previews/vivaldi&discord-themed.png) |
 
-|                    Vivaldi Themed                    |
-| :--------------------------------------------------: |
-| [Home](./configs/Assets/Previews/vivaldi-themed.png) |
+|                      Vivaldi Themed                      |
+| :------------------------------------------------------: |
+| ![Vivaldi](./configs/Assets/Previews/vivaldi-themed.png) |
 
 </details>
 
