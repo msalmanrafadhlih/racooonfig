@@ -71,9 +71,6 @@
     };
 
     mkModule = extraModules: {
-      _module.args = {
-        inherit inputs;
-      };
       imports = [ ./modules ] ++ extraModules;
     };
   in
@@ -85,14 +82,14 @@
     }; 
 
     # keep standalone homeConfigurations
-    # for `home-manager switch --flake .#dev / mode / service / work`
+    # for `home-manager switch --flake .#bspwm / #niri / #hyprland`
     homeConfigurations = {
       bspwm    = mkUser { module = [ self.homeModules.default ]; };
       niri     = mkUser { module = [ self.homeModules.niri ]; };
       hyprland = mkUser { module = [ self.homeModules.hyprland ]; };
-    # i rarely use this homeConfigurations code, i use specialisations instead
+    # i rarely use this homeConfigurations module, i use (sistem-)specialisations instead
     # so, this code is useless, u can delete it.
-    # for me, i just want keep it.
+    # for me, i just want to keep it.
     };
   };
 }
