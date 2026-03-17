@@ -1,12 +1,12 @@
-{ username, }:
+{ username, lib, ... }:
 
 {
-  home.username = username;
+  home.username = lib.mkDefault username;
   home.homeDirectory = "/home/${username}";
   programs.git.enable = true;
 
   specialisation.gamemode.configuration = {
-    home.username = "gamemode";
+    home.username = lib.mkForce "gamemode";
     home.homeDirectory = "/home/${username}";
     programs.git.enable = true;
   };

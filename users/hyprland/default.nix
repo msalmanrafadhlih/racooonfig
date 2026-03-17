@@ -10,6 +10,15 @@ let
 in
 
 {
+  _module.args.dotfiles = lib.mkForce dotfiles;
+
+  imports = [
+    ./packages.nix
+    ./configs.nix
+    ./xdg-portal.nix
+    ../users.nix
+  ];
+
   home.activation = {
    	setupDotfiles = lib.hm.dag.entryAfter ["writeBoundary"] ''
 		  # Buat folder .dotfiles jika belum ada
@@ -28,10 +37,4 @@ in
 		'';
    };
 
-  imports = [
-    ./packages.nix
-    ./configs.nix
-    ./xdg-portal.nix
-    ../users.nix
-  ];
 }
