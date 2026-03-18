@@ -5,7 +5,8 @@
   home.homeDirectory = "/home/${username}";
   programs.git.enable = true;
 
-  # Then use with `home-manager switch --specialisation gamemode`
+
+  # Then use with `nixos-rebuild switch --specialisation gamemode`
   specialisation.gamemode.configuration = {
   # Well, My laptop sekarang kentang! dan butuh minimal usage.
   # Execute this cmd jika perangkat kalian support gaming
@@ -26,10 +27,9 @@
 
     # # to use gamemode with steam edit launch options inside
     # # game -> general -> launch options -> `gamemoderun %command%`
-    # steam.enable = true;
-    programs.gamemode.enable = true;
-
-    home.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
+      steam
+      gamode
       lutris
       heroic
       steam-run
