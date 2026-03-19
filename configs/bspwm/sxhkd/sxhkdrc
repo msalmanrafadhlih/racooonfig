@@ -48,11 +48,8 @@ super + e
 super + f
 	thunar
 # ---------------------------------------------------------  Helix
-super + h
-	kdocker -f -q kitty --class=TerminalNvim -e hx
-# ---------------------------------------------------------  neovim
 super + n
-	kdocker -f -q kitty --class=TerminalNvim -e nvim
+	kitty --class=TerminalNvim -e hx
 # ---------------------------------------------------------  Rmpc
 super + m
     kdocker -f -q st -c floating_rmpc -e rmpc

@@ -39,7 +39,7 @@ case "$class" in
         case "$instance" in
             # Youtube & Reddit (Mode Desktop Lebar)
             *"youtube.com"* | *"reddit.com"*)
-                echo "desktop=^3 state=floating sticky=off rectangle=$RECT_MAIN"
+                echo "desktop=^4 state=floating sticky=off rectangle=$RECT_MAIN"
                 ;;
 
             # AI Chat (Mode Panel Samping)
@@ -85,8 +85,11 @@ case "$class" in
     "St")
         echo "state=floating sticky=off rectangle=$RECT_MAIN"
         ;;
-    "TerminalNvim" | "dev.zed.Zed")
+    "TerminalNvim")
         echo "desktop=^3 state=floating sticky=off rectangle=$RECT_MAIN"
+        ;;
+    "dev.zed.Zed")
+        echo "desktop=^3" # state=floating sticky=off rectangle=$RECT_MAIN"
         ;;
     "YaziTerm")
         echo "state=floating center=on rectangle=$RECT_YAZI"

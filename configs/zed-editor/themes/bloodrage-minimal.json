@@ -6,7 +6,7 @@
             "name": "racooonfig-minimal",
             "appearance": "dark",
             "style": {
-                "border": "#c79270",
+                "border": "#c7927000",
                 "border.variant": "#e7152000",
                 "border.focused": "#e71520bb",
                 "border.selected": "#e71520bb",
