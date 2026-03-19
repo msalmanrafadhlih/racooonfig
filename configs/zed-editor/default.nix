@@ -7,7 +7,6 @@ let
 
   configs = {
 		"zed/themes/racooonfig" = "themes/racooonfig";
-		"zed/keymap.json" = "keymap.json";
   };
 in
 
@@ -20,6 +19,7 @@ in
 
   programs.zed-editor = {
     enable = true;
+    keymap = import ./keymap.nix ;
 
     extensions = [ 
       "material_icon_theme"
