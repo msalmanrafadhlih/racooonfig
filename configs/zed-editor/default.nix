@@ -19,7 +19,7 @@ in
 
   programs.zed-editor = {
     enable = true;
-    keymap = import ./keymap.nix ;
+    mutableUserKeymaps = import ./keymap.nix ;
 
     extensions = [ 
       "material_icon_theme"
@@ -28,7 +28,7 @@ in
       "java" "xml" "sql" "jsons" "bash"
     ];
 
-    userSettings = {
+    mutableUserSettings = {
       redact_private_values = true;
 
       completions.lsp = false;
