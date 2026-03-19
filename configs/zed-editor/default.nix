@@ -6,7 +6,7 @@ let
   dotfiles_path = "${home}/.dotfiles/${dotfiles}/configs/zed-editor";
 
   configs = {
-		"zed/themes/racooonfig.json" = "themes/racooonfig";
+		"zed/themes/racooonfig.json" = "themes/racooonfig.json";
   };
 in
 
