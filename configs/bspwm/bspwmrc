@@ -20,7 +20,6 @@ run() {
 
 # Border
 bspc config border_width 3
-bspc config border_radius 25
 bspc config window_gap 5
 bspc config focused_border_color "#c80e15"
 bspc config normal_border_color "#3B4252"
