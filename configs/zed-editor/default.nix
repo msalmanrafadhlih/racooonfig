@@ -22,7 +22,7 @@ in
     mutableUserKeymaps = true;
     mutableUserrSettings = true;
     mutableUserDebug = true;
-    MutableUserTasks = true;
+    mutableUserTasks = true;
 
     userKeymaps = import ./keymap.nix ;
 
