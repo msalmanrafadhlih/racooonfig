@@ -5,7 +5,8 @@ wid=$1
 class=$2
 instance=$3
 # Dapatkan title window secara aman
-title=$(xprop -id "$wid" _NET_WM_NAME 2> /dev/null | grep -oP '"\K[^"]+(?=")')
+sleep 0.05
+title=$(xprop -id "$wid" _NET_WM_NAME WM_NAME 2> /dev/null | grep -oP '"\K[^"]+(?=")' | head -1)
 
 # --- DEFINISI GEOMETRI (Ubah di sini agar konsisten) ---
 # Format: WxH+X+Y
@@ -17,7 +18,7 @@ RECT_CENTER_MED="750x665+3+385"   # Tengah medium (TerminalDefault)
 RECT_CENTER_SMALL="750x350+3+30"  # Tengah kecil (RMPC)
 RECT_YAZI="900x442+0+0"           # Yazi center
 # Debugging (Opsional: uncomment untuk melihat nama instance yang asli)
-# echo "c=$class | i=$instance | t=$title" >> /tmp/bspwm_debug.log
+# echo "c=$class | i=$instance | t=$title" >> ~/bspwm_debug.log
 
 # --- LOGIC RULES ---
 case "$class" in
@@ -89,7 +90,7 @@ case "$class" in
         echo "desktop=^3 state=floating sticky=off rectangle=$RECT_MAIN"
         ;;
     "dev.zed.Zed")
-        echo "desktop=^3" # state=floating sticky=off rectangle=$RECT_MAIN"
+        echo "desktop=^3"
         ;;
     "YaziTerm")
         echo "state=floating center=on rectangle=$RECT_YAZI"
@@ -127,5 +128,8 @@ case "$title" in
         ;;
     *"Thunar"*)
         echo "desktop=^1"
+        ;;
+    *"Zed"*"Settings"* | *"Settings"*)
+        echo "state=floating"
         ;;
 esac
