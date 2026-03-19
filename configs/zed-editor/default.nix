@@ -20,7 +20,7 @@ in
   programs.zed-editor = {
     enable = true;
     mutableUserKeymaps = true;
-    mutableUserrSettings = true;
+    mutableUserSettings = true;
     mutableUserDebug = true;
     mutableUserTasks = true;
 
