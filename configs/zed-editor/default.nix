@@ -6,7 +6,7 @@ let
   dotfiles_path = "${home}/.dotfiles/${dotfiles}/configs/zed-editor";
 
   configs = {
-		"zed/themes/racooonfig" = "themes/racooonfig";
+		"zed/themes/racooonfig.json" = "themes/racooonfig";
   };
 in
 
@@ -24,7 +24,7 @@ in
     mutableUserDebug = true;
     mutableUserTasks = true;
 
-    userKeymaps = import ./keymap.nix ;
+    userKeymaps = builtins.fromJSON (builtins.readFile ./keymaps.json);
 
     extensions = [ 
       "material_icon_theme"
