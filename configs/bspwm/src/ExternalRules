@@ -33,22 +33,17 @@ case "$class" in
         esac
         ;;
 
-    # Tangkap semua varian browser Chromium
     "ChatAi" | "GeminiAi" | "ClaudeAi" | "youtube" | "reddit")
 
-        # Cek INSTANCE ($3) - Ini biasanya nama domain dari flag --app
         case "$instance" in
-            # Youtube & Reddit (Mode Desktop Lebar)
             *"youtube.com"* | *"reddit.com"*)
                 echo "desktop=^4 state=floating sticky=off rectangle=$RECT_MAIN"
                 ;;
 
-            # AI Chat (Mode Panel Samping)
             *"gemini.google.com"* | *"claude.ai"* | *"chat.openai.com"*)
                 echo "state=floating rectangle=$RECT_SIDE_MED"
                 ;;
 
-            # Fallback pakai Title jika Instance gagal/aneh
             *)
                 case "$title" in
                     *"ChatGPT"* | *"Claude"*)
@@ -66,7 +61,6 @@ case "$class" in
         echo "state=floating rectangle=$RECT_CENTER_SMALL"
         ;;
 
-    # Case khusus title check jika class rmpc tidak spesifik
     *)
         if [[ "$title" == *"rmpc"* ]]; then
             echo "state=floating rectangle=$RECT_CENTER_SMALL"
@@ -130,6 +124,6 @@ case "$title" in
         echo "desktop=^1"
         ;;
     *"Zed"*"Settings"* | *"Settings"*)
-        echo "state=floating"
+        echo "state=floating center=on"
         ;;
 esac
