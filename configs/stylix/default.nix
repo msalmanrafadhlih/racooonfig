@@ -1,6 +1,9 @@
-{ pkgs, config, ... }:
-{
-
+{ pkgs, config, ... }: {
+  # Target Applications
+  imports = [
+    ./gtk.nix
+    ./disable.nix
+  ];
 
   stylix = {
     enable = true;
@@ -125,9 +128,4 @@
       package = pkgs.vimix-icon-theme;
     };
   };
-  # Target Applications
-  imports = [
-    ./gtk.nix
-    ./disable.nix
-  ];
 }
