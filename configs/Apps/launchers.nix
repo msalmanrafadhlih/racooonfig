@@ -30,7 +30,7 @@ let
 in
 {
   # ".icons" = "Assets/cursors";
-  "Pictures/iconApps" = "Assets/IconApps";
+  ".local/share/icons/Apps" = "Assets/IconApps";
   "Pictures/Wallpaper" = "Assets/Wallpaper";
   ".config/zsh/.nomedia" = "zsh/zcompdump";
   ".local/share/asciiart" = "asciiart";
