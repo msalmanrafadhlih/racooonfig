@@ -84,7 +84,7 @@
                 # Memasukkan SYSTEM_PROMPT ke dalam struktur JSON
                 jq --arg sys "$SYSTEM_PROMPT" '{systemInstruction: {parts: [{text: $sys}]}, contents: .}' "$HISTORY_FILE" > "$PAYLOAD_FILE"
 
-                printf "''${CYAN}Gemini sedang berpikir...''${RESET}"
+                printf "%sGemini sedang berpikir...%s" "$CYAN" "$RESET"
 
                 # 2. Kirim Request
                 curl -s -X POST "$ENDPOINT" \
