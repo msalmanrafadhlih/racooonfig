@@ -1,5 +1,3 @@
-{ config, pkgs, lib, ... }:
-
 {
   home.file.".local/bin/tar.sh" = {
     text = ''
