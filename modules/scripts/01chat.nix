@@ -50,7 +50,7 @@
             fi
 
             cleanup() {
-                echo -e "\n${RED}Sesi berakhir. Sampai jumpa!${RESET}"
+                echo -e "\n''${RED}Sesi berakhir. Sampai jumpa!''${RESET}"
                 rm -f "$PAYLOAD_FILE" "$RESPONSE_FILE"
                 exit
             }
@@ -58,22 +58,22 @@
             trap cleanup SIGINT
 
             clear
-            echo "${BLUE}==================================================${RESET}"
-            echo "${BLUE}            🤖 Gemini AI - Mode Jutek ${RESET}"
+            echo "''${BLUE}==================================================''${RESET}"
+            echo "''${BLUE}            🤖 Gemini AI - Mode Jutek ''${RESET}"
             echo "                        ---"
             echo " Model: $MODEL_NAME"
-            echo "${BLUE}==================================================${RESET}"
+            echo "''${BLUE}==================================================''${RESET}"
             echo "                         Quit[q], Session[reset]"
 
             while true; do
-                echo -e "\n${GREEN}You:\n"
+                echo -e "\n''${GREEN}You:\n"
                 read -r user_input
 
                 if [[ "$user_input" == "exit" || "$user_input" == "q" ]]; then cleanup; fi
                 if [[ "$user_input" == "reset" ]]; then
                     echo "[]" > "$HISTORY_FILE"
-                    echo -e "${YELLOW}[!] Ingatan dihapus.\n"
-                    echo "${GRAY} ────────────────────────────────────────────────${RESET}"
+                    echo -e "''${YELLOW}[!] Ingatan dihapus.\n"
+                    echo "''${GRAY} ────────────────────────────────────────────────''${RESET}"
                     continue
                 fi
                 if [[ -z "$user_input" ]]; then continue; fi
@@ -84,7 +84,7 @@
                 # Memasukkan SYSTEM_PROMPT ke dalam struktur JSON
                 jq --arg sys "$SYSTEM_PROMPT" '{systemInstruction: {parts: [{text: $sys}]}, contents: .}' "$HISTORY_FILE" > "$PAYLOAD_FILE"
 
-                printf "${CYAN}Gemini sedang berpikir...${RESET}"
+                printf "''${CYAN}Gemini sedang berpikir...''${RESET}"
 
                 # 2. Kirim Request
                 curl -s -X POST "$ENDPOINT" \
@@ -104,15 +104,15 @@
 
                 if [[ -z "$answer" ]]; then
                     error_msg=$(jq -r '.error.message // .candidates[0].finishReason // "Unknown Error"' "$RESPONSE_FILE")
-                    echo "${RED}[Error]: $error_msg${RESET}"
+                    echo "''${RED}[Error]: $error_msg''${RESET}"
                     jq 'del(.[-1])' "$HISTORY_FILE" > "$HISTORY_FILE.tmp" && mv "$HISTORY_FILE.tmp" "$HISTORY_FILE"
                 else
-                    echo -e "\n${BLUE}Gemini:${RESET}"
+                    echo -e "\n''${BLUE}Gemini:''${RESET}"
                     # echo "$answer" | glow -s dark -
                     echo "$answer" | mdcat
 
-                    echo -e "${YELLOW}\n   📊 Token Usage: P: $token_prompt | R: $token_resp | Total: $token_total ${RESET}"
-                    echo "${GRAY} ────────────────────────────────────────────────${RESET}"
+                    echo -e "''${YELLOW}\n   📊 Token Usage: P: $token_prompt | R: $token_resp | Total: $token_total ''${RESET}"
+                    echo "''${GRAY} ────────────────────────────────────────────────''${RESET}"
 
                     jq --arg txt "$answer" '. += [{"role": "model", "parts": [{"text": $txt}]}]' "$HISTORY_FILE" > "$HISTORY_FILE.tmp" && mv "$HISTORY_FILE.tmp" "$HISTORY_FILE"
                 fi
