@@ -1,5 +1,3 @@
-{ program, pkgs, lib, ... }:
-
 {
   home.file.".local/bin/opencam" = {
   	text = ''
