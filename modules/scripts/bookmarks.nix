@@ -1,5 +1,3 @@
-{ libs, pkgs, service, ... }:
-
 {
   home.file.".local/bin/bookmarks.sh" = {
     text = ''
