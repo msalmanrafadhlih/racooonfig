@@ -1,5 +1,3 @@
-{ repss, libs, manager, ... }:
-
 {
   home.file.".local/bin/repository.sh" = {
 	text = ''
