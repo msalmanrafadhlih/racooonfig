@@ -22,14 +22,14 @@ mkdir -p "$(dirname "$PERS_FILE")"
 if [ ! -f "$PERS_FILE" ]; then
     cat > "$PERS_FILE" << EOF
 # personal
-Tquilla :: https://github.com/msalmanrafadhlih/Nixos-Dotsfile
+Tquilla :: https://github.com/msalmanrafadhlih/flexinix
 EOF
 fi
 
 if [ ! -f "$WORK_FILE" ]; then
     cat > "$WORK_FILE" << EOF
 # work
-MochSal :: https://msalmanrafadhlih.github.io/My-portofolio/
+Github :: https://github.com/msalmanrafadhlih
 EOF
 fi
 
@@ -69,8 +69,8 @@ choice="$1"
 
 case "$choice" in
     *"🔹 === BOOKMARKS === 🔹"*)
-        # Catatan: Karena Rofi berjalan di background/GUI, jika $EDITOR Anda berbasis CLI
-        # seperti Neovim, Anda harus membungkusnya dengan terminal emulator.
+        # Catatan: Karena Rofi berjalan di background/GUI, jika $EDITOR berbasis CLI
+        # seperti Neovim, harus membungkusnya dengan terminal emulator.
         # Contoh: kitty -e nvim ~/.config/bookmarks
         "$TERMINAL" -e "$EDITOR" ~/.config/bookmarks > /dev/null 2>&1 &
         exit 0
