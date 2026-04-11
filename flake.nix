@@ -14,11 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    rip = {
-      url = "github:TQ-See/process-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     st-nix = {
       url = "github:TQ-See/st-flexipatch";
       inputs.nixpkgs.follows = "nixpkgs";
