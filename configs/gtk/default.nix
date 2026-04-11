@@ -1,6 +1,6 @@
 # source: https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/
 
-{ pkgs, ... }: {
+{ ... }: {
   # catppuccin.gtk.icon = {
   #   enable = true;
   #   accent = "lavender";
@@ -9,7 +9,7 @@
 
   gtk = {
     enable = true;
-
+    gtk4.theme = null ;
     # theme = {
     #   package = pkgs.catppuccin-gtk.override {
     #     accents = [ "lavender" ];
