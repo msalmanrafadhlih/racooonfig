@@ -78,12 +78,7 @@
     cursor = {
       name = "Kafka";
       size = 24;
-      package = pkgs.callPackage (pkgs.fetchFromGitHub {
-        owner = "TQ-See";
-        repo = "Cursors-memes";
-        rev = "main";
-        sha256 = "sha256-rvq2XKiv9fkLBE9LbPIBGu2ekYhypCQlYW42P9OgmVo=";
-      }) { };
+      package = pkgs.cursor-memes;
     };
 
     ##########
