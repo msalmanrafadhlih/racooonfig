@@ -185,20 +185,25 @@ super + Tab
 
 # ==================================================  OTHER
 # ---------------------------------------------------------  Brightness
-XF86MonBrightnessUp
+# XF86MonBrightnessUp
+alt + shift + period
     sh ~/.local/bin/brightness.sh up
 
-XF86MonBrightnessDown
+# XF86MonBrightnessDown
+alt + shift + comma
     sh ~/.local/bin/brightness.sh down
 
 # ---------------------------------------------------------  Volume
-XF86AudioRaiseVolume
+# XF86AudioRaiseVolume
+alt + shift + equal
     sh ~/.local/bin/volume.sh --inc
 
-XF86AudioLowerVolume
+# XF86AudioLowerVolume
+alt + shift + minus
     sh ~/.local/bin/volume.sh --dec
 
-XF86AudioMute
+# XF86AudioMute
+alt + shift + 0
     sh ~/.local/bin/volume.sh --toggle
 
 # ---------------------------------------------------------- Audio
