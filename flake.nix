@@ -26,6 +26,7 @@
 
     matugen = {
       url = "github:/InioX/Matugen";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ## ---- Home-Manager Packages
