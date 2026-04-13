@@ -19,6 +19,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    matugen = {
+      url = "github:/InioX/Matugen";
+    };
+
     ## ---- Home-Manager Packages
     zjstatus = {
       url = "github:dj95/zjstatus";
@@ -37,11 +46,6 @@
 
     textfox = {
       url = "github:adriankarlen/textfox";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix = {
-      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -74,7 +78,11 @@
       default  = mkModule [ ./users/bspwm ];
       niri     = mkModule [ ./users/niri ];
       hyprland = mkModule [ ./users/hyprland ];
-    }; 
+    };
+
+    nixosModules = {
+      bspwm-themes = import ./users/bspwm/themes.nix inputs;
+    };
 
     # keep standalone homeConfigurations
     # for `home-manager switch --flake .#bspwm / #niri / #hyprland`
