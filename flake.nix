@@ -80,8 +80,14 @@
       hyprland = mkModule [ ./users/hyprland ];
     };
 
+    # ✅ nixos module yang benar
     nixosModules = {
-      bspwm-themes = import ./users/bspwm/themes.nix ;
+      bspwm-themes = {
+        _module.args = inputs;
+        imports = [
+          ./users/bspwm/themes.nix
+        ];
+      };
     };
 
     # keep standalone homeConfigurations
