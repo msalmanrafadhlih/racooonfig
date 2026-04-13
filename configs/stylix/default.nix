@@ -26,6 +26,16 @@ in
 
     polarity = "dark"; # "dark","light"
 
+    imageScalingMode = "fill"; # stretch, fill, fit, center, tile
+    image = pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/msalmanrafadhlih/Dotfiles/refs/heads/bspwm/home/Assets/Wallpaper/wallpaper8.jpeg";
+      hash = "sha256-VZp1wy2N0GApt48ILRY+pIAhAjCt02GmqmxHRTWAEoA=";
+    };
+    # image = pkgs.fetchurl {
+    #   url = "https://raw.githubusercontent.com/msalmanrafadhlih/Dotfiles/refs/heads/bspwm/home/Assets/Wallpaper/wallpaper11.jpg";
+    #   hash = "sha256-SToNXY0LihjfCsfqgkzXfAT8B19t/HY48TrqfwgoiJc=";
+    # };
+
     ## Attributes defining the systemwide cursor.
     ## Set either all or none of these attributes.
     cursor = {
