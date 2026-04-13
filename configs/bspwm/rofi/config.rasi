@@ -7,195 +7,195 @@
  **/
 
 configuration {
-    /*---------- General setting ----------*/
-    modi: "drun,run,filebrowser,window,bookmarks:~/.local/bin/bookmarks.sh,repos:~/.local/bin/repository.sh";
-    case-sensitive: false;
-    cycle: true;
-    filter: "";
-    scroll-method: 0;
-    normalize-match: true;
-    show-icons: true;
-    icon-theme: "Papirus";
-    /* cache-dir: ; */
-    steal-focus: false;
-    /* dpi: -1; */
+  /*---------- General setting ----------*/
+  modi: "drun,run,filebrowser,window,bookmarks:~/.local/bin/bookmarks.sh,repos:~/.local/bin/repository.sh";
+  case-sensitive: false;
+  cycle: true;
+  filter: "";
+  scroll-method: 0;
+  normalize-match: true;
+  show-icons: true;
+  icon-theme: "Papirus";
+  /* cache-dir: ; */
+  steal-focus: false;
+  /* dpi: -1; */
 
-    /*---------- Matching setting ----------*/
-    matching: "normal";
-    tokenize: true;
+  /*---------- Matching setting ----------*/
+  matching: "normal";
+  tokenize: true;
 
-    /*---------- SSH settings ----------*/
-    ssh-client: "ssh";
-    ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
-    parse-hosts: true;
-    parse-known-hosts: true;
+  /*---------- SSH settings ----------*/
+  ssh-client: "ssh";
+  ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
+  parse-hosts: true;
+  parse-known-hosts: true;
 
-    /*---------- Drun settings ----------*/
-    drun-categories: "";
-    drun-match-fields: "name,generic,exec,categories,keywords";
-    drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
-    drun-show-actions: false;
-    drun-url-launcher: "xdg-open";
-    drun-use-desktop-cache: false;
-    drun-reload-desktop-cache: false;
-    drun {
-        /* Parse user desktop files. */
-        parse-user: true;
-        /* Parse system desktop files. */
-        parse-system: true;
-    }
+  /*---------- Drun settings ----------*/
+  drun-categories: "";
+  drun-match-fields: "name,generic,exec,categories,keywords";
+  drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+  drun-show-actions: false;
+  drun-url-launcher: "xdg-open";
+  drun-use-desktop-cache: false;
+  drun-reload-desktop-cache: false;
+  drun {
+    /* Parse user desktop files. */
+    parse-user: true;
+    /* Parse system desktop files. */
+    parse-system: true;
+  }
 
-    /*---------- Run settings ----------*/
-    run-command: "{cmd}";
-    run-list-command: "find ~/.local/bin ~/.config -maxdepth 1 -type f -name '*.sh' -printf '%f\n'";
-    run-shell-command: "{terminal} -e {cmd}";
+  /*---------- Run settings ----------*/
+  run-command: "{cmd}";
+  run-list-command: "find ~/.local/bin ~/.config -maxdepth 1 -type f -name '*.sh' -printf '%f\n'";
+  run-shell-command: "{terminal} -e {cmd}";
 
-    /*---------- Fallback Icon ----------*/
-    run,
-    drun {
-        fallback-icon: "application-x-addon";
-    }
+  /*---------- Fallback Icon ----------*/
+  run,
+  drun {
+    fallback-icon: "application-x-addon";
+  }
 
-    /*---------- Window switcher settings ----------*/
-    window-match-fields: "title,class,role,name,desktop";
-    window-command: "wmctrl -i -R {window}";
-    window-format: "{w} - {c} - {t:0}";
-    window-thumbnail: false;
+  /*---------- Window switcher settings ----------*/
+  window-match-fields: "title,class,role,name,desktop";
+  window-command: "wmctrl -i -R {window}";
+  window-format: "{w} - {c} - {t:0}";
+  window-thumbnail: false;
 
-    /*---------- Combi settings ----------*/
-    combi-modi: "window,run";
-    combi-hide-mode-prefix: false;
-    combi-display-format: "{mode} {text}";
+  /*---------- Combi settings ----------*/
+  combi-modi: "window,run";
+  combi-hide-mode-prefix: false;
+  combi-display-format: "{mode} {text}";
 
-    /*---------- History and Sorting ----------*/
-    disable-history: false;
-    sorting-method: "normal";
-    max-history-size: 25;
+  /*---------- History and Sorting ----------*/
+  disable-history: false;
+  sorting-method: "normal";
+  max-history-size: 25;
 
-    /*---------- Display setting ----------*/
-    display-window: "Windows";
-    display-windowcd: "Window CD";
-    display-run: "Run";
-    display-ssh: "SSH";
-    display-drun: "Apps";
-    display-combi: "Combi";
-    display-keys: "Keys";
-    display-filebrowser: "Files";
+  /*---------- Display setting ----------*/
+  display-window: "Windows";
+  display-windowcd: "Window CD";
+  display-run: "Run";
+  display-ssh: "SSH";
+  display-drun: "Apps";
+  display-combi: "Combi";
+  display-keys: "Keys";
+  display-filebrowser: "Files";
 
-    /*---------- Misc setting ----------*/
-    terminal: "rofi-sensible-terminal";
-    font: "Mono 12";
-    sort: false;
-    threads: 0;
-    click-to-exit: true;
-    /* ignored-prefixes: ""; */
-    /* pid: "/run/user/1000/rofi.pid"; */
+  /*---------- Misc setting ----------*/
+  terminal: "rofi-sensible-terminal";
+  font: "Mono 12";
+  sort: false;
+  threads: 0;
+  click-to-exit: true;
+  /* ignored-prefixes: ""; */
+  /* pid: "/run/user/1000/rofi.pid"; */
 
-    /*---------- File browser settings ----------*/
+  /*---------- File browser settings ----------*/
 
-    filebrowser {
-        /** Directory the file browser starts in. */
-        directory: "/home";
-        /**
+  filebrowser {
+    /** Directory the file browser starts in. */
+    directory: "/home";
+    /**
 			* Sorting method. Can be set to:
 			*   - "name"
 			*   - "mtime" (modification time)
 			*   - "atime" (access time)
 			*   - "ctime" (change time)
 			*/
-        sorting-method: "name";
-        /** Group directories before files. */
-        directories-first: true;
-    }
+    sorting-method: "name";
+    /** Group directories before files. */
+    directories-first: true;
+  }
 
-    /*---------- Other settings ----------*/
-    timeout {
-        action: "kb-cancel";
-        delay: 0;
-    }
+  /*---------- Other settings ----------*/
+  timeout {
+    action: "kb-cancel";
+    delay: 0;
+  }
 
-    /*---------- Keybindings ----------*/
-    kb-primary-paste: "";
-    kb-secondary-paste: "";
-    kb-secondary-copy: "";
-    kb-clear-line: "";
-    kb-move-front: "";
-    kb-move-end: "";
-    kb-move-word-back: "";
-    kb-move-word-forward: "";
-    kb-move-char-back: "";
-    kb-move-char-forward: "";
-    kb-remove-word-back: "ctrl+BackSpace,Alt+BackSpace";
-    kb-remove-word-forward: "";
-    kb-remove-char-forward: "";
-    kb-remove-char-back: "BackSpace";
-    kb-remove-to-eol: "";
-    kb-remove-to-sol: "";
-    kb-accept-entry: "Return";
-    kb-accept-custom: "";
-    kb-accept-custom-alt: "";
-    kb-accept-alt: "";
-    kb-delete-entry: "";
-    kb-mode-next: "Tab,Alt+l";
-    kb-mode-previous: "Shift+Tab,Alt+h";
-    kb-mode-complete: "";
-    kb-row-left: "Left";
-    kb-row-right: "Right";
-    kb-row-up: "Up,Alt+k";
-    kb-row-down: "Down,Alt+j";
-    kb-row-tab: "";
-    kb-element-next: "";
-    kb-element-prev: "";
-    kb-page-prev: "";
-    kb-page-next: "";
-    kb-row-first: "";
-    kb-row-last: "";
-    kb-row-select: "";
-    kb-screenshot: "";
-    kb-ellipsize: "";
-    kb-toggle-case-sensitivity: "";
-    kb-toggle-sort: "";
-    kb-cancel: "Escape";
-    kb-custom-1: "";
-    kb-custom-2: "";
-    kb-custom-3: "";
-    kb-custom-4: "";
-    kb-custom-5: "";
-    kb-custom-6: "";
-    kb-custom-7: "";
-    kb-custom-8: "";
-    kb-custom-9: "";
-    kb-custom-10: "";
-    kb-custom-11: "";
-    kb-custom-12: "";
-    kb-custom-13: "";
-    kb-custom-14: "";
-    kb-custom-15: "";
-    kb-custom-16: "";
-    kb-custom-17: "";
-    kb-custom-18: "";
-    kb-custom-19: "";
-    kb-select-1: "";
-    kb-select-2: "";
-    kb-select-3: "";
-    kb-select-4: "";
-    kb-select-5: "";
-    kb-select-6: "";
-    kb-select-7: "";
-    kb-select-8: "";
-    kb-select-9: "";
-    kb-select-10: "";
-    kb-entry-history-up: "";
-    kb-entry-history-down: "";
-    kb-matcher-up: "";
-    kb-matcher-down: "";
+  /*---------- Keybindings ----------*/
+  kb-primary-paste: "";
+  kb-secondary-paste: "";
+  kb-secondary-copy: "";
+  kb-clear-line: "";
+  kb-move-front: "";
+  kb-move-end: "";
+  kb-move-word-back: "";
+  kb-move-word-forward: "";
+  kb-move-char-back: "";
+  kb-move-char-forward: "";
+  kb-remove-word-back: "ctrl+BackSpace,Alt+BackSpace";
+  kb-remove-word-forward: "";
+  kb-remove-char-forward: "";
+  kb-remove-char-back: "BackSpace";
+  kb-remove-to-eol: "";
+  kb-remove-to-sol: "";
+  kb-accept-entry: "Return";
+  kb-accept-custom: "";
+  kb-accept-custom-alt: "";
+  kb-accept-alt: "";
+  kb-delete-entry: "";
+  kb-mode-next: "Tab,Alt+l";
+  kb-mode-previous: "Shift+Tab,Alt+h";
+  kb-mode-complete: "";
+  kb-row-left: "Left";
+  kb-row-right: "Right";
+  kb-row-up: "Up,Alt+k";
+  kb-row-down: "Down,Alt+j";
+  kb-row-tab: "";
+  kb-element-next: "";
+  kb-element-prev: "";
+  kb-page-prev: "";
+  kb-page-next: "";
+  kb-row-first: "";
+  kb-row-last: "";
+  kb-row-select: "";
+  kb-screenshot: "";
+  kb-ellipsize: "";
+  kb-toggle-case-sensitivity: "";
+  kb-toggle-sort: "";
+  kb-cancel: "Escape";
+  kb-custom-1: "";
+  kb-custom-2: "";
+  kb-custom-3: "";
+  kb-custom-4: "";
+  kb-custom-5: "";
+  kb-custom-6: "";
+  kb-custom-7: "";
+  kb-custom-8: "";
+  kb-custom-9: "";
+  kb-custom-10: "";
+  kb-custom-11: "";
+  kb-custom-12: "";
+  kb-custom-13: "";
+  kb-custom-14: "";
+  kb-custom-15: "";
+  kb-custom-16: "";
+  kb-custom-17: "";
+  kb-custom-18: "";
+  kb-custom-19: "";
+  kb-select-1: "";
+  kb-select-2: "";
+  kb-select-3: "";
+  kb-select-4: "";
+  kb-select-5: "";
+  kb-select-6: "";
+  kb-select-7: "";
+  kb-select-8: "";
+  kb-select-9: "";
+  kb-select-10: "";
+  kb-entry-history-up: "";
+  kb-entry-history-down: "";
+  kb-matcher-up: "";
+  kb-matcher-down: "";
 
-    /*---------- Mouse Events ----------*/
-    ml-row-left: "ScrollLeft";
-    ml-row-right: "ScrollRight";
-    ml-row-up: "ScrollUp";
-    ml-row-down: "ScrollDown";
-    me-select-entry: "MousePrimary";
-    me-accept-entry: "MouseDPrimary";
-    me-accept-custom: "Control+MouseDPrimary";
+  /*---------- Mouse Events ----------*/
+  ml-row-left: "ScrollLeft";
+  ml-row-right: "ScrollRight";
+  ml-row-up: "ScrollUp";
+  ml-row-down: "ScrollDown";
+  me-select-entry: "MousePrimary";
+  me-accept-entry: "MouseDPrimary";
+  me-accept-custom: "Control+MouseDPrimary";
 }
