@@ -294,7 +294,7 @@ in
 
       base_keymap = "VSCode";
 
-      buffer_font_family = ".ZedMono";
+      buffer_font_family = lib.mkForce ".ZedMono";
       buffer_font_size = lib.mkForce 8.0;
       buffer_font_weight = 400;
       buffer_line_height = "standard";
