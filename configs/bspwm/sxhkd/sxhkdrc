@@ -22,6 +22,10 @@ super + alt + c
 super + Escape
 	source ~/.config/rofi/scripts/powermenu.sh
 
+# ---------------------------------------------------------  Menu Apps
+alt + @space
+	source ~/.config/rofi/scripts/launcher.sh
+
 ###########################################################
 # ------------------ Applications ----------------------- #
 ###########################################################
@@ -29,9 +33,6 @@ super + Escape
 # ---------------------------------------------------------  Terminal
 super + Return
 	st -c TerminalDefault
-# ---------------------------------------------------------  Menu Apps
-super + @space
-	source ~/.config/rofi/scripts/launcher.sh
 # ---------------------------------------------------------  Browser
 super + b
 	kdocker -f -q vivaldi
