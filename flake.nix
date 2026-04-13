@@ -83,7 +83,6 @@
     # ✅ nixos module yang benar
     nixosModules = {
       bspwm-themes = {
-        _module.args.self-inputs = inputs.racooonfig.inputs;
         imports = [
           ./users/bspwm/themes.nix
         ];
