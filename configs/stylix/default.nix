@@ -1,7 +1,7 @@
-{ pkgs, config, inputs, ... }: {
+{ pkgs, config, self-inputs, ... }: {
   # Target Applications
   imports = [
-    inputs.stylix.nixosModules.default
+    self-inputs.stylix.nixosModules.default
 
     ./targets.nix
   ];
