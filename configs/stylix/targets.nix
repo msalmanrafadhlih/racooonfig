@@ -1,8 +1,10 @@
 {
-  # stylix.targets.spicetify.enable = false;
-  stylix.targets.helix.enable = false;
-  stylix.targets.zellij.enable = false;
-  stylix.targets.starship.enable = false;
-  stylix.targets.zed.enable = false;
-  stylix.targets.tmux.enable = false;
+  stylix.targets = {
+    spicetify.enable = true;
+    helix.enable = false;
+    zellij.enable = false;
+    starship.enable = false;
+    zed.enable = false;
+    tmux.enable = false;
+  };
 }
