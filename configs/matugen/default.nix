@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 let
   inp = inputs.racooonfig.inputs;
 in
@@ -17,7 +17,7 @@ in
     ###################################
     # 🔹 2. Package Override (optional)
     ###################################
-    # package = pkgs.matugen;
+    package = pkgs.matugen;
 
     ###################################
     # 🎨 3. Source Warna
