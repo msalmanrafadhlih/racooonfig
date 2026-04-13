@@ -1,23 +1,11 @@
-{ inputs, pkgs, dotfiles, config, ... }:
+{ inputs, pkgs, ... }:
 let
-  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-  home = config.home.homeDirectory;
-  dotfiles_path = "${home}/.dotfiles/${dotfiles}/configs/matugen";
-
-  configs = {
-		templates = "templates";
-		websites = "websites";
-  };
+  inp = inputs.racooonfig.inputs;
 in
 {
-  # Symlink path to ~./config/*
-  xdg.configFile = builtins.mapAttrs (name: subpath: {source =
-    create_symlink "${dotfiles_path}/${subpath}";
-    recursive = true;
-  }) configs;
 
   imports = [
-    inputs.matugen.homeModules.default
+    inp.matugen.nixosModules.default
   ];
   
   programs.matugen = {
