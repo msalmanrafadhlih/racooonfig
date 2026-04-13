@@ -15,6 +15,7 @@
 	../../configs/vesktop
 	../../configs/com.kdocker
 	../../configs/suckless
+	../../configs/matugen
 	../../configs/mpd
 	../../configs/nano 
 	../../configs/rmpc 
