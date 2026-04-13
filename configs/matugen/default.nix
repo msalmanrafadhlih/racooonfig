@@ -30,7 +30,7 @@ in
 
     ## B. Pakai wallpaper (default)
     wallpaper = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/msalmanrafadhlih/Nixos-Dotsfile/refs/heads/main/config/Assets/Wallpaper/wallpaper8.jpeg";
+      url = "https://raw.githubusercontent.com/msalmanrafadhlih/racooonfig/refs/heads/main/configs/Assets/Wallpaper/wallpaper8.jpeg";
       sha256 = "sha256-VZp1wy2N0GApt48ILRY+pIAhAjCt02GmqmxHRTWAEoA=";
     };
 
@@ -110,6 +110,7 @@ in
       [templates.vivaldi]
       input_path = "~/.config/templates/vivaldi.css"
       output_path = "~/.config/vivaldi/CustomCSS/colors.css"
+
     '';
 
   };
