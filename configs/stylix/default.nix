@@ -10,6 +10,9 @@ in
 
   stylix = {
     enable = true;
+    targets = {
+      GRUB.enable = false;
+    };
 
     # Whether to enable targets by default.
     # When this is false, all targets are disabled unless explicitly enabled.
