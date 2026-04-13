@@ -1,9 +1,11 @@
-{ self-inputs, ... }:
-
+{ inputs, ... }:
+let
+  inp = inputs.racooonfig.inputs;
+in
 {
 
   imports = [
-    self-inputs.matugen.nixosModules.default  
+    inp.matugen.nixosModules.default  
   ];
   
   programs.matugen = {
