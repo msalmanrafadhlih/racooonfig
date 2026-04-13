@@ -12,6 +12,7 @@ in
     enable = true;
     targets = {
       grub.enable = false;
+      plymouth = false;
     };
 
     # Whether to enable targets by default.
