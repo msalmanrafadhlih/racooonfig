@@ -1,3 +1,17 @@
+:root {
+<* for name, value in colors *>
+    --{{name}}: {{value.default.hex}};
+<* endfor *>
+
+<* for name, value in colors *>
+    --{{name}}_rgb: {{value.default.red}} {{value.default.green}} {{value.default.blue}};
+<* endfor *>
+}
+
+@import url("/home/tquilla/.config/matugen/websites/bitwarden.css");
+@import url("/home/tquilla/.config/matugen/websites/youtube.css");
+@import url("/home/tquilla/.config/matugen/websites/github.css");
+
 #browser {
 --colorFg: {{colors.on_surface.default.rgb}} !important;  /* foreground text */
 --colorFgAlpha: {{colors.on_surface.default.rgba | set_alpha: 0.10}} !important; /* foreground text */
