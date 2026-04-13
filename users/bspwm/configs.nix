@@ -1,5 +1,5 @@
 # ./default.nix
-{ inputs, ... }:
+{ ... }:
 
 { 
  imports = [
@@ -12,7 +12,6 @@
   ../../configs/gtk
   ../../configs/spotify
   ../../configs/kitty
-  ../../configs/stylix
 	../../configs/vesktop
 	../../configs/com.kdocker
 	../../configs/suckless
@@ -20,6 +19,7 @@
 	../../configs/nano 
 	../../configs/rmpc 
 	../../configs/xytz # TUI Youtube downloader and Streaming
+  # ../../configs/stylix
 	# ../../configs/rclone
   # ../../configs/zen-browser
   # ../../configs/firefox
@@ -32,7 +32,5 @@
 	# ../../configs/gtk-3.0
 	# ../../configs/ghostty 
   # ../../configs/alacritty 
-
-  inputs.stylix.homeModules.stylix
  ];
 }
