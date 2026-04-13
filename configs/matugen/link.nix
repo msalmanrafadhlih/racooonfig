@@ -5,10 +5,10 @@ let
   dotfiles_path = "${home}/.dotfiles/${dotfiles}/configs/matugen";
 
   configs = {
-		templates = "templates";
-		websites = "websites";
+		"matugen/templates" = "templates";
+		"matugen/websites" = "websites";
 		
-		"config.toml" = "config.toml";
+		"matugen/config.toml" = "config.toml";
   };
 
 in
