@@ -83,7 +83,7 @@
     # ✅ nixos module yang benar
     nixosModules = {
       bspwm-themes = {
-        _module.args = inputs;
+        _module.args.self-inputs = inputs;
         imports = [
           ./users/bspwm/themes.nix
         ];
