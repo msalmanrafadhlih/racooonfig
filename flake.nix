@@ -81,7 +81,7 @@
     };
 
     nixosModules = {
-      bspwm-themes = import ./users/bspwm/themes.nix inputs;
+      bspwm-themes = import ./users/bspwm/themes.nix ;
     };
 
     # keep standalone homeConfigurations
