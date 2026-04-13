@@ -19,7 +19,6 @@
 	../../configs/nano 
 	../../configs/rmpc 
 	../../configs/xytz # TUI Youtube downloader and Streaming
-  # ../../configs/stylix
 	# ../../configs/rclone
   # ../../configs/zen-browser
   # ../../configs/firefox
@@ -32,5 +31,6 @@
 	# ../../configs/gtk-3.0
 	# ../../configs/ghostty 
   # ../../configs/alacritty 
+  ../../configs/stylix/targets.nix
  ];
 }
