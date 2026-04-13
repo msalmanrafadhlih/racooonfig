@@ -13,7 +13,7 @@ in
 
     # Whether to enable targets by default.
     # When this is false, all targets are disabled unless explicitly enabled.
-    autoEnable = false;
+    autoEnable = true;
 
     # Whether to enable theming for packages via overlays.
     # Default : config.stylix.autoEnable
