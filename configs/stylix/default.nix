@@ -1,7 +1,11 @@
-{ pkgs, config, self-inputs, ... }: {
+{ pkgs, config, inputs, ... }:
+let
+  inp = inputs.racooonfig.inputs;
+in
+{
   # Target Applications
   imports = [
-    self-inputs.stylix.nixosModules.default
+    inp.stylix.nixosModules.stylix
 
     ./targets.nix
   ];
