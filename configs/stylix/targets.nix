@@ -6,6 +6,7 @@
   ];
 
   stylix = {
+    enable = true;
     targets = {
       spicetify.enable = true;
       helix.enable = false;
