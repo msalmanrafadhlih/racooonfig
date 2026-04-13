@@ -9,7 +9,7 @@ in
   ];
 
   stylix = {
-    enable = false;
+    enable = true;
     targets = {
       grub.enable = false;
       plymouth.enable = false;
