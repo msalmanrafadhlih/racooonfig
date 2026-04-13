@@ -1,12 +1,5 @@
-{ inputs, ... }:
-
 {
-  imports = [
-    inputs.stylix.homeModules.stylix
-  ];
-
   stylix = {
-    enable = true;
     targets = {
       spicetify.enable = true;
       helix.enable = false;
