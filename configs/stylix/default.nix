@@ -11,7 +11,7 @@ in
   stylix = {
     enable = true;
     targets = {
-      GRUB.enable = false;
+      grub.enable = false;
     };
 
     # Whether to enable targets by default.
