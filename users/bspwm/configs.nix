@@ -15,7 +15,6 @@
 	../../configs/vesktop
 	../../configs/com.kdocker
 	../../configs/suckless
-	../../configs/matugen
 	../../configs/mpd
 	../../configs/nano 
 	../../configs/rmpc 
@@ -32,6 +31,7 @@
 	# ../../configs/gtk-3.0
 	# ../../configs/ghostty 
   # ../../configs/alacritty 
+	../../configs/matugen/link.nix
   ../../configs/stylix/targets.nix
  ];
 }
