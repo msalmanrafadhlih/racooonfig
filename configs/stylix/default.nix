@@ -6,8 +6,6 @@ in
   # Target Applications
   imports = [
     inp.stylix.nixosModules.stylix
-
-    ./targets.nix
   ];
 
   stylix = {
