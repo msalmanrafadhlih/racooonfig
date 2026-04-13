@@ -7,6 +7,8 @@ let
   configs = {
 		templates = "templates";
 		websites = "websites";
+		
+		"config.toml" = "config.toml";
   };
 
 in
