@@ -1,9 +1,9 @@
-{ inputs, ... }:
+{ self-inputs, ... }:
 
 {
 
   imports = [
-    inputs.matugen.nixosModules.default  
+    self-inputs.matugen.nixosModules.default  
   ];
   
   programs.matugen = {
