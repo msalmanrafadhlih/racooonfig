@@ -1,11 +1,23 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, dotfiles, config, ... }:
 let
-  inp = inputs.racooonfig.inputs;
+  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+  home = config.home.homeDirectory;
+  dotfiles_path = "${home}/.dotfiles/${dotfiles}/configs/matugen";
+
+  configs = {
+		templates = "templates";
+		websites = "websites";
+  };
 in
 {
+  # Symlink path to ~./config/*
+  xdg.configFile = builtins.mapAttrs (name: subpath: {source =
+    create_symlink "${dotfiles_path}/${subpath}";
+    recursive = true;
+  }) configs;
 
   imports = [
-    inp.matugen.nixosModules.default  
+    inputs.matugen.homeModules.default
   ];
   
   programs.matugen = {
@@ -29,7 +41,10 @@ in
     # source_color = "#ff1243";
 
     ## B. Pakai wallpaper (default)
-    wallpaper = ./wall.png;
+    wallpaper = builtins.fetchurl {
+      url = "https://raw.githubusercontent.com/msalmanrafadhlih/Nixos-Dotsfile/refs/heads/main/config/Assets/Wallpaper/wallpaper8.jpeg";
+      sha256 = "sha256-VZp1wy2N0GApt48ILRY+pIAhAjCt02GmqmxHRTWAEoA=";
+    };
 
     ###################################
     # 🎭 4. Palette Type
@@ -98,21 +113,16 @@ in
       };
     };
 
-    ###################################
-    # 🧩 11. Templates (CORE)
-    ###################################
-    templates = {
+    config = ''
 
-      #################################
-      # GTK
-      #################################
-      gtk = {
-        input_path = ./templates/gtk-colors.css ;
-        output_path = [
-          "~/.config/gtk-3.0/gtk.css"
-          "~/.config/gtk-4.0/gtk.css"
-        ];
-      };
-    };
+      [templates.gtk]
+      input_path = "~/.config/templates/gtk-colors.css"
+      output_path = "~/.config/gtk-3.0/colors.css"
+
+      [templates.vivaldi]
+      input_path = "~/.config/templates/vivaldi.css"
+      output_path = "~/.config/vivaldi/CustomCSS/colors.css"
+    '';
+
   };
 }
