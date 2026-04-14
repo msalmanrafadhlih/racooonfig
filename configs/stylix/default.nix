@@ -12,7 +12,7 @@ in
     enable = true;
 
     homeManagerIntegration = {
-      autoImport = false;
+      autoImport = true;
       followSystem = false;
     };
 
@@ -27,7 +27,7 @@ in
 
     # Whether to enable theming for packages via overlays.
     # Default : config.stylix.autoEnable
-    overlays.enable = false; # boolean
+    overlays.enable = true; # boolean
 
     ## A scheme following the base16 standard.
     ## Default : Automatically selected from the background image.
