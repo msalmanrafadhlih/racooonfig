@@ -1,4 +1,8 @@
 {
+  imports = [
+    ./gtk.nix
+  ];
+  
   stylix = {
     targets = {
       spicetify.enable = true;
