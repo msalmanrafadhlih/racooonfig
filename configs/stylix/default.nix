@@ -10,6 +10,12 @@ in
 
   stylix = {
     enable = true;
+
+    homeManagerIntegration = {
+      autoImport = false;
+      followSystem = false;
+    };
+
     targets = {
       grub.enable = false;
       plymouth.enable = false;
