@@ -27,7 +27,7 @@ in
 
     # Whether to enable theming for packages via overlays.
     # Default : config.stylix.autoEnable
-    overlays.enable = true; # boolean
+    overlays.enable = false; # boolean
 
     ## A scheme following the base16 standard.
     ## Default : Automatically selected from the background image.
