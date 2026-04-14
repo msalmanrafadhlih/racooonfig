@@ -1,9 +1,6 @@
 {
-  imports = [
-    ./gtk.nix
-  ];
-  
   stylix = {
+    enable = false;
     targets = {
       spicetify.enable = true;
       helix.enable = false;
@@ -13,4 +10,8 @@
       tmux.enable = false;
     };
   };
+
+  imports = [
+    ./gtk.nix
+  ];
 }
