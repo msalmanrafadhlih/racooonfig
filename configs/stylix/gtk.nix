@@ -4,7 +4,7 @@ in
 {
   stylix = {
     targets.gtk = {
-      enable = true;
+      enable = false;
       colors = {
         ## Whether to enable & override `config.lib.stylix.colors`
         enable = false;
