@@ -31,7 +31,7 @@
 	# ../../configs/gtk-3.0
 	# ../../configs/ghostty 
   # ../../configs/alacritty 
-  # ../../configs/stylix/targets.nix
+  ../../configs/stylix/targets.nix
 	../../configs/matugen/link.nix
  ];
 }
