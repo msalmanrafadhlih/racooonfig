@@ -1,11 +1,7 @@
 # ./bspwm/default.nix
- { config, dotfiles, ... }:
+{ mkSymlink, ... }:
 
 let
-  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-  home = config.home.homeDirectory;
-  dotfiles_path = "${home}/.dotfiles/${dotfiles}/configs/bspwm";
-
   configs = {
 		polybar = "polybar";
 		picom = "picom";
@@ -17,14 +13,10 @@ let
 		"bspwm/src" = "src";
 		"bspwm/bspwmrc" = "bspwmrc";
   };
-in
-
-{
-  # Symlink path to ~./config/*
-  xdg.configFile = builtins.mapAttrs (name: subpath: {source =
-    create_symlink "${dotfiles_path}/${subpath}";
-    recursive = true;
-  }) configs;
+in {
+  xdg.configFile = mkSymlink {
+    target = "bspwm";
+  } configs; 
   
   #########################
   ### Polybar Integrations:
