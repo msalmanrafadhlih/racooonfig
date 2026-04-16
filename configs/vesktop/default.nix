@@ -1,17 +1,12 @@
-{ config, dotfiles, ... }:
+{ mkSymlink, ... }:
 
 let
-  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-  home = config.home.homeDirectory;
-  dotfiles_path = "${home}/.dotfiles/${dotfiles}/configs";
   configs = {
-    "vesktop/themes" = "vesktop/themes";
+    "vesktop/themes" = "themes";
   };
 in
-
 {
-  xdg.configFile = builtins.mapAttrs (name: subpath: {source =
-    create_symlink "${dotfiles_path}/${subpath}";
-    recursive = true;
-  }) configs;
+  xdg.configFile = mkSymlink {
+    target = "vesktop";
+  } configs;
 }
