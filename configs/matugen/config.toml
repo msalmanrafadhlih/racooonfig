@@ -4,6 +4,10 @@
 input_path = "templates/gtk-colors.css"
 output_path = "~/.config/gtk-3.0/gtk.css"
 
-[templates.vivaldi]
-input_path = "templates/vivaldi.css"
-output_path = "~/.config/vivaldi/CustomCSS/colors.css"
+[templates.helix]
+input_path = "templates/helix.toml"
+output_path = "~/.config/helix/themes/helix.toml"
+
+# [templates.vivaldi]
+# input_path = "templates/vivaldi.css"
+# output_path = "~/.config/vivaldi/CustomCSS/colors.css"
