@@ -1,20 +1,17 @@
-{ config, dotfiles, ... }:
+{ mkSymlink, ... }:
 
 let
-  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-  home = config.home.homeDirectory;
-  dotfiles_path = "${home}/.dotfiles/${dotfiles}/configs/nano";
   configs = {
-		"nano/default" = "default";
-		"nano/extra" = "extra";
+		".config/nano/extra"   = "extra";
+		".config/nano/default" = "default";
+
+		".nanorc" = "nanorc";
   };
+
 in
 
 {
-  xdg.configFile = builtins.mapAttrs (name: subpath: {source =
-    create_symlink "${dotfiles_path}/${subpath}";
-    recursive = true;
-  }) configs;
-
-  imports = [ ./nanorc.nix ];
+  home.file = mkSymlink {
+    target = "nano";
+  } configs;
 }
