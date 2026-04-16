@@ -57,7 +57,7 @@
 --colorErrorBgAlpha: {{colors.error_container.default.rgba | set_alpha: 0.10}} !important;
 --colorErrorFg: {{colors.on_error.default.rgb}} !important;
 /* --colorWindowBg: {{colors.error.default.rgb}} !important; new page monotone bg (replaces image background) */
-/* --colorWindowFg: {{colors.error.default.rgb}} !important; fg for previos*/
+/* --colorWindowFg: {{colors.error.default.rgb}} !important; fg for previos */
 }
 
 /* in some color schemes settings appear too bright. this is meant to fix it. */
