@@ -1,19 +1,25 @@
 { pkgs, mkSymlink, ... }: let
 
   configs = {
-   "qt5ct/qt5ct.conf" = "qt/qt5ct.conf";
-   "qt6ct/qt6ct.conf" = "qt/qt6ct.conf";
+   "qt5ct/qt5ct.conf" = "qt5ct.conf";
+   "qt6ct/qt6ct.conf" = "qt6ct.conf";
   };
 
 in {
 
   # Install assets (cursor, icon, theme)
   home.packages = with pkgs; [
-    # Icons & Cursors
+    # Icons  
     vimix-icon-theme
+
+    # Cursors
     cursor-memes
 
+    # themes
     adwaita-qt
+    omni-gtk-theme
+    vimix-gtk-themes
+
     gsettings-desktop-schemas
   ];
 
@@ -38,7 +44,9 @@ in {
   };
 
   # QT config (biar ikut icon/theme)
-  xdg.configFile = mkSymlink {} configs;
+  xdg.configFile = mkSymlink {
+    target = "qt";
+  } configs;
 
   # ✅ Pastikan schema tersedia
   xdg.systemDirs.data = [
