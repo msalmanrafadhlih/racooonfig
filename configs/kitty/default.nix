@@ -30,8 +30,8 @@ in
     };
 
     autoThemeFiles = {
-      light = "GitHub";
-      dark = "TokyoNight";
+      light = "Github";
+      dark = "dynamic";
       noPreference = "OneDark";
     };
 
