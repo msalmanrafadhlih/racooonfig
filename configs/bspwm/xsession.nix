@@ -10,7 +10,7 @@
     enable = true;
     windowManager.command = "bspwm";
 
-    # Tambahan script sebelum menjalankan WM (setara isi .xinitrc kamu)
+    # Tambahan script sebelum menjalankan WM (setara isi .xinitrc)
     initExtra = ''
             [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
       	    eval "$(dbus-launch --sh-syntax)"
