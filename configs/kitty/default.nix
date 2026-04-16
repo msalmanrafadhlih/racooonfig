@@ -29,11 +29,9 @@ in
       mode = "no-title no-cwd";
     };
 
-    autoThemeFiles = {
-      light = "Github";
-      dark = "dynamic";
-      noPreference = "OneDark";
-    };
+    extraConfig = ''
+      include themes/dynamic.conf
+    '';
 
     settings = {
       # 2. PERBAIKAN UTAMA: Menggunakan lib.mkForce dan mengubah ke String
