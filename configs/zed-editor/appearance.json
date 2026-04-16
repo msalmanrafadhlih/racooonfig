@@ -1,0 +1,165 @@
+{
+  "theme": {
+    "mode": "system",
+    "light": "racooonfig",
+    "dark": "racooonfig"
+  },
+  "icon_theme": "Material Icon Theme",
+  "ui_font_family": ".ZedMono",
+  "ui_font_size": 9.0,
+  "buffer_font_family": ".ZedMono",
+  "buffer_font_size": 8.0,
+  "buffer_font_weight": 400,
+  "buffer_line_height": "standard",
+  "agent_ui_font_size": 8.0,
+  "agent_buffer_font_size": 8.0,
+  "active_pane_modifiers": {
+    "border_size": 0.1,
+    "inactive_opacity": 0.5
+  },
+  "centered_layout": {
+    "left_padding": 0.2,
+    "right_padding": 0.2
+  },
+  "collaboration_panel": {
+    "default_width": 200.0,
+    "dock": "right"
+  },
+  "git_panel": {
+    "scrollbar": {
+      "show": "never"
+    },
+    "tree_view": true,
+    "collapse_untracked_diff": true,
+    "sort_by_path": true,
+    "status_style": "icon",
+    "dock": "right",
+    "default_width": 200.0
+  },
+  "outline_panel": {
+    "auto_fold_dirs": true,
+    "auto_reveal_entries": true,
+    "indent_size": 10.0,
+    "default_width": 200.0,
+    "dock": "right"
+  },
+  "project_panel": {
+    "sort_mode": "directories_first",
+    "hide_root": false,
+    "sticky_scroll": true,
+    "diagnostic_badges": true,
+    "scrollbar": {
+      "show": "never"
+    },
+    "bold_folder_labels": false,
+    "starts_open": true,
+    "auto_reveal_entries": true,
+    "indent_size": 15.0,
+    "entry_spacing": "standard",
+    "hide_gitignore": false,
+    "default_width": 200.0,
+    "dock": "right",
+    "button": true
+  },
+  "notification_panel": {
+    "default_width": 200.0
+  },
+  "preview_tabs": {
+    "enabled": true,
+    "enable_keep_preview_on_code_navigation": true,
+    "enable_preview_multibuffer_from_code_navigation": true,
+    "enable_preview_from_file_finder": true,
+    "enable_preview_from_project_panel": true
+  },
+  "tab_bar": {
+    "show": true,
+    "show_tab_bar_buttons": true,
+    "show_nav_history_buttons": true,
+    "show_pinned_tabs_in_separate_row": true
+  },
+  "tabs": {
+    "close_position": "left",
+    "file_icons": true,
+    "git_status": false
+  },
+  "title_bar": {
+    "show_branch_name": true,
+    "show_branch_icon": false,
+    "show_menus": false
+  },
+  "toolbar": {
+    "code_actions": true,
+    "selections_menu": true,
+    "breadcrumbs": true
+  },
+  "minimap": {
+    "max_width_columns": 70,
+    "thumb_border": "left_open",
+    "thumb": "hover",
+    "display_in": "active_editor"
+  },
+  "gutter": {
+    "line_numbers": true,
+    "min_line_number_digits": 0,
+    "runnables": true,
+    "breakpoints": true,
+    "folds": true
+  },
+  "scrollbar": {
+    "selected_symbol": true,
+    "selected_text": true,
+    "git_diff": true,
+    "cursors": false,
+    "show": "system",
+    "axes": {
+      "vertical": true
+    },
+    "search_results": true
+  },
+  "terminal": {
+    "scrollbar": {
+      "show": "never"
+    },
+    "default_width": 620.0,
+    "cursor_shape": "bar",
+    "font_size": 8.0,
+    "alternate_scroll": "on",
+    "blinking": "on",
+    "dock": "bottom",
+    "font_family": "FreeMono",
+    "line_height": "comfortable",
+    "toolbar": {
+      "breadcrumbs": true
+    }
+  },
+  "status_bar": {
+    "cursor_position_button": true,
+    "active_language_button": true
+  },
+  "colorize_brackets": true,
+  "diff_view_style": "split",
+  "document_folding_ranges": "on",
+  "document_symbols": "on",
+  "excerpt_context_lines": 3,
+  "expand_excerpt_lines": 5,
+  "indent_guides": {
+    "enabled": true,
+    "background_coloring": "disabled"
+  },
+  "inlay_hints": {
+    "show_background": true,
+    "enabled": true
+  },
+  "relative_line_numbers": "enabled",
+  "scroll_beyond_last_line": "vertical_scroll_margin",
+  "scroll_sensitivity": 1.0,
+  "show_whitespaces": "selection",
+  "sticky_scroll": {
+    "enabled": false
+  },
+  "text_rendering_mode": "platform_default",
+  "use_system_window_tabs": true,
+  "vertical_scroll_margin": 3.0,
+  "window_decorations": "client",
+  "zoomed_padding": true
+}

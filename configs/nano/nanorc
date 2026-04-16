@@ -1,0 +1,19 @@
+include "~/.config/nano/extra/*.nanorc"
+include "~/.config/nano/default/*.nanorc"
+
+set linenumbers
+set tabsize 2
+set tabstospaces
+set autoindent
+set titlecolor brightwhite,blue
+set statuscolor brightwhite,green
+
+set softwrap
+set mouse
+set smooth
+  
+set constantshow
+set indicator
+
+# Format file dengan Prettier
+bind M-2 execute "prettier --write %s" main

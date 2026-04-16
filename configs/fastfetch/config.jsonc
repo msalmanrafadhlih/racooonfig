@@ -1,0 +1,206 @@
+{
+  "logo": {
+    "height": 15,
+    "padding": {
+      "left": 3
+    },
+    "source": "~/.config/fastfetch/ascii/miku",
+    "type": "none",
+    "width": 30
+  },
+  "modules": [
+    "break",
+    {
+      "format": "\\u001b[33m┌──────────────────────Hardware──────────────────────┐",
+      "type": "custom"
+    },
+    {
+      "format": "{name} [{serial}]",
+      "key": "󰌢 PC",
+      "keyColor": "red",
+      "type": "host"
+    },
+    {
+      "key": "│ ├",
+      "keyColor": "red",
+      "type": "cpu"
+    },
+    {
+      "key": "│ ├󰍛",
+      "keyColor": "red",
+      "type": "gpu"
+    },
+    {
+      "key": "│ ├󰍛",
+      "keyColor": "red",
+      "type": "memory"
+    },
+    {
+      "key": "└ └",
+      "keyColor": "red",
+      "type": "disk"
+    },
+    {
+      "format": "\\u001b[33m└────────────────────────────────────────────────────┘",
+      "type": "custom"
+    },
+    "break",
+    {
+      "format": "\\u001b[33m┌──────────────────────Software──────────────────────┐",
+      "type": "custom"
+    },
+    {
+      "key": " OS",
+      "keyColor": "green",
+      "type": "os"
+    },
+    {
+      "key": "│ ├",
+      "keyColor": "green",
+      "type": "kernel"
+    },
+    {
+      "key": "│ ├",
+      "keyColor": "green",
+      "type": "bios"
+    },
+    {
+      "key": "│ ├󰏖",
+      "keyColor": "green",
+      "type": "packages"
+    },
+    {
+      "key": "│ ├",
+      "keyColor": "green",
+      "type": "terminal"
+    },
+    {
+      "key": "└ └",
+      "keyColor": "green",
+      "type": "shell"
+    },
+    "break",
+    {
+      "key": "󱏂 DE",
+      "keyColor": "blue",
+      "type": "theme"
+    },
+    {
+      "key": "│ ├",
+      "keyColor": "blue",
+      "type": "wm"
+    },
+    {
+      "key": "│ ├󰉼",
+      "keyColor": "blue",
+      "type": "wmtheme"
+    },
+    {
+      "key": "│ ├",
+      "keyColor": "blue",
+      "type": "font"
+    },
+    {
+      "key": "└ └󰆿",
+      "keyColor": "blue",
+      "type": "cursor"
+    },
+    {
+      "format": "\\u001b[33m└────────────────────────────────────────────────────┘",
+      "type": "custom"
+    },
+    "break",
+    {
+      "format": "\\u001b[33m┌───────────────────Connectivity────────────────────┐",
+      "type": "custom"
+    },
+    {
+      "format": "{1} - {2}",
+      "key": "󰌘 ┌󰩟",
+      "keyColor": "cyan",
+      "type": "publicip"
+    },
+    {
+      "format": "{1} - {3}",
+      "key": "│ ├󰩟",
+      "keyColor": "cyan",
+      "showMac": true,
+      "type": "localip"
+    },
+    {
+      "key": "│ ├󰮌",
+      "keyColor": "cyan",
+      "type": "dns"
+    },
+    {
+      "format": "{4} - {7} - {13} GHz - {6} - {10}",
+      "key": "│ ├󰑩",
+      "keyColor": "cyan",
+      "type": "wifi"
+    },
+    {
+      "format": "{1} - {4}",
+      "key": "│ ├󰥰",
+      "keyColor": "cyan",
+      "type": "bluetooth"
+    },
+    {
+      "format": "{5}",
+      "key": "└ └󰂯",
+      "keyColor": "cyan",
+      "type": "bluetoothradio"
+    },
+    {
+      "format": "\\u001b[33m└────────────────────────────────────────────────────┘",
+      "type": "custom"
+    },
+    "break",
+    {
+      "format": "\\u001b[33m┌───────────────────Miscellaneous────────────────────┐",
+      "type": "custom"
+    },
+    {
+      "key": " ┌",
+      "keyColor": "magenta",
+      "type": "uptime"
+    },
+    {
+      "key": "│ ├",
+      "keyColor": "magenta",
+      "text": "echo \"$(cat /sys/class/power_supply/BAT0/capacity)%\"",
+      "type": "command"
+    },
+    {
+      "format": "{1} - {3} ({5}) [{#magenta}{player-name}{#}]",
+      "key": "│ ├",
+      "keyColor": "magenta",
+      "type": "media"
+    },
+    {
+      "format": "{23}-{4}-{1} {14}:{18}:{20} {22}",
+      "key": "│ ├",
+      "keyColor": "magenta",
+      "type": "datetime"
+    },
+    {
+      "key": "└ └",
+      "keyColor": "magenta",
+      "type": "locale"
+    },
+    "break",
+    {
+      "format": "  Whenever there's a meeting, a parting shall follow.",
+      "outputColor": "cyan",
+      "type": "custom"
+    },
+    {
+      "format": "\\u001b[33m└────────────────────────────────────────────────────┘",
+      "type": "custom"
+    },
+    {
+      "paddingLeft": 20,
+      "symbol": "star",
+      "type": "colors"
+    }
+  ]
+}

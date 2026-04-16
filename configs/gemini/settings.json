@@ -1,0 +1,25 @@
+{
+  "context": { "includeDirectories": ["~/.gemini"] },
+  "general": {
+    "disableAutoUpdate": true,
+    "disableUpdateNag": true,
+    "enablePromptCompletion": true,
+    "preferredEditor": "hx",
+    "vimMode": true
+  },
+  "privacy": { "usageStatisticsEnabled": false },
+  "security": { "auth": { "selectedType": "oauth-personal" } },
+  "ui": {
+    "footer": {
+      "hideCWD": true,
+      "hideContextPercentage": true,
+      "hideSandboxStatus": true
+    },
+    "hideBanner": true,
+    "hideTips": true,
+    "hideWindowTitle": true,
+    "showMemoryUsage": true,
+    "theme": "Default",
+    "useFullWidth": true
+  }
+}

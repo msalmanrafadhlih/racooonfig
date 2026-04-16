@@ -1,0 +1,24 @@
+[
+    {
+        "context": "Workspace",
+        "bindings": {
+            "space f": "file_finder::Toggle"
+        }
+    },
+    {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            "k j": "vim::NormalBefore",
+            "j k": "vim::NormalBefore",
+            "K J": "vim::NormalBefore",
+            "J K": "vim::NormalBefore"
+        }
+    },
+    {
+        "context": "((VimControl && vim_mode == helix_normal) && !menu)",
+        "bindings": {
+            "space w": "workspace::Save",
+            "space q": "workspace::CloseWindow"
+        }
+    }
+]
