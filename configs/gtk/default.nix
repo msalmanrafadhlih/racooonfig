@@ -59,12 +59,12 @@ in {
   };
 
   # QT config (biar ikut icon/theme)
-  # xdg.configFile = mkSymlink {} configs;
+  xdg.configFile = mkSymlink {} configs;
 
   # ✅ Pastikan schema tersedia
-  # xdg.systemDirs.data = [
-  #   "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
-  # ];
+  xdg.systemDirs.data = [
+    "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+  ];
 }
 
 
