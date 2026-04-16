@@ -1,9 +1,15 @@
-{ inputs, system, ... }:
+{ mkSymlink, ... }:
 let
-  inp = inputs.racooonfig.inputs;
+  configs = {
+		"matugen/templates"   = "templates";
+		"matugen/websites"    = "websites";
+		"matugen/config.toml" = "config.toml";
+  };
+
 in
 {
-  environment.systemPackages = [    
-    inp.matugen.packages.${system}.default
-  ];
+  # Symlink path to ~./config/*
+  xdg.configFile = mkSymlink {
+    target = "matugen";
+  } configs;
 }
