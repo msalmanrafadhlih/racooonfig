@@ -19,10 +19,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # stylix = {
+    #   url = "github:nix-community/stylix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     matugen = {
       url = "github:/InioX/Matugen";
@@ -63,29 +63,29 @@
 
   outputs = { self, home-manager, ... }@inputs:
   let
-    mkUser = { user ? "tquilla", system ? "x86_64-linux", module }: {
-      ${user}   = home-manager.lib.homeManagerConfiguration {
+    mkHome = hostname: { user ? "tquilla", system ? "x86_64-linux", module }: 
+      home-manager.lib.homeManagerConfiguration {
+        extraSpecialArgs = { inherit hostname system; username = user;  };
         pkgs    = inputs.nixpkgs.legacyPackages.${system};
         modules = module; 
       };
-    };
 
     mkModule = extraModules: {
-      imports = [ ./modules ] ++ extraModules;
+      imports = [ ./modules  ] ++ extraModules;
     };
   in
   {
     homeModules = {
-      default  = mkModule [ ./users/bspwm ];
-      niri     = mkModule [ ./users/niri ];
-      hyprland = mkModule [ ./users/hyprland ];
+      default  = mkModule [ ./modules/bspwm/home ];
+      niri     = mkModule [ ./modules/niri/home ];
+      hyprland = mkModule [ ./modules/hyprland/home ];
     };
 
     # ✅ nixos module yang benar
     nixosModules = {
-      bspwm-themes = {
+      bspwm-core = {
         imports = [
-          ./users/bspwm/themes.nix
+          ./modules/bspwm/systems
         ];
       };
     };
@@ -93,9 +93,9 @@
     # keep standalone homeConfigurations
     # for `home-manager switch --flake .#bspwm / #niri / #hyprland`
     homeConfigurations = {
-      bspwm    = mkUser { module = [ self.homeModules.default ]; };
-      niri     = mkUser { module = [ self.homeModules.niri ]; };
-      hyprland = mkUser { module = [ self.homeModules.hyprland ]; };
+      bspwm    = mkHome { module = [ self.homeModules.default ]; };
+      niri     = mkHome { module = [ self.homeModules.niri ]; };
+      hyprland = mkHome { module = [ self.homeModules.hyprland ]; };
     # i rarely use this homeConfigurations module, i use (sistem-)specialisations instead
     # so, this code is useless, u can delete it.
     # for me, i just want to keep it.
