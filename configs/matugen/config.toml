@@ -12,6 +12,10 @@ output_path = "~/.config/gtk-4.0/colors.css"
 input_path = "templates/helix.toml"
 output_path = "~/.config/helix/themes/helix.toml"
 
+[templates.kitty]
+input_path = "templates/kitty-colors.conf"
+output_path = "~/.config/kitty/themes/dynamic.conf"
+
 # [templates.vivaldi]
 # input_path = "templates/vivaldi.css"
 # output_path = "~/.config/vivaldi/CustomCSS/colors.css"
