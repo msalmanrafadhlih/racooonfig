@@ -10,7 +10,7 @@ let
 in
 
 {
-  _module.args = lib.mkForce { inherit mkSymlink dotfiles; };
+  _module.args = { inherit mkSymlink dotfiles; };
 
   imports = [
     ./configs.nix
