@@ -1,3 +1,5 @@
+# !NOTE: This is for system level, not for home-manager
+
 { pkgs, config, inputs, ... }:
 let
   inp = inputs.racooonfig.inputs;
