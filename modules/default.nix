@@ -1,20 +1,14 @@
-# exported to ../flake.nix
+{ username, ... }:
+
 {
-	imports = [
-	  ./scripts/01chat.nix
-	  ./scripts/opencam.nix
-	  ./scripts/battery.nix
-	  ./scripts/bookmarks.nix
-	  ./scripts/github-repos.nix
-	  ./scripts/pandoc.nix
-	  ./scripts/media.nix
-	  ./scripts/run.nix
-	  ./scripts/volume.nix
-	  ./scripts/xyz.nix
-	  ./scripts/tar.nix
-	  ./scripts/background.nix
-	  ./scripts/img-compress.nix
-	  ./scripts/brightness.nix
-	  ./scripts/colorscript.nix
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
+  programs.git.enable = true;
+
+  imports = [
+    ./scripts
+
+    ./gui-apps.nix
+    ./specialisation.nix
   ];
 }
