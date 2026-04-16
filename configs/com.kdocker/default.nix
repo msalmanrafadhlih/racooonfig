@@ -1,9 +1,6 @@
-{ config, dotfiles, ... }:
+{ mkSymlink, ... }:
 
 let
-  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-  home = config.home.homeDirectory;
-  dotfiles_path = "${home}/.dotfiles/${dotfiles}/configs/com.kdocker";
   configs = {
 		"com.kdocker/icons" = "icons";
 		"com.kdocker/KDocker.conf" = "KDocker.conf";
@@ -11,8 +8,7 @@ let
 in
 
 {
-  xdg.configFile = builtins.mapAttrs (name: subpath: {source =
-    create_symlink "${dotfiles_path}/${subpath}";
-    recursive = true;
-  }) configs;
+  xdg.configFile = mkSymlink {
+    target = "com.kdocker";
+  } configs;
 }
