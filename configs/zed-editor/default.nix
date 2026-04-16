@@ -17,7 +17,7 @@ in
     target = "zed-editor";
   } configs;
 
-  programs.zed-editor = lib.recursiveUpdate {
+  programs.zed-editor = {
     enable = true;
     mutableUserKeymaps = true;
     mutableUserSettings = true;
@@ -45,7 +45,7 @@ in
       "bash"
     ];
 
-    userSettings = {
+    userSettings = lib.recursiveUpdate {
 
       redact_private_values = true;
 
@@ -204,7 +204,6 @@ in
         shell.program = "sh";
         working_directory = "current_project_directory";
       };
-
-    };
-  } (builtins.fromJSON (builtins.readFile ./appearance.json));
+    } (builtins.fromJSON (builtins.readFile ./appearance.json));
+  };
 }
