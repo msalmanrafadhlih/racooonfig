@@ -110,6 +110,9 @@ case "$class" in
     "mpv")
         echo "state=floating center=on"
         ;;
+    "Nwg-look")
+        echo "state=floating center=on"
+        ;;
     "Evince")
         echo "state=floating rectangle=858x926+760+21"
         ;;
