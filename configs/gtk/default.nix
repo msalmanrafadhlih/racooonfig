@@ -17,27 +17,6 @@ in {
     gsettings-desktop-schemas
   ];
 
-  # GTK baseline (default)
-  gtk = {
-    enable = true;
-
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-
-    iconTheme = {
-      name = "Vimix-ruby-dark";
-      package = pkgs.vimix-icon-theme;
-    };
-
-    cursorTheme = {
-      name = "Kafka";
-      package = pkgs.cursor-memes;
-      size = 24;
-    };
-  };
-
   # Cursor fallback global
   home.pointerCursor = {
     name = "Kafka";
