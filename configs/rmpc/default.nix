@@ -1,27 +1,22 @@
-{ config, pkgs, dotfiles, ... }:
+{ pkgs, mkSymlink, ... }:
 
 let
-  # Path absolut ke folder dotfiles kamu
-  dotPath = "${config.home.homeDirectory}/.dotfiles/${dotfiles}/configs/rmpc";
-  
-  # Helper biar tidak ngetik panjang-panjang
-  link = path: config.lib.file.mkOutOfStoreSymlink "${dotPath}/${path}";
+  configs = {
+    "rmpc/themes"     = "themes";
+    "rmpc/utils"      = "utils";
+    "rmpc/config.ron" = "config.ron";
+    "rmpc/inspect"    = "inspect_log.sh";
+    "rmpc/playcount"  = "increment_play_count";
+  };
 in
 {
-  # Langsung targetkan ke subfolder rmpc
-  xdg.configFile = {
-    "rmpc/themes".source = link "themes";
-    "rmpc/utils".source = link "utils";
-    "rmpc/config.ron".source = link "config.ron";
-  };
-
   programs.rmpc = {
     enable = true;
     package = pkgs.rmpc;
   };
 
-  imports = [
-    ./playcount.nix
-    ./inspect.nix
-  ];
+  # Langsung targetkan ke subfolder rmpc
+  xdg.configFile = mkSymlink {
+    target = "rmpc";
+  } configs;
 }
