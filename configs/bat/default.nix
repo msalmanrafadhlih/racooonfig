@@ -1,7 +1,12 @@
+{ mkSymlink, ... }:
+let
+  configs = {
+    config = "bat/config";
+  };
+
+in
 {
-  home.file.".config/bat/config".text = ''
-    --theme="Nord"
-#    --style="numbers.changes.grid"
-    --paging=auto
-  '';
+  xdg.configFile = mkSymlink {
+    target = "bat";
+  } configs;
 }
