@@ -1,9 +1,4 @@
-{ pkgs, mkSymlink, ... }: let
-
-  configs = {
-   "qt5ct/qt5ct.conf" = "qt5ct.conf";
-   "qt6ct/qt6ct.conf" = "qt6ct.conf";
-  };
+{ pkgs, ... }: let
 
 in {
 
@@ -17,6 +12,7 @@ in {
 
     # themes
     adwaita-qt
+    adw-gtk3
     omni-gtk-theme
     vimix-gtk-themes
 
@@ -37,16 +33,11 @@ in {
     XCURSOR_THEME = "Kafka";
     XCURSOR_SIZE = "24";
 
-    GTK_THEME = "Adwaita:dark";
-
     QT_QPA_PLATFORMTHEME = "qt5ct";
-    QT_STYLE_OVERRIDE = "adwaita-dark";
-  };
 
-  # QT config (biar ikut icon/theme)
-  xdg.configFile = mkSymlink {
-    target = "qt";
-  } configs;
+    # GTK_THEME = "";
+    # QT_STYLE_OVERRIDE = "";
+  };
 
   # ✅ Pastikan schema tersedia
   xdg.systemDirs.data = [
