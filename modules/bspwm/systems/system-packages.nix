@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  programs.dconf.enable = true; 
-
   environment.systemPackages = with pkgs; [
     # ======== BSPWM Stuff
     polybarFull
@@ -44,6 +42,8 @@
     gtk2 # Tambahkan ini
     gtk3
     gtk4
+    dconf
+    dconf-editor
     
     # ======== GTK engine
     gsettings-desktop-schemas
