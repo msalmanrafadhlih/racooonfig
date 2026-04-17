@@ -13,5 +13,6 @@
     tumbler.enable = true; # thumbnails di Thunar
     udisks2.enable = true; # Storage Manager (USBmounting, external HDD/SSD)
     dbus.enable = true; # App to App Communications (Discord RPC, MountUSB in FileManager)
+    gvfs.enable = true; # Thunar integration with plugins
   };
 }
