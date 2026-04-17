@@ -30,14 +30,14 @@ in
     };
 
     extraConfig = ''
-      include themes/dynamic.conf
+      allow_remote_control yes
+      include dynamic.conf
     '';
 
     settings = {
       # 2. PERBAIKAN UTAMA: Menggunakan lib.mkForce dan mengubah ke String
       background_opacity = lib.mkForce "0.5";
       background_blur = 40;
-
       placement_strategy = "center";
       inactive_text_alpha = "0.3";
       confirm_os_window_close = 0;
