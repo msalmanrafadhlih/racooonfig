@@ -29,6 +29,6 @@
 
     # UTILS
     ffmpeg-full # absolutely need GUI
-    inputs.st-flexipatch.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.st-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
