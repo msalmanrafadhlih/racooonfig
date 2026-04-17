@@ -10,6 +10,7 @@
   ../../../configs/zed-editor
   ../../../configs/gemini
 	../../../configs/gtk
+	../../../configs/qt
   ../../../configs/spotify
   ../../../configs/kitty
 	../../../configs/vesktop
@@ -29,7 +30,6 @@
   # ../../../configs/btm
 	# ../../../configs/ncmpcpp 
   # ../../../configs/inlyne # Markdown Viewer
-	# ../../../configs/gtk-3.0
 	# ../../../configs/ghostty 
   # ../../../configs/alacritty 
   # ../../../configs/stylix/targets.nix
