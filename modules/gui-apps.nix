@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
 
   # GUI Apps
@@ -29,5 +29,6 @@
 
     # UTILS
     ffmpeg-full # absolutely need GUI
+    inputs.st-flexipatch.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
