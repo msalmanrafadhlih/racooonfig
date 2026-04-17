@@ -10,4 +10,9 @@ in {
   xdg.configFile = mkSymlink {
     target = "qt";
   } configs;
+
+  qt = {
+    enable = true;
+    kvantum.enable = true;
+  };
 }
