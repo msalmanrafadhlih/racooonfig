@@ -48,7 +48,6 @@
     # ======== GTK engine
     gsettings-desktop-schemas
     gtk-engine-murrine
-    adw-gtk3 
     nwg-look
     glib # gsettings CLI
   ];
