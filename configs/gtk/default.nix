@@ -1,7 +1,6 @@
 { pkgs, ... }: let
 
 in {
-
   # Install assets (cursor, icon, theme)
   home.packages = with pkgs; [
     # Icons  
