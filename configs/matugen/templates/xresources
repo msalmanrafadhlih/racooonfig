@@ -1,0 +1,58 @@
+# Font
+*.faceName: "JetBrainsMono Nerd Font"
+*.faceSize: 10
+*.renderFont: true
+
+# Base colors
+*background: "{{colors.surface.default.hex}}"
+*foreground: "{{colors.on_surface.default.hex}}"
+*cursorColor: "{{colors.on_surface.default.hex}}"
+
+# Black / base
+*color0: "{{colors.surface.default.hex}}"
+*color8: "{{colors.surface_variant.default.hex}}"
+
+# Red
+*color1: "{{colors.error.default.hex}}"
+*color9: "{{colors.error_container.default.hex}}"
+
+# Green (dipakai sebagai warm-secondary biar tetap tone kamu)
+*color2: "{{colors.secondary.default.hex}}"
+*color10: "{{colors.secondary_container.default.hex}}"
+
+# Yellow
+*color3: "{{colors.tertiary.default.hex}}"
+*color11: "{{colors.tertiary_container.default.hex}}"
+
+# Blue
+*color4: "{{colors.primary.default.hex}}"
+*color12: "{{colors.primary_container.default.hex}}"
+
+# Magenta
+*color5: "{{colors.error.default.hex}}"
+*color13: "{{colors.error_container.default.hex}}"
+
+# Cyan
+*color6: "{{colors.secondary.default.hex}}"
+*color14: "{{colors.secondary_container.default.hex}}"
+
+# White / foreground variants
+*color7: "{{colors.on_surface.default.hex}}"
+*color15: "{{colors.on_surface_variant.default.hex}}"
+
+# Extended (16–21 biasanya tambahan palette)
+*color16: "{{colors.error.default.hex}}"
+*color17: "{{colors.secondary.default.hex}}"
+*color18: "{{colors.error_container.default.hex}}"
+*color19: "{{colors.secondary_container.default.hex}}"
+*color20: "{{colors.primary_container.default.hex}}"
+*color21: "{{colors.on_surface.default.hex}}"
+
+# SXIV
+Sxiv.background: "{{colors.primary_container.default.hex}}"
+Sxiv.foreground: "{{colors.error.default.hex}}"
+Sxiv.font: "Inter-10"
+
+# Cursor
+Xcursor.size: 24
+Xcursor.theme: "Kafka"
