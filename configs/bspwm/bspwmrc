@@ -52,9 +52,6 @@ picom &
 # Clipboard manager
 clipmenud &
 
-# Autostart background dengan slideshow 10 menit
-~/.local/bin/bg-slideshow
-
 # sxhkd
 pgrep -x sxhkd > /dev/null || sxhkd &
 
