@@ -16,6 +16,10 @@ output_path = "~/.config/helix/themes/helix.toml"
 input_path = "templates/kitty-colors.conf"
 output_path = "~/.config/kitty/themes/dynamic.conf"
 
+[templates.xresources]
+input_path = "templates/xresources"
+output_path = "~/.Xresources"
+
 # [templates.vivaldi]
 # input_path = "templates/vivaldi.css"
 # output_path = "~/.config/vivaldi/CustomCSS/colors.css"
