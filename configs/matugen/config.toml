@@ -3,6 +3,7 @@
 [templates.gtk3]
 input_path = "templates/gtk3-colors.css"
 output_path = "~/.config/gtk-3.0/gtk.css"
+# post_hook = ""
 
 [templates.gtk4]
 input_path = "templates/gtk4-colors.css"
@@ -12,13 +13,21 @@ output_path = "~/.config/gtk-4.0/colors.css"
 input_path = "templates/helix.toml"
 output_path = "~/.config/helix/themes/racooon.toml"
 
-[templates.kitty]
-input_path = "templates/kitty-colors.conf"
-output_path = "~/.config/kitty/themes/dynamic.conf"
+[templates.bspwm]
+input_path = "templates/bspwm"
+output_path = "~/.config/bspwm/src/colors"
+post_hook = "sh ~/.config/bspwm/src/colors"
+# post_hook = "bspc wm -r"
+
+[templates.background]
+input_path = "templates/feh"
+output_path = "~/.fehbg"
+post_hook = "sh ~/.fehbg"
 
 [templates.xresources]
 input_path = "templates/xresources"
 output_path = "~/.Xresources"
+post_hook = "xrdb -merge ~/.Xresources"
 
 # [templates.vivaldi]
 # input_path = "templates/vivaldi.css"
