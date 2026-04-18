@@ -23,7 +23,7 @@ super + Escape
 	source ~/.config/rofi/scripts/powermenu.sh
 
 # ---------------------------------------------------------  Menu Apps
-alt + @space
+super + @space
 	source ~/.config/rofi/scripts/launcher.sh
 
 ###########################################################
@@ -78,6 +78,12 @@ super + z
 # =================================================== 1 - 9
 # ---------------------------------------------------------  Swap workspace by arrow
 super + {Left,Right}
+	bspc desktop -f {prev,next}
+# ---------------------------------------------------------  Swap workspace by h,l
+super + {h,l}
+	bspc desktop -f {prev,next}
+# ---------------------------------------------------------  Swap workspace by j,k
+super + {k,j}
 	bspc desktop -f {prev,next}
 # ------f--------------------------------------------------  Swap Workspace by number
 super + {1-9,0}
