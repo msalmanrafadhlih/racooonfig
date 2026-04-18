@@ -27,11 +27,9 @@
 *color20: {{base16.base04.default.hex}}
 *color21: {{base16.base06.default.hex}}
 
-# SXIV
 Sxiv.background: {{colors.primary_container.default.hex}}
 Sxiv.foreground: {{colors.error.default.hex}}
 Sxiv.font: Inter-10
 
-# Cursor
 Xcursor.size: 24
 Xcursor.theme: Kafka
