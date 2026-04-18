@@ -232,7 +232,7 @@ textbox {
   text-color: var(foreground);
   vertical-align: 0.5;
   horizontal-align: 0.5;
-  str: "Alt + h, j, k, l";
+  str: "NAVIGATE: Super + { h, j, k, l }";
   expand: false;
   font: "var(font)";
 }
