@@ -1,0 +1,93 @@
+{ pkgs, ... }: {
+    home.packages = [
+        (pkgs.writeShellApplication {
+          name = "set-gtk-icons";
+          runtimeInputs = with pkgs; [ 
+            glib         # untuk gsettings
+            gnused       # untuk sed
+            util-linux   # untuk column
+            xsetroot # untuk xsetroot
+            findutils    # untuk pencarian folder lebih akurat
+            coreutils    # untuk ls, echo, dll
+          ];
+
+          text = ''
+            # Fungsi pembantu untuk mencari folder di XDG_DATA_DIRS
+            _list_assets() {
+                local type=$1
+                # NixOS butuh cara bersih memecah XDG_DATA_DIRS
+                IFS=':' read -ra ADDR <<< "$XDG_DATA_DIRS"
+                local found=()
+
+                # Tambahkan folder lokal manual
+                local search_paths=("''${ADDR[@]}" "$HOME/.local/share" "$HOME/.icons" "$HOME/.themes")
+
+                for p in "''${search_paths[@]}"; do
+                    if [[ -d "$p/$type" ]]; then
+                        # Gunakan find untuk list folder saja agar lebih bersih
+                        found+=("$(find "$p/$type" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' 2>/dev/null)")
+                    fi
+                done
+                
+                if [[ ''${#found[@]} -eq 0 ]]; then
+                    echo "Tidak ditemukan."
+                else
+                    echo "''${found[@]}" | tr ' ' '\n' | sort -u | grep -vE "^(default|hicolor|locolor|gnome|Graphics|flatpak)$" | column
+                fi
+            }
+
+            # Gunakan exit bukan return karena ini file bin mandiri, bukan function shell
+            if [[ "''${1:-}" == "-h" || "''${1:-}" == "--help" ]]; then
+                echo "Usage: set-gtk-icons [SCHEME] [ICON] [CURSOR]"
+                echo "Flags:"
+                echo "  --list   : Menampilkan semua tema, ikon, dan kursor yang tersedia"
+                echo "  --help   : Menampilkan bantuan ini"
+                exit 0
+            fi
+
+            if [[ "''${1:-}" == "--list" ]]; then
+                echo "--- [ AVAILABLE THEMES (SCHEME) ] ---"
+                _list_assets "themes"
+                printf "\n--- [ AVAILABLE ICONS & CURSORS ] ---"
+                _list_assets "icons"
+                exit 0
+            fi
+
+            scheme="''${1:-dynamic}"
+            icon="''${2:-Vimix-white}"
+            cursor="''${3:-Kafka}"
+
+            [[ -z "$scheme" ]] && scheme="dynamic"
+            [[ -z "$icon" ]] && icon="Vimix-white"
+            [[ -z "$cursor" ]] && cursor="Kafka"
+
+            echo "──────────────────────────────────────────────────"
+            echo "🎨 Mengatur Tema GTK (NixOS/BSPWM)"
+            echo "──────────────────────────────────────────────────"
+            echo "• Scheme  : $scheme"
+            echo "• Icon    : $icon"
+            echo "• Cursor  : $cursor"
+            echo "──────────────────────────────────────────────────"
+
+            gsettings set org.gnome.desktop.interface gtk-theme "$scheme"
+            gsettings set org.gnome.desktop.interface icon-theme "$icon"
+            gsettings set org.gnome.desktop.interface cursor-theme "$cursor"
+
+            files=("$HOME/.config/gtk-3.0/settings.ini" "$HOME/.config/gtk-4.0/settings.ini")
+            for file in "''${files[@]}"; do
+                if [[ -f "$file" ]]; then
+                    sed -i "s/gtk-theme-name=.*/gtk-theme-name=$scheme/" "$file"
+                    sed -i "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=$icon/" "$file"
+                    sed -i "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=$cursor/" "$file"
+                fi
+            done
+
+            if command -v xsetroot >/dev/null 2>&1; then
+                xsetroot -cursor_name left_ptr
+            fi
+
+            echo "✅ Berhasil diterapkan!"
+          '';
+        })
+    ];
+}
