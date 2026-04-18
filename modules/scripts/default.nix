@@ -16,5 +16,6 @@
 	  ./img-compress.nix
 	  ./brightness.nix
 	  ./colorscript.nix
+	  ./set-gtk-theme.nix
   ];
 }
