@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # monitor setup
-bspc monitor -d [I] [II] [III] [IV] [V]
+# bspc monitor -d [I] [II] [III] [IV] [V]
 
 #bspc rule -a Alacritty desktop=^1
 #bspc rule -a code-oss desktop=^3
@@ -21,8 +21,6 @@ run() {
 # Border
 bspc config border_width 3
 bspc config window_gap 5
-bspc config focused_border_color "#c80e15"
-bspc config normal_border_color "#3B4252"
 bspc config focus_follows_pointer true
 bspc config pointer_follows_focus false
 bspc config pointer_follows_monitor true
@@ -44,6 +42,9 @@ bspc config removal_adjustment true
 
 bspc config external_rules_command ~/.config/bspwm/src/ExternalRules
 
+chmod +x ~/.config/bspwm/src/colors
+. ./src/colors
+
 # picom
 pkill picom
 sleep 0.1
@@ -58,6 +59,10 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 # polybar
 chmod +x ~/.config/polybar/launch.sh
 ~/.config/polybar/launch.sh &
+
+# background
+chmod +x ~/.fehbg
+~/.fehbg
 
 #eww
 chmod +x ~/.config/eww/scripts/*
