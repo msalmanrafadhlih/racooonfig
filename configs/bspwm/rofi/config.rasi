@@ -136,13 +136,13 @@ configuration {
   kb-accept-custom-alt: "";
   kb-accept-alt: "";
   kb-delete-entry: "";
-  kb-mode-next: "Tab,Alt+l";
-  kb-mode-previous: "Shift+Tab,Alt+h";
+  kb-mode-next: "Tab,super+l";
+  kb-mode-previous: "Shift+Tab,super+h";
   kb-mode-complete: "";
   kb-row-left: "Left";
   kb-row-right: "Right";
-  kb-row-up: "Up,Alt+k";
-  kb-row-down: "Down,Alt+j";
+  kb-row-up: "Up,super+k";
+  kb-row-down: "Down,super+j";
   kb-row-tab: "";
   kb-element-next: "";
   kb-element-prev: "";
