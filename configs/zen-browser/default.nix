@@ -4,7 +4,7 @@
 {
   programs.zen-browser = {
     enable = true;
-    package = inputs.zen-browser.packages.${system}.default;
+    package = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}}.default;
 
     # Profil default
     profiles.default = {
