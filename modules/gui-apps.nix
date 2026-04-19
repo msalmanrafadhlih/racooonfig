@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }:
+{ pkgs, inputs, ... }:
 {
 
   # GUI Apps
@@ -29,6 +29,6 @@
 
     # UTILS
     ffmpeg-full # absolutely need GUI
-    inputs.st-nix.packages.${system}.default
+    inputs.st-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
