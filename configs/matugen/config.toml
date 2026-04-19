@@ -17,12 +17,14 @@ output_path = "~/.config/helix/themes/racooon.toml"
 input_path = "templates/bspwm"
 output_path = "~/.config/bspwm/src/colors"
 post_hook = "sh ~/.config/bspwm/src/colors"
-# post_hook = "bspc wm -r"
 
-[templates.background]
-input_path = "templates/feh"
-output_path = "~/.fehbg"
-post_hook = "sh ~/.fehbg"
+[templates.btop]
+input_path = "templates/btop.theme"
+output_path = "~/.config/btop/themes/racooon.theme"
+
+[templates.yazi]
+input_path = "templates/yazi-theme.toml"
+output_path = "~/.config/yazi/theme.toml"
 
 [templates.xresources]
 input_path = "templates/xresources"
