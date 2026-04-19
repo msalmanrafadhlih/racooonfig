@@ -1,16 +1,12 @@
 #!/bin/sh
-#
-# monitor setup
-bspc monitor -d [I] [II] [III] [IV] [V]
-
-#bspc rule -a Alacritty desktop=^1
-#bspc rule -a code-oss desktop=^3
 
 # Set environment variables
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.config/bspwm/bin:$PATH"
 export XDG_CURRENT_DESKTOP='bspwm'
 ## Fix java applications
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+MonitorSetup
 
 run() {
     if ! pidof -q "$1"; then
@@ -40,10 +36,10 @@ bspc config automatic_scheme longest_side
 bspc config initial_polarity second_child
 bspc config removal_adjustment true
 
-bspc config external_rules_command ~/.config/bspwm/src/ExternalRules
+bspc config external_rules_command ~/.config/bspwm/bin/ExternalRules
 
-chmod +x ~/.config/bspwm/src/colors
-~/.config/bspwm/src/colors &
+chmod +x ~/.config/bspwm/bin/colors
+~/.config/bspwm/bin/colors &
 
 # picom
 pkill picom
@@ -60,8 +56,9 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 chmod +x ~/.config/polybar/launch.sh
 ~/.config/polybar/launch.sh &
 
-chmod +x ~/.fehbg
-~/.fehbg &
+# set wall
+chmod +x ~/.config/bspwm/bin/wallpaper
+~/.config/bspwm/bin/wallpaper &
 
 # eww
 chmod +x ~/.config/eww/scripts/*
