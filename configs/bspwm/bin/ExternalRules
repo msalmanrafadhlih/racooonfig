@@ -1,0 +1,209 @@
+#!/usr/bin/env bash
+
+wid=$1
+class=$2
+instance=$3
+sleep 0.05
+title=$(xprop -id "$wid" _NET_WM_NAME WM_NAME 2> /dev/null | grep -oP '"\K[^"]+(?=")' | head -1)
+
+# ==========================================
+# FUNGSI PERHITUNGAN POSISI DINAMIS
+# ==========================================
+# Cara pakai: calc_rect "posisi" "lebar" "tinggi" "offset_X" "offset_Y"
+# - Lebar/Tinggi: Isi 0 jika ingin menggunakan ukuran asli (auto-detect).
+# - offset_X    : Nilai positif geser ke KANAN, negatif ke KIRI.
+# - offset_Y    : Nilai positif geser ke ATAS, negatif ke BAWAH.
+calc_rect() {
+    local pos=$1
+    local w=$2
+    local h=$3
+    local off_x=${4:-0}
+    local off_y=${5:-0}
+
+    # Deteksi otomatis ukuran monitor yang sedang aktif
+    local mon_w
+    mon_w=$(bspc query -T -m | grep -oP '"width":\K[0-9]+' | head -n 1)
+
+    local mon_h
+    mon_h=$(bspc query -T -m | grep -oP '"height":\K[0-9]+' | head -n 1)
+
+    mon_w=${mon_w:-1920}
+    mon_h=${mon_h:-1080}
+
+    # Jika ukuran diset 0, ambil dari geometri request aplikasi
+    if [[ -z "$w" || "$w" == 0 ]]; then
+        w=$(xwininfo -id "$wid" 2> /dev/null | awk '/Width:/ {print $2}')
+        w=${w:-800}
+    fi
+    if [[ -z "$h" || "$h" == 0 ]]; then
+        h=$(xwininfo -id "$wid" 2> /dev/null | awk '/Height:/ {print $2}')
+        h=${h:-600}
+    fi
+
+    local x=0
+    local y=0
+
+    # Kalkulasi posisi dasar
+    case "$pos" in
+        center)
+            x=$(((mon_w - w) / 2))
+            y=$(((mon_h - h) / 2))
+            ;;
+        left)
+            x=0
+            y=$(((mon_h - h) / 2))
+            ;;
+        right)
+            x=$((mon_w - w))
+            y=$(((mon_h - h) / 2))
+            ;;
+        top)
+            x=$(((mon_w - w) / 2))
+            y=0
+            ;;
+        bottom)
+            x=$(((mon_w - w) / 2))
+            y=$((mon_h - h))
+            ;;
+        top-left)
+            x=0
+            y=0
+            ;;
+        top-right)
+            x=$((mon_w - w))
+            y=0
+            ;;
+        bottom-left)
+            x=0
+            y=$((mon_h - h))
+            ;;
+        bottom-right)
+            x=$((mon_w - w))
+            y=$((mon_h - h))
+            ;;
+    esac
+
+    # Terapkan fixing positioning (offset)
+    x=$((x + off_x))
+    y=$((y - off_y))
+
+    echo "${w}x${h}+${x}+${y}"
+}
+
+# --- DEFINISI GEOMETRI DINAMIS ---
+# Menyesuaikan logika lamamu ke sistem dinamis yang baru
+RECT_MAIN=$(calc_rect "center" 1435 1020 0 0)
+RECT_SIDE_TALL=$(calc_rect "right" 470 1020 -5 0) # Agak ke kiri 15px dari batas kanan
+RECT_SIDE_MED=$(calc_rect "bottom-right" 470 665 -5 30)
+RECT_SIDE_SMALL=$(calc_rect "top-right" 470 350 -5 -30)
+RECT_CENTER_MED=$(calc_rect "bottom-left" 750 665 0 30) # 10px ke kanan, 10px ke atas
+RECT_CENTER_SMALL=$(calc_rect "top-left" 750 350 0 -30)
+RECT_YAZI=$(calc_rect "center" 900 442)
+
+# --- LOGIC RULES ---
+case "$class" in
+    "Code" | "code-oss")
+        case "$title" in
+            *"Chat"* | *"Visual"*)
+                echo "state=floating rectangle=$RECT_SIDE_TALL"
+                ;;
+            *".Chromium")
+                echo "state=floating rectangle=$RECT_MAIN"
+                ;;
+        esac
+        ;;
+
+    "ChatAi" | "GeminiAi" | "ClaudeAi" | "youtube" | "reddit")
+        case "$instance" in
+            *"youtube.com"* | *"reddit.com"*)
+                echo "desktop=^4 state=floating sticky=off rectangle=$RECT_MAIN"
+                ;;
+            *"gemini.google.com"* | *"claude.ai"* | *"chat.openai.com"*)
+                echo "state=floating rectangle=$RECT_SIDE_MED"
+                ;;
+            *)
+                case "$title" in
+                    *"ChatGPT"* | *"Claude"*)
+                        echo "state=floating rectangle=$RECT_SIDE_MED"
+                        ;;
+                    *"YouTube"* | *"reddit"*)
+                        echo "desktop=^3 state=floating sticky=off rectangle=$RECT_MAIN"
+                        ;;
+                esac
+                ;;
+        esac
+        ;;
+
+    "floating_rmpc")
+        echo "state=floating rectangle=$RECT_CENTER_SMALL"
+        ;;
+
+    *)
+        if [[ "$title" == *"rmpc"* ]]; then
+            echo "state=floating rectangle=$RECT_CENTER_SMALL"
+            exit 0
+        fi
+        ;;
+esac
+
+# Rules murni berdasarkan Class
+case "$class" in
+    "TerminalDefault")
+        echo "state=floating sticky=off rectangle=$RECT_CENTER_MED"
+        ;;
+    "TerminalPinned")
+        echo "state=floating sticky=on rectangle=$RECT_SIDE_SMALL"
+        ;;
+    "St")
+        echo "state=floating sticky=off rectangle=$RECT_MAIN"
+        ;;
+    "TerminalNvim")
+        echo "desktop=^3 state=floating sticky=off rectangle=$RECT_MAIN"
+        ;;
+    "dev.zed.Zed")
+        echo "desktop=^3"
+        ;;
+    "YaziTerm")
+        # Contoh penggunaan auto-detect ukuran, isi 0 pada lebar dan tinggi
+        echo "state=floating rectangle=$(calc_rect "center" 0 0)"
+        ;;
+    "qView")
+        echo "state=floating rectangle=$(calc_rect "center" 0 0) sticky=off"
+        ;;
+    "Spotify")
+        echo "desktop=^4"
+        ;;
+    "vesktop")
+        echo "desktop=^5"
+        ;;
+    "Vivaldi-stable")
+        echo "desktop=^2 state=fullscreen"
+        ;;
+    "emulator")
+        echo "state=floating rectangle=$(calc_rect "center" 0 0)"
+        ;;
+    "mpv")
+        echo "state=floating rectangle=$(calc_rect "center" 0 0)"
+        ;;
+    "Nwg-look")
+        echo "state=floating rectangle=$(calc_rect "center" 0 0)"
+        ;;
+    "Evince")
+        echo "state=floating rectangle=$(calc_rect "top-right" 858 926 -21 21)"
+        ;;
+    "XTerm")
+        echo "state=floating sticky=off rectangle=$RECT_CENTER_MED"
+        ;;
+esac
+
+case "$title" in
+    *"yazi"*)
+        echo "state=floating rectangle=$RECT_YAZI"
+        ;;
+    *"Thunar"*)
+        echo "state=floating rectangle=1200x750+0+0 center=on"
+        ;;
+    *"Zed"*"Settings"* | *"Settings"*)
+        echo "state=floating rectangle=$(calc_rect "center" 0 0)"
+        ;;
+esac
