@@ -191,6 +191,9 @@ case "$class" in
     "Evince")
         echo "state=floating rectangle=$(calc_rect "top-right" 858 926 -21 21)"
         ;;
+    "XTerm")
+        echo "state=floating sticky=off rectangle=$RECT_CENTER_MED"
+        ;;
 esac
 
 case "$title" in
@@ -198,7 +201,7 @@ case "$title" in
         echo "state=floating rectangle=$RECT_YAZI"
         ;;
     *"Thunar"*)
-        echo "state=floating rectangle=$(calc_rect "center" 1200 750)"
+        echo "state=floating rectangle=1200x750+0+0 center=on"
         ;;
     *"Zed"*"Settings"* | *"Settings"*)
         echo "state=floating rectangle=$(calc_rect "center" 0 0)"
