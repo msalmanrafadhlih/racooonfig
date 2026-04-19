@@ -10,7 +10,7 @@ let
 		rofi = "rofi";
 		eww = "eww";
 
-		"bspwm/src" = "src";
+		"bspwm/bin" = "bin";
 		"bspwm/bspwmrc" = "bspwmrc";
   };
 in {
