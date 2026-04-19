@@ -90,7 +90,7 @@ case ${chosen} in
         run_cmd --reboot
         ;;
     $lock)
-        source ~/.config/rofi/scripts/Screenlock
+        bash ~/.config/rofi/scripts/Screenlock > /dev/null 2>&1 &
         ;;
     $suspend)
         run_cmd --suspend
