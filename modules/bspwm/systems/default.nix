@@ -12,7 +12,7 @@ in
   ];
 
   environment.systemPackages = [
-    inp.matugen.packages.${pkgs.system}.default
+    inp.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.qylock-sddm-theme
   ];
 
