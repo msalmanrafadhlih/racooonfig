@@ -1,7 +1,7 @@
 { pkgs, ... }: {
     home.packages = [
         (pkgs.writeShellApplication {
-          name = "set-gtk-icons";
+          name = "set-gtk-theme";
           runtimeInputs = with pkgs; [ 
             glib         # untuk gsettings
             gnused       # untuk sed
