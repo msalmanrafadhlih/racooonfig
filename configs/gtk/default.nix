@@ -18,14 +18,6 @@ in {
     gsettings-desktop-schemas
   ];
 
-  # Home variables
-  home.sessionVariables = {
-    XCURSOR_THEME = "Kafka";
-    XCURSOR_SIZE = "24";
-
-    QT_QPA_PLATFORMTHEME = "qt5ct";
-  };
-
   # ✅ Pastikan schema tersedia
   xdg.systemDirs.data = [
     "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
