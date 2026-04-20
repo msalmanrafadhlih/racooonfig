@@ -194,9 +194,6 @@ case "$class" in
     "XTerm")
         echo "state=floating sticky=off rectangle=$RECT_CENTER_MED"
         ;;
-    "kitty")
-        echo "state=floating sticky=off rectangle=$RECT_CENTER_MED"
-        ;;
 esac
 
 case "$title" in
