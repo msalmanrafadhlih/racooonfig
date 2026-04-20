@@ -1,145 +1,137 @@
-/**
- *
- * Author : Aditya Shakya (adi1090x)
- * Github : @adi1090x
- * 
- * Rofi Theme File
- * Rofi Version: 1.7.3
- **/
+@import "shared.rasi";
 
-/*****----- Configuration -----*****/
 configuration {
-    show-icons: false;
-    transparency: "real";
+  show-icons: false;
+  transparency: "real";
 }
 
 /*****----- Global Properties -----*****/
 * {
-    /* Resolution : 1920x1080 */
-    mainbox-spacing: 40px;
-    mainbox-margin: 200px 300px;
-    message-margin: 10px 400px;
-    message-padding: 30px;
-    message-border-radius: 100%;
-    listview-spacing: 10px;
-    element-padding: 60px;
-    element-border-radius: 100%;
+  /* Resolution : 1920x1080 */
+  mainbox-spacing: 40px;
+  mainbox-margin: 200px 300px;
+  message-margin: 10px 400px;
+  message-padding: 30px;
+  message-border-radius: 100%;
+  listview-spacing: 10px;
+  element-padding: 60px;
+  element-border-radius: 100%;
 
-    prompt-font: "JetBrains Mono Nerd Font Bold 60";
-    textbox-font: "JetBrains Mono Nerd Font 12";
-    element-text-font: "feather 30";
+  prompt-font: "JetBrains Mono Nerd Font Bold 60";
+  textbox-font: "JetBrains Mono Nerd Font 12";
+  element-text-font: "feather 30";
 
-    background-window: #0a0a1add;
-    background-selected: #ff0000df;
-    background-normal: #00000000;
-    foreground-selected: #ececffff;
-    foreground-normal: #141414ff;
-    urgent: #335cffff;
+  background-window: #0a0a1add;
+  background-selected: #ff0000df;
+  background-normal: #00000000;
+  foreground-selected: #ececffff;
+  foreground-normal: #141414ff;
+  urgent: #335cffff;
 }
 
 /*****----- Main Window -----*****/
 window {
-    location: center;
-    anchor: center;
-    fullscreen: true;
-    cursor: "default";
-    background-color: #ff000020;
+  location: center;
+  anchor: center;
+  fullscreen: true;
+  cursor: "default";
+  background-color: #ff000020;
 }
 
 /*****----- Main Box -----*****/
 mainbox {
-    enabled: true;
-    spacing: var(mainbox-spacing);
-    margin: var(mainbox-margin);
-    padding: 50px;
-    border-radius: 20px;
-    background-image: url("~/Pictures/Wallpaper/wallpaper8.jpeg", height);
-    background-color: transparent;
-    children:
-        [ "dummy",
-        "inputbar",
-        "listview",
-        "message",
-        "dummy"];
+  enabled: true;
+  spacing: var(mainbox-spacing);
+  margin: var(mainbox-margin);
+  padding: 50px;
+  border-radius: 20px;
+  background-image: url("~/Pictures/Wallpaper/wallpaper8.jpeg", height);
+  background-color: transparent;
+  children:
+    [ "dummy",
+    "inputbar",
+    "listview",
+    "message",
+    "dummy"];
 }
 
 /*****----- Inputbar -----*****/
 inputbar {
-    enabled: true;
-    background-color: transparent;
-    children:
-        [ "dummy",
-        "prompt",
-        "dummy"];
+  enabled: true;
+  background-color: transparent;
+  children:
+    [ "dummy",
+    "prompt",
+    "dummy"];
 }
 
 dummy {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 prompt {
-    enabled: true;
-    font: var(prompt-font);
-    background-color: transparent;
-    text-color: var(foreground-selected);
+  enabled: true;
+  font: var(prompt-font);
+  background-color: transparent;
+  text-color: var(foreground-selected);
 }
 
 /*****----- Message -----*****/
 message {
-    enabled: true;
-    margin: var(message-margin);
-    padding: var(message-padding);
-    border-radius: var(message-border-radius);
-    background-color: var(background-normal);
-    text-color: var(foreground-selected);
+  enabled: true;
+  margin: var(message-margin);
+  padding: var(message-padding);
+  border-radius: var(message-border-radius);
+  background-color: var(background-normal);
+  text-color: var(foreground-selected);
 }
 textbox {
-    font: var(textbox-font);
-    background-color: transparent;
-    text-color: inherit;
-    vertical-align: 1;
-    horizontal-align: 0.5;
+  font: var(textbox-font);
+  background-color: transparent;
+  text-color: inherit;
+  vertical-align: 1;
+  horizontal-align: 0.5;
 }
 
 /*****----- Listview -----*****/
 listview {
-    enabled: true;
-    expand: false;
-    columns: 5;
-    lines: 1;
-    cycle: true;
-    dynamic: true;
-    scrollbar: false;
-    layout: vertical;
-    reverse: false;
-    fixed-height: true;
-    fixed-columns: true;
+  enabled: true;
+  expand: false;
+  columns: 5;
+  lines: 1;
+  cycle: true;
+  dynamic: true;
+  scrollbar: false;
+  layout: vertical;
+  reverse: false;
+  fixed-height: true;
+  fixed-columns: true;
 
-    spacing: var(listview-spacing);
-    background-color: transparent;
-    cursor: "default";
+  spacing: var(listview-spacing);
+  background-color: transparent;
+  cursor: "default";
 }
 
 /*****----- Elements -----*****/
 element {
-    enabled: true;
-    padding: var(element-padding);
-    border-radius: var(element-border-radius);
-    background-color: var(background-normal);
-    text-color: var(foreground-normal);
-    cursor: pointer;
+  enabled: true;
+  padding: var(element-padding);
+  border-radius: var(element-border-radius);
+  background-color: var(background-normal);
+  text-color: var(foreground-normal);
+  cursor: pointer;
 }
 element-text {
-    font: var(element-text-font);
-    background-color: transparent;
-    text-color: inherit;
-    cursor: inherit;
-    vertical-align: -2;
-    horizontal-align: 0.5;
+  font: var(element-text-font);
+  background-color: transparent;
+  text-color: inherit;
+  cursor: inherit;
+  vertical-align: -2;
+  horizontal-align: 0.5;
 }
 element selected.normal {
-    background-color: var(background-selected);
-    border: 10px;
-    text-color: var(foreground-selected);
-    border-color: #ffffff14;
+  background-color: var(background-selected);
+  border: 10px;
+  text-color: var(foreground-selected);
+  border-color: #ffffff14;
 }
