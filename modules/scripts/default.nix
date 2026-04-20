@@ -18,5 +18,7 @@
 	  ./colorscript.nix
 	  ./set-gtk-theme.nix
 	  ./rice-selector.nix
+	  ./show-polybar.nix
+	  ./hide-polybar.nix
   ];
 }
