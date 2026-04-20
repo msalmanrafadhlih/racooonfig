@@ -15,6 +15,7 @@ in
   imports = [
     ./configs.nix
     ./mimeApps.nix
+    ./xsession.nix
   ];
 
   home.activation = {
