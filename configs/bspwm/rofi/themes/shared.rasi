@@ -1,21 +1,84 @@
 * {
-  font: "JetBrains Mono Nerd Font 10";
+    font: "JetBrains Mono Nerd Font 10";
+    image: url("~/Pictures/Wallpaper/grey/wallpaper11.jpg", width);
 
-  background: #1a0a0aff;
-  background-alt: #331111ff;
-  background-window: #0a0a1add;
-  background-selected: #ff0000df;
-  background-normal: #00000000;
-  background-transparent: #ff000020;
+    primary: #ecefff;
+    primary-fixed: #d8e2ff;
+    primary-fixed-dim: #adc6ff;
+    on-primary: #000000;
+    on-primary-fixed: #000000;
+    on-primary-fixed-variant: #00102d;
+    primary-container: #a7c2ff;
+    on-primary-container: #000000;
+    secondary: #f0eeff;
+    secondary-fixed: #dfe0ff;
+    secondary-fixed-dim: #c1c4eb;
+    on-secondary: #000000;
+    on-secondary-fixed: #000000;
+    on-secondary-fixed-variant: #0a0e2c;
+    secondary-container: #bdc0e7;
+    on-secondary-container: #000000;
+    tertiary: #f4edff;
+    tertiary-fixed: #e7deff;
+    tertiary-fixed-dim: #ccbff8;
+    on-tertiary: #000000;
+    on-tertiary-fixed: #000000;
+    on-tertiary-fixed-variant: #130737;
+    tertiary-container: #c8bbf3;
+    on-tertiary-container: #000000;
+    error: #ffece9;
+    on-error: #000000;
+    error-container: #ffaea4;
+    on-error-container: #000000;
+    surface: #0f131c;
+    on-surface: #ffffff;
+    on-surface-variant: #ffffff;
+    outline: #edeffd;
+    outline-variant: #bfc2cf;
+    shadow: #000000;
+    scrim: #000000;
+    inverse-surface: #dfe2ef;
+    inverse-on-surface: #000000;
+    inverse-primary: #004596;
+    surface-dim: #0f131c;
+    surface-bright: #4c505a;
+    surface-container-lowest: #000000;
+    surface-container-low: #1c2029;
+    surface-container: #2c303a;
+    surface-container-high: #373b45;
+    surface-container-highest: #434751;
 
-  transparent: #1a0a0ac0;
+    /* background: #1a0a0aff; */
+    /* background-alt: #331111ff; */
+    /* background-window: #0a0a1add; */
+    /* background-selected: #ff0000df; */
+    /* background-normal: #00000000; */
+    /* background-transparent: #ff000020; */
 
-  selected: #ff3b3bff;
-  active: #b32424ff;
-  urgent: #ff5c33ff;
-  image: url("~/Pictures/Wallpaper/grey/wallpaper11.jpg", width);
+    /* foreground: #ffececff; */
+    /* foreground-selected: #ececffff; */
+    /* foreground-normal: #141414ff; */
 
-  foreground: #ffececff;
-  foreground-selected: #ececffff;
-  foreground-normal: #141414ff;
+    /* transparent: #1a0a0ac0; */
+
+    /* selected: #ff3b3bff; */
+    /* active: #b32424ff; */
+    /* urgent: #ff5c33ff; */
+
+    background: #0f131c; /* #1e100f */
+    background-alt: #001a41; /* #410004 */
+    background-window: #101114dd; /* #15100f + dd */
+    background-selected: #2b74e2df; /* #ed0928 + df */
+    background-normal: #00000000; /* Tetap transparan (tidak ada di palet) */
+    background-transparent: #2b74e220; /* #ed0928 + 20 */
+
+    foreground: #ecefff; /* #ffecea */
+    foreground-selected: #ffffff; /* #ffffff */
+    foreground-normal: #101114; /* #15100f */
+
+    transparent: #0f131cc0; /* #1e100f + c0 */
+
+    selected: #4d8efe; /* #ff5451 */
+    active: #005ac1; /* #c0001c */
+    urgent: #ff5449; /* #ff5449 */
 }
