@@ -17,5 +17,6 @@
 	  ./brightness.nix
 	  ./colorscript.nix
 	  ./set-gtk-theme.nix
+	  ./rice-selector.nix
   ];
 }
