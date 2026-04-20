@@ -27,8 +27,17 @@
       set -euo pipefail
 
       if [ $# -lt 2 ]; then
-        echo "Usage: $0 <folder> <mode>"
-        echo "Mode: lossless | lossy"
+        echo "Usage   : compress-images <folder> <mode>"
+        echo "Mode    : lossless | (normal kompresi tanpa penurunan kualitas)"
+        echo "          lossy    : (maksimum kompresi dengan sedikit penurunan kualitas)\n"
+        echo "example | compress-images ~/Pictures/Wallpaper lossy"
+        echo "folder  : ~/Pictures/Wallpaper (example) 
+             ├── wallpaper10.png
+             ├── wallpaper11.jpg
+             ├── wallpaper2.jpg
+             ├── wallpaper3.png
+             ├── wallpaper4.png
+             └── wallpaper5.png\n"
         exit 1
       fi
 
