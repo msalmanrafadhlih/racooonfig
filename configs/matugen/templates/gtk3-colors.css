@@ -4,7 +4,7 @@
 */
 
 @define-color accent_color {{colors.primary.default.hex}};
-@define-color accent_bg_color {{colors.primary.default.rgba | set_alpha: 0.7}};
+@define-color accent_bg_color {{colors.primary.default.rgba | set_alpha: 0.3}};
 @define-color accent_fg_color {{colors.on_primary.default.hex}};
 
 @define-color destructive_color {{colors.error.default.hex}};
