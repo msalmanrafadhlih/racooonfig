@@ -1,0 +1,21 @@
+* {
+  font: "JetBrains Mono Nerd Font 10";
+
+  background: #1a0a0aff;
+  background-alt: #331111ff;
+  background-window: #0a0a1add;
+  background-selected: #ff0000df;
+  background-normal: #00000000;
+  background-transparent: #ff000020;
+
+  transparent: #1a0a0ac0;
+
+  selected: #ff3b3bff;
+  active: #b32424ff;
+  urgent: #ff5c33ff;
+  image: url("~/Pictures/Wallpaper/grey/wallpaper11.jpg", width);
+
+  foreground: #ffececff;
+  foreground-selected: #ececffff;
+  foreground-normal: #141414ff;
+}
