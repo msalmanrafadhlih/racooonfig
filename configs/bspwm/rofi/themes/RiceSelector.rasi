@@ -7,8 +7,8 @@ configuration {
     font:                        "var(font)";
 
     kb-accept-entry: "Return";
-    kb-row-left: "Left,h";
-    kb-row-right: "Right,l";
+    kb-row-up: "Left,h";
+    kb-row-down: "Right,l";
     kb-cancel: "Escape";
 }
 
@@ -67,8 +67,8 @@ element {
     }
 }
 element selected.normal {
-    background-color:            var(background-seleted);
-    text-color:                  var(foreground-seleted);
+    background-color:            var(background-selected);
+    text-color:                  var(foreground-selected);
 }
 
 element-icon {
