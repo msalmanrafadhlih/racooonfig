@@ -2,6 +2,11 @@ configuration {
   modi: "drun";
   show-icons: true;
   drun-display-format: "{name}";
+
+  kb-accept-entry: "Return,j";
+  kb-row-up: "Left,h";
+  kb-row-down: "Right,l";
+  kb-cancel: "Escape";
 }
 
 @import "shared.rasi" window {
@@ -20,7 +25,7 @@ configuration {
 mainbox {
   enabled: true;
   children: [ "listview"];
-  background-color: @background-alt;
+  background-color: var(background-transparent);
 }
 
 listview {
