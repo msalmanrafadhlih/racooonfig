@@ -1,11 +1,12 @@
 [module/bspwm]
 type = internal/bspwm
 
-ws-icon-0 = [I];	 
-ws-icon-1 = [II]; 
-ws-icon-2 = [III]; 
-ws-icon-3 = [IV]; 
-ws-icon-4 = [V]; 
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
 
 format = <label-state> <label-mode>
 label-dimmed-underline = ${bar/top.background}
@@ -48,14 +49,14 @@ label-locked-underline = ${module/bspwm.label-monocle-underline}
 label-locked-padding = ${module/bspwm.label-monocle-padding}
 
 label-sticky =  %{T3}Sticky %{T-}
-abel-sticky-foreground = #fba922
+label-sticky-foreground = #fba922
 label-sticky-underline = ${module/bspwm.label-monocle-underline}
 label-sticky-padding = ${module/bspwm.label-monocle-padding}
 
 label-private =  %{T3}Private %{T-}
 label-private-foreground = #bd2c40
 label-private-underline = ${module/bspwm.label-monocle-underline}
-olabel-private-padding = ${module/bspwm.label-monocle-padding}
+label-private-padding = ${module/bspwm.label-monocle-padding}
 
 [module/bspwm-tmp]
 type = internal/bspwm
