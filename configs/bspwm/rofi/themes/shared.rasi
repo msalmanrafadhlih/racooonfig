@@ -1,7 +1,4 @@
 * {
-    font: "JetBrains Mono Nerd Font 10";
-    image: url("~/Pictures/Wallpaper/grey/wallpaper11.jpg", width);
-
     primary: #ecefff;
     primary-fixed: #d8e2ff;
     primary-fixed-dim: #adc6ff;
@@ -81,4 +78,7 @@
     selected: #4d8efe; /* #ff5451 */
     active: #005ac1; /* #c0001c */
     urgent: #ff5449; /* #ff5449 */
+
+    font: "JetBrains Mono Nerd Font 10";
+    image: url("~/Pictures/Wallpaper/grey/wallpaper11.jpg", width);
 }
