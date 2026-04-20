@@ -25,13 +25,14 @@ let
   appMappings =
     builtins.listToAttrs (map (name: {
       name = ".local/share/applications/${name}.desktop";
-      value = "Apps/${name}.desktop";
+      value = "./Apps/Desktops/${name}.desktop";
     }) apps);
 in
 {
-  # ".icons" = "Assets/cursors";
-  ".local/share/icons/Apps" = "Assets/IconApps";
-  "Pictures/Wallpaper" = "Assets/Wallpaper";
-  ".config/zsh/.nomedia" = "zsh/zcompdump";
-  ".local/share/asciiart" = "asciiart";
+  # ".icons"                = "Assets/cursors";
+  ".config/Assets"        = "Assets/Icons";
+  ".config/zsh/.nomedia"  = "zsh/zcompdump";
+  ".local/share/asciiart" = "Assets/asciiart";
+
+  "Pictures/Wallpaper"    = "Assets/Wallpaper";
 } // appMappings
