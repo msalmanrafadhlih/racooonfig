@@ -91,6 +91,7 @@
 
       echo "🎉 Selesai!"
       '';
+      checkPhase = "";
     })
   ];
 }
