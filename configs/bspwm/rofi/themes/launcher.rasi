@@ -1,16 +1,4 @@
-/**
- *
- * Author : Aditya Shakya (adi1090x)
- * Github : @adi1090x
- * 
- * Rofi Theme File
- * Rofi Version: 1.7.3
- **/
-
-@import "~/.config/rofi/config.rasi" /*****----- Configuration -----****
-
-*/
-  configuration {
+@import "shared.rasi" /* ------ Configuration --------*/ configuration {
   modi: "drun,bookmarks:~/.local/bin/bookmarks.sh,repos:~/.local/bin/repository.sh,run,filebrowser,window";
   show-icons: true;
   display-drun: " ";
@@ -20,18 +8,18 @@
   display-bookmarks: "";
   display-repos: "";
   display-tmux: "";
-}
 
-/*****----- Global Properties -----*****/
-* {
-  font: "JetBrains Mono Nerd Font 10";
-  transparent: #1a0a0ac0;
-  background: #1a0a0aff;
-  background-alt: #331111ff;
-  foreground: #ffececff;
-  selected: #ff3b3bff;
-  active: #b32424ff;
-  urgent: #ff5c33ff;
+  /*---------- Keybindings ----------*/
+  kb-remove-word-back: "ctrl+BackSpace,Alt+BackSpace";
+  kb-remove-char-back: "BackSpace";
+  kb-accept-entry: "Return";
+  kb-mode-next: "Tab,super+l";
+  kb-mode-previous: "Shift+Tab,super+h";
+  kb-row-left: "Left";
+  kb-row-right: "Right";
+  kb-row-up: "Up,super+k";
+  kb-row-down: "Down,super+j";
+  kb-cancel: "Escape";
 }
 
 /*****----- Main Window -----*****/
@@ -81,7 +69,7 @@ inputbar {
   spacing: 30px;
   padding: 30px 20px 55px;
   background-color: transparent;
-  background-image: url("~/Pictures/Wallpaper/wallpaper8.jpeg", width);
+  background-image: var(image);
   text-color: var(foreground);
   orientation: vertical;
   children:
