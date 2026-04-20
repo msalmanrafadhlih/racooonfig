@@ -11,20 +11,13 @@ let
 		eww = "eww";
 
 		"bspwm/bin" = "bin";
+		"bspwm/rices" = "rices";
 		"bspwm/bspwmrc" = "bspwmrc";
+		"bspwm/.term" = ".term";
+		"bspwm/.rice" = ".rice";
   };
 in {
   xdg.configFile = mkSymlink {
     target = "bspwm";
   } configs; 
-  
-  #########################
-  ### Polybar Integrations:
-  # Hide - Unhide Polybar
-  imports = [
-    ./show-polybar.nix
-    ./hide-polybar.nix
-    ./xsession.nix
-    ./picom.nix
-  ];
 }
