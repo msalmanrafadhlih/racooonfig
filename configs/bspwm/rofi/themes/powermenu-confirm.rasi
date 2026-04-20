@@ -3,18 +3,17 @@ configuration {
   show-icons: false;
 
   kb-accept-entry: "Return";
-  kb-row-left: "Left,super+l";
-  kb-row-right: "Right,super+h";
+  kb-row-left: "Left,h";
+  kb-row-right: "Right,l";
   kb-cancel: "Escape";
 }
 
 /*****----- Global Properties -----*****/
-@import "shared.rasi" /*
+@import "shared.rasi"
 
-****----- Main Window -----****
+/* ****----- Main Window -----*****/
 
-
-*/ window {
+window {
   location: center;
   anchor: center;
   fullscreen: false;
