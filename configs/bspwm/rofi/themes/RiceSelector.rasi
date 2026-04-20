@@ -4,14 +4,12 @@ configuration {
     modi:                        "drun";
     show-icons:                  true;
     drun-display-format:         "{name}";
-    font:                        "JetBrainsMono NF Bold 11";
-}
+    font:                        "var(font)";
 
-* {
-    main-bg: #14171c;
-    main-fg: #b8bfe5;
-    select-bg: #7560d3;
-    select-fg: #14171c;
+    kb-accept-entry: "Return";
+    kb-row-left: "Left,h";
+    kb-row-right: "Right,l";
+    kb-cancel: "Escape";
 }
 
 window {
@@ -31,7 +29,7 @@ window {
 mainbox {
     enabled:                     true;
     children:                    [ "listview" ];
-    background-color:            @main-bg;
+    background-color:            var(transparent);
 }
 
 listview {
@@ -49,7 +47,7 @@ listview {
     fixed-columns:               true;
     cursor:                      "default";
     background-color:            transparent;
-    text-color:                  @main-fg;
+    text-color:                  var(foreground);
 }
 
 element {
@@ -60,7 +58,7 @@ element {
     border-radius:               20px;
     cursor:                      pointer;
     background-color:            transparent;
-    text-color:                  @main-fg;
+    text-color:                  var(foreground);
 }
 
 @media(max-aspect-ratio: 1.8) {
@@ -69,8 +67,8 @@ element {
     }
 }
 element selected.normal {
-    background-color:            @select-bg;
-    text-color:                  @select-fg;
+    background-color:            var(background-seleted);
+    text-color:                  var(foreground-seleted);
 }
 
 element-icon {
