@@ -15,8 +15,8 @@ output_path = "~/.config/helix/themes/racooon.toml"
 
 [templates.bspwm]
 input_path = "templates/bspwm"
-output_path = "~/.config/bspwm/src/colors"
-post_hook = "sh ~/.config/bspwm/src/colors"
+output_path = "~/.config/bspwm/bin/colors"
+post_hook = "sh ~/.config/bspwm/bin/colors"
 
 [templates.btop]
 input_path = "templates/btop.theme"
@@ -26,10 +26,14 @@ output_path = "~/.config/btop/themes/racooon.theme"
 input_path = "templates/yazi-theme.toml"
 output_path = "~/.config/yazi/theme.toml"
 
+[templates.rofi]
+input_path = "templates/rofi-colors.rasi"
+output_path = "~/.config/rofi/themes/shared.rasi"
+
 [templates.xresources]
 input_path = "templates/xresources"
 output_path = "~/.Xresources"
-post_hook = "xrdb -merge ~/.Xresources"
+post_hook = "xrdb -merge ~/.Xresources && killall -USR1 st"
 
 # [templates.vivaldi]
 # input_path = "templates/vivaldi.css"
