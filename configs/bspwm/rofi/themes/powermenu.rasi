@@ -1,9 +1,15 @@
-@import "shared.rasi";
 
 configuration {
   show-icons: false;
   transparency: "real";
+
+  kb-accept-entry: "Return";
+  kb-row-up: "Left,h";
+  kb-row-down: "Right,l";
+  kb-cancel: "Escape";
 }
+
+@import "shared.rasi"
 
 /*****----- Global Properties -----*****/
 * {
@@ -20,13 +26,6 @@ configuration {
   prompt-font: "JetBrains Mono Nerd Font Bold 60";
   textbox-font: "JetBrains Mono Nerd Font 12";
   element-text-font: "feather 30";
-
-  background-window: #0a0a1add;
-  background-selected: #ff0000df;
-  background-normal: #00000000;
-  foreground-selected: #ececffff;
-  foreground-normal: #141414ff;
-  urgent: #335cffff;
 }
 
 /*****----- Main Window -----*****/
@@ -35,7 +34,7 @@ window {
   anchor: center;
   fullscreen: true;
   cursor: "default";
-  background-color: #ff000020;
+  background-color: var(background-transparent);
 }
 
 /*****----- Main Box -----*****/
@@ -45,7 +44,7 @@ mainbox {
   margin: var(mainbox-margin);
   padding: 50px;
   border-radius: 20px;
-  background-image: url("~/Pictures/Wallpaper/wallpaper8.jpeg", height);
+  background-image: var(image);
   background-color: transparent;
   children:
     [ "dummy",
