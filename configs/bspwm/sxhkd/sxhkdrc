@@ -111,10 +111,10 @@ super + alt + {Left,Down,Up,Right}
 # ---------------------------------------------------------  Swap Node
 super + ctrl + {Left,Down,Up,Right}
 	bspc node -s {west,south,north,east}.local
-# # ---------------------------------------------------------  Bring all Nodes to spesific workspace
+# ---------------------------------------------------------  Bring all Nodes to spesific workspace
 # super + shift + a ; {1-9}
 #     	bspc query -N -d {1-9} -n '.window' | xargs -I id -n 1 bspc node id -d focused
-# # ---------------------------------------------------------  Bring all Marked Node to focused workspace
+# ---------------------------------------------------------  Bring all Marked Node to focused workspace
 # super + shift + m ; {1-9}
 #     	bspc query -N -n '.marked' | xargs -I id -n 1 bspc node id -d focused --follow
 # ---------------------------------------------------------  Increase / Deacrese Nodes
@@ -123,11 +123,21 @@ super + shift + {plus,minus}
        bspc node -z top_right 20 -20 ; bspc node -z bottom_left -20 20; \
     ,  bspc node -z top_right -20 20 ; bspc node -z bottom_left 20 -20; \
     }
+# ---------------------------------------------------------  switch nodes
+super + Tab
+    rofi \
+        -show window \
+        -theme $HOME/.config/rofi/themes/switch-node.rasi \
+        -window-hide-active-window true \
+        -kb-accept-entry "!Super+Tab,!Super_L" \
+        -kb-element-next "super-Tab" \
+		# -window-thumbnail 
 
 # ========================================== FLOATING NODES
 # ---------------------------------------------------------  Move floating window
 alt + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
 # ---------------------------------------------------------  Move floating window
 # ctrl + shift + {plus,minus}
 # 	{ \
@@ -181,15 +191,6 @@ alt + {Tab,period}
 # ---------------------------------------------------------  kill all unfocused nodes
 super + shift + k ; {x,k}
     bspc query -N -n '.!focused.!marked.local.window' | xargs -I id -n 1 bspc node id {-c,-k}
-# ---------------------------------------------------------  switch nodes
-super + Tab
-    rofi \
-        -show window \
-        -theme $HOME/.config/rofi/themes/switch-node.rasi \
-        -window-hide-active-window true \
-        -kb-accept-entry "!Super+Tab,!Super_L" \
-        -kb-element-next "super-Tab" \
-		# -window-thumbnail 
 
 # ==================================================  OTHER
 # ---------------------------------------------------------  Brightness
