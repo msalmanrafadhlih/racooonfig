@@ -45,10 +45,10 @@ in
 {
   home.packages = with pkgs; [
     riceSelector
-    libwebp
 
-    (gdk-pixbuf.override {
-      loaders = [ pkgs.webp-pixbuf-loader ];
-    })
+    libwebp
+    gdk-pixbuf
+    gdk-pixbuf-xlib
+    webp-pixbuf-loader
   ];
 }
