@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Exec=rofi-theme-selector
+Name=Rofi Theme
+Icon=~/.config/Assets/rofi.png
+Comment=
+Path=
+StartupNotify=false
+GenericName=rofi theme selector
