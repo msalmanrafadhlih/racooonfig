@@ -10,14 +10,6 @@ super + grave
 ctrl + super + alt + Return
 	bspc wm -r
 
-# ---------------------------------------------------------  Btop++
-super + alt + b
-    st -e btop
-
-# ---------------------------------------------------------  Clipboard Manager
-super + alt + c
-	source ~/.config/rofi/scripts/clipboard.sh
-
 # ---------------------------------------------------------  Powermenu
 super + Escape
 	source ~/.config/rofi/scripts/powermenu.sh
@@ -32,7 +24,7 @@ super + @space
 # ==============================================  MAIN APPS
 # ---------------------------------------------------------  Terminal
 super + Return
-	st -c TerminalDefault
+	Term --terminal
 # ---------------------------------------------------------  Browser
 super + b
 	kdocker -f -q vivaldi
@@ -50,16 +42,16 @@ super + f
 	thunar
 # ---------------------------------------------------------  Helix
 super + n
-	kitty --class=TerminalNvim -e hx
+	Term --helix 
 # ---------------------------------------------------------  Rmpc
 super + m
-    kdocker -f -q st -c floating_rmpc -e rmpc
+    Term --music
 # ---------------------------------------------------------  Picart
 super + v
     picard
 # ---------------------------------------------------------  Terminal pinned
 super + p
-	st -c TerminalPinned
+	Term --pinned 
 # ---------------------------------------------------------  Spotify
 super + s
 	kdocker -q -f spotify --disable-accelerated-video-decode --no-zygote
@@ -68,10 +60,25 @@ super + q
 	bspc node -c
 # ---------------------------------------------------------  Yazi
 super + y
-	kitty --class=YaziTerm -e yazi
+	Term --yazi
 # ------o--------------------------------------------------  Zed Editor
 super + z
 	zeditor
+
+# =============================================== UTILITIES
+# ---------------------------------------------------------  Hide/Show Polibar
+super + alt + {h,u}
+	source ~/.local/bin/{hide,show}-polybar.sh
+# ---------------------------------------------------------  Btop++
+super + alt + b
+    Term --btop
+# ---------------------------------------------------------  Clipboard Manager
+super + alt + c
+	source ~/.config/rofi/scripts/clipboard.sh
+# ---------------------------------------------------------  select Terminal
+super + alt + t
+	~/.config/rofi/scripts/Term --selecterm
+
 ###########################################################
 # ---------------------- Workspaces --------------------- #
 ###########################################################
@@ -88,12 +95,6 @@ super + {k,j}
 # ------f--------------------------------------------------  Swap Workspace by number
 super + {1-9,0}
     bspc desktop -f '^{1-9,10}'
-
-# ================================================= POLYBAR
-# ---------------------------------------------------------  Hide/Show Polibar
-super + alt + {h,u}
-	source ~/.local/bin/{hide,show}-polybar.sh
-
 
 # =================================================== NODES
 # ========================================== NAVIGATE NODES
@@ -184,7 +185,7 @@ super + shift + k ; {x,k}
 super + Tab
     rofi \
         -show window \
-        -theme $HOME/.config/rofi/themes/window.rasi \
+        -theme $HOME/.config/rofi/themes/switch-node.rasi \
         -window-hide-active-window true \
         -kb-accept-entry "!Super+Tab,!Super_L" \
         -kb-element-next "super-Tab" \
