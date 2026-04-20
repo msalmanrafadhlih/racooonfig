@@ -1,45 +1,53 @@
 { pkgs, ... }:
 
 let
-  batteryScript = pkgs.writeScript "battery-notify.sh" ''
-    #!${pkgs.bash}/bin/bash
-    export PATH=${pkgs.coreutils}/bin:${pkgs.dunst}/bin:${pkgs.libcanberra-gtk3}/bin:${pkgs.gtk3}/bin:/run/wrappers/bin:$PATH
+  batteryScript = pkgs.writeShellApplication {
+    name = "battery-notify";
+    
+    runtimeInputs = with pkgs; [ 
+      coreutils 
+      dunst 
+      libcanberra-gtk3 
+    ];
 
-    BAT="/sys/class/power_supply/BAT0"
-    CAPACITY=$(cat "$BAT/capacity")
-    STATUS=$(cat "$BAT/status")
+    text = ''
+      BAT="/sys/class/power_supply/BAT0"
+      CAPACITY=$(cat "$BAT/capacity")
+      STATUS=$(cat "$BAT/status")
 
-    ICON_LOW="$HOME/.config/bspwm/src/assets/LowBat.png"
-    ICON_FULL="$HOME/.config/bspwm/src/assets/FullBat.png"
-    SOUND_LOW="$HOME/.config/dunst/sound/emotional-damage-meme.wav"
-    SOUND_FULL="$HOME/.config/dunst/sound/hidup-jokowi.wav"
+      ICON_LOW="$HOME/.config/Assets/Icons/LowBat.png"
+      ICON_FULL="$HOME/.config/Assets/Icons/FullBat.png"
+      SOUND_LOW="$HOME/.config/Assets/Sounds/emotional-damage-meme.wav"
+      SOUND_FULL="$HOME/.config/Assets/Sounds/hidup-jokowi.wav"
 
-    if [[ "$STATUS" == "Discharging" && "$CAPACITY" -le 20 ]]; then
-      dunstify -i "$ICON_LOW" \
-        -h int:value:"$CAPACITY" \
-        -r 2001 \
-        -u critical "Battery Low" "$CAPACITY % remaining"
-      canberra-gtk-play -f "$SOUND_LOW" -V 3.0
-    elif [[ "$STATUS" == "Full" || ( "$STATUS" == "Charging" && "$CAPACITY" -ge 95 ) ]]; then
-      dunstify -i "$ICON_FULL" \
-        -h int:value:"$CAPACITY" \
-        -r 2002 \
-        -u normal "Battery Full" "$CAPACITY % charged. You can unplug the charger."
-      canberra-gtk-play -f "$SOUND_FULL" -V 3.0
-    fi
-  '';
+      if [[ "$STATUS" == "Discharging" && "$CAPACITY" -le 20 ]]; then
+        dunstify -i "$ICON_LOW" \
+          -h int:value:"$CAPACITY" \
+          -r 2001 \
+          -u critical "Battery Low" "$CAPACITY % remaining"
+        canberra-gtk-play -f "$SOUND_LOW" -V 3.0
+      elif [[ "$STATUS" == "Full" || ( "$STATUS" == "Charging" && "$CAPACITY" -ge 95 ) ]]; then
+        dunstify -i "$ICON_FULL" \
+          -h int:value:"$CAPACITY" \
+          -r 2002 \
+          -u normal "Battery Full" "$CAPACITY % charged. You can unplug the charger."
+        canberra-gtk-play -f "$SOUND_FULL" -V 3.0
+      fi
+    '';
+  };
 in
 {
-  home.file.".local/bin/battery-notify.sh".source = batteryScript;
+  # Opsional: Tambahkan ke home.packages jika ingin mengeksekusinya secara manual via terminal
+  home.packages = [ batteryScript ];
 
   systemd.user.services.battery-check = {
     Unit.Description = "Battery check notifier";
     Service = {
-      ExecStart = "${batteryScript}";
+      # Panggil path executable-nya secara langsung
+      ExecStart = "${batteryScript}/bin/battery-notify";
       Environment = [
-      	"XDG_RUNTIME_DIR=%t"
-      	"PATH=${pkgs.coreutils}/bin:${pkgs.dunst}/bin:${pkgs.libcanberra-gtk3}/bin:${pkgs.gtk3}/bin:/run/wrappers/bin:${pkgs.bash}/bin"
-      	];
+        "XDG_RUNTIME_DIR=%t"
+      ];
     };
   };
 
