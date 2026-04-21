@@ -1,2 +1,5 @@
 #!/bin/sh
-/run/current-system/sw/bin/feh --no-fehbg --bg-scale "$HOME/Pictures/Wallpaper/grey/wallpaper11.jpg"
+/run/current-system/sw/bin/feh\
+  --no-fehbg\
+  --bg-scale\
+  "$HOME/Pictures/Wallpaper/red/wallpaper8.jpeg"
