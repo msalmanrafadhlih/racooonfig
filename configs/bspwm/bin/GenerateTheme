@@ -1,18 +1,41 @@
 #!/bin/sh
 
-# Current Rice
-read -r RICE < "$HOME"/.config/bspwm/.rice
+# Membaca Current Rice
+read -r RICE < "$HOME/.config/bspwm/.rice"
 
-# Load theme configuration
-matugen json ~/.config/bspwm/rices/"$RICE"/pallete.json
+# 1. Menentukan tema dengan 'case' (lebih efisien daripada banyak 'if')
+case "$RICE" in
+  black)
+    THEME="Vimix-black-dark"
+    CURSOR="Kiana"
+    ;;
+  blue)
+    THEME="Vimix-doder-dark"
+    CURSOR="Erika-Furudo"
+    ;;
+  green)
+    THEME="Vimix-jade-dark"
+    CURSOR="Crelly-Cursor-Pack"
+    ;;
+  grey)
+    THEME="Vimix-white-dark"
+    CURSOR="Ellen-Joe"
+    ;;
+  red)
+    THEME="Vimix-ruby-dark"
+    CURSOR="Kafka"
+    ;;
+  *)
+    THEME="Vimix-dark"
+    CURSOR="Ju-Fufu"
+    ;;
+esac
 
+# Menerapkan tema GTK
+set-gtk-theme "dynamic" "$THEME" "$CURSOR"
 
-# . "$HOME"/.config/bspwm/rices/"$RICE"/theme-config.bash
+# 2. Mengambil 1 file .jpg secara acak dari folder menggunakan 'shuf'
+RANDOM_WALLPAPER=$(find "$HOME/Pictures/Wallpaper/$RICE" -type f | grep -iE '\.(jpg|jpeg|png|webp|bmp|gif|heic|avif|tiff)$' | shuf -n 1)
 
-# # Path to modules dir
-# MODULE_DIR="$HOME/.config/bspwm/config/modules"
-
-# # Load all the files in dir
-# for module in "$MODULE_DIR"/*.sh; do
-#     . "$module"
-# done
+# 3. Load theme configuration dengan wallpaper acak
+matugen json "$HOME/.config/bspwm/rices/$RICE/pallete.json" image "$RANDOM_WALLPAPER"
