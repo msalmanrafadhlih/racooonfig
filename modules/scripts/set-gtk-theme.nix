@@ -29,7 +29,7 @@
                     fi
                 done
     
-                if [[ ''${}}#found[@]} -eq 0 ]]; then
+                if [[ ''${#found[@]} -eq 0 ]]; then
                     echo "Tidak ditemukan."
                 else
                     echo "''${found[@]}" | tr ' ' '\n' | sort -u | grep -vE "^(default|hicolor|locolor|gnome|Graphics|flatpak)$" | column
