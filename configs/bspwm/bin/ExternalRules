@@ -194,6 +194,9 @@ case "$class" in
     "XTerm")
         echo "state=floating sticky=off rectangle=$RECT_CENTER_MED"
         ;;
+    "Dconf-editor")
+        echo "state=floating"
+        ;;
 esac
 
 case "$title" in
