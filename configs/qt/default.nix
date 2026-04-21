@@ -7,9 +7,9 @@
 in {
   
   # QT config (biar ikut icon/theme)
-  xdg.configFile = mkSymlink {
-    target = "qt";
-  } configs;
+  # xdg.configFile = mkSymlink {
+  #   target = "qt";
+  # } configs;
 
   qt = {
     enable = true;
