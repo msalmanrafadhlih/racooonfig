@@ -37,11 +37,11 @@ in
     settings = {
       # 2. PERBAIKAN UTAMA: Menggunakan lib.mkForce dan mengubah ke String
       background_opacity = lib.mkForce "0.5";
-      background_blur = 40;
       placement_strategy = "center";
-      inactive_text_alpha = "0.3";
+      inactive_text_alpha = "0.7";
       confirm_os_window_close = 0;
       tab_bar_style = "powerline";
+      font_size = "9.0";
 
       window_padding_width = "10";
       window_alert_on_bell = false;
@@ -53,7 +53,7 @@ in
       bell_on_tab = "🔔 ";
       remember_window_size = false;
 
-      mouse_hide_wait = 0;
+      mouse_hide_wait = 1;
       select_by_word_characters = "@-./_~?&=%+#a";
       copy_on_select = true;
 
