@@ -2,178 +2,178 @@
   "base16": {
     "base00": {
       "dark": {
-        "color": "#1a1a13"
+        "color": "#290a0d"
       },
       "default": {
-        "color": "#1a1a13"
+        "color": "#290a0d"
       },
       "light": {
-        "color": "#ba5c47"
+        "color": "#d0adb1"
       }
     },
     "base01": {
       "dark": {
-        "color": "#31231a"
+        "color": "#412125"
       },
       "default": {
-        "color": "#31231a"
+        "color": "#412125"
       },
       "light": {
-        "color": "#a3523f"
+        "color": "#b8969a"
       }
     },
     "base02": {
       "dark": {
-        "color": "#482d22"
+        "color": "#59383c"
       },
       "default": {
-        "color": "#482d22"
+        "color": "#59383c"
       },
       "light": {
-        "color": "#8c4938"
+        "color": "#a07f83"
       }
     },
     "base03": {
       "dark": {
-        "color": "#5f3629"
+        "color": "#715054"
       },
       "default": {
-        "color": "#5f3629"
+        "color": "#715054"
       },
       "light": {
-        "color": "#754031"
+        "color": "#88676b"
       }
     },
     "base04": {
       "dark": {
-        "color": "#754031"
+        "color": "#88676b"
       },
       "default": {
-        "color": "#754031"
+        "color": "#88676b"
       },
       "light": {
-        "color": "#5f3629"
+        "color": "#715054"
       }
     },
     "base05": {
       "dark": {
-        "color": "#8c4938"
+        "color": "#a07f83"
       },
       "default": {
-        "color": "#8c4938"
+        "color": "#a07f83"
       },
       "light": {
-        "color": "#482d22"
+        "color": "#59383c"
       }
     },
     "base06": {
       "dark": {
-        "color": "#a3523f"
+        "color": "#b8969a"
       },
       "default": {
-        "color": "#a3523f"
+        "color": "#b8969a"
       },
       "light": {
-        "color": "#31231a"
+        "color": "#412125"
       }
     },
     "base07": {
       "dark": {
-        "color": "#ba5c47"
+        "color": "#d0adb1"
       },
       "default": {
-        "color": "#ba5c47"
+        "color": "#d0adb1"
       },
       "light": {
-        "color": "#1a1a13"
+        "color": "#290a0d"
       }
     },
     "base08": {
       "dark": {
-        "color": "#1a1a13"
+        "color": "#ff7266"
       },
       "default": {
-        "color": "#1a1a13"
+        "color": "#ff7266"
       },
       "light": {
-        "color": "#1a1a13"
+        "color": "#ff7266"
       }
     },
     "base09": {
       "dark": {
-        "color": "#64281e"
+        "color": "#f07b85"
       },
       "default": {
-        "color": "#64281e"
+        "color": "#f07b85"
       },
       "light": {
-        "color": "#64281e"
+        "color": "#f07b85"
       }
     },
     "base0a": {
       "dark": {
-        "color": "#b95b46"
+        "color": "#f17c75"
       },
       "default": {
-        "color": "#b95b46"
+        "color": "#f17c75"
       },
       "light": {
-        "color": "#b95b46"
+        "color": "#f17c75"
       }
     },
     "base0b": {
       "dark": {
-        "color": "#dc2826"
+        "color": "#b79d00"
       },
       "default": {
-        "color": "#dc2826"
+        "color": "#b79d00"
       },
       "light": {
-        "color": "#dc2826"
+        "color": "#b79d00"
       }
     },
     "base0c": {
       "dark": {
-        "color": "#d21116"
+        "color": "#cc9508"
       },
       "default": {
-        "color": "#d21116"
+        "color": "#cc9508"
       },
       "light": {
-        "color": "#d21116"
+        "color": "#cc9508"
       }
     },
     "base0d": {
       "dark": {
-        "color": "#dc191b"
+        "color": "#ff726b"
       },
       "default": {
-        "color": "#dc191b"
+        "color": "#ff726b"
       },
       "light": {
-        "color": "#dc191b"
+        "color": "#ff726b"
       }
     },
     "base0e": {
       "dark": {
-        "color": "#e01a20"
+        "color": "#cd9500"
       },
       "default": {
-        "color": "#e01a20"
+        "color": "#cd9500"
       },
       "light": {
-        "color": "#e01a20"
+        "color": "#cd9500"
       }
     },
     "base0f": {
       "dark": {
-        "color": "#e1171b"
+        "color": "#7c6664"
       },
       "default": {
-        "color": "#e1171b"
+        "color": "#7c6664"
       },
       "light": {
-        "color": "#e1171b"
+        "color": "#7c6664"
       }
     }
   },
@@ -729,7 +729,7 @@
       }
     }
   },
-  "image": "/home/tquilla/.dotfiles/bspwm/configs/Assets/Wallpaper/red/wallpaper8.jpeg",
+  "image": null,
   "is_dark_mode": true,
   "mode": "dark",
   "palettes": {
