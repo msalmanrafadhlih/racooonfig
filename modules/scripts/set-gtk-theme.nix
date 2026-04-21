@@ -28,8 +28,8 @@
                         found+=("$(find "$p/$type" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' 2>/dev/null)")
                     fi
                 done
-                
-                if [[ ''${#found[@]} -eq 0 ]]; then
+    
+                if [[ ''${}}#found[@]} -eq 0 ]]; then
                     echo "Tidak ditemukan."
                 else
                     echo "''${found[@]}" | tr ' ' '\n' | sort -u | grep -vE "^(default|hicolor|locolor|gnome|Graphics|flatpak)$" | column
@@ -81,6 +81,23 @@
                     sed -i "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=$cursor/" "$file"
                 fi
             done
+
+            # Set the gtk theme untuk xsettingsd
+            if [[ -f "$HOME/.config/xsettingsd/xsettingsd.conf" ]]; then
+                sed -i "$HOME/.config/xsettingsd/xsettingsd.conf" \
+                    -e "s|Net/ThemeName .*|Net/ThemeName \"$scheme\"|" \
+                    -e "s|Net/IconThemeName .*|Net/IconThemeName \"$icon\"|" \
+                    -e "s|Gtk/CursorThemeName .*|Gtk/CursorThemeName \"$cursor\"|"
+            fi
+
+            # Update index.theme (langsung overwrite lebih aman dan bersih)
+            mkdir -p "$HOME/.icons/default"
+            echo -e "[Icon Theme]\nName=Default\nComment=Default Cursor Theme\nInherits=$cursor" > "$HOME/.icons/default/index.theme"
+
+            # Reload daemon and apply gtk theme
+            if pidof -q xsettingsd; then
+                pkill -1 xsettingsd
+            fi
 
             if command -v xsetroot >/dev/null 2>&1; then
                 xsetroot -cursor_name left_ptr
