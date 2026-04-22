@@ -43,6 +43,4 @@ let
     '';
   };
 in
-{
-  home.packages =  [ riceSelector ];
-}
+{ home.packages =  [ riceSelector ]; }
