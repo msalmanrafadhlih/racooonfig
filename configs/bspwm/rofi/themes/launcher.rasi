@@ -159,7 +159,7 @@ listview {
 
 scrollbar {
   handle-width: 5px;
-  handle-color: #ff0000ff;
+  handle-color: var(selected);
   border-radius: 10px;
   background-color: transparent;
 }
@@ -180,23 +180,23 @@ element normal.normal {
   text-color: inherit;
 }
 element normal.urgent {
-  background-color: var(urgent);
+  background-color: var(selected);
   text-color: var(foreground);
 }
 element normal.active {
-  background-image: linear-gradient(to left, #ff5c33ff, transparent);
+  background-image: var(background-gradient-active);
   text-color: var(foreground);
 }
 element selected.normal {
-  background-image: linear-gradient(to right, #ff0000ff, transparent);
-  text-color: var(background);
+  background-image: var(background-gradient-selected);
+  text-color: var(foreground);
 }
 element selected.urgent {
   background-color: var(urgent);
   text-color: var(foreground);
 }
 element selected.active {
-  background-color: var(urgent);
+  background-color: var(active);
   text-color: var(foreground);
 }
 element-icon {
@@ -221,7 +221,7 @@ textbox {
   padding: 5px;
   border-radius: 0px;
   background-color: transparent;
-  text-color: var(foreground);
+  text-color: var(urgent);
   vertical-align: 0.5;
   horizontal-align: 0.5;
   str: "NAVIGATE: Super + { h, j, k, l }";
