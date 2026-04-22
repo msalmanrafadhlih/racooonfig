@@ -1,70 +1,70 @@
 * {
-    background: #0e150c; /* #1e100f */
-    background-alt: #002200; /* #410004 */
-    background-window: #0f120edd; /* #15100f + dd */
-    background-selected: #038b00df; /* #ed0928 + df */
+    background: #091517; /* #1e100f */
+    background-alt: #001f24; /* #410004 */
+    background-window: #0e1212dd; /* #15100f + dd */
+    background-selected: #008391df; /* #ed0928 + df */
     background-normal: #00000000; /* Tetap transparan (tidak ada di palet) */
-    background-transparent: #038b0020; /* #ed0928 + 20 */
-    background-gradient-active: linear-gradient(to left, #03a800, transparent);
-    background-gradient-selected: linear-gradient(to right, #026e00, transparent);
+    background-transparent: #00839120; /* #ed0928 + 20 */
+    background-gradient-active: linear-gradient(to left, #00a0b0, transparent);
+    background-gradient-selected: linear-gradient(to right, #006874, transparent);
 
-    foreground: #c7ffb4; /* #ffecea */
+    foreground: #cdf7ff; /* #ffecea */
     foreground-selected: #ffffff; /* #ffffff */
-    foreground-normal: #0f120e; /* #15100f */
+    foreground-normal: #0e1212; /* #15100f */
 
-    transparent: #0e150cc0; /* #1e100f + c0 */
-    selected: #03a800; /* #ff5451 */
-    active: #026e00; /* #c0001c */
+    transparent: #091517c0; /* #1e100f + c0 */
+    selected: #00a0b0; /* #ff5451 */
+    active: #006874; /* #c0001c */
     urgent: #ff5449; /* #ff5449 */
 
-    primary: #c7ffb4;
-    primary-fixed: #77ff61;
-    primary-fixed-dim: #02e600;
+    primary: #cdf7ff;
+    primary-fixed: #97f0ff;
+    primary-fixed-dim: #00daf1;
     on-primary: #000000;
     on-primary-fixed: #000000;
-    on-primary-fixed-variant: #001600;
-    primary-container: #02e200;
+    on-primary-fixed-variant: #001417;
+    primary-container: #00d6ec;
     on-primary-container: #000000;
-    secondary: #d3fada;
-    secondary-fixed: #c5eccd;
-    secondary-fixed-dim: #aad0b2;
+    secondary: #def3ff;
+    secondary-fixed: #c1e8fc;
+    secondary-fixed-dim: #a6ccdf;
     on-secondary: #000000;
     on-secondary-fixed: #000000;
-    on-secondary-fixed-variant: #001508;
-    secondary-container: #a6ccae;
+    on-secondary-fixed-variant: #00131c;
+    secondary-container: #a2c8db;
     on-secondary-container: #000000;
-    tertiary: #bbfee3;
-    tertiary-fixed: #aef0d6;
-    tertiary-fixed-dim: #93d4bb;
+    tertiary: #e5f1ff;
+    tertiary-fixed: #cbe6ff;
+    tertiary-fixed-dim: #9fcbf2;
     on-tertiary: #000000;
     on-tertiary-fixed: #000000;
-    on-tertiary-fixed-variant: #00150e;
-    tertiary-container: #8fd0b7;
+    on-tertiary-fixed-variant: #001321;
+    tertiary-container: #9bc7ee;
     on-tertiary-container: #000000;
     error: #ffece9;
     on-error: #000000;
     error-container: #ffaea4;
     on-error-container: #000000;
-    surface: #0e150c;
+    surface: #091517;
     on-surface: #ffffff;
     on-surface-variant: #ffffff;
-    outline: #eaf3e2;
-    outline-variant: #bdc5b6;
+    outline: #e5f2f5;
+    outline-variant: #b8c5c7;
     shadow: #000000;
     scrim: #000000;
-    inverse-surface: #dde5d5;
+    inverse-surface: #d7e5e7;
     inverse-on-surface: #000000;
-    inverse-primary: #015500;
-    surface-dim: #0e150c;
-    surface-bright: #4a5246;
+    inverse-primary: #005059;
+    surface-dim: #091517;
+    surface-bright: #465255;
     surface-container-lowest: #000000;
-    surface-container-low: #1a2217;
-    surface-container: #2b3327;
-    surface-container-high: #363e32;
-    surface-container-highest: #41493d;
+    surface-container-low: #152224;
+    surface-container: #263235;
+    surface-container-high: #313e40;
+    surface-container-highest: #3c494b;
 
     font: "JetBrains Mono Nerd Font 10";
-    image: url("/home/tquilla/Pictures/Wallpaper/green/wallpaper1.jpeg", width);
+    image: url("/home/tquilla/Pictures/Wallpaper/grey/wallpaper5.png", width);
 
     /* background: #1a0a0aff; */
     /* background-alt: #331111ff; */
