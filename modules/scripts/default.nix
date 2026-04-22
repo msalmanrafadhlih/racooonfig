@@ -21,5 +21,6 @@
 	  ./show-polybar.nix
 	  ./hide-polybar.nix
 	  ./get-github-hash.nix
+	  ./image-editor.nix
   ];
 }
