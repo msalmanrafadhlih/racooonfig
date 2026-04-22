@@ -40,6 +40,10 @@ input_path = "templates/setwall"
 output_path = "~/.config/bspwm/bin/wallpaper"
 post_hook = "wallpaper"
 
+[templates.environment]
+input_path = "templates/env"
+output_path = "~/.dynamic"
+
 # [templates.vivaldi]
 # input_path = "templates/vivaldi.css"
 # output_path = "~/.config/vivaldi/CustomCSS/colors.css"
