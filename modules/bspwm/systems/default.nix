@@ -62,8 +62,15 @@ in
     };
   };
 
-  environment.sessionVariables = {
-    XDG_CURRENT_DESKTOP = "bspwm";
-    XDG_SESSION_TYPE = "x11";
+  environment = {
+    sessionVariables = {
+      XDG_CURRENT_DESKTOP = "bspwm";
+      XDG_SESSION_TYPE = "x11";
+    };
+    extraInit = ''
+      if [ -f "$HOME/.dynamic" ]; then
+        . "$HOME/.dynamic"
+      fi
+    '';
   };
 }
