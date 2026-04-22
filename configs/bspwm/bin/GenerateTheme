@@ -3,39 +3,53 @@
 # Membaca Current Rice
 read -r RICE < "$HOME/.config/bspwm/.rice"
 
-# 1. Menentukan tema dengan 'case' (lebih efisien daripada banyak 'if')
+# 1. Menentukan tema dengan 'case'
 case "$RICE" in
-  black)
-    THEME="Vimix-black-dark"
-    CURSOR="Kiana"
-    ;;
-  blue)
-    THEME="Vimix-doder-dark"
-    CURSOR="Erika-Furudo"
-    ;;
-  green)
-    THEME="Vimix-jade-dark"
-    CURSOR="Crelly-Cursor-Pack"
-    ;;
-  grey)
-    THEME="Vimix-white-dark"
-    CURSOR="Ellen-Joe"
-    ;;
-  red)
-    THEME="Vimix-ruby-dark"
-    CURSOR="Kafka"
-    ;;
-  *)
-    THEME="Vimix-dark"
-    CURSOR="Ju-Fufu"
-    ;;
+    black)
+        THEME="Vimix-black-dark"
+        CURSOR="Kiana"
+        ;;
+    blue)
+        THEME="Vimix-doder-dark"
+        CURSOR="Erika-Furudo"
+        ;;
+    green)
+        THEME="Vimix-jade-dark"
+        CURSOR="Crelly-Cursor-Pack"
+        ;;
+    grey)
+        THEME="Vimix-white-dark"
+        CURSOR="Ellen-Joe"
+        ;;
+    red)
+        THEME="Vimix-ruby-dark"
+        CURSOR="Kafka"
+        ;;
+    *)
+        THEME="Vimix-dark"
+        CURSOR="Ju-Fufu"
+        ;;
 esac
 
 # Menerapkan tema GTK
 set-gtk-theme "dynamic" "$THEME" "$CURSOR"
 
-# 2. Mengambil 1 file .jpg secara acak dari folder menggunakan 'shuf'
-RANDOM_WALLPAPER=$(find "$HOME/Pictures/Wallpaper/$RICE" -type f | grep -iE '\.(jpg|jpeg|png|webp|bmp|gif|heic|avif|tiff)$' | shuf -n 1)
+# 2. Mengambil 1 file gambar secara acak
+RANDOM_WALLPAPER=$(find "$HOME/Pictures/Wallpaper/$RICE" -type f 2> /dev/null | grep -iE '\.(jpg|jpeg|png|webp|bmp|gif|heic|avif|tiff)$' | shuf -n 1)
 
-# 3. Load theme configuration dengan wallpaper acak
-matugen json "$HOME/.config/bspwm/rices/$RICE/pallete.json" image "$RANDOM_WALLPAPER"
+# Validasi jika wallpaper tidak ditemukan
+if [ -z "$RANDOM_WALLPAPER" ]; then
+    dunstify -u critical -a "Theme Manager" "Error Wallpaper" "Tidak ada gambar ditemukan di $HOME/Pictures/Wallpaper/$RICE"
+    exit 1
+fi
+
+# 3. Load theme configuration & Eksekusi dengan pengecekan error
+if ERROR_MSG=$(matugen json "$HOME/.config/bspwm/rices/$RICE/pallete.json" --import-json-string "{ \"image\": \"$RANDOM_WALLPAPER\", \"cursor\": \"$CURSOR\", \"gtk-theme\": \"$THEME\" }" 2>&1); then
+    # Mengambil nama file saja tanpa path lengkap
+    WALLPAPER_NAME=$(basename "$RANDOM_WALLPAPER")
+    dunstify -u normal -a "Theme Manager" "Theme Changed Successfully!" "Wallpaper: $WALLPAPER_NAME\nCursor: $CURSOR\nGTK: $THEME"
+    echo "$RANDOM_WALLPAPER"
+else
+    dunstify -u critical -a "Theme Manager" "Change Theme Failed!" "$ERROR_MSG"
+    exit 1
+fi
