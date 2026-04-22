@@ -3,8 +3,14 @@
 let
   riceSelector = pkgs.writeShellApplication {
     name = "RiceSelector";
-    runtimeInputs = with pkgs; [ rofi coreutils findutils webp-pixbuf-loader ];
-    
+    runtimeInputs = with pkgs; [
+      rofi
+      coreutils
+      libwebp
+      findutils
+      webp-pixbuf-loader
+    ];
+
     text = ''
       bspwm_dir="$HOME/.config/bspwm"
       read -r current_rice < "$bspwm_dir"/.rice
