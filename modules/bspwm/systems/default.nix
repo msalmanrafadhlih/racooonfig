@@ -14,6 +14,7 @@ in
   environment.systemPackages = [
     inp.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.qylock-sddm-theme
+    pkgs.cursor-memes
   ];
 
   services = {
@@ -42,6 +43,9 @@ in
       sddm = {
         enable = true;
         theme = "R1999_2";
+        settings = {
+          Theme = { CursorTheme = "Tumi-Crystal"; CursorSize= 24; };
+        };
 
         # PENTING: SDDM butuh ini agar module QML terbaca oleh greeter
         # Tambahkan paket tema dan dependensi QML yang wajib
