@@ -43,9 +43,12 @@ in
       sddm = {
         enable = true;
         theme = "R1999_2";
-        settings = {
-          Theme = { CursorTheme = "Tumi-Crystal"; CursorSize= 24; };
-        };
+        setupScript = ''
+          ${pkgs.xrdb}/bin/xrdb -merge - <<EOF
+          Xcursor.theme: Skyrim-by-ru5tyshark-cursors
+          Xcursor.size: 24
+          EOF
+        '';
 
         # PENTING: SDDM butuh ini agar module QML terbaca oleh greeter
         # Tambahkan paket tema dan dependensi QML yang wajib
