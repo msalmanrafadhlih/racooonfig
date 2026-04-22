@@ -31,7 +31,7 @@ Kitty"
     current_term=$(tr '[:upper:]' '[:lower:]' < "$CFG_TERM")
 
     # Directory where icons are stored
-    iconDir="$HOME/.config/assets"
+    iconDir="$HOME/.config/Assets/Icons"
 
     index=0
     selected_index=-1
