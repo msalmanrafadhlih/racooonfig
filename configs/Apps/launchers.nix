@@ -29,7 +29,6 @@ let
     }) apps);
 in
 {
-  # ".icons"                = "Assets/cursors";
   ".config/Assets/Icons"  = "Assets/Icons";
   ".config/Assets/Sounds" = "Assets/Sounds";
   ".config/zsh/.nomedia"  = "zsh/zcompdump";
