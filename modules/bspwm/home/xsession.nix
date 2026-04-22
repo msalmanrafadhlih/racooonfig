@@ -14,15 +14,13 @@
 
     # Tambahan script sebelum menjalankan WM (setara isi .xinitrc)
     initExtra = ''
-            [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-      	    eval "$(dbus-launch --sh-syntax)"
-      	    export DBUS_SESSION_BUS_ADDRESS
-            xsetroot -cursor_name left_ptr	    
+      [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+      xsetroot -cursor_name left_ptr	    
 
-        		mpDris2 &
+  		mpDris2 &
 
-        		# disable keyboard internal
-            xinput disable "AT Translated Set 2 keyboard"
+  		# disable keyboard internal
+      xinput disable "AT Translated Set 2 keyboard"
     '';
   };
 }
