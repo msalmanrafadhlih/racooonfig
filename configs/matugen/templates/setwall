@@ -1,0 +1,5 @@
+#!/bin/sh
+/run/current-system/sw/bin/feh\
+  --no-fehbg\
+  --bg-scale\
+  "{{ image }}"
