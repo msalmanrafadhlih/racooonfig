@@ -17,23 +17,15 @@
                 local type=$1
                 # NixOS butuh cara bersih memecah XDG_DATA_DIRS
                 IFS=':' read -ra ADDR <<< "$XDG_DATA_DIRS"
-                local found=()
 
                 # Tambahkan folder lokal manual
-                local search_paths=("''${ADDR[@]}" "$HOME/.local/share" "$HOME/.icons" "$HOME/.themes")
+                local search_paths=("''${ADDR[@]}")
 
                 for p in "''${search_paths[@]}"; do
                     if [[ -d "$p/$type" ]]; then
-                        # Gunakan find untuk list folder saja agar lebih bersih
-                        found+=("$(find "$p/$type" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' 2>/dev/null)")
+                        find "$p/$type" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' 2>/dev/null
                     fi
-                done
-    
-                if [[ ''${#found[@]} -eq 0 ]]; then
-                    echo "Tidak ditemukan."
-                else
-                    echo "''${found[@]}" | tr ' ' '\n' | sort -u | grep -vE "^(default|hicolor|locolor|gnome|Graphics|flatpak)$" | column
-                fi
+                done | sort -u | grep -vE "^(default|hicolor|locolor|gnome|Graphics|flatpak)$" | column
             }
 
             # Gunakan exit bukan return karena ini file bin mandiri, bukan function shell
@@ -46,9 +38,9 @@
             fi
 
             if [[ "''${1:-}" == "--list" ]]; then
-                echo "--- [ AVAILABLE THEMES (SCHEME) ] ---"
+                printf "\n--- [ AVAILABLE THEMES (SCHEME) ] ---\n"
                 _list_assets "themes"
-                printf "\n--- [ AVAILABLE ICONS & CURSORS ] ---"
+                printf "\n--- [ AVAILABLE ICONS & CURSORS ] ---\n"
                 _list_assets "icons"
                 exit 0
             fi
@@ -57,21 +49,13 @@
             icon="''${2:-Vimix-white}"
             cursor="''${3:-Kafka}"
 
-            [[ -z "$scheme" ]] && scheme="dynamic"
-            [[ -z "$icon" ]] && icon="Vimix-white"
-            [[ -z "$cursor" ]] && cursor="Kafka"
-
             echo "──────────────────────────────────────────────────"
-            echo "🎨 Mengatur Tema GTK (NixOS/BSPWM)"
+            echo "🎨 Mengatur Tema GTK"
             echo "──────────────────────────────────────────────────"
             echo "• Scheme  : $scheme"
             echo "• Icon    : $icon"
             echo "• Cursor  : $cursor"
             echo "──────────────────────────────────────────────────"
-
-            gsettings set org.gnome.desktop.interface gtk-theme "$scheme"
-            gsettings set org.gnome.desktop.interface icon-theme "$icon"
-            gsettings set org.gnome.desktop.interface cursor-theme "$cursor"
 
             files=("$HOME/.config/gtk-3.0/settings.ini" "$HOME/.config/gtk-4.0/settings.ini")
             for file in "''${files[@]}"; do
@@ -96,7 +80,7 @@
 
             # Reload daemon and apply gtk theme
             if pidof -q xsettingsd; then
-                pkill -1 xsettingsd
+                pkill -HUP xsettingsd
             fi
 
             if command -v xsetroot >/dev/null 2>&1; then
