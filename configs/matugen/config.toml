@@ -35,6 +35,11 @@ input_path = "templates/xresources"
 output_path = "~/.Xresources"
 post_hook = "xrdb -merge ~/.Xresources && killall -USR1 st"
 
+[templates.wallpaper]
+input_path = "templates/setwall"
+output_path = "~/.config/bspwm/bin/wallpaper"
+post_hook = "wallpaper"
+
 # [templates.vivaldi]
 # input_path = "templates/vivaldi.css"
 # output_path = "~/.config/vivaldi/CustomCSS/colors.css"
