@@ -6,9 +6,7 @@ let
     runtimeInputs = with pkgs; [
       rofi
       coreutils
-      libwebp
       findutils
-      webp-pixbuf-loader
     ];
 
     text = ''
@@ -21,8 +19,7 @@ let
       # Find current rice
       selected_index=-1
       index=0
-      IFS='
-      '
+      IFS=$'\n'
       for rice in $rices; do
         [ "$rice" = "$current_rice" ] && { selected_index=$index; break; }
         index=$((index + 1))
@@ -31,11 +28,9 @@ let
 
       # Show the rofi selection menu.
       selected=$(
-        IFS='
-        '
         for rice in $rices; do
-          printf "%s\000icon\037%s/rices/%s/preview.webp\n" "$rice" "$bspwm_dir" "$rice"
-        done | rofi -dmenu -p "RiceSelector" \
+          printf "%s\0icon\x1f%s/rices/%s/preview.png\n" "$rice" "$bspwm_dir" "$rice"
+        done | rofi -dmenu -show-icons -p "RiceSelector" \
               -theme "$HOME/.config/rofi/themes/RiceSelector.rasi" \
               -selected-row "$selected_index"
       )
@@ -49,12 +44,5 @@ let
   };
 in
 {
-  home.packages = with pkgs; [
-    riceSelector
-
-    libwebp
-    gdk-pixbuf
-    gdk-pixbuf-xlib
-    webp-pixbuf-loader
-  ];
+  home.packages =  [ riceSelector ];
 }
