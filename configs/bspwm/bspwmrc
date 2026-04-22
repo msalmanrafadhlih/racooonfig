@@ -56,7 +56,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 chmod +x ~/.config/polybar/launch.sh
 ~/.config/polybar/launch.sh &
 
-# set wall
+# wallpaper
 chmod +x ~/.config/bspwm/bin/wallpaper
 ~/.config/bspwm/bin/wallpaper &
 
