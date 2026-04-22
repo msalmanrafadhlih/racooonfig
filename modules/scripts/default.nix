@@ -20,5 +20,6 @@
 	  ./rice-selector.nix
 	  ./show-polybar.nix
 	  ./hide-polybar.nix
+	  ./get-github-hash.nix
   ];
 }
