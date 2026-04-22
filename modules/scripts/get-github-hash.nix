@@ -20,5 +20,5 @@ let
   };
 in
 {
-  environment.systemPackages = [ get-github-hash ];
+  home.packages = [ get-github-hash ];
 }
