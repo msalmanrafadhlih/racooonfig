@@ -8,6 +8,9 @@ super + grave
 # ---------------------------------------------------------  Refresh bspwm
 ctrl + super + alt + Return
 	bspc wm -r
+# ---------------------------------------------------------  Soft Reload
+ctrl + super + alt + @space
+	reload
 # ---------------------------------------------------------  Rice Selector
 alt + @space
 	open --rice
