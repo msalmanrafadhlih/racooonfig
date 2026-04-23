@@ -1,5 +1,5 @@
 {
-  home.file.".local/bin/repository.sh" = {
+  home.file.".local/bin/github-repos" = {
 	text = ''
 #!/bin/sh
 set -eu
