@@ -1,0 +1,229 @@
+@import "shared.rasi"
+
+/* ------ Configuration --------*/
+
+configuration {
+  modi: "bookmarks:bookmarks,repos:github-repos";
+  show-icons: true;
+  display-bookmarks: "";
+  display-repos: "";
+
+  /*---------- Keybindings ----------*/
+  kb-remove-word-back: "ctrl+BackSpace,Alt+BackSpace";
+  kb-remove-char-back: "BackSpace";
+  kb-accept-entry: "Return";
+  kb-mode-next: "Tab,Left,super+l,alt+l";
+  kb-mode-previous: "Shift+Tab,Right,super+h,alt+h";
+  kb-row-up: "Up,super+k,alt+k";
+  kb-row-down: "Down,super+j,alt+j";
+  kb-cancel: "Escape";
+}
+
+/*****----- Main Window -----*****/
+window {
+  /* properties for window widget */
+  transparency: "real";
+  location: east;
+  anchor: east;
+  fullscreen: false;
+  width: 500px;
+  height: 100%;
+  x-offset: 0px;
+  y-offset: 0px;
+
+  /* properties for all widgets */
+  enabled: true;
+  border-radius: 0px;
+  cursor: "default";
+  background-color: var(transparent);
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+  enabled: true;
+  spacing: 0px;
+  background-color: transparent;
+  orientation: vertical;
+  children:
+    [ "inputbar",
+    "listbox"];
+}
+
+listbox {
+  spacing: 15px;
+  padding: 15px;
+  background-color: transparent;
+  orientation: vertical;
+  children:
+    [ "textbox",
+    "message",
+    "listview"];
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+  enabled: true;
+  spacing: 30px;
+  padding: 30px 20px 55px;
+  background-color: transparent;
+  background-image: var(image);
+  text-color: var(foreground);
+  orientation: vertical;
+  children:
+    [ "mode-switcher",
+    "searchbar"];
+}
+
+searchbar {
+  enabled: true;
+  spacing: 10px;
+  background-color: transparent;
+  text-color: var(foreground);
+  orientation: horizontal;
+  children:
+    [ "textbox-prompt-colon",
+    "entry"];
+}
+
+textbox-prompt-colon {
+  enabled: true;
+  expand: false;
+  str: "";
+  padding: 12px 15px;
+  border-radius: 15px 5px 15px 5px;
+  background-color: var(background-alt);
+  text-color: inherit;
+}
+entry {
+  enabled: true;
+  expand: true;
+  padding: 12px 16px;
+  border-radius: 5px 15px 5px 15px;
+  background-color: var(background-alt);
+  text-color: inherit;
+  cursor: text;
+  placeholder: "Search";
+  placeholder-color: inherit;
+}
+dummy {
+  expand: true;
+  background-color: transparent;
+}
+
+/*****----- Mode Switcher -----*****/
+mode-switcher {
+  enabled: true;
+  padding: 15px;
+  spacing: 10px;
+  background-color: transparent;
+  text-color: var(foreground);
+}
+button {
+  padding: 12px;
+  border-radius: 0px;
+  background-color: var(background-alt);
+  border-radius: 15px 5px 15px 5px;
+  text-color: inherit;
+  cursor: pointer;
+}
+button selected {
+  background-color: var(selected);
+  text-color: var(foreground);
+}
+
+/*****----- Listview -----*****/
+listview {
+  enabled: true;
+  columns: 1;
+  lines: 10;
+  cycle: true;
+  dynamic: true;
+  scrollbar: true;
+  layout: vertical;
+  reverse: false;
+  fixed-height: true;
+  fixed-columns: true;
+
+  spacing: 10px;
+  background-color: transparent;
+  text-color: var(foreground);
+  cursor: "default";
+}
+
+scrollbar {
+  handle-width: 5px;
+  handle-color: var(selected);
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+/*****----- Elements -----*****/
+element {
+  enabled: true;
+  spacing: 10px;
+  padding: 8px;
+  border-radius: 0px;
+  background-color: transparent;
+  text-color: var(foreground);
+  cursor: pointer;
+}
+
+element normal.normal {
+  background-color: inherit;
+  text-color: inherit;
+}
+element normal.urgent {
+  background-color: var(selected);
+  text-color: var(foreground);
+}
+element normal.active {
+  background-image: var(background-gradient-active);
+  text-color: var(foreground);
+}
+element selected.normal {
+  background-image: var(background-gradient-selected);
+  text-color: var(foreground);
+}
+element selected.urgent {
+  background-color: var(urgent);
+  text-color: var(foreground);
+}
+element selected.active {
+  background-color: var(active);
+  text-color: var(foreground);
+}
+element-icon {
+  background-color: transparent;
+  text-color: inherit;
+  size: 40px;
+  cursor: inherit;
+}
+element-text {
+  background-color: transparent;
+  text-color: inherit;
+  cursor: inherit;
+  vertical-align: 0.5;
+  horizontal-align: 0;
+}
+
+/*****----- Message -----*****/
+message {
+  background-color: transparent;
+}
+textbox {
+  padding: 5px;
+  border-radius: 0px;
+  background-color: transparent;
+  text-color: var(urgent);
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
+  str: "NAVIGATE: Super + { h, j, k, l }";
+  expand: false;
+  font: var(font);
+}
+error-message {
+  padding: 12px;
+  border-radius: 0px;
+  background-color: var(background);
+  text-color: var(foreground);
+}

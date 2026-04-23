@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+dir="$HOME/.config/rofi/themes"
+theme='bookmarks'
+
+## Run
+rofi \
+    -show bookmarks \
+    -theme "${dir}/${theme}.rasi"
