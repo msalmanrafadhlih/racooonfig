@@ -70,7 +70,7 @@
 "ui.selection" = { bg = "{{ base16.base02.default.hex }}" }
 "ui.cursor" = { fg = "{{ colors.background.default.hex }}", bg = "{{ colors.on_primary_container.default.hex }}" }
 "ui.cursor.primary" = { fg = "{{ colors.background.default.hex }}", bg = "{{ colors.primary_fixed.default.hex }}" }
-"ui.cursor.match" = { fg = "{{ colors.on_primary_container.default.hex }}", modifiers = [
+"ui.cursor.match" = { fg = "{{ colors.primary.default.hex }}", bg = "{{ base16.base02.default.hex }}" , modifiers = [
   "bold",
 ] }
 "ui.highlight" = { bg = "{{ colors.secondary_container.default.hex }}", modifiers = [
