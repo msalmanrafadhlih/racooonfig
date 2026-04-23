@@ -1,0 +1,33 @@
+#!/bin/sh
+
+CONFIG_DIR="$HOME/.config/bspwm"
+DUNST_CONFIG="$HOME/.config/dunst/dunstrc"
+read -r CURRENT_RICE < "$CONFIG_DIR"/.rice
+
+reload() {
+    # Reload bars polybar or eww
+    if pgrep -x polybar >/dev/null; then
+        polybar-msg cmd restart >/dev/null
+    else
+        eww_bar_config="$HOME/.config/eww/topbar"
+        [ -d "$eww_bar_config" ] && eww reload -c "$eww_bar_config"
+    fi
+
+    # Reload common services
+    pkill -USR1 -x picom 2>/dev/null || true
+    pkill -HUT xsettingsd 2>/dev/null || true
+    pkill -USR1 -x sxhkd 2>/dev/null || true
+    dunstctl reload "$DUNST_CONFIG" 2>/dev/null || true
+
+    # Reload EWW widgets
+    main_eww="$HOME/.config/eww"
+    if eww ping -c "$main_eww" >/dev/null; then
+        eww reload -c "$main_eww"
+    fi
+}
+
+# Send notification
+if reload; then
+    dunstify -i dialog-information "Environment Reloaded!" \
+    "Reloaded Settings:\n• ${CURRENT_RICE} Bar\n• Picom\n• Xsettingsd\n• SXHKD\n• Dunst\n• EWW Widgets"
+fi
