@@ -1,5 +1,5 @@
 {
-  home.file.".local/bin/xyz.sh" = {
+  home.file.".local/bin/xyz" = {
     text = ''
 	    #!/usr/bin/env bash
 
