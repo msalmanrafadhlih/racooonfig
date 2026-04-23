@@ -20,5 +20,23 @@
             "space w": "workspace::Save",
             "space q": "workspace::CloseWindow"
         }
+    },
+    {
+        "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+        "bindings": {
+            "space m": "editor::SelectAll"
+        }
+    },
+    {
+        "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+        "bindings": {
+            "space x": "pane::CloseActiveItem"
+        }
+    },
+    {
+        "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+        "unbind": {
+            "space w q": "pane::CloseActiveItem"
+        }
     }
 ]
