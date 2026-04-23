@@ -7,7 +7,7 @@
 
 let
   configs = {
-    "zed/themes" = "themes";
+    "zed/themes/racooonfig.json" = "themes/racooonfig.json";
     "zed/keymap.json" = "./keymap.json";
   };
 in
@@ -45,7 +45,8 @@ in
       "bash"
     ];
 
-    userSettings = lib.recursiveUpdate {
+    # userSettings = lib.recursiveUpdate {
+    userSettings = {
 
       redact_private_values = true;
 
@@ -204,6 +205,7 @@ in
         shell.program = "sh";
         working_directory = "current_project_directory";
       };
-    } (builtins.fromJSON (builtins.readFile ./appearance.json));
+    };
+    # } (builtins.fromJSON (builtins.readFile ./appearance.json));
   };
 }
