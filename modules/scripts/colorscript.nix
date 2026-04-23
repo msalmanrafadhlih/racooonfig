@@ -2,7 +2,7 @@
   home.file.".local/bin/colorscript" = {
  	text = ''
 #!/bin/sh
-DIR_COLORSCRIPTS="$HOME/.local/share/asciiart"
+DIR_COLORSCRIPTS="$HOME/.config/Assets/asciiart"
 
 # Load scripts into an array
 color_scripts=''$(ls "$DIR_COLORSCRIPTS" 2>/dev/null)
