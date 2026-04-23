@@ -13,10 +13,10 @@ in
   stylix = {
     enable = true;
 
-    homeManagerIntegration = {
-      autoImport = true;
-      followSystem = false;
-    };
+    # homeManagerIntegration = {
+    #   autoImport = true;
+    #   followSystem = false;
+    # };
 
     targets = {
       grub.enable = false;
