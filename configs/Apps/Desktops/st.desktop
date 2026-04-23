@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=suckless terminal
+Name=st - suckless terminal
 Comment=simple-terminal emulator for X
-Icon=~/.config/Assets/simple_terminal.png
+Icon=~/.config/Assets/Icons/simple_terminal.png
 Exec=kdocker -f -q st -c TerminalDefault
 Categories=System;TerminalEmulator
 Path=
