@@ -206,6 +206,9 @@ case "$title" in
     *"Thunar"*)
         echo "state=floating rectangle=1200x750+0+0 center=on"
         ;;
+    "Bluetooth Devices")
+        echo "state=floating sticky=on rectangle=$(calc_rect "top" 550 350 0 -30)"
+        ;;
     *"Zed"*"Settings"* | *"Settings"*)
         echo "state=floating center=on follow=on"
         ;;
