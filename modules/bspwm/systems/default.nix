@@ -46,7 +46,7 @@ in
         setupScript = ''
           ${pkgs.xrdb}/bin/xrdb -merge - <<EOF
           Xcursor.theme: Skyrim-by-ru5tyshark-cursors
-          Xcursor.size: 24
+          Xcursor.size: 32
           EOF
         '';
 
