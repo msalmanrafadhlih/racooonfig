@@ -5,22 +5,24 @@
 # ---------------------------------------------------------  Reload sxhkd
 super + grave
     pkill -USR1 -x sxhkd && dunstify -r 1234 -t 1000 "sxhkd" "Reloaded ✅"
-
 # ---------------------------------------------------------  Refresh bspwm
 ctrl + super + alt + Return
 	bspc wm -r
-
+# ---------------------------------------------------------  Rice Selector
+alt + @space
+	open --rice
 # ---------------------------------------------------------  Powermenu
 super + Escape
-	source ~/.config/rofi/scripts/powermenu.sh
-
+	open --powermenu
 # ---------------------------------------------------------  Menu Apps
 super + @space
-	source ~/.config/rofi/scripts/launcher.sh
-
-# ---------------------------------------------------------  Menu Apps
-alt + @space
-	RiceSelector
+	open --launcher
+# ---------------------------------------------------------  Menu Bookmarks
+super + alt + @space
+	open --bookmarks
+# ---------------------------------------------------------  Close Apps
+super + q
+	bspc node -c
 
 ###########################################################
 # ------------------ Applications ----------------------- #
@@ -28,60 +30,54 @@ alt + @space
 # ==============================================  MAIN APPS
 # ---------------------------------------------------------  Terminal
 super + Return
-	Term --terminal
+	open --terminal
+# ---------------------------------------------------------  audio
+super + a
+	open --audiocontrol
 # ---------------------------------------------------------  Browser
 super + b
-	kdocker -f -q vivaldi
-# ---------------------------------------------------------  VS Code
-super + c
-    code -n
+	open --browser
 # ---------------------------------------------------------  Open Discord
 super + d
-	vesktop
-# ---------------------------------------------------------  Dotfiles
-super + e
-	thunar ~/.dotfiles
-# ------o--------------------------------------------------  Thunar
+	open --discord
+# ---------------------------------------------------------  file manager
 super + f
-	thunar
-# ---------------------------------------------------------  Helix
+	open --filemanager
+# ---------------------------------------------------------  Terminal IDE
 super + n
-	Term --helix 
-# ---------------------------------------------------------  Rmpc
+	open --terminalIDE 
+# ---------------------------------------------------------  Music
 super + m
-    Term --music
+    open --music
 # ---------------------------------------------------------  Picart
 super + v
-    picard
+    open --musictagger
 # ---------------------------------------------------------  Terminal pinned
 super + p
-	Term --pinned 
+	open --terminalpin 
 # ---------------------------------------------------------  Spotify
 super + s
-	kdocker -q -f spotify --disable-accelerated-video-decode --no-zygote
-# ---------------------------------------------------------  Exit
-super + q
-	bspc node -c
+	open --spotify
 # ---------------------------------------------------------  Yazi
 super + y
-	Term --yazi
-# ------o--------------------------------------------------  Zed Editor
+	open --yazi
+# ---------------------------------------------------------  GUI Editor
 super + z
-	zeditor
+	open --editor
 
 # =============================================== UTILITIES
 # ---------------------------------------------------------  Hide/Show Polibar
 super + alt + {h,u}
-	source ~/.local/bin/{hide,show}-polybar.sh
+	{hide,show}-polybar
 # ---------------------------------------------------------  Btop++
 super + alt + b
-    Term --btop
+    open --btop
 # ---------------------------------------------------------  Clipboard Manager
 super + alt + c
-	source ~/.config/rofi/scripts/clipboard.sh
-# ---------------------------------------------------------  select Terminal
+	open --clipboard
+# ---------------------------------------------------------  Switch Default Terminal 
 super + alt + t
-	~/.config/rofi/scripts/Term --selecterm
+	open --switchterminal
 
 ###########################################################
 # ---------------------- Workspaces --------------------- #
@@ -200,37 +196,37 @@ super + shift + k ; {x,k}
 # ---------------------------------------------------------  Brightness
 # XF86MonBrightnessUp
 alt + shift + period
-    sh ~/.local/bin/brightness.sh up
+    brightness --up
 
 # XF86MonBrightnessDown
 alt + shift + comma
-    sh ~/.local/bin/brightness.sh down
+    brightness --down
 
 # ---------------------------------------------------------  Volume
 # XF86AudioRaiseVolume
 alt + shift + equal
-    sh ~/.local/bin/volume.sh --inc
+    set-volume --inc
 
 # XF86AudioLowerVolume
 alt + shift + minus
-    sh ~/.local/bin/volume.sh --dec
+    set-volume --dec
 
 # XF86AudioMute
 alt + shift + 0
-    sh ~/.local/bin/volume.sh --toggle
+    set-volume --toggle
 
 # ---------------------------------------------------------- Audio
 XF86AudioNext
-    sh ~/.local/bin/media.sh --next
+    sh media-play --next
 
 XF86AudioPrev
-    sh ~/.local/bin/media.sh --previous
+    sh media-play --previous
 
 XF86AudioPlay
-    sh ~/.local/bin/media.sh --toggle
+    sh media-play --toggle
 
 XF86AudioStop
-    sh ~/.local/bin/media.sh --stop
+    sh media-play --stop
 
 # ----------------------------------------------------------- Thouchpad
 XF86TouchpadToggle
