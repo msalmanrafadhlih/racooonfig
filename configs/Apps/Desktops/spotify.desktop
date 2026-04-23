@@ -2,8 +2,8 @@
 Name=Spotify
 GenericName=Spotify
 Comment=Launch Spotify minimized to tray via KDocker
-Exec=kdocker -q -f spotify --disable-accelerated-video-decode --no-zygote
-Icon=~/.config/Assets/spotify.png
+Exec=open --spotify
+Icon=spotify
 Terminal=false
 Type=Application
 Categories=Audio;Music;Player;
