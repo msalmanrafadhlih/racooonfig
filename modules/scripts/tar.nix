@@ -1,5 +1,5 @@
 {
-  home.file.".local/bin/tar.sh" = {
+  home.file.".local/bin/tar" = {
     text = ''
 		#!/usr/bin/env bash
 		# tar - simple tar.gz installer for cursor/icon themes
@@ -15,9 +15,9 @@
 		fi
 
 		# Tanya tujuan (default /home/$USER/)
-		read -p "Masukkan path tujuan [default: /home/$USER/]: " DEST
-		DEST="''${DEST/#\~/$HOME}"
-		DEST="''${DEST:-/home/$USER/}"
+		read -p "Masukkan path tujuan [default: /home/$USER/Documents]: " DEST
+		DEST="''${DEST/#\~/$HOME/Documents}"
+		DEST="''${DEST:-/home/$USER/Documents}"
 		  
 		# Buat folder tujuan kalau belum ada
 		mkdir -p "$DEST"
