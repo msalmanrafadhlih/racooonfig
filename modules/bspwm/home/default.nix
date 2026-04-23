@@ -29,8 +29,13 @@ in
 		  else
 				echo "--- Dotfiles sudah ada, melakukan check update (safe) ---"
 				cd "${dotfiles_path}"
+
 				# Melakukan fetch saja agar tidak merusak kerjaan lokal
-				${pkgs.git}/bin/git fetch origin ${branch}
+        if ${pkgs.git}/bin/git ls-remote ${repo_url} &>/dev/null; then
+          ${pkgs.git}/bin/git fetch origin ${branch}
+        else
+          echo "offline, skip"
+        fi
 				echo "Gunakan 'git pull --rebase' secara manual di folder dotfiles jika ingin sinkronisasi."
 		  fi
 		'';
