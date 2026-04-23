@@ -1,6 +1,6 @@
 [module/audio]
 type = custom/script
-exec = ~/.config/polybar/script/audio.sh
+exec = current-audio
 interval = 10
 
 [module/volume]
