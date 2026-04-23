@@ -17,6 +17,7 @@
     xarchiver
     gparted # Manage Disk Partition
     vesktop
+    ulauncher
     # font-manager
     # picard
     # godot
