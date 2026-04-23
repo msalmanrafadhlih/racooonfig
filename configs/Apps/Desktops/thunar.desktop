@@ -1,6 +1,6 @@
 [Desktop Entry]
 Exec=thunar %U
-Icon=~/.config/Assets/archive.png
+Icon=~/.config/Assets/Icons/archive.png
 Terminal=false
 StartupNotify=true
 Type=Application
