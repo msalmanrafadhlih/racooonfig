@@ -1,5 +1,5 @@
 {
-  home.file.".local/bin/media.sh" = {
+  home.file.".local/bin/media-play" = {
     text = ''
 	#!/bin/sh
 
