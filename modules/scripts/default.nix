@@ -1,26 +1,24 @@
 # exported to ../flake.nix
 {
 	imports = [
-	  ./01chat.nix
 	  ./opencam.nix
-	  ./battery.nix
-	  ./bookmarks.nix
 	  ./github-repos.nix
-	  ./pandoc.nix
 	  ./media.nix
 	  ./run.nix
 	  ./volume.nix
 	  ./xyz.nix
 	  ./tar.nix
-	  ./background.nix
-	  ./img-compress.nix
 	  ./brightness.nix
 	  ./colorscript.nix
-	  ./set-gtk-theme.nix
-	  ./rice-selector.nix
-	  ./show-polybar.nix
-	  ./hide-polybar.nix
-	  ./get-github-hash.nix
-	  ./image-editor.nix
+
+	  ./cli/01chat.nix
+	  ./cli/battery.nix
+	  ./cli/bookmarks.nix
+	  ./cli/pandoc.nix
+	  ./cli/img-compress.nix
+	  ./cli/set-gtk-theme.nix
+	  ./cli/rice-selector.nix
+	  ./cli/get-github-hash.nix
+	  ./cli/image-editor.nix
   ];
 }
