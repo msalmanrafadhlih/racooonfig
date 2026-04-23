@@ -3,26 +3,21 @@
 /* ------ Configuration --------*/
 
 configuration {
-  modi: "drun,bookmarks:bookmarks,repos:~/.local/bin/repository.sh,run,filebrowser,window";
+  modi: "drun,run,filebrowser,window";
   show-icons: true;
   display-drun: " ";
   display-run: "";
   display-filebrowser: "";
   display-window: "";
-  display-bookmarks: "";
-  display-repos: "";
-  display-tmux: "";
 
   /*---------- Keybindings ----------*/
   kb-remove-word-back: "ctrl+BackSpace,Alt+BackSpace";
   kb-remove-char-back: "BackSpace";
   kb-accept-entry: "Return";
-  kb-mode-next: "Tab,super+l";
-  kb-mode-previous: "Shift+Tab,super+h";
-  kb-row-left: "Left";
-  kb-row-right: "Right";
-  kb-row-up: "Up,super+k";
-  kb-row-down: "Down,super+j";
+  kb-mode-next: "Tab,Left,super+l,alt+l";
+  kb-mode-previous: "Shift+Tab,Right,super+h,alt+h";
+  kb-row-up: "Up,super+k,alt+k";
+  kb-row-down: "Down,super+j,alt+j";
   kb-cancel: "Escape";
 }
 
