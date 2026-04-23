@@ -1,5 +1,5 @@
 {
-  home.file.".local/bin/volume.sh" = {
+  home.file.".local/bin/set-volume" = {
     text = ''
 	#!/bin/sh
 
