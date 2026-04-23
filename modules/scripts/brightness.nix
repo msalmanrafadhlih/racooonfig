@@ -1,11 +1,11 @@
 {
-  home.file.".local/bin/brightness.sh" = {
+  home.file.".local/bin/brightness" = {
       text =''
 	#!/bin/sh
 
 	case "$1" in
-	  up) brightnessctl set +5% ;;
-	  down) brightnessctl set 5%- ;;
+	  --up) brightnessctl set +5% ;;
+	  --down) brightnessctl set 5%- ;;
 	esac
 
 	current=$(brightnessctl get)
