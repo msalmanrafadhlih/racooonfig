@@ -56,6 +56,9 @@ case "$1" in
 	--editor)
 		zeditor
 		;;
+	--ulauncher)
+		ulauncher
+		;;
 	--discord)
 		vesktop
 		;;
