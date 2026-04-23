@@ -3,11 +3,8 @@
 let
   apps = [
     "discord"
-    "org.pulseaudio.pavucontrol"
-    "picom"
     "rmpc"
     "rofi"
-    "rofi-theme-selector"
     "spotify"
     "st"
     "thunar"
@@ -29,10 +26,10 @@ let
     }) apps);
 in
 {
-  ".config/Assets/Icons"  = "./Assets/Icons";
-  ".config/Assets/Sounds" = "./Assets/Sounds";
-  ".config/zsh/.nomedia"  = "./zsh/zcompdump";
-  ".local/share/asciiart" = "./Assets/asciiart";
+  ".config/Assets/Icons"    = "./Assets/Icons";
+  ".config/Assets/Sounds"   = "./Assets/Sounds";
+  ".config/zsh/.nomedia"    = "./zsh/zcompdump";
+  ".config/Assets/asciiart" = "./Assets/asciiart";
 
-  "Pictures/Wallpaper"    = "./Assets/Wallpaper";
+  "Pictures/Wallpaper"      = "./Assets/Wallpaper";
 } // appMappings
