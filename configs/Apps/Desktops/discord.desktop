@@ -2,7 +2,7 @@
 Categories=Network;InstantMessaging;Chat
 Exec=vesktop %U
 GenericName=Internet Messenger
-Icon=~/.config/Assets/Discord-Symbol-White.png
+Icon=~/.config/Assets/Icons/Discord-Symbol-White.png
 Keywords=discord;vencord;electron;chat
 Name=Discord
 StartupWMClass=Vesktop
