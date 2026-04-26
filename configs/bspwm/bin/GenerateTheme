@@ -44,12 +44,13 @@ if [ -z "$RANDOM_WALLPAPER" ]; then
 fi
 
 # 3. Load theme configuration & Eksekusi dengan pengecekan error
-if ERROR_MSG=$(matugen json "$HOME/.config/bspwm/rices/$RICE/pallete.json" --import-json-string "{ \"image\": \"$RANDOM_WALLPAPER\", \"cursor\": \"$CURSOR\", \"gtk-theme\": \"$THEME\" }" 2>&1); then
+if ERROR_MSG=$(matugen json "$HOME/.config/bspwm/rices/$RICE/pallete.json" --import-json-string "{ \"image\": \"$RANDOM_WALLPAPER\", \"cursor\": \"$CURSOR\", \"gtktheme\": \"$THEME\" }" 2>&1); then
     # Mengambil nama file saja tanpa path lengkap
     WALLPAPER_NAME=$(basename "$RANDOM_WALLPAPER")
     dunstify -u normal -a "Theme Manager" "Theme Changed Successfully!" "Wallpaper: $WALLPAPER_NAME\nCursor: $CURSOR\nGTK: $THEME"
     echo "$RANDOM_WALLPAPER"
 else
     dunstify -u critical -a "Theme Manager" "Change Theme Failed!" "$ERROR_MSG"
+    printf "%s $ERROR_MSG"
     exit 1
 fi
