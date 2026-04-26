@@ -29,9 +29,9 @@ in
       mode = "no-title no-cwd";
     };
 
-    # extraConfig = ''
-    #   include dynamic.conf
-    # '';
+    extraConfig = ''
+      include dynamic.conf
+    '';
 
     settings = {
       # 2. PERBAIKAN UTAMA: Menggunakan lib.mkForce dan mengubah ke String
