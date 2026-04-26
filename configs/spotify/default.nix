@@ -1,28 +1,33 @@
 { inputs, pkgs, ... }:
 
 let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  # spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
-  imports = [ inputs.spicetify-nix.homeManagerModules.default ];
+  # imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
-  programs.spicetify = {
-	  enable = true;
+  home.packages = [
+    pkgs.spicetify-cli
+    # spicePkgs
+  ];
 
-	  enabledExtensions = with spicePkgs.extensions; [
-	    adblock
-	  ];
-	  enabledCustomApps = with spicePkgs.apps; [
-	    newReleases
-	  ];
-	  enabledSnippets = with spicePkgs.snippets; [
-	    rotatingCoverart
-	    pointer
-	  ];
+  # programs.spicetify = {
+	 #  enable = true;
 
-	  # theme = spicePkgs.themes.dreary;
-	  # colorScheme = "Psycho";
-  };
+	 #  enabledExtensions = with spicePkgs.extensions; [
+	 #    adblock
+	 #  ];
+	 #  enabledCustomApps = with spicePkgs.apps; [
+	 #    newReleases
+	 #  ];
+	 #  enabledSnippets = with spicePkgs.snippets; [
+	 #    rotatingCoverart
+	 #    pointer
+	 #  ];
+
+	 #  theme = spicePkgs.themes.dreary;
+	 #  colorScheme = "Psycho";
+  # };
 
   services.spotifyd = {
     enable = true;
