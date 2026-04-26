@@ -44,6 +44,22 @@ post_hook = "wallpaper"
 input_path = "templates/env"
 output_path = "~/.dynamic"
 
+[templates.kvantum]
+input_path = "templates/kvantum-colors.kvconfig"
+output_path = "~/.config/Kvantum/racooon/Base16Kvantum.kvconfig"
+
+[templates.kvantum1]
+input_path = "templates/kvantum-colors.svg"
+output_path = "~/.config/Kvantum/racooon/Base16Kvantum.svg"
+
+[templates.qt5]
+input_path = "templates/qtct-colors.conf"
+output_path = "~/.config/qt5ct/qt5ct.conf"
+
+[templates.qt6]
+input_path = "templates/qtct-colors.conf"
+output_path = "~/.config/qt6ct/qt6ct.conf"
+
 # [templates.vivaldi]
 # input_path = "templates/vivaldi.css"
 # output_path = "~/.config/vivaldi/CustomCSS/colors.css"
