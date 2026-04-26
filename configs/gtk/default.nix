@@ -18,8 +18,6 @@ in {
   } configs;
 
   # Copy/symlink theme ke ~/.themes
-  home.file.".gtkrc-2.0".source = ./gtkrc-2.0;
-
   home.file.".themes/dynamic/gtk-4.0/assets".source = ./.themes/gtk-4.0/assets;
   home.file.".themes/dynamic/gtk-4.0/libadwaita.css".source = ./.themes/gtk-4.0/libadwaita.css;
   home.file.".themes/dynamic/gtk-4.0/libadwaita-tweaks.css".source = ./.themes/gtk-4.0/libadwaita-tweaks.css;
@@ -39,4 +37,8 @@ in {
     @import url("libadwaita.css");
     @import url("libadwaita-tweaks.css");
   '';
+
+  imports = [
+    ./gtkrc.nix
+  ];
 }
