@@ -74,9 +74,20 @@
                     -e "s|Gtk/CursorThemeName .*|Gtk/CursorThemeName \"$cursor\"|"
             fi
 
+            # symlink cursor to ~/.icons
+            mkdir -p "$HOME/.icons"
+            ln -sfn "${pkgs.cursor-memes}/share/icons/$cursor" "$HOME/.icons/$cursor"
+
             # Update index.theme (langsung overwrite lebih aman dan bersih)
+            # Icons
             mkdir -p "$HOME/.icons/default"
+            mkdir -p "$HOME/.local/share/icons/default"
             echo -e "[Icon Theme]\nName=Default\nComment=Default Cursor Theme\nInherits=$cursor" > "$HOME/.icons/default/index.theme"
+            echo -e "[Icon Theme]\nName=Default\nComment=Default Cursor Theme\nInherits=$cursor" > "$HOME/.local/share/icons/default/index.theme"
+
+            # Flatpak
+            mkdir -p "$HOME/.local/share/flatpak/overrides"
+            printf "[Context]\nfilesystems=/home/%s/.themes/%s:ro\n\n[Environment]\nGTK_THEME=%s\n" "$USER" "$scheme" "$scheme" > "$HOME/.local/share/flatpak/overrides/global"
 
             # Reload daemon and apply gtk theme
             if pidof -q xsettingsd; then
