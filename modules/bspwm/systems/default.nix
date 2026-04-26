@@ -8,7 +8,7 @@ in
     ./services.nix
     ./xdg-portal.nix
     ./thunar.nix
-    ../../../configs/stylix
+    # ../../../configs/stylix
   ];
 
   environment.systemPackages = [
