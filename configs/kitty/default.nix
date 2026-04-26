@@ -3,6 +3,7 @@
 let
   configs = {
 		"kitty/themes" = "themes";
+		"kitty/dynamic.conf" = "dynamic.conf";
   };
 in
 
@@ -31,17 +32,16 @@ in
 
     extraConfig = ''
       include dynamic.conf
+      allow_remote_control yes
     '';
 
     settings = {
-      # 2. PERBAIKAN UTAMA: Menggunakan lib.mkForce dan mengubah ke String
       background_opacity = lib.mkForce "0.5";
       placement_strategy = "center";
       inactive_text_alpha = "0.7";
       confirm_os_window_close = 0;
       tab_bar_style = "powerline";
       font_size = "9.0";
-      allow_remote_control = 1;
 
       window_padding_width = "10";
       window_alert_on_bell = false;
