@@ -1,0 +1,6 @@
+[X-GNOME-Metatheme]
+Name=dynamic
+Type=X-GNOME-Metatheme
+Comment=dynamic theme
+Encoding=UTF-8
+GtkTheme=dynamic
