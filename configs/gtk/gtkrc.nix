@@ -3,7 +3,7 @@ let
   HOME = config.home.homeDirectory;
 in
 {
-  home.file.".gtkrc-2.0".source = {
+  home.file.".gtkrc-2.0" = {
     text = ''
 # DO NOT EDIT! This file will be overwritten by nwg-look.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
@@ -24,7 +24,6 @@ gtk-xft-antialias=1
 gtk-xft-hinting=1
 gtk-xft-hintstyle="hintslight"
 gtk-xft-rgba="rgb"
-        
     '';
   };
 }
