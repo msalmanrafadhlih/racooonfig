@@ -68,7 +68,7 @@
   "bold",
 ] }
 "ui.selection" = { bg = "{{ base16.base02.default.hex }}" }
-"ui.cursor" = { fg = "{{ colors.background.default.hex }}", bg = "{{ colors.on_primary_container.default.hex }}" }
+"ui.cursor" = { fg = "{{ colors.background.default.hex }}", bg = "{{ base16.base02.default.hex | to_color | set_lightness: 70.0 }}" }
 "ui.cursor.primary" = { fg = "{{ colors.background.default.hex }}", bg = "{{ colors.primary_fixed.default.hex }}" }
 "ui.cursor.match" = { fg = "{{ colors.primary.default.hex }}", bg = "{{ base16.base02.default.hex }}" , modifiers = [
   "bold",
