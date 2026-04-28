@@ -20,6 +20,9 @@ super + Escape
 # ---------------------------------------------------------  Menu Apps
 super + @space
 	open --launcher
+# ---------------------------------------------------------  Close Apps
+ctrl + @space
+	ulauncher
 # ---------------------------------------------------------  Menu Bookmarks
 super + alt + @space
 	open --bookmarks
