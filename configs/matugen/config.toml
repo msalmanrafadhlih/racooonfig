@@ -25,10 +25,6 @@ post_hook = "sh ~/.config/bspwm/bin/colors"
 input_path = "templates/btop.theme"
 output_path = "~/.config/btop/themes/racooon.theme"
 
-[templates.yazi]
-input_path = "templates/yazi-theme.toml"
-output_path = "~/.config/yazi/theme.toml"
-
 [templates.rofi]
 input_path = "templates/rofi-colors.rasi"
 output_path = "~/.config/rofi/themes/shared.rasi"
@@ -78,3 +74,8 @@ output_path = "~/.config/zed/themes/racooonfig-dark.json"
 [templates.zed-light]
 input_path = "templates/zed-colors-light.json"
 output_path = "~/.config/zed/themes/racooonfig-light.json"
+
+[templates.dunst]
+input_path = "templates/dunstrc-colors"
+output_path = "~/.config/dunst/dunstrc"
+post_hook = "dunstctl reload '~/.config/dunst/dunstrc'"
