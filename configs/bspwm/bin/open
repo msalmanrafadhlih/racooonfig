@@ -5,7 +5,7 @@ case "$1" in
 		launcher
 		;;
 	--rice)
-		RiceSelector
+		SelectRice
 		;;
 	--powermenu)
 		PowerMenu
