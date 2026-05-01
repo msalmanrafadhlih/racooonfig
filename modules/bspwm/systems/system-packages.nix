@@ -37,6 +37,7 @@
     xdotool
     xcolor
     xev # key(board) mapping
+    xxHash
 
     # ======== GTK
     gtk2 # Tambahkan ini
