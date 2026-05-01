@@ -1,10 +1,9 @@
 [global]
-
 monitor = 0
 follow = mouse
 
 width = (300, 400)
-#height = (0, 200)
+height = (0, 200)
 origin = top-right
 offset = (20, 60)
 scale = 0
@@ -23,7 +22,7 @@ horizontal_padding = 15
 text_icon_padding = 0
 
 frame_width = 2
-frame_color = "#ff0000b0"
+frame_color = "#b9babbb0"
 
 sort = no
 idle_threshold = 0
@@ -32,12 +31,12 @@ font = JetBrainsMono NF Medium 9
 line_height = 0
 
 markup = full
-format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#ff0000'>%s</span>\n%b"
-alignment = center
+format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#d9f4ff'>%s</span>\n\n%b"
+alignment = justify
 vertical_alignment = center
 
 show_age_threshold = 60
-#ellipsize = middle
+ellipsize = middle
 ignore_newline = no
 stack_duplicates = false
 hide_duplicate_count = true
@@ -45,7 +44,7 @@ hide_duplicate_count = true
 show_indicators = yes
 
 enable_recursive_icon_lookup = true
-#icon_theme = "TokyoNight-SE, Adwaita"
+icon_theme = "TokyoNight-SE, Adwaita"
 icon_theme = "Adwaita"
 icon_position = left
 min_icon_size = 60
@@ -55,8 +54,8 @@ icon_corner_radius = 6
 sticky_history = yes
 history_length = 25
 
-#dmenu = /usr/bin/rofi -config "$HOME/.config/rofi/notification.rasi" -dmenu -p dunst:
-browser = /usr/bin/xdg-open
+dmenu = rofi -config "$HOME/.config/rofi/notification.rasi" -dmenu -p dunst:
+browser = xdg-open
 always_run_script = true
 ignore_dbusclose = false
 
@@ -78,15 +77,20 @@ class = Dunst
 
 [urgency_low]
 timeout = 3
-background = "#8B0000cd"
-foreground = "#ffffff"
+background = "#0a1519bb"
+highlight = "#00d4fe"
+foreground = "#b9babb"
 
 [urgency_normal]
 timeout = 5
-background = "#8B0000cd"
-foreground = "#ffffff"
+background = "#0a1519bf"
+highlight = "#00d4fe"
+foreground = "#b9babb"
 
 [urgency_critical]
 timeout = 20
-background = "#8B0000cd"
-foreground = "#ffffff"
+format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#ff0000'>%s</span>\n\n%b"
+frame_color = "#ff0000b0"
+background = "#0a1519bf"
+highlight = "#00d4fe"
+foreground = "#d9f4ff"
