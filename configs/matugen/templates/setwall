@@ -1,6 +1,2 @@
 #!/bin/sh
-
-feh \
-  --no-fehbg\
-  --bg-scale\
-  "{{ image }}"
+/run/current-system/sw/bin/feh --no-fehbg --bg-fill '{{ image }}' 
