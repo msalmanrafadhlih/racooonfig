@@ -14,8 +14,8 @@ configuration {
   kb-remove-word-back: "ctrl+BackSpace,Alt+BackSpace";
   kb-remove-char-back: "BackSpace";
   kb-accept-entry: "Return";
-  kb-mode-next: "Tab,Left,super+l,alt+l";
-  kb-mode-previous: "Shift+Tab,Right,super+h,alt+h";
+  kb-mode-next: "Tab,Right,super+l,alt+l";
+  kb-mode-previous: "Shift+Tab,Left,super+h,alt+h";
   kb-row-up: "Up,super+k,alt+k";
   kb-row-down: "Down,super+j,alt+j";
   kb-cancel: "Escape";
