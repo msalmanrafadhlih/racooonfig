@@ -50,7 +50,6 @@ if ERROR_MSG=$(matugen json "$HOME/.config/bspwm/rices/$RICE/pallete.json" --imp
     # Mengambil nama file saja tanpa path lengkap
     WALLPAPER_NAME=$(basename "$RANDOM_WALLPAPER")
     dunstify -u normal -a "Theme Manager" "Theme Changed Successfully!" "Wallpaper: $WALLPAPER_NAME\nCursor: $CURSOR\nGTK: $THEME"
-    echo "$RANDOM_WALLPAPER"
 else
     dunstify -u critical -a "Theme Manager" "Change Theme Failed!" "$ERROR_MSG"
     printf "%s $ERROR_MSG"
