@@ -53,16 +53,11 @@ clipmenud &
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 # polybar
-chmod +x ~/.config/polybar/launch.sh
 launchPolybar &
 
 # wallpaper
 chmod +x ~/.config/bspwm/bin/wallpaper
-wallpaper &
-
-# eww
-chmod +x ~/.config/eww/scripts/*
-#eww daemon && eww open topbar
+~/.fehbg &
 
 # dunst untuk widget notifikasi
 pgrep -x dunst > /dev/null || dunst &
