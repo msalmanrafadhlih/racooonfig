@@ -17,7 +17,6 @@
 	  ./cli/pandoc.nix
 	  ./cli/img-compress.nix
 	  ./cli/set-gtk-theme.nix
-	  ./cli/rice-selector.nix
 	  ./cli/get-github-hash.nix
 	  ./cli/image-editor.nix
   ];
