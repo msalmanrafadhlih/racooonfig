@@ -3,7 +3,6 @@
 let
   configs = {
 		"kitty/themes" = "themes";
-		"kitty/dynamic.conf" = "dynamic.conf";
   };
 in
 
@@ -31,7 +30,7 @@ in
     };
 
     extraConfig = ''
-      include dynamic.conf
+      include current-theme.conf
       allow_remote_control yes
     '';
 
