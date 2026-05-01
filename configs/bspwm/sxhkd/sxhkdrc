@@ -12,11 +12,11 @@ ctrl + super + alt + Return
 ctrl + super + alt + @space
 	reload
 # ---------------------------------------------------------  Rice Selector
-alt + @space
-	open --rice
-# ---------------------------------------------------------  Wall Selector
 super + w
-	WallSelect
+	open --rice
+# ---------------------------------------------------------  wall Selector
+alt + @space
+	open --selectwallpaper 
 # ---------------------------------------------------------  Powermenu
 super + Escape
 	open --powermenu
