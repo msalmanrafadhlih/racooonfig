@@ -1,28 +1,4 @@
 #!/bin/sh
-# =============================================================
-# Author:  gh0stzk
-# Repo:    https://github.com/gh0stzk/dotfiles
-# Date:    27.06.2025 11:43:32
-
-# WallSelect - Dynamic wallpaper selector with intelligent caching system
-# Features:
-#   ✔ Auto-updating menu (add/delete wallpapers without restart)
-#   ✔ Parallel image processing (optimized CPU usage)
-#   ✔ XXHash64 checksum verification for cache integrity
-#   ✔ Orphaned cache detection and cleanup
-#   ✔ Lockfile system for safe concurrent operations
-#   ✔ Rofi integration with theme support
-#   ✔ Lightweight (~2ms overhead on cache hits)
-#
-# Dependencies:
-#   → Core: bspwm, xrandr, xdpyinfo, rofi, xxhsum (xxhash)
-#   → Media: feh, imagemagick
-#   → GNU: findutils, coreutils
-
-# Copyright (C) 2021-2026 gh0stzk <z0mbi3.zk@protonmail.com>
-# Licensed under GPL-3.0 license
-# =============================================================
-
 # Set some variables
 read -r current_rice <"$HOME"/.config/bspwm/.rice
 wall_dir="$HOME/Pictures/Wallpaper/$current_rice"
@@ -53,7 +29,7 @@ process_func_def='process_image() {
     cache_file="${cacheDir}/${nombre_archivo}"
     md5_file="${cacheDir}/.${nombre_archivo}.md5"
     lock_file="${cacheDir}/.lock_${nombre_archivo}"
-    current_md5=$(xxh64sum "$imagen" | cut -d " " -f1)
+    current_md5=$(xxhsum "$imagen" | cut -d " " -f1)
     (
         flock -x 9
         if [ ! -f "$cache_file" ] || [ ! -f "$md5_file" ] || [ "$current_md5" != "$(cat "$md5_file" 2>/dev/null)" ]; then
@@ -93,10 +69,16 @@ wall_selection=$(find "${wall_dir}" -type f \( -iname "*.jpg" -o -iname "*.jpeg"
     xargs -0 basename -a |
     LC_ALL=C sort |
     while IFS= read -r A; do
-        printf '%s\000icon\037%s/%s\n' "$A" "$cacheDir" "$A"
+        # ${A%.*} menghapus ekstensi file pada tampilan teks rofi
+        printf '%s\000icon\037%s/%s\n' "${A%.*}" "$cacheDir" "$A"
     done | $rofi_command)
 
 # Set wallpaper
-[ -n "$wall_selection" ] && \
-    feh --bg-fill "${wall_dir}/${wall_selection}" && \
-    WallSync &
+if [ -n "$wall_selection" ]; then
+    # Cari file aslinya di folder berdasarkan nama (tanpa peduli ekstensinya)
+    actual_file=$(find "$wall_dir" -maxdepth 1 -type f -name "${wall_selection}.*" | head -n 1)
+    
+    [ -n "$actual_file" ] && \
+        feh --bg-fill "$actual_file" && \
+        WallSync &
+fi
