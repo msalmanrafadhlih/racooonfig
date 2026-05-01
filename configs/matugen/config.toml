@@ -19,7 +19,7 @@ output_path = "~/.config/helix/themes/racooon.toml"
 [templates.bspwm]
 input_path = "templates/bspwm"
 output_path = "~/.config/bspwm/bin/colors"
-post_hook = "sh ~/.config/bspwm/bin/colors"
+post_hook = "colors"
 
 [templates.btop]
 input_path = "templates/btop.theme"
@@ -36,8 +36,8 @@ post_hook = "xrdb -merge ~/.Xresources && killall -USR1 st"
 
 [templates.wallpaper]
 input_path = "templates/setwall"
-output_path = "~/.config/bspwm/bin/wallpaper"
-post_hook = "wallpaper"
+output_path = "~/.fehbg"
+post_hook = "~/.fehbg &"
 
 [templates.environment]
 input_path = "templates/env"
