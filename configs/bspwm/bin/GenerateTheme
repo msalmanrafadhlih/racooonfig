@@ -33,6 +33,8 @@ esac
 
 # Menerapkan tema GTK
 set-gtk-theme "dynamic" "$THEME" "$CURSOR"
+# Menerapkan tema kitty
+kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.config/kitty/themes/$RICE.conf"
 
 # 2. Mengambil 1 file gambar secara acak
 RANDOM_WALLPAPER=$(find "$HOME/Pictures/Wallpaper/$RICE" -type f 2> /dev/null | grep -iE '\.(jpg|jpeg|png|webp|bmp|gif|heic|avif|tiff)$' | shuf -n 1)
