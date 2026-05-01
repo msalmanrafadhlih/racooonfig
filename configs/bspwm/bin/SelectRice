@@ -32,5 +32,4 @@ selected=$(
 if [ -n "$selected" ] && [ "$selected" != "$current_rice" ]; then
     echo "$selected" > "$bspwm_dir"/.rice
     "$bspwm_dir"/bin/GenerateTheme
-    WallSelect &
 fi
