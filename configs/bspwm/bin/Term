@@ -104,17 +104,17 @@ case $MY_TERM in
         ;;
     "kitty")
         case $1 in
-            "--terminal") kitty --class=TerminalDefault ;;
-            "--pinned") kitty --class=TerminalPinned ;;
-            "--update") kitty --hold --class=FloaTerm -e paru -Syu --nocombinedupgrade ;;
-            "--checkupdates") kitty --hold --class=Updating -e Updates --print-updates ;;
-            "--yazi") kitty --hold --class=YaziTerm -e yazi ;;
-            "--nvim") kitty --class=TerminalNvim -e nvim ;;
-            "--vi") kitty --class=TerminalNvim -e vi ;;
-            "--hx") kitty --class=TerminalNvim -e hx ;;
-            "--music") kdocker -f -q kitty --class=floating_rmpc -e rmpc ;;
-            "--btop") kitty -e btop ;;
-            "--fetch") kitty --name=FetchTerm --class=FloaTerm -e ~/.local/bin/sysfetch ;;
+            "--terminal") kitty --listen-on unix:/tmp/kitty --class=TerminalDefault ;;
+            "--pinned") kitty --listen-on unix:/tmp/kitty --class=TerminalPinned ;;
+            "--update") kitty --listen-on unix:/tmp/kitty --hold --class=FloaTerm -e paru -Syu --nocombinedupgrade ;;
+            "--checkupdates") kitty --listen-on unix:/tmp/kitty --hold --class=Updating -e Updates --print-updates ;;
+            "--yazi") kitty --listen-on unix:/tmp/kitty --hold --class=YaziTerm -e yazi ;;
+            "--nvim") kitty --listen-on unix:/tmp/kitty --class=TerminalNvim -e nvim ;;
+            "--vi") kitty --listen-on unix:/tmp/kitty --class=TerminalNvim -e vi ;;
+            "--hx") kitty --listen-on unix:/tmp/kitty --class=TerminalNvim -e hx ;;
+            "--music") kdocker -f -q kitty --listen-on unix:/tmp/kitty --class=floating_rmpc -e rmpc ;;
+            "--btop") kitty --listen-on unix:/tmp/kitty -e btop ;;
+            "--fetch") kitty --listen-on unix:/tmp/kitty --name=FetchTerm --class=FloaTerm -e ~/.local/bin/sysfetch ;;
         esac
         ;;
 esac
