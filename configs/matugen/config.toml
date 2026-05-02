@@ -59,10 +59,6 @@ output_path = "~/.config/qt5ct/qt5ct.conf"
 input_path = "templates/qtct-colors.conf"
 output_path = "~/.config/qt6ct/qt6ct.conf"
 
-# [templates.vivaldi]
-# input_path = "templates/vivaldi.css"
-# output_path = "~/.config/vivaldi/CustomCSS/colors.css"
-
 [templates.kitty]
 input_path = "templates/kitty-colors.conf"
 output_path = "~/.config/kitty/themes/racooonfig.conf"
@@ -79,3 +75,8 @@ output_path = "~/.config/zed/themes/racooonfig-light.json"
 input_path = "templates/dunstrc-colors"
 output_path = "~/.config/dunst/dunstrc"
 post_hook = "dunstctl reload '~/.config/dunst/dunstrc'"
+
+# [templates.vivaldi]
+# input_path = "templates/vivaldi.css"
+# output_path = "~/.config/vivaldi/CustomCSS/colors.css"
+
