@@ -11,9 +11,6 @@
 		read -p "lebar? " WIN_W
 		read -p "tinggi? " WIN_H
 
-		echo "menghitung ..."
-		sleep 1
-
 		# hitung koordinat kiri-atas agar window tepat di tengah
 		X=$(( (SCREEN_W - WIN_W) / 2 ))
 		Y=$(( (SCREEN_H - WIN_H) / 2 ))
