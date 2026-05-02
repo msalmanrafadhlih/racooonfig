@@ -1,5 +1,5 @@
 {
-  home.file.".local/bin/tar" = {
+  home.file.".local/bin/targz" = {
     text = ''
 		#!/usr/bin/env bash
 		# tar - simple tar.gz installer for cursor/icon themes
