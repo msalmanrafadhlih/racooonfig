@@ -61,7 +61,6 @@ in
       lyricsPlus
       marketplace
       ncsVisualizer
-      betterLibrary
     ];
 
     # Opsi alternatif jika menggunakan tema custom dari GitHub:
