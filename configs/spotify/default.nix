@@ -1,14 +1,14 @@
 { inputs, pkgs, ... }:
 
 let
-  # spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   # imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
   home.packages = [
     pkgs.spicetify-cli
-    # spicePkgs
+    spicePkgs
   ];
 
   # programs.spicetify = {
