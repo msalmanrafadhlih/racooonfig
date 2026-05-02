@@ -25,7 +25,7 @@ in
 	  ];
 
 	  theme = spicePkgs.themes.dribbblish;
-	  colorScheme = "Lunar";
+	  colorScheme = "lunar";
   };
 
   services.spotifyd = {
