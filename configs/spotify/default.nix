@@ -8,7 +8,6 @@ in
 
   home.packages = [
     pkgs.spicetify-cli
-    spicePkgs
   ];
 
   programs.spicetify = {
