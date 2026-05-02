@@ -47,7 +47,6 @@
     dconf-editor
     
     # ======== GTK engine
-    gsettings-desktop-schemas
     gtk-engine-murrine
     nwg-look
     glib # gsettings CLI
