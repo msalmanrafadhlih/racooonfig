@@ -74,6 +74,7 @@ read -r MY_TERM < "$CFG_TERM"
 case $MY_TERM in
     "alacritty")
         case $1 in
+            "--term") echo alacritty ;;
             "--terminal") alacritty --class TerminalDefault;;
             "--pinned") alacritty --class TerminalPinned ;;
             "--update") alacritty --hold --class FloaTerm,FloaTerm -e paru -Syu --nocombinedupgrade ;;
@@ -89,6 +90,7 @@ case $MY_TERM in
         ;;
     "st")
         case $1 in
+            "--term") echo st ;;
             "--terminal") st -c TerminalDefault;;
             "--pinned") st -c TerminalPinned ;;
             "--update") st -c FloaTerm -e sh -c 'paru -Syu --nocombinedupgrade; read _ </dev/tty 2>/dev/null' ;;
@@ -104,6 +106,7 @@ case $MY_TERM in
         ;;
     "kitty")
         case $1 in
+            "--term") echo kitty ;;
             "--terminal") kitty --listen-on unix:/tmp/kitty --class=TerminalDefault ;;
             "--pinned") kitty --listen-on unix:/tmp/kitty --class=TerminalPinned ;;
             "--update") kitty --listen-on unix:/tmp/kitty --hold --class=FloaTerm -e paru -Syu --nocombinedupgrade ;;
