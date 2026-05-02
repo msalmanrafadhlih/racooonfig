@@ -89,7 +89,7 @@ foreground = "{{colors.source_color.default.hex}}"
 
 [urgency_critical]
 timeout = 20
-format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#ff0000'>%s</span>\n\n%b"
+format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#ff0000'>                     WARNING!!</span>\n\n%s:\n%b"
 frame_color = "#ff0000b0"
 background = "{{ colors.background.default.hex}}bf"
 highlight = "{{colors.primary_container.default.hex}}"
