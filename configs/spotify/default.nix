@@ -29,7 +29,7 @@ in
       adblock
       popupLyrics
       autoSkipExplicit
-      playlistcons
+      playlistIcons
       formatColors
       simpleBeautifulLyrics
       addToQueueTop
