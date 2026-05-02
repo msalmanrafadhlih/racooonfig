@@ -42,13 +42,11 @@ in
     ] ++ (with spicePkgs.extensions; [
       adblock
       popupLyrics
-      autoSkipExplicit
       playlistIcons
       formatColors
-      simpleBeautifulLyrics
+      BeautifulLyrics
       coverAmbience
       allOfArtist
-      catJamSynced
     ]);
 
     enabledSnippets = with spicePkgs.snippets; [
