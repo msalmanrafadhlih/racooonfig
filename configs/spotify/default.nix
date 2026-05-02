@@ -8,7 +8,7 @@ in
 
   programs.spicetify = {
     enable = true;
-    spicedSpotify = pkgs.spicetity; # The final spotify package after spicing.
+    # spicedSpotify = pkgs.spicetity; # The final spotify package after spicing.
     spicetifyPackage = pkgs.spicetify-cli; # the spicetify-cli packages to use
     spotifyPackage = pkgs.spotify;
     spotifywmPackage = pkgs.spotifywm;
