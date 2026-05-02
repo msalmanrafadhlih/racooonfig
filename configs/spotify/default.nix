@@ -4,30 +4,30 @@ let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
-  # imports = [ inputs.spicetify-nix.homeManagerModules.default ];
+  imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
   home.packages = [
     pkgs.spicetify-cli
     spicePkgs
   ];
 
-  # programs.spicetify = {
-	 #  enable = true;
+  programs.spicetify = {
+	  enable = true;
 
-	 #  enabledExtensions = with spicePkgs.extensions; [
-	 #    adblock
-	 #  ];
-	 #  enabledCustomApps = with spicePkgs.apps; [
-	 #    newReleases
-	 #  ];
-	 #  enabledSnippets = with spicePkgs.snippets; [
-	 #    rotatingCoverart
-	 #    pointer
-	 #  ];
+	  enabledExtensions = with spicePkgs.extensions; [
+	    adblock
+	  ];
+	  enabledCustomApps = with spicePkgs.apps; [
+	    newReleases
+	  ];
+	  enabledSnippets = with spicePkgs.snippets; [
+	    rotatingCoverart
+	    pointer
+	  ];
 
-	 #  theme = spicePkgs.themes.dreary;
-	 #  colorScheme = "Psycho";
-  # };
+	  theme = spicePkgs.themes.dribbblish;
+	  colorScheme = "Lunar";
+  };
 
   services.spotifyd = {
     enable = true;
