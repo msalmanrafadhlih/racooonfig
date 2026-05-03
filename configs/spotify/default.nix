@@ -41,7 +41,7 @@ in
       };
     };
 
-    colorScheme = "racooonfig";
+    colorScheme = "racooon";
 
     # -- EKSTENSI & AP  --
     enabledExtensions = with spicePkgs.extensions; [
