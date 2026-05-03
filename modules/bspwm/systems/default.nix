@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  inp = inputs.racooonfig.inputs;
+in
 {
   imports = [
     ./system-packages.nix
@@ -6,8 +9,10 @@
     ./xdg-portal.nix
     ./thunar.nix
     # ../../../configs/stylix
+    inp.nix-flatpak.nixosModules.nix-flatpak
   ];
-
+  # install flatpak binary
+  services.flatpak.enable = true;
   environment.systemPackages = [
     pkgs.qylock-sddm-theme
     pkgs.cursor-memes
