@@ -21,21 +21,24 @@ in
 
     # -- THEME & COLORSCHEME --
     theme = {
-      name = "Dribbblish";
-      src = ./theme/Dribbblish;
+      name = "marketplace";
       injectCss = true;
       injectThemeJs = true;
       replaceColors = true;
       homeConfig = true;
       overwriteAssets = true;
-      additionalCss = "";
+      additionalCss = ''
+        @import url("/home/${user}/.config/spicetify.css");
+
+        .Root {
+          padding-top: 0px;
+        }
+      '';
       patches = {
         "xpui.js_find_8008" = ",(\\w+=)32";
         "xpui.js_repl_8008" = ",\${1}56";
       };
     };
-
-    colorScheme = "dark";
 
     # -- EKSTENSI & AP  --
     enabledExtensions = with spicePkgs.extensions; [
