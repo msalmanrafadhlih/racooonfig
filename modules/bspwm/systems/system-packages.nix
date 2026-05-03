@@ -1,6 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  inp = inputs.racooonfig.inputs;
+in
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
+    inp.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
+    
+  ] // (with pkgs; [
     # ======== BSPWM Stuff
     polybarFull
     sxhkd
@@ -50,5 +56,5 @@
     gtk-engine-murrine
     nwg-look
     glib # gsettings CLI
-  ];
+  ]);
 }
