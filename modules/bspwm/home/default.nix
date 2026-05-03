@@ -16,6 +16,7 @@ in
     ./configs.nix
     ./mimeApps.nix
     ./xsession.nix
+    ./flatpak.nix
   ];
 
   home.activation = {
