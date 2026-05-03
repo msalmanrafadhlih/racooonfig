@@ -27,32 +27,27 @@ in
 
     # -- THEME & COLORSCHEME --
     theme = {
+      name = "Dribbblish";
+      src = ./theme/Dribbblish;
+      injectCss = true;
+      injectThemeJs = true;
+      replaceColors = true;
+      homeConfig = true;
+      overwriteAssets = true;
+      additionalCss = ''
+        .Root {
+          padding-top: 0px;
+        }
+      '';
       patches = ''
         {
           "xpui.js_find_8008" = ",(\\w+=)32";
           "xpui.js_repl_8008" = ",$\{1}56";
-        };'';
-    }
-    // spicePkgs.themes.dribbblish;
-    colorScheme = "custom";
-    customColorScheme = {
-      text               = "\${xrdb:text}";
-      subtext            = "\${xrdb:subtext}";
-      sidebar-text       = "\${xrdb:sidebar-text}";
-      main               = "\${xrdb:main}";
-      sidebar            = "\${xrdb:sidebar}";
-      player             = "\${xrdb:player}";
-      card               = "\${xrdb:card}";
-      shadow             = "\${xrdb:shadow}";
-      selected-row       = "\${xrdb:selected-row}";
-      button             = "\${xrdb:button}";
-      button-active      = "\${xrdb:button-active}";
-      button-disabled    = "\${xrdb:button-disabled}";
-      tab-active         = "\${xrdb:tab-active}";
-      notification       = "\${xrdb:notification}";
-      notification-error = "\${xrdb:notification-error}";
-      misc               = "\${xrdb:misc}";
+        };
+      '';
     };
+
+    colorScheme = "racooon";
 
     # -- EKSTENSI & APLIKASI CUSTOM --
     enabledExtensions = [
