@@ -1,7 +1,4 @@
-{ inputs, pkgs, ... }:
-let
-  inp = inputs.racooonfig.inputs;
-in
+{ pkgs, ... }:
 {
   imports = [
     ./system-packages.nix
@@ -12,7 +9,6 @@ in
   ];
 
   environment.systemPackages = [
-    inp.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.qylock-sddm-theme
     pkgs.cursor-memes
   ];
