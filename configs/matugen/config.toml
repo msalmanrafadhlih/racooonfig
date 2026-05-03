@@ -59,6 +59,10 @@ output_path = "~/.config/qt5ct/qt5ct.conf"
 input_path = "templates/qtct-colors.conf"
 output_path = "~/.config/qt6ct/qt6ct.conf"
 
+[templates.spicetify]
+input_path = "templates/spicetify.ini"
+output_path = "~/.dotfiles/bspwm/configs/spotify/theme/Dribbblish/color.ini"
+
 [templates.kitty]
 input_path = "templates/kitty-colors.conf"
 output_path = "~/.config/kitty/themes/racooonfig.conf"
