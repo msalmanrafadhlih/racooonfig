@@ -1,0 +1,18 @@
+:root {
+  --rg-main: {{colors.surface.default.hex_stripped}} !important;
+  --rg-text: {{base16.base07.default.hex_stripped}} !important;
+  --rg-subtext: {{base16.base06.default.hex_stripped}} !important;
+  --rg-sidebar-text: {{colors.on_surface.default.hex_stripped}} !important;
+  --rg-sidebar: {{palettes.primary._80.hex_stripped}} !important;
+  --rg-player: {{ colors.surface.default.hex_stripped }} !important;
+  --rg-card: {{colors.surface_container.default.hex_stripped}} !important;
+  --rg-shadow: {{colors.shadow.default.hex_stripped}} !important;
+  --rg-selected-row: {{palettes.neutral._90.hex_stripped}} !important;
+  --rg-button: {{palettes.primary._80.hex_stripped}} !important;
+  --rg-button-active: {{palettes.primary._80.hex_stripped}} !important;
+  --rg-button-disabled: {{palettes.neutral._40.hex_stripped}} !important;
+  --rg-tab-active: {{palettes.primary._40.hex_stripped}} !important;
+  --rg-notification: {{palettes.primary._80.hex_stripped}} !important;
+  --rg-notification-error: {{palettes.error._40.hex_stripped}} !important;
+  --rg-misc: {{palettes.neutral._70.hex_stripped}} !important;
+}
