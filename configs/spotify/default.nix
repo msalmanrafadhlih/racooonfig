@@ -1,15 +1,22 @@
-{ lib, pkgs, inputs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   ext = {
     addToQueue = {
-      src = (pkgs.fetchFromGitHub {
-        owner = "Socketlike";
-        repo = "spicetify-extensions";
-        rev = "a714f85c1a2024be1d44fbff94bacb79e6102f00";
-        hash = "sha256-/Sv/RvP1E9CkXwlePhw2bfo3GBmxMJUHF5UJN0Xhr+I=";
-      }) + /priority-queue;
+      src =
+        (pkgs.fetchFromGitHub {
+          owner = "Socketlike";
+          repo = "spicetify-extensions";
+          rev = "a714f85c1a2024be1d44fbff94bacb79e6102f00";
+          hash = "sha256-/Sv/RvP1E9CkXwlePhw2bfo3GBmxMJUHF5UJN0Xhr+I=";
+        })
+        + /priority-queue;
       # The actual file name of the extension usually ends with .js
       name = "priority-queue.js";
     };
@@ -39,12 +46,10 @@ in
           padding-top: 0px;
         }
       '';
-      patches = ''
-        {
-          "xpui.js_find_8008" = ",(\\w+=)32";
-          "xpui.js_repl_8008" = ",$\{1}56";
-        };
-      '';
+      patches = {
+        "xpui.js_find_8008" = ",(\\w+=)32";
+        "xpui.js_repl_8008" = ",\${1}56";
+      };
     };
 
     colorScheme = "racooon";
@@ -52,7 +57,8 @@ in
     # -- EKSTENSI & APLIKASI CUSTOM --
     enabledExtensions = [
       ext.addToQueue
-    ] ++ (with spicePkgs.extensions; [
+    ]
+    ++ (with spicePkgs.extensions; [
       adblock
       popupLyrics
       playlistIcons
