@@ -17,7 +17,7 @@
     uninstallUnmanaged = true;
 
     packages = [
-      "flathub:app/com.spotify.Client//stable"
+      "com.spotify.Client"
     ];
   };
 
