@@ -1,26 +1,13 @@
 {
-  lib,
   pkgs,
   inputs,
+  config,
   ...
 }:
 
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-  ext = {
-    addToQueue = {
-      src =
-        (pkgs.fetchFromGitHub {
-          owner = "Socketlike";
-          repo = "spicetify-extensions";
-          rev = "a714f85c1a2024be1d44fbff94bacb79e6102f00";
-          hash = "sha256-/Sv/RvP1E9CkXwlePhw2bfo3GBmxMJUHF5UJN0Xhr+I=";
-        })
-        + /priority-queue;
-      # The actual file name of the extension usually ends with .js
-      name = "priority-queue.js";
-    };
-  };
+  user = config.user.username;
 in
 {
   imports = [ inputs.spicetify-nix.homeManagerModules.default ];
@@ -42,6 +29,8 @@ in
       homeConfig = true;
       overwriteAssets = true;
       additionalCss = ''
+        @import url("/home/${user}/.config/spicetify.css");
+
         .Root {
           padding-top: 0px;
         }
@@ -52,20 +41,12 @@ in
       };
     };
 
-    colorScheme = "racooon";
+    colorScheme = "racooonfig";
 
-    # -- EKSTENSI & APLIKASI CUSTOM --
-    enabledExtensions = [
-      ext.addToQueue
-    ]
-    ++ (with spicePkgs.extensions; [
+    # -- EKSTENSI & AP  --
+    enabledExtensions = with spicePkgs.extensions; [
       adblock
-      popupLyrics
-      playlistIcons
-      formatColors
-      beautifulLyrics
-      allOfArtist
-    ]);
+    ];
 
     enabledSnippets = with spicePkgs.snippets; [
       rotatingCoverart
@@ -74,9 +55,7 @@ in
 
     enabledCustomApps = with spicePkgs.apps; [
       localFiles
-      lyricsPlus
       marketplace
-      ncsVisualizer
     ];
 
     # Opsi alternatif jika menggunakan tema custom dari GitHub:
