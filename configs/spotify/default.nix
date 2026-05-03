@@ -34,7 +34,25 @@ in
         };'';
     }
     // spicePkgs.themes.dribbblish;
-    colorScheme = "dark";
+    colorScheme = "custom";
+    customColorScheme = {
+      text               = "\$\{xrdb:text\}";
+      subtext            = "\$\{xrdb:subtext\}";
+      sidebar-text       = "\$\{xrdb:sidebar-text\}";
+      main               = "\$\{xrdb:main\}";
+      sidebar            = "\$\{xrdb:sidebar\}";
+      player             = "\$\{xrdb:player\}";
+      card               = "\$\{xrdb:card\}";
+      shadow             = "\$\{xrdb:shadow\}";
+      selected-row       = "\$\{xrdb:selected-row\}";
+      button             = "\$\{xrdb:button\}";
+      button-active      = "\$\{xrdb:button-active\}";
+      button-disabled    = "\$\{xrdb:button-disabled\}";
+      tab-active         = "\$\{xrdb:tab-active\}";
+      notification       = "\$\{xrdb:notification\}";
+      notification-error = "\$\{xrdb:notification-error\}";
+      misc               = "\$\{xrdb:misc\}";
+    };
 
     # -- EKSTENSI & APLIKASI CUSTOM --
     enabledExtensions = [
@@ -44,8 +62,7 @@ in
       popupLyrics
       playlistIcons
       formatColors
-      BeautifulLyrics
-      coverAmbience
+      beautifulLyrics
       allOfArtist
     ]);
 
