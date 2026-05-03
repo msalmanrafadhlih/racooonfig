@@ -5,8 +5,9 @@ in
 {
   environment.systemPackages = [
     inp.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
-    
-  ] // (with pkgs; [
+
+  ]
+  ++ (with pkgs; [
     # ======== BSPWM Stuff
     polybarFull
     sxhkd
@@ -14,7 +15,7 @@ in
     rofi
     eww
     i3lock-color
- 
+
     # ======== TOOLS
     sound-theme-freedesktop
     libcanberra-gtk3
@@ -23,12 +24,12 @@ in
     flameshot
     imagemagick
     clipmenu
-    wallust # better Pywal : Color generator
+    wallust
     pamixer
-    xclip # Clipboard
+    xclip
     dunst
-	  kdocker
-		qview
+    kdocker
+    qview
     maim
     feh
     bc
@@ -42,19 +43,19 @@ in
     xinput
     xdotool
     xcolor
-    xev # key(board) mapping
+    xev
     xxHash
 
     # ======== GTK
-    gtk2 # Tambahkan ini
+    gtk2
     gtk3
     gtk4
     dconf
     dconf-editor
-    
+
     # ======== GTK engine
     gtk-engine-murrine
     nwg-look
-    glib # gsettings CLI
+    glib
   ]);
 }
