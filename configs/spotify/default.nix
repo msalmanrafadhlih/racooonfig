@@ -4,7 +4,7 @@
   ...
 }:
 {
-  home.package = [ pkgs.spicetify-cli ];
+  home.packages = [ pkgs.spicetify-cli ];
 
   home.activation = {
     setupSpicetifyFlatpak = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
