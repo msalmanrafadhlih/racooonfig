@@ -3,8 +3,6 @@
   imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
 
   services.flatpak = {
-    enable = true;
-
     # Pastikan remote utama 'flathub' tetap ada
     remotes = lib.mkOptionDefault [
       {
