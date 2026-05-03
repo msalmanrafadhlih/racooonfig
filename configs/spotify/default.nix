@@ -1,82 +1,32 @@
 {
   pkgs,
-  inputs,
-  config,
+  lib,
   ...
 }:
-
-let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-  user = config.home.username;
-in
 {
-  imports = [ inputs.spicetify-nix.homeManagerModules.default ];
+  home.package = [ pkgs.spicetify-cli ];
 
-  programs.spicetify = {
-    enable = true;
-    # spicedSpotify = pkgs.spicetity; # The final spotify package after spicing.
-    spicetifyPackage = pkgs.spicetify-cli; # the spicetify-cli packages to use
-    spotifyPackage = pkgs.spotify;
-    spotifywmPackage = pkgs.spotifywm;
+  home.activation = {
+    setupSpicetifyFlatpak = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      # Tentukan path (sesuaikan username jika perlu)
+      SPOTIFY_PATH="$HOME/.local/share/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
+      PREFS_PATH="$HOME/.var/app/com.spotify.Client/config/spotify/prefs"
+      SPICETIFY="${pkgs.spicetify-cli}/bin/spicetify"
 
-    # -- THEME & COLORSCHEME --
-    theme = {
-      name = "marketplace";
-      injectCss = true;
-      injectThemeJs = true;
-      replaceColors = true;
-      homeConfig = true;
-      overwriteAssets = true;
-      additionalCss = ''
-        @import url("/home/${user}/.config/spicetify.css");
+      # Pastikan Spotify sudah terinstall sebelum lanjut
+      if [ -d "$SPOTIFY_PATH" ]; then
+        # Beri izin tulis (Flatpak user-level biasanya sudah punya izin, tapi amankan saja)
+        chmod a+wr "$SPOTIFY_PATH"
+        chmod a+wr -R "$SPOTIFY_PATH/Apps"
 
-        .Root {
-          padding-top: 0px;
-        }
-      '';
-      patches = {
-        "xpui.js_find_8008" = ",(\\w+=)32";
-        "xpui.js_repl_8008" = ",\${1}56";
-      };
-    };
-
-    # -- EKSTENSI & AP  --
-    enabledExtensions = with spicePkgs.extensions; [
-      adblock
-    ];
-
-    enabledSnippets = with spicePkgs.snippets; [
-      rotatingCoverart
-      pointer
-    ];
-
-    enabledCustomApps = with spicePkgs.apps; [
-      localFiles
-      marketplace
-    ];
-
-    # Opsi alternatif jika menggunakan tema custom dari GitHub:
-    # theme = {
-    #   name = "Dribbblish";
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "spicetify";
-    #     repo = "spicetify-themes";
-    #     rev = "02badb180c902f986a4ea4e4033e69fe8eec6a55";
-    #     hash = "sha256-KD9VfHtlN0BIHC4inlooxw5XC4xlHNC5evASRqP7pUA=";
-    #   };
-    # };
-    # customColorScheme = {
-    #   text = "ffffff";
-    #   main = "1e1e2e";
-    # };
-
-    # -- FITUR TAMBAHAN --
-    # -- TAMPILAN & WINDOW MANAGER --
-    # wayland = true; # Mengaktifkan flag native Wayland
-    windowManagerPatch = true; # Sangat berguna agar Spotify ter-render dengan baik di Tiling WM
-    alwaysEnableDevTools = true;
-    experimentalFeatures = true;
-    # spotifyLaunchFlags = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+        # Konfigurasi Spicetify secara otomatis
+        $SPICETIFY config spotify_path "$SPOTIFY_PATH"
+        $SPICETIFY config prefs_path "$PREFS_PATH"
+        
+        # Jalankan apply secara otomatis (opsional)
+        # $SPICETIFY apply
+      fi
+    '';
   };
 
   services.spotifyd = {
