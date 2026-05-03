@@ -1,3 +1,9 @@
+@import url("/home/tquilla/.config/spicetify.css");
+
+.Root {
+  padding-top: 0px;
+}
+
 :root {
     --corner-radius: 10px;
     --bar-cover-art-size: 40px;
