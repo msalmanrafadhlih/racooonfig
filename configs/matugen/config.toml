@@ -15,6 +15,7 @@ output_path = "~/.config/gtk-4.0/gtk.css"
 [templates.helix]
 input_path = "templates/helix.toml"
 output_path = "~/.config/helix/themes/racooon.toml"
+post_hook = "hx -c ~/.config/helix/config.toml"
 
 [templates.bspwm]
 input_path = "templates/bspwm"
@@ -32,16 +33,12 @@ output_path = "~/.config/rofi/themes/shared.rasi"
 [templates.xresources]
 input_path = "templates/xresources"
 output_path = "~/.Xresources"
-post_hook = "xrdb -merge ~/.Xresources && killall -USR1 st"
+post_hook = "xrdb -merge ~/.Xresources && killall -USR1 $(Term --term)"
 
 [templates.wallpaper]
 input_path = "templates/setwall"
 output_path = "~/.fehbg"
 post_hook = "~/.fehbg &"
-
-[templates.environment]
-input_path = "templates/env"
-output_path = "~/.dynamic"
 
 [templates.kvantum]
 input_path = "templates/kvantum-colors.kvconfig"
