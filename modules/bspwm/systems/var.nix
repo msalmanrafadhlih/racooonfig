@@ -8,9 +8,7 @@
   ];
 
   environment.variables = {
-    XCURSOR_PATH = [
-      "/usr/share/icons"
-    ];
+    XCURSOR_PATH = "/usr/share/icons";
 
     XDG_DATA_DIRS = [
       "/usr/share"
