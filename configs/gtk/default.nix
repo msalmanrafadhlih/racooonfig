@@ -19,7 +19,7 @@ in {
 
   # gtk.css
   home.file.".themes/dynamic/gtk-4.0/gtk.css".text = ''
-    @import url("file://${HOME}/.config/gtk-4.0/colors.css");
+    @import url("file://${HOME}/.config/gtk-4.0/gtk.css");
     @import url("libadwaita.css");
     @import url("libadwaita-tweaks.css");
   '';
