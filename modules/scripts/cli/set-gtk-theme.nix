@@ -165,6 +165,7 @@ EOF
 
     _setup_cursor "$cursor" "${pkgs.cursor-memes}"
     _set_flatpak_override "$scheme"
+    export XCURSOR_THEME=$cursor
 
     # ================================
     # Apply Changes
