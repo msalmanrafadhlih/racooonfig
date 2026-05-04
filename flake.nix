@@ -25,6 +25,11 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
+    plank-reloaded = {
+      url = "github:zquestz/plank-reloaded";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     matugen = {
       url = "github:/InioX/Matugen";
       inputs.nixpkgs.follows = "nixpkgs";
