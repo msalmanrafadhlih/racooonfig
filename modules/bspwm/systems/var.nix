@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 
 {
   environment = {
@@ -6,23 +6,15 @@
       XDG_CURRENT_DESKTOP = "bspwm";
       XDG_SESSION_TYPE = "x11";
     };
+
     extraInit = ''
-      if [ -f "$HOME/.dynamic" ]; then
-        . "$HOME/.dynamic"
-      fi
+      export XCURSOR_PATH="/usr/share/icons''${XCURSOR_PATH:+:$XCURSOR_PATH}"
+      export XDG_DATA_DIRS="/usr/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
     '';
   };
 
   systemd.tmpfiles.rules = [
-    # Menggunakan grup wheel agar hanya admin yang bisa memodifikasi
     "d /usr/share/icons 0775 root wheel -"
     "d /usr/share/themes 0775 root wheel -"
   ];
-
-  environment.variables = {
-    XCURSOR_PATH = lib.mkForce "/usr/share/icons:$HOME/.icons:$HOME/.local/share/icons";
-    XDG_DATA_DIRS = [
-      "/usr/share"
-    ];
-  };
 }
