@@ -112,6 +112,13 @@ case "$class" in
                 ;;
         esac
         ;;
+    "Plank")
+        case "$title" in
+            *"Notification"* | "Calendar")
+                echo "state=floating"
+                ;;
+        esac
+        ;;
 
     "ChatAi" | "GeminiAi" | "ClaudeAi" | "youtube" | "reddit")
         case "$instance" in
@@ -197,6 +204,9 @@ case "$class" in
     "Dconf-editor")
         echo "state=floating"
         ;;
+    # "Plank")
+    #     echo "manage=on focus=off follow=off layer=above"
+    #     ;;
 esac
 
 case "$title" in
