@@ -10,7 +10,7 @@
     setupSpicetifyFlatpak = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       # Tentukan path (sesuaikan username jika perlu)
       SPOTIFY_PATH="$HOME/.local/share/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
-      PREFS_PATH="$HOME/.var/app/com.spotify.Client/config/spotify/prefs"
+      PREFS_PATH="$HOME/.config/spotify/prefs"
       SPICETIFY="${pkgs.spicetify-cli}/bin/spicetify"
 
       # Pastikan Spotify sudah terinstall sebelum lanjut
