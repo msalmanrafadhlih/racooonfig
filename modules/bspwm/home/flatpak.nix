@@ -1,4 +1,7 @@
-{ inputs, lib, ... }:
+{ inputs, lib, config, ... }:
+let
+  home = config.home.homeDirectory;
+  in
 {
   imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
 
@@ -23,5 +26,29 @@
       #"com.obsproject.Studio"
       #"im.riot.Riot"
     ];
+
+    overrides.settings = {
+      global = {
+        Context = {
+          filesystems = [
+            "${home}/.icons:ro"
+            "${home}/.local/share/icons:ro"
+            "/usr/share/icons:ro"
+          ];
+        };
+
+        Environment = {
+          XCURSOR_THEME = "Ellen-Joe"; # ganti sesuai punyamu
+          XCURSOR_SIZE = "24"; # sesuaikan
+          XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons:${home}/.icons:/home/${home}/.local/share/icons";
+        };
+      };
+
+      "com.spotify.Client" = {
+        Environment = {
+          XCURSOR_THEME = "Ellen-Joe";
+        };
+      };
+    };
   };
 }
