@@ -44,6 +44,7 @@ in
     xinput
     xdotool
     xcolor
+    xdo
     xev
     xxHash
 
