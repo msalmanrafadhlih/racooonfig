@@ -126,12 +126,33 @@
         "type": "github"
       }
     },
+    "plank-reloaded": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776118724,
+        "narHash": "sha256-ZO+XJD+NeHWsCP9P+37Ql+JNFmsmVnUhPNqxVkVIuXk=",
+        "owner": "zquestz",
+        "repo": "plank-reloaded",
+        "rev": "95e1c4109131abf047286cb43ee554a610c2c022",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zquestz",
+        "repo": "plank-reloaded",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "matugen": "matugen",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs",
+        "plank-reloaded": "plank-reloaded",
         "spicetify-nix": "spicetify-nix",
         "st-nix": "st-nix",
         "textfox": "textfox",
