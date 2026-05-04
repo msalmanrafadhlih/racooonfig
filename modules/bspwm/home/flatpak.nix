@@ -6,6 +6,7 @@
 }:
 
 let
+  user = config.home.username;
   home = config.home.homeDirectory;
   cursorTheme = "Skyrim-by-ru5tyshark-cursors";
   cursorSize = "24";
@@ -38,9 +39,12 @@ in
       settings = {
         global = {
           Context.filesystems = [
-            "${home}/.icons:ro"
+            "${home}/.themes:ro"
             "${home}/.local/share/icons:ro"
-            "/usr/share/icons:ro"
+            "/etc/profiles/per-user/${user}/share/icons/:ro"
+            "/etc/profiles/per-user/${user}/share/themes/:ro"
+            "xdg-config/gtk-3.0:ro"
+            "xdg-config/gtk-4.0:ro"
           ];
 
           Context.sockets = [
@@ -52,16 +56,20 @@ in
           Environment = {
             XCURSOR_THEME = cursorTheme;
             XCURSOR_SIZE = cursorSize;
-            XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons:${home}/.icons:${home}/.local/share/icons";
-            GTK_THEME = "Adwaita:dark";
+            XCURSOR_PATH = "/etc/profiles/per-user/${user}/share/icons";
+            GTK_THEME = "dynamic";
           };
         };
 
-        "com.spotify.Client" = {
-          Environment = {
-            XCURSOR_THEME = cursorTheme;
-            XCURSOR_SIZE = cursorSize;
-          };
+        "com.visualstudio.code".Context = {
+          filesystems = [
+            "xdg-config/git:ro" # Expose user Git config
+            "/run/current-system/sw/bin:ro" # Expose NixOS managed software
+          ];
+          sockets = [
+            "gpg-agent" # Expose GPG agent
+            "pcsc" # Expose smart cards (i.e. YubiKey)
+          ];
         };
       };
     };
