@@ -75,18 +75,18 @@
         local cursor_name="$1"
         local cursor_pkg_path="$2"
 
-        mkdir -p "$HOME/.icons"
-        ln -sfn "$cursor_pkg_path/share/icons/$cursor_name" "$HOME/.icons/$cursor_name"
-
         local theme_dirs=(
-            "$HOME/.icons/default"
-            "$HOME/.local/share/icons/default"
-            "$HOME/.local/share/flatpak/exports/share/icons/default"
+            "$HOME/.icons"
+            "/usr/share/icons"
+            "$HOME/.local/share/icons"
+            "$HOME/.local/share/flatpak/exports/share/icons"
         )
 
         for dir in "''${theme_dirs[@]}"; do
-            mkdir -p "$dir"
-            printf "[Icon Theme]\nInherits=%s\n" "$cursor_name" > "$dir/index.theme"
+            mkdir -p "$dir/default"
+            ln -sfn "$cursor_pkg_path/share/icons/$cursor_name" "$dir"
+
+            printf "[Icon Theme]\nInherits=%s\n" "$cursor_name" > "$dir/default/index.theme"
         done
     }
 
