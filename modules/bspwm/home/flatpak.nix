@@ -7,7 +7,7 @@
 
 let
   home = config.home.homeDirectory;
-  cursorTheme = "Ellen-Joe";
+  cursorTheme = "Skyrim-by-ru5tyshark-cursors";
   cursorSize = "24";
 in
 {
