@@ -27,47 +27,38 @@ in
     ];
 
     overrides = {
-      # 🔥 ini opsi penting juga (biar jelas behavior)
-      writeMode = "merge"; # atau "replace"
-      # pruneUnmanagedOverrides = false; # default: false
+      writeMode = "merge";
+      pruneUnmanagedOverrides = false;
 
       settings = {
         global = {
-          # =====================
-          # CONTEXT SECTION
-          # =====================
           Context.filesystems = [
             "${home}/.icons:ro"
             "${home}/.local/share/icons:ro"
             "/usr/share/icons:ro"
           ];
 
-          # optional tapi sering berguna
           Context.sockets = [
             "x11"
             "wayland"
             "fallback-x11"
           ];
 
-          # =====================
-          # ENVIRONMENT SECTION
-          # =====================
-          Environment.XCURSOR_THEME = cursorTheme;
-          Environment.XCURSOR_SIZE  = cursorSize;
-
-          Environment.XCURSOR_PATH =
-            "/run/host/user-share/icons:/run/host/share/icons:${home}/.icons:${home}/.local/share/icons";
-
-          # optional (kadang bantu theme consistency)
-          Environment.GTK_THEME = "Adwaita:dark";
+          # ✅ FIX DI SINI
+          Environment = [
+            "XCURSOR_THEME=${cursorTheme}"
+            "XCURSOR_SIZE=${cursorSize}"
+            "XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons:${home}/.icons:${home}/.local/share/icons"
+            "GTK_THEME=Adwaita:dark"
+          ];
         };
 
-        # =====================
-        # APP-SPECIFIC OVERRIDE
-        # =====================
         "com.spotify.Client" = {
-          Environment.XCURSOR_THEME = cursorTheme;
-          Environment.XCURSOR_SIZE  = cursorSize;
+          # ✅ juga harus list/string
+          Environment = [
+            "XCURSOR_THEME=${cursorTheme}"
+            "XCURSOR_SIZE=${cursorSize}"
+          ];
         };
       };
     };
