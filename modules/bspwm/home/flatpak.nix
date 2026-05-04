@@ -29,7 +29,7 @@ in
     overrides = {
       # 🔥 ini opsi penting juga (biar jelas behavior)
       writeMode = "merge"; # atau "replace"
-      pruneUnmanagedOverrides = false;
+      # pruneUnmanagedOverrides = false; # default: false
 
       settings = {
         global = {
