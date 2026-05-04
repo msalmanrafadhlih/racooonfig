@@ -43,6 +43,8 @@ in
             "${home}/.local/share/icons:ro"
             "/etc/profiles/per-user/${user}/share/icons/:ro"
             "/etc/profiles/per-user/${user}/share/themes/:ro"
+            "/run/current-system/sw/share/icons:ro"
+            "/run/current-system/sw/share/themes:ro"
             "xdg-config/gtk-3.0:ro"
             "xdg-config/gtk-4.0:ro"
           ];
@@ -56,7 +58,7 @@ in
           Environment = {
             XCURSOR_THEME = cursorTheme;
             XCURSOR_SIZE = cursorSize;
-            XCURSOR_PATH = "/etc/profiles/per-user/${user}/share/icons";
+            XCURSOR_PATH = "/etc/profiles/per-user/${user}/share/icons:/run/current-system/sw/share/icons";
             GTK_THEME = "dynamic";
           };
         };
