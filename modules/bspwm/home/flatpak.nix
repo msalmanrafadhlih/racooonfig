@@ -41,6 +41,7 @@ in
           Context.filesystems = [
             "${home}/.themes:ro"
             "${home}/.local/share/icons:ro"
+            "${home}/.local/share/flatpak/exports/share/icons:ro"
             "/etc/profiles/per-user/${user}/share/icons/:ro"
             "/etc/profiles/per-user/${user}/share/themes/:ro"
             "/run/current-system/sw/share/icons:ro"
@@ -58,7 +59,7 @@ in
           Environment = {
             XCURSOR_THEME = cursorTheme;
             XCURSOR_SIZE = cursorSize;
-            XCURSOR_PATH = "/etc/profiles/per-user/${user}/share/icons:/run/current-system/sw/share/icons";
+            XCURSOR_PATH = "${home}/.local/share/flatpak/exports/share/icons:/etc/profiles/per-user/${user}/share/icons:/run/current-system/sw/share/icons";
             GTK_THEME = "dynamic";
           };
         };
