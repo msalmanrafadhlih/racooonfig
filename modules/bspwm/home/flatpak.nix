@@ -1,4 +1,9 @@
-{ inputs, lib, config, ... }:
+{
+  inputs,
+  lib,
+  config,
+  ...
+}:
 
 let
   home = config.home.homeDirectory;
@@ -44,21 +49,19 @@ in
             "fallback-x11"
           ];
 
-          # ✅ FIX DI SINI
-          Environment = [
-            "XCURSOR_THEME=${cursorTheme}"
-            "XCURSOR_SIZE=${cursorSize}"
-            "XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons:${home}/.icons:${home}/.local/share/icons"
-            "GTK_THEME=Adwaita:dark"
-          ];
+          Environment = {
+            XCURSOR_THEME = cursorTheme;
+            XCURSOR_SIZE = cursorSize;
+            XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons:${home}/.icons:${home}/.local/share/icons";
+            GTK_THEME = "Adwaita:dark";
+          };
         };
 
         "com.spotify.Client" = {
-          # ✅ juga harus list/string
-          Environment = [
-            "XCURSOR_THEME=${cursorTheme}"
-            "XCURSOR_SIZE=${cursorSize}"
-          ];
+          Environment = {
+            XCURSOR_THEME = cursorTheme;
+            XCURSOR_SIZE = cursorSize;
+          };
         };
       };
     };
