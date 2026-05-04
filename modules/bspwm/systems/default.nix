@@ -12,7 +12,10 @@ in
     inp.nix-flatpak.nixosModules.nix-flatpak
   ];
   # install flatpak binary
-  services.flatpak.enable = true;
+  services.flatpak = {
+    enable = true;
+    uninstallUnmanaged = true; 
+  };
   environment.systemPackages = [
     pkgs.qylock-sddm-theme
     pkgs.cursor-memes
