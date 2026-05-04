@@ -5,6 +5,7 @@ in
 {
   environment.systemPackages = [
     inp.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inp.plank-reloaded.defaultPackage.${pkgs.stdenv.hostPlatform.system}
 
   ]
   ++ (with pkgs; [
