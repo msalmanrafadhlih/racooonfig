@@ -55,6 +55,9 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 # polybar
 launchPolybar &
 
+# launch plank dock
+plank &
+
 # wallpaper
 chmod +x ~/.config/bspwm/bin/wallpaper
 ~/.fehbg &
