@@ -1,8 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = [
     (pkgs.writeShellApplication {
       name = "set-gtk-theme";
-      runtimeInputs = with pkgs; [ 
+      runtimeInputs = with pkgs; [
         glib
         gnused
         util-linux
@@ -12,153 +13,170 @@
       ];
 
       text = ''
-        # ================================
-        # Helpers
-        # ================================
+    set -euo pipefail
 
-        _list_assets() {
-            local type=$1
-            IFS=':' read -ra ADDR <<< "$XDG_DATA_DIRS"
-            local search_paths=("''${ADDR[@]}")
+    # ================================
+    # Helpers
+    # ================================
 
-            for p in "''${search_paths[@]}"; do
-                if [[ -d "$p/$type" ]]; then
-                    find "$p/$type" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' 2>/dev/null
-                fi
-            done | sort -u | grep -vE "^(default|hicolor|locolor|gnome|Graphics|flatpak)$" | column
-        }
+    _list_assets() {
+        local type=$1
+        IFS=':' read -ra search_paths <<< "''${XDG_DATA_DIRS:-/usr/share}"
 
-        _set_flatpak_override() {
-            local scheme="$1"
-            local override="$HOME/.local/share/flatpak/overrides/global"
-
-            mkdir -p "$(dirname "$override")"
-            touch "$override"
-
-            # Ensure sections exist
-            grep -q "^\[Context\]" "$override" || printf "\n[Context]\n" >> "$override"
-            grep -q "^\[Environment\]" "$override" || printf "\n[Environment]\n" >> "$override"
-
-            local new_fs="/home/$USER/.themes/$scheme:ro"
-
-            # ---- filesystems ----
-            if grep -q "^filesystems=" "$override"; then
-                if ! grep -q "$new_fs" "$override"; then
-                    sed -i "s|^filesystems=.*|&;$new_fs|" "$override"
-                fi
-            else
-                sed -i "/^\[Context\]/a filesystems=$new_fs" "$override"
+        for p in "''${search_paths[@]}"; do
+            if [[ -d "$p/$type" ]]; then
+                find "$p/$type" -maxdepth 1 -mindepth 1 -type d -printf '%f\n' 2>/dev/null
             fi
+        done | sort -u | grep -vE "^(default|hicolor|locolor|gnome|Graphics|flatpak)$" | column
+    }
 
-            # ---- GTK_THEME ----
-            if grep -q "^GTK_THEME=" "$override"; then
-                sed -i "s|^GTK_THEME=.*|GTK_THEME=$scheme|" "$override"
-            else
-                sed -i "/^\[Environment\]/a GTK_THEME=$scheme" "$override"
+    # Helper untuk set/update value pada file INI dengan aman
+    _set_ini_key() {
+        local file="$1"
+        local key="$2"
+        local value="$3"
+        if grep -q "^''${key}=" "$file"; then
+            sed -i "s|^''${key}=.*|''${key}=''${value}|" "$file"
+        else
+            echo "''${key}=''${value}" >> "$file"
+        fi
+    }
+
+    _set_flatpak_override() {
+        local scheme="$1"
+        local override="$HOME/.local/share/flatpak/overrides/global"
+        local new_fs="/home/$USER/.themes/$scheme:ro"
+
+        mkdir -p "$(dirname "$override")"
+        touch "$override"
+
+        # Pastikan section ada
+        grep -q "^\[Context\]" "$override" || printf "\n[Context]\n" >> "$override"
+        grep -q "^\[Environment\]" "$override" || printf "\n[Environment]\n" >> "$override"
+
+        # ---- filesystems ----
+        if grep -q "^filesystems=" "$override"; then
+            if ! grep -q "$new_fs" "$override"; then
+                sed -i "s|^filesystems=.*|&;$new_fs|" "$override"
             fi
-        }
-
-        # ================================
-        # CLI
-        # ================================
-
-        if [[ "''${1:-}" == "-h" || "''${1:-}" == "--help" ]]; then
-            echo "Usage: set-gtk-icons [SCHEME] [ICON] [CURSOR]"
-            echo "  --list   : List assets"
-            echo "  --help   : Help"
-            exit 0
+        else
+            sed -i "/^\[Context\]/a filesystems=$new_fs" "$override"
         fi
 
-        if [[ "''${1:-}" == "--list" ]]; then
-            printf "\n--- [ THEMES ] ---\n"
-            _list_assets "themes"
-            printf "\n--- [ ICONS ] ---\n"
-            _list_assets "icons"
-            exit 0
+        # ---- GTK_THEME ----
+        if grep -q "^GTK_THEME=" "$override"; then
+            sed -i "s|^GTK_THEME=.*|GTK_THEME=$scheme|" "$override"
+        else
+            sed -i "/^\[Environment\]/a GTK_THEME=$scheme" "$override"
         fi
+    }
 
-        scheme="''${1:-dynamic}"
-        icon="''${2:-Vimix-white}"
-        cursor="''${3:-Kafka}"
+    _setup_cursor() {
+        local cursor_name="$1"
+        local cursor_pkg_path="$2"
 
-        echo "────────────────────────────────────────"
-        echo "🎨 GTK Theme Setup"
-        echo "• Scheme : $scheme"
-        echo "• Icon   : $icon"
-        echo "• Cursor : $cursor"
-        echo "────────────────────────────────────────"
+        mkdir -p "$HOME/.icons"
+        ln -sfn "$cursor_pkg_path/share/icons/$cursor_name" "$HOME/.icons/$cursor_name"
 
-        # ================================
-        # GTK config
-        # ================================
-
-        files=(
-          "$HOME/.config/gtk-3.0/settings.ini"
-          "$HOME/.config/gtk-4.0/settings.ini"
+        local theme_dirs=(
+            "$HOME/.icons/default"
+            "$HOME/.local/share/icons/default"
+            "$HOME/.local/share/flatpak/exports/share/icons/default"
         )
 
-        for file in "''${files[@]}"; do
-            if [[ -f "$file" ]]; then
-                sed -i "s/gtk-theme-name=.*/gtk-theme-name=$scheme/" "$file"
-                sed -i "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=$icon/" "$file"
-                sed -i "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=$cursor/" "$file"
-            else
-                mkdir -p "$(dirname "$file")"
-                cat > "$file" <<EOF
+        for dir in "''${theme_dirs[@]}"; do
+            mkdir -p "$dir"
+            printf "[Icon Theme]\nInherits=%s\n" "$cursor_name" > "$dir/index.theme"
+        done
+    }
+
+    # ================================
+    # CLI Parse
+    # ================================
+
+    if [[ "''${1:-}" == "-h" || "''${1:-}" == "--help" ]]; then
+        echo "Usage: set-gtk-theme [SCHEME] [ICON] [CURSOR]"
+        echo "  --list   : List assets"
+        echo "  --help   : Help"
+        exit 0
+    fi
+
+    if [[ "''${1:-}" == "--list" ]]; then
+        printf "\n--- [ THEMES ] ---\n"
+        _list_assets "themes"
+        printf "\n--- [ ICONS ] ---\n"
+        _list_assets "icons"
+        exit 0
+    fi
+
+    scheme="''${1:-dynamic}"
+    icon="''${2:-Vimix-white}"
+    cursor="''${3:-Kafka}"
+
+    echo "────────────────────────────────────────"
+    echo "🎨 GTK Theme Setup"
+    echo "• Scheme : $scheme"
+    echo "• Icon   : $icon"
+    echo "• Cursor : $cursor"
+    echo "────────────────────────────────────────"
+
+    # ================================
+    # GTK config
+    # ================================
+
+    gtk_files=(
+      "$HOME/.config/gtk-3.0/settings.ini"
+      "$HOME/.config/gtk-4.0/settings.ini"
+    )
+
+    for file in "''${gtk_files[@]}"; do
+        mkdir -p "$(dirname "$file")"
+        
+        # Buat file beserta header jika belum eksis atau kosong
+        if [[ ! -s "$file" ]]; then
+            cat > "$file" <<EOF
 [Settings]
-gtk-theme-name=$scheme
-gtk-icon-theme-name=$icon
 gtk-font-name=Adwaita Sans 11
-gtk-cursor-theme-name=$cursor
 gtk-cursor-theme-size=24
 gtk-application-prefer-dark-theme=1
 EOF
-            fi
-        done
-
-        # ================================
-        # xsettingsd
-        # ================================
-
-        if [[ -f "$HOME/.config/xsettingsd/xsettingsd.conf" ]]; then
-            sed -i "$HOME/.config/xsettingsd/xsettingsd.conf" \
-                -e "s|Net/ThemeName .*|Net/ThemeName \"$scheme\"|" \
-                -e "s|Net/IconThemeName .*|Net/IconThemeName \"$icon\"|" \
-                -e "s|Gtk/CursorThemeName .*|Gtk/CursorThemeName \"$cursor\"|"
         fi
 
-        # ================================
-        # Cursor
-        # ================================
+        _set_ini_key "$file" "gtk-theme-name" "$scheme"
+        _set_ini_key "$file" "gtk-icon-theme-name" "$icon"
+        _set_ini_key "$file" "gtk-cursor-theme-name" "$cursor"
+    done
 
-        mkdir -p "$HOME/.icons"
-        ln -sfn "${pkgs.cursor-memes}/share/icons/$cursor" "$HOME/.icons/$cursor"
+    # ================================
+    # xsettingsd
+    # ================================
+    
+    xset_conf="$HOME/.config/xsettingsd/xsettingsd.conf"
+    if [[ -f "$xset_conf" ]]; then
+        sed -i -e "s|Net/ThemeName .*|Net/ThemeName \"$scheme\"|" \
+               -e "s|Net/IconThemeName .*|Net/IconThemeName \"$icon\"|" \
+               -e "s|Gtk/CursorThemeName .*|Gtk/CursorThemeName \"$cursor\"|" \
+               "$xset_conf"
+    fi
 
-        mkdir -p "$HOME/.icons/default"
-        mkdir -p "$HOME/.local/share/icons/default"
+    # ================================
+    # Cursor & Flatpak
+    # ================================
 
-        printf "[Icon Theme]\nInherits=%s\n" "$cursor" > "$HOME/.icons/default/index.theme"
-        printf "[Icon Theme]\nInherits=%s\n" "$cursor" > "$HOME/.local/share/icons/default/index.theme"
+    _setup_cursor "$cursor" "${pkgs.cursor-memes}"
+    _set_flatpak_override "$scheme"
 
-        # ================================
-        # Flatpak (pakai function)
-        # ================================
+    # ================================
+    # Apply Changes
+    # ================================
 
-        _set_flatpak_override "$scheme"
+    if pidof -q xsettingsd; then
+        pkill -HUP xsettingsd
+    fi
 
-        # ================================
-        # Apply
-        # ================================
+    xsetroot -cursor_name left_ptr
 
-        if pidof -q xsettingsd; then
-            pkill -HUP xsettingsd
-        fi
-
-        if command -v xsetroot >/dev/null 2>&1; then
-            xsetroot -cursor_name left_ptr
-        fi
-
-        echo "✅ Berhasil diterapkan!"
+    echo "✅ Berhasil diterapkan!"
       '';
     })
   ];
