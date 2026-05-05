@@ -2,6 +2,7 @@
   inputs,
   lib,
   config,
+  pkgs,
   ...
 }:
 
@@ -9,7 +10,7 @@ let
   user = config.home.username;
   home = config.home.homeDirectory;
   cursorTheme = "Skyrim-by-ru5tyshark-cursors";
-  cursorSize = "24";
+  cursorSize = 24;
 in
 {
   imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
@@ -39,13 +40,9 @@ in
       settings = {
         global = {
           Context.filesystems = [
-            "${home}/.themes:ro"
-            "${home}/.local/share/icons:ro"
+            "/nix/store:ro"
             "${home}/.local/share/flatpak/exports/share/icons:ro"
-            "/etc/profiles/per-user/${user}/share/icons/:ro"
-            "/etc/profiles/per-user/${user}/share/themes/:ro"
-            "/run/current-system/sw/share/icons:ro"
-            "/run/current-system/sw/share/themes:ro"
+            "${home}/.local/share/flatpak/exports/share/themes:ro"
             "xdg-config/gtk-3.0:ro"
             "xdg-config/gtk-4.0:ro"
           ];
@@ -59,7 +56,7 @@ in
           Environment = {
             XCURSOR_THEME = cursorTheme;
             XCURSOR_SIZE = cursorSize;
-            XCURSOR_PATH = "${home}/.local/share/flatpak/exports/share/icons:/etc/profiles/per-user/${user}/share/icons:/run/current-system/sw/share/icons";
+            XCURSOR_PATH = "${pkgs.cursor-memes}/share/icons";
             GTK_THEME = "dynamic";
           };
         };
