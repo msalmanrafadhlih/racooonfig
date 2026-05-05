@@ -64,10 +64,10 @@
         fi
 
         # ---- GTK_THEME ----
-        if grep -q "^GTK_THEME=" "$override"; then
-            sed -i "s|^GTK_THEME=.*|GTK_THEME=$scheme|" "$override"
+        if grep -q "^XCURSOR_THEME=" "$override"; then
+            sed -i "s|^XCURSOR_THEME=.*|XCURSOR_THEME=$scheme|" "$override"
         else
-            sed -i "/^\[Environment\]/a GTK_THEME=$scheme" "$override"
+            sed -i "/^\[Environment\]/a XCURSOR_THEME=$scheme" "$override"
         fi
     }
 
@@ -160,11 +160,11 @@ EOF
     fi
 
     # ================================
-    # Cursor & Flatpak
+    # Cursor  
     # ================================
 
     _setup_cursor "$cursor" "${pkgs.cursor-memes}"
-    _set_flatpak_override "$scheme"
+    _set_flatpak_override "$cursor"
     export XCURSOR_THEME=$cursor
 
     # ================================
