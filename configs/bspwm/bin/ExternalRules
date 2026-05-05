@@ -120,6 +120,14 @@ case "$class" in
         esac
         ;;
 
+    "Chromium-browser")
+        case "$title" in
+            *" • "*)
+                echo "state=floating"
+                ;;
+        esac
+        ;;
+
     "ChatAi" | "GeminiAi" | "ClaudeAi" | "youtube" | "reddit")
         case "$instance" in
             *"youtube.com"* | *"reddit.com"*)
@@ -141,10 +149,6 @@ case "$class" in
         esac
         ;;
 
-    "floating_rmpc")
-        echo "state=floating rectangle=$RECT_CENTER_SMALL"
-        ;;
-
     *)
         if [[ "$title" == *"rmpc"* ]]; then
             echo "state=floating rectangle=$RECT_CENTER_SMALL"
@@ -160,6 +164,9 @@ case "$class" in
         ;;
     "TerminalPinned")
         echo "state=floating sticky=on rectangle=$RECT_SIDE_SMALL"
+        ;;
+    "floating_rmpc")
+        echo "state=floating rectangle=$RECT_CENTER_SMALL"
         ;;
     "St")
         echo "state=floating sticky=off rectangle=$RECT_MAIN"
@@ -204,9 +211,6 @@ case "$class" in
     "Dconf-editor")
         echo "state=floating"
         ;;
-    # "Plank")
-    #     echo "manage=on focus=off follow=off layer=above"
-    #     ;;
 esac
 
 case "$title" in
