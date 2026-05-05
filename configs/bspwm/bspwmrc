@@ -56,10 +56,11 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 launchPolybar &
 
 # launch plank dock
+pkill plank 2>/dev/null
+plank &
 dock &
 
 # wallpaper
-chmod +x ~/.config/bspwm/bin/wallpaper
 ~/.fehbg &
 
 # dunst untuk widget notifikasi
