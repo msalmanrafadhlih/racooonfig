@@ -81,3 +81,6 @@ post_hook = "dunstctl reload '~/.config/dunst/dunstrc'"
 # input_path = "templates/vivaldi.css"
 # output_path = "~/.config/vivaldi/CustomCSS/colors.css"
 
+[templates.svg]
+input_path = "templates/brightness.svg"
+output_path = "~/.config/Assets/Icons/brightness.svg"
