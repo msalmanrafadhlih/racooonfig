@@ -10,7 +10,7 @@ let
   user = config.home.username;
   home = config.home.homeDirectory;
   cursorTheme = "Skyrim-by-ru5tyshark-cursors";
-  cursorSize = 24;
+  cursorSize = "24";
 in
 {
   imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
