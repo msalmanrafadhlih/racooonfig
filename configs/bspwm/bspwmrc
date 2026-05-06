@@ -15,6 +15,7 @@ run() {
 }
 
 # Border
+bspc config left_padding 50
 bspc config border_width 3
 bspc config window_gap 5
 bspc config focus_follows_pointer true
@@ -37,9 +38,8 @@ bspc config initial_polarity second_child
 bspc config removal_adjustment true
 
 bspc config external_rules_command ~/.config/bspwm/bin/ExternalRules
-
-chmod +x ~/.config/bspwm/bin/colors
-~/.config/bspwm/bin/colors &
+CornerLogic &
+Colors &
 
 # picom
 pkill picom
@@ -53,12 +53,12 @@ clipmenud &
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 # polybar
-launchPolybar &
+LaunchPolybar --panels &
 
 # launch plank dock
 pkill plank 2>/dev/null
 plank &
-dock &
+Dock &
 
 # wallpaper
 ~/.fehbg &
