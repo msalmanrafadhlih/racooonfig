@@ -1,2 +1,5 @@
 #!/bin/sh
-/run/current-system/sw/bin/feh --no-fehbg --bg-fill '{{ image }}' 
+
+"$HOME/.config/polybar/material/scripts/pywal.sh" {{ image }} &
+# /run/current-system/sw/bin/feh --no-fehbg --bg-fill '{{ image }}' 
+
