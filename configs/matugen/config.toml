@@ -35,10 +35,10 @@ input_path = "templates/xresources"
 output_path = "~/.Xresources"
 post_hook = "xrdb -merge ~/.Xresources && killall -USR1 $(Term --term)"
 
-[templates.wallpaper]
-input_path = "templates/setwall"
-output_path = "~/.fehbg"
-post_hook = "~/.fehbg &"
+# [templates.wallpaper]
+# input_path = "templates/setwall"
+# output_path = "~/.fehbg"
+# post_hook = "~/.fehbg &"
 
 [templates.kvantum]
 input_path = "templates/kvantum-colors.kvconfig"
