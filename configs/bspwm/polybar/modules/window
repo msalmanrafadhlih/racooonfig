@@ -1,8 +1,0 @@
-[module/xwindow]
-type = internal/xwindow
-label =| %title:0:0:...% |
-#label-maxlen = 50
-
-label-empty = %{T3}        %{T-}
-#label-empty-foreground = #ff00ff
-
