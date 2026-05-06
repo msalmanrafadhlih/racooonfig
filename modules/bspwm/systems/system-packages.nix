@@ -31,6 +31,7 @@ in
     dunst
     kdocker
     qview
+    pywal
     maim
     feh
     bc
