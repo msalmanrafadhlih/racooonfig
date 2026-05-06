@@ -84,3 +84,9 @@ post_hook = "dunstctl reload '~/.config/dunst/dunstrc'"
 [templates.svg]
 input_path = "templates/brightness.svg"
 output_path = "~/.config/Assets/Icons/brightness.svg"
+
+[templates.polybar]
+input_path = "templates/polybar.ini"
+output_path = "~/.config/polybar-t/colors.ini"
+post_hook = "LaunchPolybar --panels"
+
