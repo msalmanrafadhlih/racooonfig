@@ -41,7 +41,7 @@ RANDOM_WALLPAPER=$(find "$HOME/Pictures/Wallpaper/$RICE" -type f 2> /dev/null | 
 
 # Validasi jika wallpaper tidak ditemukan
 if [ -z "$RANDOM_WALLPAPER" ]; then
-    dunstify -u critical -a "Theme Manager" "Error Wallpaper" "Tidak ada gambar ditemukan di $HOME/Pictures/Wallpaper/$RICE"
+    dunstify -r 999 -u critical -a "Theme Manager" "Error Wallpaper" "Tidak ada gambar ditemukan di $HOME/Pictures/Wallpaper/$RICE"
     exit 1
 fi
 
@@ -49,9 +49,9 @@ fi
 if ERROR_MSG=$(matugen json "$HOME/.config/bspwm/rices/$RICE/pallete.json" --import-json-string "{ \"image\": \"$RANDOM_WALLPAPER\", \"cursor\": \"$CURSOR\", \"gtktheme\": \"$THEME\" }" 2>&1); then
     # Mengambil nama file saja tanpa path lengkap
     WALLPAPER_NAME=$(basename "$RANDOM_WALLPAPER")
-    dunstify -u normal -a "Theme Manager" "Theme Changed Successfully!" "Wallpaper: $WALLPAPER_NAME\nCursor: $CURSOR\nGTK: $THEME"
+    dunstify -r 999 -u normal -a "Theme Manager" "Theme Changed Successfully!" "Wallpaper: $WALLPAPER_NAME\nCursor: $CURSOR\nGTK: $THEME"
 else
-    dunstify -u critical -a "Theme Manager" "Change Theme Failed!" "$ERROR_MSG"
+    dunstify -r 999 -u critical -a "Theme Manager" "Change Theme Failed!" "$ERROR_MSG"
     printf "%s $ERROR_MSG"
     exit 1
 fi
