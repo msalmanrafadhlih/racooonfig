@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This file launch the bar/s
+for mon in $(polybar --list-monitors | cut -d":" -f1); do
+    (
+        pkill polybar
+        MONITOR=$mon polybar -q marisol -c "${HOME}"/.config/polybar-t/config.ini &
+    )
+done

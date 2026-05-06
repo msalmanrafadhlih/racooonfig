@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+bspc subscribe node_add node_focus node_state node_transfer | while read -r _; do
+  xdo raise -N Plank 2>/dev/null
+done

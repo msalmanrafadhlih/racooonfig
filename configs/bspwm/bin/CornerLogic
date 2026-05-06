@@ -1,0 +1,18 @@
+# Fungsi untuk mengecek dan memberi tanda
+update_radius() {
+    is_fullscreen=$(bspc query -N -n focused.fullscreen)
+    tiled_count=$(bspc query -N -d -n .tiled | wc -l)
+    layout=$(bspc query -T -d | jq -r '.layout')
+    focused_id=$(bspc query -N -n)
+
+    if [ "$tiled_count" -eq 1 ] || [ -n "$is_fullscreen" ] || [ "$layout" = "monocle" ]; then
+        xprop -id "$focused_id" -f _NO_ROUND 32c -set _NO_ROUND 1
+    else
+        xprop -id "$focused_id" -remove _NO_ROUND
+    fi
+}
+
+# Jalankan setiap kali ada perubahan fokus atau node di bspwm
+bspc subscribe node_focus node_manage node_unmanage desktop_layout | while read -r line; do
+    update_radius
+done
