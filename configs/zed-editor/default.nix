@@ -27,6 +27,7 @@ in
     extensions = [
       "material_icon_theme"
       "nix"
+      "slint"
       "toml"
       "elixir"
       "make"
