@@ -92,12 +92,13 @@ calc_rect() {
 
 # --- DEFINISI GEOMETRI DINAMIS ---
 # Menyesuaikan logika lamamu ke sistem dinamis yang baru
-RECT_MAIN=$(calc_rect "center" 1435 1020 0 0)
-RECT_SIDE_TALL=$(calc_rect "right" 470 1020 -5 0) # Agak ke kiri 15px dari batas kanan
-RECT_SIDE_MED=$(calc_rect "bottom-right" 470 665 -5 30)
-RECT_SIDE_SMALL=$(calc_rect "top-right" 470 350 -5 -30)
-RECT_CENTER_MED=$(calc_rect "bottom-left" 750 665 0 30) # 10px ke kanan, 10px ke atas
-RECT_CENTER_SMALL=$(calc_rect "top-left" 750 350 0 -30)
+RECT_MAIN=$(calc_rect "center" 1435 1040 0 20)
+RECT_SIDE_TALL=$(calc_rect "right" 470 1040 -10 0) # Agak ke kiri 15px dari batas kanan
+RECT_SIDE_MED=$(calc_rect "bottom-right" 470 685 -10 53)
+RECT_SIDE_SMALL=$(calc_rect "top-right" 469 325 -10 -10)
+RECT_SIDE_BIG=$(calc_rect "right" 1103 1018 -10 20)
+RECT_CENTER_MED=$(calc_rect "bottom-left" 750 685 50 53) 
+RECT_CENTER_SMALL=$(calc_rect "top-left" 750 325 50 -10)
 RECT_YAZI=$(calc_rect "center" 900 442)
 
 # --- LOGIC RULES ---
@@ -169,7 +170,7 @@ case "$class" in
         echo "state=floating rectangle=$RECT_CENTER_SMALL"
         ;;
     "St")
-        echo "state=floating sticky=off rectangle=$RECT_MAIN"
+        echo "state=floating rectangle=$RECT_MAIN"
         ;;
     "TerminalNvim")
         echo "desktop=^3 state=floating sticky=off rectangle=$RECT_MAIN"
@@ -178,7 +179,6 @@ case "$class" in
         echo "desktop=^3"
         ;;
     "YaziTerm")
-        # Contoh penggunaan auto-detect ukuran, isi 0 pada lebar dan tinggi
         echo "state=floating rectangle=$(calc_rect "center" 0 0)"
         ;;
     "qView")
@@ -218,10 +218,10 @@ case "$title" in
         echo "state=floating rectangle=$RECT_YAZI"
         ;;
     *"Thunar"*)
-        echo "state=floating rectangle=1200x750+0+0 center=on"
+        echo "state=floating rectangle=$RECT_SIDE_BIG"
         ;;
     "Bluetooth Devices")
-        echo "state=floating sticky=on rectangle=$(calc_rect "top" 550 350 0 -30)"
+        echo "state=floating sticky=on rectangle=$(calc_rect "top" 550 350 0 0)"
         ;;
     *"Zed"*"Settings"* | *"Settings"*)
         echo "state=floating center=on follow=on"
