@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-bspc config top_padding 0
-bspc config bottom_padding 50
-
-polybar-msg cmd show
-	  
