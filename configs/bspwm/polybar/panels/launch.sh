@@ -4,6 +4,7 @@ DIR="$HOME/.config/polybar"
 read -r BAR < "$DIR/panels/.bar"
 SHARED="$HOME/.config/polybar/shared"
 MAIN_CONFIG="$DIR/panels/panel/$BAR.ini"
+. "$HOME/.config/bspwm/.padding"
 
 adp=$(ls /sys/class/power_supply | grep -iE 'ac|adp|adapter' | head -n1)
 bat=$(ls /sys/class/power_supply | grep -i 'bat' | head -n1)
@@ -16,6 +17,9 @@ pkill polybar
 while pgrep -u "$UID" -x polybar >/dev/null; do
   sleep 1
 done
+
+bspc config top_padding $top
+bspc config bottom_padding $bottom
 
 chmod +x "$DIR/panels/scripts/"*.sh
 # Gabung semua file jadi satu config sementara
