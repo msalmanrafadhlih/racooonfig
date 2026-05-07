@@ -53,7 +53,8 @@ clipmenud &
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 # polybar
-LaunchPolybar --panels &
+read -r BAR < ~/.config/polybar/.mode
+LaunchPolybar --"$BAR" &
 
 # launch plank dock
 pkill plank 2>/dev/null
