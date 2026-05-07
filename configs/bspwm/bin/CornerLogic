@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Fungsi untuk mengecek dan memberi tanda
 update_radius() {
     is_fullscreen=$(bspc query -N -n focused.fullscreen)
