@@ -25,7 +25,6 @@ in
     flameshot
     imagemagick
     clipmenu
-    wallust
     pamixer
     xclip
     dunst
