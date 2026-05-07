@@ -13,8 +13,9 @@ let
 		"bspwm/bin" = "bin";
 		"bspwm/rices" = "rices";
 		"bspwm/bspwmrc" = "bspwmrc";
-		"bspwm/.term" = ".term";
-		"bspwm/.rice" = ".rice";
+		"bspwm/.term" = "var/.term";
+		"bspwm/.rice" = "var/.rice";
+		"bspwm/.padding" = "var/.padding";
   };
 in {
   xdg.configFile = mkSymlink {
