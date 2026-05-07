@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+STATE="/tmp/polybar-hidden"
+PADDING="$HOME/.config/bspwm/.padding"
+
+pgrep -f polybar >/dev/null || exit 0
+
+if [[ -f "$STATE" ]]; then
+
+    . "$PADDING"
+    polybar-msg cmd show >/dev/null 2>&1
+
+    bspc config top_padding "$top"
+    bspc config bottom_padding "$bottom"
+
+    rm -f "$STATE"
+else
+    polybar-msg cmd hide >/dev/null 2>&1
+
+    bspc config top_padding 0
+    bspc config bottom_padding 0
+
+    touch "$STATE"
+fi
