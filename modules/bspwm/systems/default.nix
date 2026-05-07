@@ -39,7 +39,7 @@
       # SDDM
       sddm = {
         enable = true;
-        theme = "clockwork";
+        theme = "orbital";
         setupScript = ''
           ${pkgs.xrdb}/bin/xrdb -merge - <<EOF
           Xcursor.theme: Skyrim-by-ru5tyshark-cursors
