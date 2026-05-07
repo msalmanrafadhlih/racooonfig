@@ -1,70 +1,70 @@
 * {
-    background: #0e1415; /* #1e100f */
-    background-alt: #001f24; /* #410004 */
-    background-window: #0e1212dd; /* #15100f + dd */
-    background-selected: #008391df; /* #ed0928 + df */
+    background: #0f1416; /* #1e100f */
+    background-alt: #001f27; /* #410004 */
+    background-window: #0e1113dd; /* #15100f + dd */
+    background-selected: #00829ddf; /* #ed0928 + df */
     background-normal: #00000000; /* Tetap transparan (tidak ada di palet) */
-    background-transparent: #00839120; /* #ed0928 + 20 */
-    background-gradient-active: linear-gradient(to left, #00a0b0, transparent);
-    background-gradient-selected: linear-gradient(to right, #006874, transparent);
+    background-transparent: #00829d20; /* #ed0928 + 20 */
+    background-gradient-active: linear-gradient(to left, #009ebe, transparent);
+    background-gradient-selected: linear-gradient(to right, #00677d, transparent);
 
-    foreground: #82d3e0; /* #ffecea */
-    foreground-selected: #dee3e5; /* #ffffff */
-    foreground-normal: #0e1212; /* #15100f */
+    foreground: #86d1ea; /* #ffecea */
+    foreground-selected: #dee3e6; /* #ffffff */
+    foreground-normal: #0e1113; /* #15100f */
 
-    transparent: #0e1415c0; /* #1e100f + c0 */
-    selected: #00a0b0; /* #ff5451 */
-    active: #006874; /* #c0001c */
+    transparent: #0f1416c0; /* #1e100f + c0 */
+    selected: #009ebe; /* #ff5451 */
+    active: #00677d; /* #c0001c */
     urgent: #ff5449; /* #ff5449 */
 
-    primary: #82d3e0;
-    primary-fixed: #9eeffd;
-    primary-fixed-dim: #82d3e0;
-    on-primary: #00363d;
-    on-primary-fixed: #001f24;
-    on-primary-fixed-variant: #004f58;
-    primary-container: #004f58;
-    on-primary-container: #9eeffd;
-    secondary: #b1cbd0;
-    secondary-fixed: #cde7ec;
-    secondary-fixed-dim: #b1cbd0;
-    on-secondary: #1c3438;
-    on-secondary-fixed: #051f23;
-    on-secondary-fixed-variant: #334b4f;
-    secondary-container: #334b4f;
-    on-secondary-container: #cde7ec;
-    tertiary: #bac6ea;
-    tertiary-fixed: #dae2ff;
-    tertiary-fixed-dim: #bac6ea;
-    on-tertiary: #24304d;
-    on-tertiary-fixed: #0e1b37;
-    on-tertiary-fixed-variant: #3b4664;
-    tertiary-container: #3b4664;
-    on-tertiary-container: #dae2ff;
+    primary: #86d1ea;
+    primary-fixed: #b3ebff;
+    primary-fixed-dim: #86d1ea;
+    on-primary: #003642;
+    on-primary-fixed: #001f27;
+    on-primary-fixed-variant: #004e5f;
+    primary-container: #004e5f;
+    on-primary-container: #b3ebff;
+    secondary: #b3cad4;
+    secondary-fixed: #cee6f0;
+    secondary-fixed-dim: #b3cad4;
+    on-secondary: #1d333b;
+    on-secondary-fixed: #061e25;
+    on-secondary-fixed-variant: #344a52;
+    secondary-container: #344a52;
+    on-secondary-container: #cee6f0;
+    tertiary: #c1c4eb;
+    tertiary-fixed: #dfe0ff;
+    tertiary-fixed-dim: #c1c4eb;
+    on-tertiary: #2b2e4d;
+    on-tertiary-fixed: #151937;
+    on-tertiary-fixed-variant: #414465;
+    tertiary-container: #414465;
+    on-tertiary-container: #dfe0ff;
     error: #ffb4ab;
     on-error: #690005;
     error-container: #93000a;
     on-error-container: #ffdad6;
-    surface: #0e1415;
-    on-surface: #dee3e5;
-    on-surface-variant: #bfc8ca;
-    outline: #899294;
-    outline-variant: #3f484a;
+    surface: #0f1416;
+    on-surface: #dee3e6;
+    on-surface-variant: #bfc8cc;
+    outline: #899296;
+    outline-variant: #40484b;
     shadow: #000000;
     scrim: #000000;
-    inverse-surface: #dee3e5;
-    inverse-on-surface: #2b3133;
-    inverse-primary: #006874;
-    surface-dim: #0e1415;
-    surface-bright: #343a3b;
-    surface-container-lowest: #090f10;
-    surface-container-low: #171d1e;
-    surface-container: #1b2122;
-    surface-container-high: #252b2c;
-    surface-container-highest: #303637;
+    inverse-surface: #dee3e6;
+    inverse-on-surface: #2c3133;
+    inverse-primary: #02677d;
+    surface-dim: #0f1416;
+    surface-bright: #343a3c;
+    surface-container-lowest: #0a0f11;
+    surface-container-low: #171c1f;
+    surface-container: #1b2023;
+    surface-container-high: #252b2d;
+    surface-container-highest: #303638;
 
     font: "JetBrains Mono Nerd Font 10";
-    image: url("/home/tquilla/Pictures/Wallpaper/black/wallpaper1.jpg", width);
+    image: url("/home/tquilla/Pictures/Wallpaper/grey/wallpaper3.png", width);
 
     /* background: #1a0a0aff; */
     /* background-alt: #331111ff; */
