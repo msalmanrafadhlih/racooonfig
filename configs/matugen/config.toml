@@ -37,8 +37,8 @@ post_hook = "xrdb -merge ~/.Xresources && killall -USR1 $(Term --term)"
 
 [templates.wallpaper]
 input_path = "templates/setwall"
-output_path = "~/.fehbg"
-post_hook = "~/.fehbg &"
+output_path = "~/.local/bin/wall"
+post_hook = "wall"
 
 [templates.kvantum]
 input_path = "templates/kvantum-colors.kvconfig"
@@ -63,6 +63,10 @@ output_path = "~/.config/spicetify.css"
 [templates.kitty]
 input_path = "templates/kitty-colors.conf"
 output_path = "~/.config/kitty/themes/racooonfig.conf"
+
+[templates.zed-pywal]
+input_path = "~/.cache/wal/colors-zed.json"
+output_path = "~/.config/zed/themes/pywal.json"
 
 [templates.zed-dark]
 input_path = "templates/zed-colors.json"
