@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+DIR="$HOME/.config/polybar"
+VAR_FILE="$DIR/pwidgets/.var"
+TMP_CONFIG="/tmp/pwidgets_${UID}.ini"
+MODULES="$DIR/pwidgets/modules"
+SHARED="$DIR/shared"
+
+mkdir -p "$(dirname "$VAR_FILE")"
+find "$DIR/pwidgets/scripts" -type f -exec chmod +x {} + 2>/dev/null
+
+change_widgets() {
+    local widget="$1"
+    
+    echo "widgets=$widget" > "$VAR_FILE"
+
+    if [[ "$widget" == "0" ]]; then
+        if [[ -f "$TMP_CONFIG" ]]; then
+            pkill -f "$TMP_CONFIG" || true
+            rm -f "$TMP_CONFIG"
+
+            dunstify -r 999 -t 5000 -i "$DIR/pwidgets/Icons/polybar.png" -u low \
+                "Widgets Removed" "Widget has been stopped."
+        else
+            dunstify -r 999 -t 5000 -i "$DIR/pwidgets/Icons/polybar.png" -u low \
+                "Widgets" "No active widgets to remove."
+        fi
+        return 0
+    else
+        MAIN_CONFIG="$DIR/pwidgets/widgets/$widget.ini"
+    
+        if [[ ! -f "$MAIN_CONFIG" ]]; then
+            echo "Error: Config $widget.ini tidak ditemukan!"
+            exit 1
+        fi
+
+        # Gabungkan config
+        cat "$SHARED"/* "$MODULES"/* "$MAIN_CONFIG" > "$TMP_CONFIG"
+
+        # Ambil nama bar
+        bars=$(grep '^\[bar/' "$MAIN_CONFIG" | sed 's/^\[bar\///; s/\]$//' | tr '\n' ' ')
+
+        dunstify -r 999 -t 5000 -i "$DIR/pwidgets/Icons/polybar.png" -u low \
+            "Widgets Started" "Bars: $bars\nStyle: $widget"
+
+        LaunchPolybar --widgets & 
+    fi
+}
+
+case "${1:-}" in
+    --main)   change_widgets "main" ;;
+    --apps)   change_widgets "apps" ;;
+    --system) change_widgets "system" ;;
+    --mpd)    change_widgets "mpd" ;;
+    --ws)     change_widgets "workspace" ;;
+    --cpu)    change_widgets "cpu" ;;
+    --memory) change_widgets "memory" ;;
+    --fs)     change_widgets "fs" ;;
+    --)       change_widgets "0" ;;
+    *)
+        echo -e "Usage: \n|    --main\n|    --apps\n|    --system\n|    --mpd\n|    --ws\n|    --cpu\n|    --memory\n|    --fs\n|    --"
+        exit 1
+        ;;
+esac

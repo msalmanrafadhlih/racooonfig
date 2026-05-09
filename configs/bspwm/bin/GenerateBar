@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# Tetap gunakan ini untuk keamanan
+set -euo pipefail
+
+dir="$HOME/.config/polybar"
+
+# Fungsi Helper
+usage() {
+	cat <<- EOF
+	Usage : launch.sh --theme [preview]		
+
+	Available Themes :
+	--blocks    --colorblocks    --cuts      --docky
+	--forest    --grayblocks     --hack      --material
+	--panels    --pwidgets       --shades    --shapes
+	EOF
+	exit 1
+}
+
+# Cek apakah ada argumen
+if [[ $# -eq 0 ]]; then usage; fi
+
+# Ambil nama style (menghapus '--' di depan argumen $1)
+# Contoh: --material menjadi material
+style="${1#--}"
+preview=0
+
+# Cek apakah argumen kedua adalah preview
+if [[ "${2:-}" == "preview" ]]; then
+    preview=1
+fi
+
+# Cek apakah direktori tema tersebut ada
+if [[ ! -d "$dir/$style" ]]; then
+    echo "Error: Theme '$style' tidak ditemukan di $dir"
+    usage
+fi
+
+# 1. Simpan cache
+echo "$style" > "$dir/.bar"
+
+# 2. Matikan polybar yang lama
+pkill polybar || true
+while pgrep -u "$UID" -x polybar >/dev/null; do sleep 1; done
+
+# 3. Jalankan bar
+if [[ "$preview" -eq 1 ]]; then
+    echo "Launching $style in PREVIEW mode..."
+    "$dir/$style/preview.sh" &
+else
+    echo "Launching $style..."
+    "$dir/$style/launch.sh" &
+fi
