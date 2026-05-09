@@ -1,51 +1,54 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 DIR="$HOME/.config/polybar"
-read -r BAR < "$DIR/panels/.bar"
-SHARED="$HOME/.config/polybar/shared"
-MAIN_CONFIG="$DIR/panels/panel/$BAR.ini"
-. "$HOME/.config/bspwm/.padding"
 
-adp=$(ls /sys/class/power_supply | grep -iE 'ac|adp|adapter' | head -n1)
-bat=$(ls /sys/class/power_supply | grep -i 'bat' | head -n1)
-card=$(ls /sys/class/backlight | head -n1)
-net=$(ip -o -4 route show to default | awk '{print $5}' | head -n1)
+VAR_FILE="$DIR/panels/.var"
+TMP_CONFIG="/tmp/polybar_${UID}.ini"
 
-# Kill polybar lama
-pkill polybar
+SHARED="$DIR/shared"
 
-while pgrep -u "$UID" -x polybar >/dev/null; do
-  sleep 1
-done
+# Load variables
+# Example:
+# top=0
+# bottom=50
+# mode=blocks
+source "$VAR_FILE"
 
-bspc config top_padding $top
-bspc config bottom_padding $bottom
+MAIN_CONFIG="$DIR"/panels/panel/"$mode".ini
+# Apply bspwm padding
+bspc config top_padding "${top:-0}"
+bspc config bottom_padding "${bottom:-0}"
 
-chmod +x "$DIR/panels/scripts/"*.sh
-# Gabung semua file jadi satu config sementara
-cat $SHARED/* "$MAIN_CONFIG"  > /tmp/polybar_full_config.ini
+# Make all scripts executable
+find "$DIR/panels/scripts" -type f -exec chmod +x {} +
 
-# Ambil semua bar dari config (kompatibel semua versi polybar)
-bars=$(grep '^\[bar/' "$MAIN_CONFIG" | grep -v '^;' | sed 's/^\[bar\///; s/\]$//')
+# Generate merged polybar config
+cat \
+  "$SHARED"/* \
+  "$MAIN_CONFIG" \
+  > "$TMP_CONFIG"
 
-# Launch per monitor + per bar
-while read -r mon; do
-  for bar in $bars; do
-    MONITOR="$mon" \
-    ADAPTER="$adp" \
-    BATTERY="$bat" \
-    BACKLIGHT="$card" \
-    NETWORK="$net" \
-    polybar -q "$bar" -c /tmp/polybar_full_config.ini &
-  done
-done < <(polybar --list-monitors | cut -d: -f1)
+# Get all bar names
+bars=$(
+  grep -v '^;' "$MAIN_CONFIG" \
+    | grep '^\[bar/' \
+    | sed 's/^\[bar\///; s/\]$//'
+)
 
-dunstify -r 999 -t 5000 -i "$HOME/.config/Assets/Icons/Neovim.png" -u low \
+# Notification
+dunstify \
+  -r 999 \
+  -t 5000 \
+  -i "$DIR/panels/Icons/polybar.png" \
+  -u low \
   "Polybar Started" \
   "Bars: $bars
-Style: $BAR
+Style: ${mode:-unknown}
 
-ADAPTER: $adp
-BATTERY: $bat
-BACKLIGHT: $card
-NETWORK: $net"
+Top Padding: ${top:-0}
+Bottom Padding: ${bottom:-0}"
+
+# Launch polybar
+LaunchPolybar &
