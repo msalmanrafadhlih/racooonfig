@@ -2,8 +2,9 @@
 
 set -euo pipefail
 
+read -r BAR < "$HOME/.config/polybar/.bar"
+PADDING="$HOME/.config/polybar/$BAR/.var"
 STATE="/tmp/polybar-hidden"
-PADDING="$HOME/.config/bspwm/.padding"
 
 pgrep -f polybar >/dev/null || exit 0
 
