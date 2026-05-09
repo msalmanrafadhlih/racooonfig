@@ -92,13 +92,15 @@ calc_rect() {
 
 # --- DEFINISI GEOMETRI DINAMIS ---
 # Menyesuaikan logika lamamu ke sistem dinamis yang baru
-RECT_MAIN=$(calc_rect "center" 1435 1040 0 20)
-RECT_SIDE_TALL=$(calc_rect "right" 470 1040 -10 0) # Agak ke kiri 15px dari batas kanan
-RECT_SIDE_MED=$(calc_rect "bottom-right" 470 685 -10 53)
-RECT_SIDE_SMALL=$(calc_rect "top-right" 469 325 -10 -10)
-RECT_SIDE_BIG=$(calc_rect "right" 1103 1018 -10 20)
-RECT_CENTER_MED=$(calc_rect "bottom-left" 750 685 50 53) 
-RECT_CENTER_SMALL=$(calc_rect "top-left" 750 325 50 -10)
+MAIN=$(calc_rect "center" 1421 994 0 5)
+TALL=$(calc_rect "right" 470 987 -10 5) # Agak ke kiri 15px dari batas kanan
+CHAT_AI=$(calc_rect "bottom-right" 470 659 -10 53)
+TERMINAL_PINNED=$(calc_rect "top-right" 470 325 -10 -35)
+TERMINAL_DEFAULT=$(calc_rect "bottom-left" 750 655 50 53) 
+RMPC=$(calc_rect "top-left" 750 327 50 -35)
+THUNAR=$(calc_rect "right" 1102 989 -10 5)
+EVINCE=$(calc_rect "left" 746 996 50 5)
+CENTER_PINNED=$(calc_rect "top" 550 350 0 -35)
 RECT_YAZI=$(calc_rect "center" 900 442)
 
 # --- LOGIC RULES ---
@@ -106,10 +108,11 @@ case "$class" in
     "Code" | "code-oss")
         case "$title" in
             *"Chat"* | *"Visual"*)
-                echo "state=floating rectangle=$RECT_SIDE_TALL"
+                echo "state=floating rectangle=$TALL
+            "
                 ;;
             *".Chromium")
-                echo "state=floating rectangle=$RECT_MAIN"
+                echo "state=floating rectangle=$MAIN"
                 ;;
         esac
         ;;
@@ -132,18 +135,18 @@ case "$class" in
     "ChatAi" | "GeminiAi" | "ClaudeAi" | "youtube" | "reddit")
         case "$instance" in
             *"youtube.com"* | *"reddit.com"*)
-                echo "desktop=^4 state=floating sticky=off rectangle=$RECT_MAIN"
+                echo "desktop=^4 state=floating sticky=off rectangle=$MAIN"
                 ;;
             *"gemini.google.com"* | *"claude.ai"* | *"chat.openai.com"*)
-                echo "state=floating rectangle=$RECT_SIDE_MED"
+                echo "state=floating rectangle=$CHAT_AI"
                 ;;
             *)
                 case "$title" in
                     *"ChatGPT"* | *"Claude"*)
-                        echo "state=floating rectangle=$RECT_SIDE_MED"
+                        echo "state=floating rectangle=$CHAT_AI"
                         ;;
                     *"YouTube"* | *"reddit"*)
-                        echo "desktop=^3 state=floating sticky=off rectangle=$RECT_MAIN"
+                        echo "desktop=^3 state=floating sticky=off rectangle=$MAIN"
                         ;;
                 esac
                 ;;
@@ -152,7 +155,7 @@ case "$class" in
 
     *)
         if [[ "$title" == *"rmpc"* ]]; then
-            echo "state=floating rectangle=$RECT_CENTER_SMALL"
+            echo "state=floating rectangle=$RMPC"
             exit 0
         fi
         ;;
@@ -161,26 +164,26 @@ esac
 # Rules murni berdasarkan Class
 case "$class" in
     "TerminalDefault")
-        echo "state=floating sticky=off rectangle=$RECT_CENTER_MED"
+        echo "state=floating sticky=off rectangle=$TERMINAL_DEFAULT"
         ;;
     "TerminalPinned")
-        echo "state=floating sticky=on rectangle=$RECT_SIDE_SMALL"
+        echo "state=floating sticky=on rectangle=$TERMINAL_PINNED"
         ;;
     "floating_rmpc")
-        echo "state=floating rectangle=$RECT_CENTER_SMALL"
+        echo "state=floating rectangle=$RMPC"
         ;;
     "St")
-        echo "state=floating rectangle=$RECT_MAIN"
+        echo "state=floating rectangle=$MAIN"
         ;;
     "TerminalNvim")
-        echo "desktop=^3 state=floating sticky=off rectangle=$RECT_MAIN"
+        echo "desktop=^3 state=floating sticky=off rectangle=$MAIN"
         ;;
     "dev.zed.Zed")
         echo "desktop=^3"
         ;;
     "YaziTerm")
         echo "state=floating rectangle=$(calc_rect "center" 0 0)"
-        ;;
+    TALL   ;;
     "qView")
         echo "state=floating rectangle=$(calc_rect "center" 0 0) sticky=off"
         ;;
@@ -203,10 +206,10 @@ case "$class" in
         echo "state=floating center=on"
         ;;
     "Evince")
-        echo "state=floating rectangle=$(calc_rect "top-right" 858 926 -21 21)"
+        echo "state=floating rectangle=$EVINCE"
         ;;
     "XTerm")
-        echo "state=floating sticky=off rectangle=$RECT_CENTER_MED"
+        echo "state=floating sticky=off rectangle=$TERMINAL_DEFAULT"
         ;;
     "Dconf-editor")
         echo "state=floating"
@@ -218,10 +221,10 @@ case "$title" in
         echo "state=floating rectangle=$RECT_YAZI"
         ;;
     *"Thunar"*)
-        echo "state=floating rectangle=$RECT_SIDE_BIG"
+        echo "state=floating desktop=^1 follow=on rectangle=$THUNAR"
         ;;
     "Bluetooth Devices")
-        echo "state=floating sticky=on rectangle=$(calc_rect "top" 550 350 0 0)"
+        echo "state=floating sticky=on rectangle=$CENTER_PINNED"
         ;;
     *"Zed"*"Settings"* | *"Settings"*)
         echo "state=floating center=on follow=on"
