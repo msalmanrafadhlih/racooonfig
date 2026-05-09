@@ -4,10 +4,9 @@ DIR="$HOME/.config/polybar/panels"
 
 change_panel() {
 	# replace config with selected panel
-	echo "$panel" > "$DIR"/.bar
-
-	sed -i "s/^top=.*/top=$top/" "$HOME/.config/bspwm/.padding"
-	sed -i "s/^bottom=.*/bottom=$btm/" "$HOME/.config/bspwm/.padding"
+	sed -i "s/^mode=.*/mode=$panel/" "$DIR/.var"
+	sed -i "s/^top=.*/top=$top/" "$DIR/.var"
+	sed -i "s/^bottom=.*/bottom=$btm/" "$DIR/.var"
 
 	# Change wallpaper
 	feh --bg-fill "$DIR"/wallpapers/"$bg"
@@ -104,7 +103,7 @@ elif  [[ "$1" = "--zorin" ]]; then
 	panel="zorin"
 	bg="zorin.png"
 	top=0
-	btm=50
+	btm=45
 	change_panel
 
 else
