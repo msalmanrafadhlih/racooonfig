@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Color files
-PFILE="$HOME/.config/polybar/grayblocks/colors.ini"
+PFILE="/tmp/polybar_${UID}.ini"
 RFILE="$HOME/.config/polybar/grayblocks/scripts/rofi/colors.rasi"
 WFILE="$HOME/.cache/wal/colors.sh"
 
