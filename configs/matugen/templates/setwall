@@ -3,4 +3,8 @@
 # "$HOME/.config/polybar/material/scripts/pywal.sh" {{ image }} &
 # /run/current-system/sw/bin/feh --no-fehbg --bg-fill '{{ image }}' 
 
-wal -i {{ image }} -q -e -a 0
+feh --bg-fill {{ image }} && \
+wal -i {{ image }} -q -e -n -s -a 0 &
+
+sleep 0.5
+WallSync &
