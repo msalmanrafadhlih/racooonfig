@@ -1,31 +1,10 @@
+#include ".cache/wal/colors.Xresources"
+
 *.faceName: JetBrainsMono Nerd Font
 *.faceSize: 10
 *.renderFont: true
-*background: {{colors.background.default.hex}}
-*foreground: {{colors.error.default.hex}}
+
 *cursorColor: {{base16.base05.default.hex}}
-*color0: {{base16.base00.default.hex}}
-*color1: {{base16.base08.default.hex}}
-*color2: {{base16.base0b.default.hex}}
-*color3: {{base16.base0a.default.hex}}
-*color4: {{base16.base0d.default.hex}}
-*color5: {{base16.base0e.default.hex}}
-*color6: {{base16.base0c.default.hex}}
-*color7: {{base16.base05.default.hex}}
-*color8: {{base16.base02.default.hex}}
-*color9: {{base16.base08.default.hex}}
-*color10: {{base16.base0b.default.hex}}
-*color11: {{base16.base01.default.hex}}
-*color12: {{base16.base0d.default.hex}}
-*color13: {{base16.base0e.default.hex}}
-*color14: {{base16.base0c.default.hex}}
-*color15: {{base16.base07.default.hex}}
-*color16: {{base16.base09.default.hex}}
-*color17: {{base16.base0f.default.hex}}
-*color18: {{base16.base01.default.hex}}
-*color19: {{base16.base02.default.hex}}
-*color20: {{base16.base04.default.hex}}
-*color21: {{base16.base06.default.hex}}
 
 Sxiv.background: {{colors.background.default.hex}}
 Sxiv.foreground: {{colors.error.default.hex}}
