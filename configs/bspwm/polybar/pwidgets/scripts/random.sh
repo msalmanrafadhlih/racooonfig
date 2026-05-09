@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Color files
-PFILE="$HOME/.config/polybar/pwidgets/colors.ini"
+PFILE="/tmp/polybar_${UID}.ini"
 RFILE="$HOME/.config/polybar/pwidgets/scripts/rofi/colors.rasi"
 
 # Change colors
