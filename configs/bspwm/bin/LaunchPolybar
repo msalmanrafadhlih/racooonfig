@@ -1,90 +1,83 @@
 #!/usr/bin/env bash
 
-dir="$HOME/.config/polybar"
-themes=(`ls --hide="launch.sh" $dir`)
+set -euo pipefail
 
-cache_it() {
-	echo "$style" > "$dir/.mode"
-}
+TMP_CONFIG="/tmp/polybar_${UID}.ini"
+TMP_WIDGETS="/tmp/pwidgets_${UID}.ini"
+DIR_CONFIG="$HOME/.config/polybar"
 
-launch_bar() {
-	# Terminate already running bar instances
-	pkill polybar
+# 1. Regenerasi config jika hilang
+if [[ ! -f "$TMP_CONFIG" ]]; then
+    [ -f "$DIR_CONFIG/.mode" ] && read -r BAR < "$DIR_CONFIG/.mode" || BAR=panels
+    [ -f "$DIR_CONFIG/pwidgets/.var" ] && source "$DIR_CONFIG/pwidgets/.var" || widgets=""
 
-	# Wait until the processes have been shut down
-	while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-
-	# Launch the bar
-	"$dir/$style/launch.sh" &	
-}
-
-if [[ "$1" == "--material" ]]; then
-	style="material"
-	cache_it
-	launch_bar
-
-elif [[ "$1" == "--shades" ]]; then
-	style="shades"
-	cache_it
-	launch_bar
-
-elif [[ "$1" == "--hack" ]]; then
-	style="hack"
-	cache_it
-	launch_bar
-
-elif [[ "$1" == "--docky" ]]; then
-	style="docky"
-	cache_it
-	launch_bar
-
-elif [[ "$1" == "--cuts" ]]; then
-	style="cuts"
-	cache_it
-	launch_bar
-
-elif [[ "$1" == "--shapes" ]]; then
-	style="shapes"
-	cache_it
-	launch_bar
-
-elif [[ "$1" == "--grayblocks" ]]; then
-	style="grayblocks"
-	cache_it
-	launch_bar
-
-elif [[ "$1" == "--blocks" ]]; then
-	style="blocks"
-	cache_it
-	launch_bar
-
-elif [[ "$1" == "--colorblocks" ]]; then
-	style="colorblocks"
-	cache_it
-	launch_bar
-
-elif [[ "$1" == "--forest" ]]; then
-	style="forest"
-	cache_it
-	launch_bar
-
-elif [[ "$1" == "--pwidgets" ]]; then
-	style="pwidgets"
-	cache_it
-	launch_bar
-
-elif [[ "$1" == "--panels" ]]; then
-	style="panels"
-	cache_it
-	launch_bar
-
-else
-	cat <<- EOF
-	Usage : launch.sh --theme
-		
-	Available Themes :
-	--blocks    --colorblocks    --cuts      --docky
-	--forest    --grayblocks     --hack      --material
-	--panels    --pwidgets       --shades    --shapes
-	EOF
+    GenerateWidget --"$widgets"
+    GeneratePolybar --"$BAR" 
+    exit 0
 fi
+
+# 2. Deteksi Hardware
+adp=$(find /sys/class/power_supply -maxdepth 1 -type l -name "A*" -exec basename {} \; | head -n1 || echo "AC")
+bat=$(find /sys/class/power_supply -maxdepth 1 -type l -name "BAT*" -exec basename {} \; | head -n1 || echo "BAT0")
+card=$(find /sys/class/backlight -maxdepth 1 -type l -exec basename {} \; | head -n1 || echo "")
+net=$(ip -o -4 route show to default | awk '{print $5}' | head -n1 || echo "eth0")
+
+# Deteksi Suhu (Variabel diperbaiki jadi 'temp')
+temp=$(for i in /sys/class/hwmon/hwmon*/temp*_input; do
+    if [ "$(<$(dirname "$i")/name)" = "coretemp" ] && [ "$(<${i%_*}_label)" = "Package id 0" ]; then
+        echo "$i"
+        exit 0
+    fi
+done || echo "")
+
+# 3. Ambil List Bar dan Widget
+bars=$(grep '^\[bar/' "$TMP_CONFIG" 2> /dev/null | sed 's/^\[bar\///; s/\]$//' || echo "")
+widgets=$(grep '^\[bar/' "$TMP_WIDGETS" 2> /dev/null | sed 's/^\[bar\///; s/\]$//' || echo "")
+
+# 4. Bersihkan proses lama
+pkill polybar || true
+while pgrep -u "$UID" -x polybar > /dev/null; do sleep 0.5; done
+
+# 5. Fungsi Launch (Variabel 'mon' dipassing sebagai argumen agar lebih bersih)
+launch_polybar() {
+    local target_bar=$1
+    local config_file=$2
+    local monitor_name=$3
+
+    MONITOR="$monitor_name" \
+    ADAPTER="$adp" \
+    BATTERY="$bat" \
+    BACKLIGHT="$card" \
+    TEMPERATURE="$temp" \
+    NETWORK="$net" \
+    polybar -q "$target_bar" -c "$config_file" &
+}
+
+# 6. Logika Case untuk menentukan apa yang diluncurkan
+case "${1:-}" in
+    --polybar)
+        TARGET_B=$bars
+        TARGET_W=""
+        ;;
+    --widgets)
+        TARGET_B=""
+        TARGET_W=$widgets
+        ;;
+    *)
+        TARGET_B=$bars
+        TARGET_W=$widgets
+        ;;
+esac
+
+# 7. Eksekusi Launching (Satu loop untuk semua kondisi)
+while read -r mon; do
+    # Jalankan Panels
+    for b in $TARGET_B; do
+        launch_polybar "$b" "$TMP_CONFIG" "$mon"
+    done
+
+    # Jalankan Widgets
+    for w in $TARGET_W; do
+        launch_polybar "$w" "$TMP_WIDGETS" "$mon"
+    done
+done < <(polybar --list-monitors | cut -d: -f1)
