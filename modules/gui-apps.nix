@@ -9,24 +9,29 @@
   home.packages = with pkgs; [
     ungoogled-chromium
     vivaldi
-    # gimp
-    timg
-    zoom
-    libreoffice
-    evince # Document Viewer
     xarchiver
     gparted # Manage Disk Partition
     vesktop
     ulauncher
+    pavucontrol
     # font-manager
     # picard
-    # godot
     # protonvpn-gui
     # qbittorrent
+
+    # Editor # Productivity
+    zoom
+    libreoffice
+    evince # Document Viewer
+    audacity
+    # gimp
+    # godot
+    # kdePackages.kdenlive
 
     # CLI TOOLS
     ani-cli # butuh mpv(GUI) untuk streaming
     go-grip # Markdown Preview via http server: butuh browser
+    timg
 
     # UTILS
     ffmpeg-full # absolutely need GUI
