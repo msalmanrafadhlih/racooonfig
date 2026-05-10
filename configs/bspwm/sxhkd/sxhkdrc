@@ -77,7 +77,7 @@ super + z
 # =============================================== UTILITIES
 # ---------------------------------------------------------  Hide/Show Polibar
 super + alt + p
-	toggle-polybar
+	PolybarLogics --toggle
 # ---------------------------------------------------------  Btop++
 super + alt + b
     open --btop
