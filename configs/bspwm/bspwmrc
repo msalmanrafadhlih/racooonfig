@@ -55,11 +55,6 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 # polybar
 LaunchPolybar &
 
-# launch plank dock
-pkill plank 2>/dev/null
-plank &
-Dock &
-
 # wallpaper
 ~/.fehbg &
 
