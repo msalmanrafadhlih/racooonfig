@@ -1,3 +1,0 @@
-#!/bin/sh
-
-xprop -id $(xdotool getactivewindow) WM_NAME | cut -d '"' -f 2
