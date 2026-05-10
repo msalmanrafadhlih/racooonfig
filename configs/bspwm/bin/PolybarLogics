@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Hapus -e agar script tidak mati saat query kosong
+set -uo pipefail
+
+read -r BAR < "$HOME/.config/polybar/.bar"
+PADDING="$HOME/.config/polybar/$BAR/.var"
+STATE="/tmp/polybar-hidden"
+
+pgrep -f polybar >/dev/null || exit 0
+[ -f "$PADDING" ] && . "$PADDING"
+
+hide() {
+    polybar-msg cmd hide >/dev/null 2>&1
+    sleep 0.3
+    bspc config top_padding 0
+    sleep 0.3
+    bspc config bottom_padding 0
+}
+
+show() {
+    polybar-msg cmd show >/dev/null 2>&1
+    sleep 0.3
+    bspc config top_padding "${top:-0}"
+    sleep 0.3
+    bspc config bottom_padding "${bottom:-0}"
+}
+
+case "$1" in
+    --toggle)
+        if [[ -f "$STATE" ]]; then
+            show
+            rm -f "$STATE"
+        else
+            hide
+            touch "$STATE"
+        fi
+    ;;
+esac
