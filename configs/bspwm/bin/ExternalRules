@@ -226,7 +226,7 @@ case "$title" in
     "Bluetooth Devices")
         echo "state=floating sticky=on rectangle=$CENTER_PINNED"
         ;;
-    *"Zed"*"Settings"* | *"Settings"*)
+    *"Zed"*"Settings"* | *"Settings"* | *"Preferences"*)
         echo "state=floating center=on follow=on"
         ;;
 esac
