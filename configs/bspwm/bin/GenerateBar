@@ -13,7 +13,7 @@ usage() {
 	Available Themes :
 	--blocks    --colorblocks    --cuts      --docky
 	--forest    --grayblocks     --hack      --material
-	--panels    --pwidgets       --shades    --shapes
+	--panels    --shades         --shapes
 	EOF
 	exit 1
 }
