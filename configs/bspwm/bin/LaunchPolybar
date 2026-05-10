@@ -6,11 +6,13 @@ TMP_CONFIG="/tmp/polybar_${UID}.ini"
 TMP_WIDGETS="/tmp/pwidgets_${UID}.ini"
 DIR_CONFIG="$HOME/.config/polybar"
 
+[ -f "$DIR_CONFIG/.bar" ] && read -r BAR < "$DIR_CONFIG/.bar" || BAR=panels
+[ -f "$DIR_CONFIG/pwidgets/.var" ] && source "$DIR_CONFIG/pwidgets/.var" || widgets=""
+
+[ -f "$DIR_CONFIG/$BAR/.var" ] && . "$DIR_CONFIG/$BAR/.var" 
+
 # 1. Regenerasi config jika hilang
 if [[ ! -f "$TMP_CONFIG" ]]; then
-    [ -f "$DIR_CONFIG/.mode" ] && read -r BAR < "$DIR_CONFIG/.mode" || BAR=panels
-    [ -f "$DIR_CONFIG/pwidgets/.var" ] && source "$DIR_CONFIG/pwidgets/.var" || widgets=""
-
     GenerateWidget --"$widgets"
     GeneratePolybar --"$BAR" 
     exit 0
@@ -38,7 +40,7 @@ widgets=$(grep '^\[bar/' "$TMP_WIDGETS" 2> /dev/null | sed 's/^\[bar\///; s/\]$/
 pkill polybar || true
 while pgrep -u "$UID" -x polybar > /dev/null; do sleep 0.5; done
 
-# 5. Fungsi Launch (Variabel 'mon' dipassing sebagai argumen agar lebih bersih)
+# Fungsi Launch (Variabel 'mon' dipassing sebagai argumen agar lebih bersih)
 launch_polybar() {
     local target_bar=$1
     local config_file=$2
@@ -53,7 +55,15 @@ launch_polybar() {
     polybar -q "$target_bar" -c "$config_file" &
 }
 
-# 6. Logika Case untuk menentukan apa yang diluncurkan
+# launch plank dock
+launch_plank() {
+    pkill plank || true
+    while pgrep -u "$UID" -x plank > /dev/null; do sleep 0.5; done
+    plank -n "$BAR"-"${mode:-Default}" &
+    Dock &
+}
+
+# Logika Case untuk menentukan apa yang diluncurkan
 case "${1:-}" in
     --polybar)
         TARGET_B=$bars
@@ -81,3 +91,5 @@ while read -r mon; do
         launch_polybar "$w" "$TMP_WIDGETS" "$mon"
     done
 done < <(polybar --list-monitors | cut -d: -f1)
+
+launch_plank
