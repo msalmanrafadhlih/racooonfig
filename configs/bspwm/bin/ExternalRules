@@ -116,9 +116,9 @@ case "$class" in
                 ;;
         esac
         ;;
-    "Plank")
+    "Plank" | "Vivaldi-stable")
         case "$title" in
-            *"Notification"* | "Calendar")
+            *"Notification"* | *"Calendar"* | *"Settings"*)
                 echo "state=floating"
                 ;;
         esac
