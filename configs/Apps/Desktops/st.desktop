@@ -2,7 +2,7 @@
 Type=Application
 Name=st - suckless terminal
 Comment=simple-terminal emulator for X
-Icon=~/.config/Assets/Icons/simple_terminal.png
+Icon=/home/tquilla/.config/Assets/Icons/terminal.png
 Exec=kdocker -f -q st -c TerminalDefault
 Categories=System;TerminalEmulator
 Path=
