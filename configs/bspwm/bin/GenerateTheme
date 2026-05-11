@@ -1,57 +1,77 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -euo pipefail
 
-# Membaca Current Rice
-read -r RICE < "$HOME/.config/bspwm/.rice"
+# Argument handling yang lebih clean
+action="${1:-"--apply"}"
+theme_name="${2:-""}"
 
-# 1. Menentukan tema dengan 'case'
-case "$RICE" in
-    black)
-        THEME="Vimix-black-dark"
-        CURSOR="Kiana"
-        ;;
-    blue)
-        THEME="Vimix-doder-dark"
-        CURSOR="Erika-Furudo"
-        ;;
-    green)
-        THEME="Vimix-jade-dark"
-        CURSOR="Crelly-Cursor-Pack"
-        ;;
-    grey)
-        THEME="Vimix-white-dark"
-        CURSOR="Ellen-Joe"
-        ;;
-    red)
-        THEME="Vimix-ruby-dark"
-        CURSOR="Kafka"
-        ;;
-    *)
-        THEME="Vimix-dark"
-        CURSOR="Ju-Fufu"
-        ;;
-esac
+DIR="$HOME/.config/$XDG_CURRENT_DESKTOP"
+read -r RICE < "$DIR/.rice"
 
-# Menerapkan tema GTK
-set-gtk-theme "dynamic" "$THEME" "$CURSOR"
-# Menerapkan tema kitty
-kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.config/kitty/themes/$RICE.conf"
+usage() {
+	cat <<- EOF
+	to preview available modules
 
-# 2. Mengambil 1 file gambar secara acak
-RANDOM_WALLPAPER=$(find "$HOME/Pictures/Wallpaper/$RICE" -type f 2> /dev/null | grep -iE '\.(jpg|jpeg|png|webp|bmp|gif|heic|avif|tiff)$' | shuf -n 1)
+	Usage : GenerateTheme --preview [theme]		
 
-# Validasi jika wallpaper tidak ditemukan
-if [ -z "$RANDOM_WALLPAPER" ]; then
-    dunstify -r 999 -u critical -a "Theme Manager" "Error Wallpaper" "Tidak ada gambar ditemukan di $HOME/Pictures/Wallpaper/$RICE"
-    exit 1
-fi
+	Available Themes :
+	--blocks    --colorblocks    --cuts      --docky
+	--forest    --grayblocks     --hack      --material
+	--panels    --shades         --shapes
+	EOF
+	exit 1
+}
 
-# 3. Load theme configuration & Eksekusi dengan pengecekan error
-if ERROR_MSG=$(matugen json "$HOME/.config/bspwm/rices/$RICE/pallete.json" --import-json-string "{ \"image\": \"$RANDOM_WALLPAPER\", \"cursor\": \"$CURSOR\", \"gtktheme\": \"$THEME\" }" 2>&1); then
-    # Mengambil nama file saja tanpa path lengkap
-    WALLPAPER_NAME=$(basename "$RANDOM_WALLPAPER")
-    dunstify -r 999 -u normal -a "Theme Manager" "Theme Changed Successfully!" "Wallpaper: $WALLPAPER_NAME\nCursor: $CURSOR\nGTK: $THEME"
+set_theme() {
+    # Cari wallpaper secara efisien
+    RANDOM_WALLPAPER=$(find "$DIR/rices/$RICE/wallpapers" -type f -iregex '.*\.\(jpg\|jpeg\|png\|webp\|bmp\|gif\)' | shuf -n 1)
+
+    if [[ -z "$RANDOM_WALLPAPER" ]]; then
+        dunstify -u critical -a "Theme Manager" "Error" "Wallpaper tidak ditemukan!"
+        exit 1
+    fi
+
+    # Mapping Tema & Cursor
+    case "$RICE" in
+        black) THEME="Vimix-black-dark"; CURSOR="Kiana" ;;
+        blue)  THEME="Vimix-doder-dark"; CURSOR="Erika-Furudo" ;;
+        green) THEME="Vimix-jade-dark";  CURSOR="Crelly-Cursor-Pack" ;;
+        grey)  THEME="Vimix-white-dark"; CURSOR="Ellen-Joe" ;;
+        red)   THEME="Vimix-ruby-dark";  CURSOR="Kafka" ;;
+        *)     THEME="Vimix-white-dark"; CURSOR="Bibata-Modern-Ice" ;;
+    esac
+
+    # Apply GTK & Kitty
+    set-gtk-theme "dynamic" "$THEME" "$CURSOR"
+    kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.cache/wal/colors-kitty.conf" || true
+
+    "$DIR/rices/$RICE/launch.sh" &
+
+    # Terapkan Matugen
+    if ERROR_MSG=$(matugen image "$RANDOM_WALLPAPER" --source-color-index 0 --import-json-string "{ \"cursor\": \"$CURSOR\", \"gtktheme\": \"$THEME\" }" 2>&1); then
+        dunstify -u normal -a "Theme Manager" "Theme Applied!" "Rice: $RICE\nWallpaper: $(basename "$RANDOM_WALLPAPER")"
+    else
+        dunstify -u critical -a "Theme Manager" "Failed!" "$ERROR_MSG"
+        exit 1
+    fi
+}
+
+preview_theme() {
+    local style="$1"
+    if [[ -z "$style" || ! -d "$DIR/rices/$style" ]]; then
+        usage
+    fi
+
+    pkill polybar || true
+    while pgrep -x polybar >/dev/null; do sleep 0.2; done
+
+    echo "Previewing: $style"
+    "$DIR/rices/$style/preview.sh" &
+}
+
+# Logic switch
+if [[ "$action" == "--preview" ]]; then
+    preview_theme "$theme_name"
 else
-    dunstify -r 999 -u critical -a "Theme Manager" "Change Theme Failed!" "$ERROR_MSG"
-    printf "%s $ERROR_MSG"
-    exit 1
+    set_theme
 fi
