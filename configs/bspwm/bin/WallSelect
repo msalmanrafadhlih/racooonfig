@@ -1,7 +1,7 @@
 #!/bin/sh
 # Set some variables
 read -r current_rice <"$HOME"/.config/bspwm/.rice
-wall_dir="$HOME/Pictures/Wallpaper/$current_rice"
+wall_dir="$HOME/.config/$XDG_CURRENT_DESKTOP/rices/$current_rice/wallpapers"
 cacheDir="$HOME/.cache/$USER/$current_rice"
 
 # Create cache dir if not exists
