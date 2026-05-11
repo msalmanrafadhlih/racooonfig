@@ -4,17 +4,18 @@ set -euo pipefail
 
 TMP_CONFIG="/tmp/polybar_${UID}.ini"
 TMP_WIDGETS="/tmp/pwidgets_${UID}.ini"
-DIR_CONFIG="$HOME/.config/polybar"
+DIR_CONFIG="$HOME/.config/$XDG_CURRENT_DESKTOP"
+RICE="$DIR_CONFIG/.rice"
 
-[ -f "$DIR_CONFIG/.bar" ] && read -r BAR < "$DIR_CONFIG/.bar" || BAR=panels
-[ -f "$DIR_CONFIG/pwidgets/.var" ] && source "$DIR_CONFIG/pwidgets/.var" || widgets=""
+[ -f "$RICE" ] && read -r BAR < "$RICE" || BAR=panels
+[ -f "$HOME/.config/polybar/pwidgets/.var" ] && . "$HOME/.config/polybar/pwidgets/.var" || widgets=""
 
-[ -f "$DIR_CONFIG/$BAR/.var" ] && . "$DIR_CONFIG/$BAR/.var" 
+[ -f "$DIR_CONFIG/rices/$BAR/.var" ] && . "$DIR_CONFIG/rices/$BAR/.var" 
 
 # 1. Regenerasi config jika hilang
 if [[ ! -f "$TMP_CONFIG" ]]; then
     GenerateWidget --"$widgets"
-    GeneratePolybar --"$BAR" 
+    GenerateTheme
     exit 0
 fi
 
@@ -38,7 +39,7 @@ widgets=$(grep '^\[bar/' "$TMP_WIDGETS" 2> /dev/null | sed 's/^\[bar\///; s/\]$/
 
 # 4. Bersihkan proses lama
 pkill polybar || true
-while pgrep -u "$UID" -x polybar > /dev/null; do sleep 0.5; done
+while pgrep -u "$UID" -x polybar > /dev/null; do sleep 0.3; done
 
 # Fungsi Launch (Variabel 'mon' dipassing sebagai argumen agar lebih bersih)
 launch_polybar() {
@@ -57,10 +58,22 @@ launch_polybar() {
 
 # launch plank dock
 launch_plank() {
-    pkill plank || true
-    while pgrep -u "$UID" -x plank > /dev/null; do sleep 0.5; done
-    plank -n "$BAR"-"${mode:-Default}" &
-    Dock &
+    pkill -x plank || true
+   
+    count=0
+    while pgrep -u "$UID" -x plank > /dev/null && [ $count -lt 7 ]; do
+        sleep 0.3
+        ((count++))
+    done
+
+    if pgrep -u "$UID" -x plank > /dev/null; then
+        pkill -9 -x plank || true
+        sleep 0.5
+    fi
+   
+    # plank -n "$BAR"-"${mode:-Default}" &> /dev/null &
+    plank -n dock1 &> /dev/null &
+    Dock &> /dev/null &
 }
 
 # Logika Case untuk menentukan apa yang diluncurkan
@@ -92,4 +105,4 @@ while read -r mon; do
     done
 done < <(polybar --list-monitors | cut -d: -f1)
 
-launch_plank
+launch_plank 
