@@ -64,10 +64,6 @@ output_path = "~/.config/spicetify.css"
 input_path = "templates/kitty-colors.conf"
 output_path = "~/.config/kitty/additional-colors.conf"
 
-[templates.zed-pywal]
-input_path = "~/.cache/wal/colors-zed.json"
-output_path = "~/.config/zed/themes/pywal.json"
-
 [templates.zed-dark]
 input_path = "templates/zed-colors.json"
 output_path = "~/.config/zed/themes/racooonfig-dark.json"
@@ -88,9 +84,4 @@ post_hook = "dunstctl reload '~/.config/dunst/dunstrc'"
 [templates.svg]
 input_path = "templates/brightness.svg"
 output_path = "~/.config/Assets/Icons/brightness.svg"
-
-[templates.polybar]
-input_path = "templates/polybar.ini"
-output_path = "~/.config/polybar-t/colors.ini"
-post_hook = "LaunchPolybar --panels"
 
