@@ -3,7 +3,7 @@
 # Hapus -e agar script tidak mati saat query kosong
 set -uo pipefail
 
-read -r BAR < "$HOME/.config/polybar/.bar"
+read -r BAR < "$HOME/.config/bspwm/.rice"
 PADDING="$HOME/.config/polybar/$BAR/.var"
 STATE="/tmp/polybar-hidden"
 
@@ -12,17 +12,13 @@ pgrep -f polybar >/dev/null || exit 0
 
 hide() {
     polybar-msg cmd hide >/dev/null 2>&1
-    sleep 0.3
     bspc config top_padding 0
-    sleep 0.3
     bspc config bottom_padding 0
 }
 
 show() {
     polybar-msg cmd show >/dev/null 2>&1
-    sleep 0.3
     bspc config top_padding "${top:-0}"
-    sleep 0.3
     bspc config bottom_padding "${bottom:-0}"
 }
 
