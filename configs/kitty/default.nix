@@ -1,15 +1,5 @@
-{ pkgs, lib, mkSymlink, ... }:
-
-let
-  configs = {
-		"kitty/themes" = "themes";
-  };
-in
-
+{ pkgs, lib, ... }:
 {
-  xdg.configFile = mkSymlink {
-    target = "kitty";
-  } configs;
 
   xdg.mimeApps.defaultApplications = {
     "x-scheme-handler/terminal" = [ "kitty.desktop" ];
@@ -31,6 +21,7 @@ in
 
     extraConfig = ''
       include current-theme.conf
+      include additional-colors.conf
       allow_remote_control yes
     '';
 
