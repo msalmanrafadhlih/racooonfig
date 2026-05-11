@@ -7,6 +7,7 @@
 	  ./run.nix
 	  ./xyz.nix
 	  ./tar.nix
+	  ./get-wsize.nix
 	  ./colorscript.nix
 
 	  ./cli/pandoc.nix
