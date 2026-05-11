@@ -22,7 +22,7 @@ horizontal_padding = 15
 text_icon_padding = 0
 
 frame_width = 2
-frame_color = "#272f2eb0"
+frame_color = "#f00e29b0"
 
 sort = no
 idle_threshold = 0
@@ -31,7 +31,7 @@ font = JetBrainsMono NF Medium 9
 line_height = 0
 
 markup = full
-format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#81d5ce'>%s</span>\n\n%b"
+format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#ffb3ad'>%s</span>\n\n%b"
 alignment = justify
 vertical_alignment = center
 
@@ -77,20 +77,20 @@ class = Dunst
 
 [urgency_low]
 timeout = 3
-background = "#0e1514bb"
-highlight = "#00504c"
-foreground = "#272f2e"
+background = "#1a1111bb"
+highlight = "#733330"
+foreground = "#f00e29"
 
 [urgency_normal]
 timeout = 5
-background = "#0e1514bf"
-highlight = "#00504c"
-foreground = "#272f2e"
+background = "#1a1111bf"
+highlight = "#733330"
+foreground = "#f00e29"
 
 [urgency_critical]
 timeout = 20
 format = "<span size='xx-large' font_desc='Cantarell 9' weight='bold' foreground='#ff0000'>                     WARNING!!</span>\n\n%s:\n%b"
 frame_color = "#ff0000b0"
-background = "#0e1514bf"
-highlight = "#00504c"
-foreground = "#81d5ce"
+background = "#1a1111bf"
+highlight = "#733330"
+foreground = "#ffb3ad"
