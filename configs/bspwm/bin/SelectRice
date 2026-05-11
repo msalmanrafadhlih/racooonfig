@@ -1,35 +1,32 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-bspwm_dir="$HOME/.config/bspwm"
-read -r current_rice < "$bspwm_dir"/.rice
+DIR="$HOME/.config/$XDG_CURRENT_DESKTOP"
+[ -f "$DIR/.rice" ] && current_rice=$(< "$DIR/.rice") || current_rice=""
 
-# List rices
-rices=$(find "$bspwm_dir/rices/" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | sort)
+# Ambil list folder, simpan ke array
+mapfile -t rices < <(find "$DIR/rices/" -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | sort)
 
-# Find current rice
+# Cari index untuk row default di rofi
 selected_index=-1
-index=0
-IFS=$'\n'
-for rice in $rices; do
-    [ "$rice" = "$current_rice" ] && {
-        selected_index=$index
-        break
-    }
-    index=$((index + 1))
+for i in "${!rices[@]}"; do
+   if [[ "${rices[$i]}" == "$current_rice" ]]; then
+       selected_index=$i
+       break
+   fi
 done
-unset IFS
 
-# Show the rofi selection menu.
+# Generate list untuk rofi dengan ikon
 selected=$(
-    for rice in $rices; do
-        printf "%s\0icon\x1f%s/rices/%s/preview.png\n" "$rice" "$bspwm_dir" "$rice"
+    for rice in "${rices[@]}"; do
+        printf "%s\0icon\x1f%s/rices/%s/preview.png\n" "$rice" "$DIR" "$rice"
     done | rofi -dmenu -show-icons -p "RiceSelector" \
         -theme "$HOME/.config/rofi/themes/RiceSelector.rasi" \
         -selected-row "$selected_index"
 )
 
-# If a valid option was selected, write the value to the configuration file and change theme.
-if [ -n "$selected" ] && [ "$selected" != "$current_rice" ]; then
-    echo "$selected" > "$bspwm_dir"/.rice
-    "$bspwm_dir"/bin/GenerateTheme
+# Eksekusi jika ada pilihan baru
+if [[ -n "$selected" && "$selected" != "$current_rice" ]]; then
+    echo "$selected" > "$DIR/.rice"
+    "$DIR/bin/GenerateTheme"
 fi
