@@ -62,7 +62,7 @@ output_path = "~/.config/spicetify.css"
 
 [templates.kitty]
 input_path = "templates/kitty-colors.conf"
-output_path = "~/.config/kitty/themes/racooonfig.conf"
+output_path = "~/.config/kitty/additional-colors.conf"
 
 [templates.zed-pywal]
 input_path = "~/.cache/wal/colors-zed.json"
