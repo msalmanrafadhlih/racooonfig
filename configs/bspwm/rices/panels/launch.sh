@@ -8,7 +8,7 @@ read -r RICE < "$DIR/.rice"
 VAR_FILE="$DIR/rices/$RICE/.var"
 TMP_CONFIG="/tmp/polybar_${UID}.ini"
 
-SHARED="$HOME/polybar/shared"
+SHARED="$HOME/.config/polybar/shared"
 
 # Load variables
 # Example:
