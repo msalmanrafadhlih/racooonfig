@@ -1,5 +1,5 @@
 [module/backlight]
-type = internal/xbacklight
+type = ${system.sys_graphics_card}
 format =<ramp> <label>
 label = %percentage%%
 
