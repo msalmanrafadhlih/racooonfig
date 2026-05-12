@@ -28,7 +28,6 @@ in
     pamixer
     xclip
     dunst
-    kdocker
     qview
     pywal
     maim
@@ -59,5 +58,10 @@ in
     gtk-engine-murrine
     nwg-look
     glib
+
+    # tray
+    snixembed
+    libappindicator
+    kdocker
   ]);
 }
