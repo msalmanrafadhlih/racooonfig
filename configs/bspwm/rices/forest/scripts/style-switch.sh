@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 read -r RICE < "$HOME/.config/$XDG_CURRENT_DESKTOP/.rice"
-SDIR="$HOME/.config/$XDG_CURRENT_DESKTOP/rices/$RICE/scripts"
+SDIR="$HOME/.config/$XDG_CURRENT_DESKTOP/rices/$RICE"
 
 SDIR="$SDIR/scripts"
 
