@@ -6,6 +6,7 @@
     ./xdg-portal.nix
     ./var.nix
     ./thunar.nix
+    ./fonts.nix
     # ../../../configs/stylix
   ];
 
