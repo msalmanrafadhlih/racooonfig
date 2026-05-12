@@ -214,6 +214,9 @@ case "$class" in
     "Dconf-editor")
         echo "state=floating"
         ;;
+    "Audacity")
+        echo "state=floating center=on"
+        ;;
 esac
 
 case "$title" in
@@ -226,7 +229,7 @@ case "$title" in
     "Bluetooth Devices")
         echo "state=floating sticky=on rectangle=$CENTER_PINNED"
         ;;
-    *"Zed"*"Settings"* | *"Settings"* | *"Preferences"*)
+    *"Zed"*"Settings"* | *"Settings"* | *"Preferences"* | *"Configuration"*)
         echo "state=floating center=on follow=on"
         ;;
 esac
