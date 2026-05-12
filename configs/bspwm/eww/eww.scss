@@ -1,0 +1,22 @@
+* {
+  all: unset; // Reset semua style
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 10px;
+  color: #ffffff; // Warna foreground putih
+}
+
+tooltip {
+  background-color: #14171c;
+  color: #b8bfe5;
+  font-family: Inconsolata SemiCondensed Medium;
+  font-weight: Bold;
+  font-size: 1rem;
+}
+
+@import "./colors.scss";
+@import "./calendar/calendar.scss";
+@import "./cheatsheet/cheatsheet.scss";
+@import "./topbar/topbar.scss";
+@import "./music-player/eww.scss";
+@import "./profilecard/eww.scss";
+

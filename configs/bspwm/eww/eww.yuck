@@ -1,0 +1,11 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Variables
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar eww "eww -c $HOME/.config/eww")
+
+;; Included Windows configs 
+(include "./calendar/calendar.yuck")
+(include "./cheatsheet/cheatsheet.yuck")
+(include "./topbar/topbar.yuck")
+(include "./profilecard/eww.yuck")
+(include "./music-player/eww.yuck")

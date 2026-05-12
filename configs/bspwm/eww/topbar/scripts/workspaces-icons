@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Definisikan ikon untuk setiap workspace
+# Pastikan font Anda (JetBrainsMono Nerd Font) memiliki ikon-ikon ini
+declare -A icons
+icons[1]=" "      # >_ Terminal
+icons[2]=" "      # Browser
+icons[3]=" "      # VS Code
+icons[4]="Discord" # Discord
+icons[5]=" "      # Gamepad/Stick
+
+# Dapatkan status desktop saat ini dari bspwm
+occupied_desktops=$(bspc query -D -d .occupied --names)
+focused_desktop=$(bspc query -D -d .focused --names)
+
+# Mulai membuat output untuk eww
+output="(box :orientation \"h\" :spacing 1 :space-evenly false "
+
+# Loop dari workspace 1 sampai 5
+for i in {1..5}; do
+    class="empty" # Atur kelas default menjadi 'empty'
+
+    # Cek apakah workspace sedang aktif (fokus)
+    if [ "$i" = "$focused_desktop" ]; then
+        class="active"
+    # Cek apakah ada jendela di workspace (terisi)
+    elif echo "$occupied_desktops" | grep -qw "$i"; then
+        class="occupied"
+    fi
+
+    # Tambahkan tombol untuk setiap workspace ke output
+    output+="(button :class 'workspace-btn $class' :onclick 'bspc desktop -f $i' '${icons[$i]}') "
+done
+
+# Tutup tag box dan cetak hasilnya
+output+=")"
+echo "$output"

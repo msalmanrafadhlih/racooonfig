@@ -1,0 +1,81 @@
+(defpoll workspaces_with_icons :interval "1s" "topbar/scripts/workspaces-icons")
+(defpoll current_workspace :interval "1s" "bspc query -D -d --names")
+(defpoll song_title :interval "1s" "mpc current -f %title% || echo 'N/A'")
+(defpoll song_artist :interval "1s" "mpc current -f %artist% || echo 'N/A'")
+(defpoll mpd_status :interval "1s" "mpc status -f %state% | head -n 1")
+(defpoll window_title :interval "0.5s" "topbar/scripts/window-title")
+(defpoll time :interval "1m" "date '+%H:%M'")
+(defpoll topbar_date :interval "5h" "date '+%A, %d %B'")
+(defpoll bat_percent :interval "10s" "topbar/scripts/battery percent")
+(defpoll mem_used :interval "5s" "free -h | awk '/^Mem:/ {print $3}'")
+(defpoll disk_used_percent :interval "10m" "df -h --output=pcent / | sed -n '2p' | tr -d ' '")
+
+(defvar bat_icon "topbar/scripts/battery icon")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Windows
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwindow topbar
+    :monitor 0
+    :geometry (geometry :x "0%"
+                        :y "0%"
+                        :width "100%"
+                        :height "30px")
+    :stacking "fg"
+    :reserve (struts :side "top" :distance "30px")
+    :windowtype "dock"
+    :wm-ignore false
+    (bar))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Bar
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget bar []
+    (centerbox :orientation "h"
+        (box :class "left" :halign "start" :spacing 1 :space-evenly false
+            ;; Panggil widget workspaces yang baru
+            (workspaces)
+            ;; Panggil widget mpd_launcher yang baru
+            (mpd_launcher))
+
+        (box :class "center" :halign "center"
+            (window_title_widget))
+            
+        (box :class "right" :halign "end" :spacing 1 :space-evenly false
+            (metric :label "💾" :value disk_used_percent :tooltip "Disk Usage")
+            (metric :label "🧠" :value mem_used :tooltip "Memory Usage")
+            (battery)
+            (metric :label "" :value topbar_date :tooltip "Date")
+            (metric :label "" :value time :tooltip "Clock"))
+    )
+)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Modules
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; --- Left ---
+(defwidget workspaces []
+  (literal :content workspaces_with_icons))
+
+(defwidget mpd_launcher []
+  (button :class "mpd-launcher" 
+          :onclick "st -c floating_rmpc -e rmpc" 
+          ""))
+
+;; --- Center ---
+(defwidget window_title_widget []
+    (box :class "window-title"
+        (label :text window_title :limit-width 50)))
+
+;; --- Right ---
+(defwidget metric [label value tooltip]
+    (box :class "metric" :orientation "h" :spacing 5 :space-evenly false
+        (box :tooltip tooltip
+            (label :text "${label} ${value}"))))
+
+(defwidget battery []
+    (metric :label bat_icon :value "${bat_percent}%" :tooltip "Battery: ${bat_percent}%"))
