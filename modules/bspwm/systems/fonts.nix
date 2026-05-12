@@ -51,6 +51,7 @@
         dejavu_fonts
 
         # --- UI Fonts ---
+        material-design-icons
         roboto
         cantarell-fonts
         rubik
