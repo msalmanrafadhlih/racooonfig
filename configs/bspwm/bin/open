@@ -1,5 +1,7 @@
 #!/bin/sh
 
+DIR="$HOME/.config/eww"
+
 case "$1" in
 	--launcher)
 		launcher
@@ -79,6 +81,16 @@ case "$1" in
 		;;
 	--audiocontrol)
 		pavucontrol
+		;;
+		# Eww Widgets
+	--KeyHelp)
+		eww -c "$DIR" open --toggle csheet
+		;;
+	--usercard)
+		eww -c "$DIR" open --toggle launchermenu
+		;;
+	--player)
+		eww -c "$DIR" open --toggle music
 		;;
 	*)
 		echo "Invalid Option"
