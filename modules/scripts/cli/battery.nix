@@ -17,7 +17,7 @@ let
 
       ICON_LOW="$HOME/.config/Assets/Icons/LowBat.png"
       ICON_FULL="$HOME/.config/Assets/Icons/FullBat.png"
-      SOUND_LOW="$HOME/.config/Assets/Sounds/emotional-damage-meme.wav"
+      SOUND_LOW="$HOME/.config/Assets/Sounds/spongebob.wav"
       SOUND_FULL="$HOME/.config/Assets/Sounds/hidup-jokowi.wav"
 
       if [[ "$STATUS" == "Discharging" && "$CAPACITY" -le 20 ]]; then
