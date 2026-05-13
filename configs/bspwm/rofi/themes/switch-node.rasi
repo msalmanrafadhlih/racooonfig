@@ -1,7 +1,8 @@
 @import "shared.rasi"
 
 configuration {
-    modi: "window";
+    modi: "switcher:WindowSwitcher --execute";
+    display-switcher: "0";
     show-icons: true;
     window-format: "{n}";
 }
