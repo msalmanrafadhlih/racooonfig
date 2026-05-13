@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
-bspc subscribe node_add node_focus node_state node_transfer | while read -r _; do
-  xdo raise -N Plank 2>/dev/null
+pkill -9 -x plank || true
+
+count=0
+while pgrep -f plank > /dev/null && [ $count -lt 7 ]; do
+    sleep 0.3
+    ((count++))
 done
+
+plank &> /dev/null &
+
+bspc subscribe node_add node_focus node_state node_transfer | while read -r _; do
+    xdo raise -N Plank 2>/dev/null
+done &
