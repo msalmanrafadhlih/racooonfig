@@ -3,7 +3,7 @@
 # Here the cover image will be saved.
 Cover=/tmp/cover.png
 # if cover not found in metadata use this instead
-bkpCover=~/.cache/current_wall
+bkpCover=~/.config/eww/music-player/assets/cover.jpg
 # mpd music directory for mpd clients.
 mpddir=~/Music
 LAST_SONG_FILE="/tmp/last_song.txt"
@@ -16,12 +16,6 @@ if playerctl status 2>/dev/null | grep -qE "Playing|Paused"; then
 # Jika tidak ada, cek MPD
 elif mpc status 2>/dev/null | grep -qE "\[playing\]|\[paused\]"; then
     PLAYER="MPD"
-fi
-
-# Jika tidak ada musik yang berjalan, keluar
-if [ -z "$PLAYER" ]; then
-    echo ""
-    exit 0
 fi
 
 # 2. Rutekan perintah berdasarkan player aktif
