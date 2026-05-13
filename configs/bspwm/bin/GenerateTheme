@@ -38,33 +38,33 @@ set_theme() {
     RANDOM_WALLPAPER=$(find "$DIR/rices/$RICE/wallpapers" -type f -iregex '.*\.\(jpg\|jpeg\|png\|webp\|bmp\|gif\)' | shuf -n 1)
 
     if [[ -z "$RANDOM_WALLPAPER" ]]; then
-        dunstify -u critical -a "Theme Manager" "Error" "Wallpaper tidak ditemukan!"
+        dunstify -r 999 -u critical -a "Theme Manager" "Error" "Wallpaper tidak ditemukan!"
         exit 1
     fi
 
     # Mapping Tema & Cursor
     case "$RICE" in
-        black) THEME="Vimix-black-dark"; CURSOR="Kiana" ;;
-        blue)  THEME="Vimix-doder-dark"; CURSOR="Erika-Furudo" ;;
-        green) THEME="Vimix-jade-dark";  CURSOR="Crelly-Cursor-Pack" ;;
-        grey)  THEME="Vimix-white-dark"; CURSOR="Ellen-Joe" ;;
-        red)   THEME="Vimix-ruby-dark";  CURSOR="Kafka" ;;
+        material)   THEME="Vimix-ruby-dark";  CURSOR="Kafka" ;;
+        default) THEME="Vimix-black-dark"; CURSOR="Kiana" ;;
+        blocks)  THEME="Vimix-doder-dark"; CURSOR="Erika-Furudo" ;;
+        cuts) THEME="Vimix-jade-dark";  CURSOR="Crelly-Cursor-Pack" ;;
+        hack)  THEME="Vimix-white-dark"; CURSOR="Ellen-Joe" ;;
         *)     THEME="Vimix-white-dark"; CURSOR="Bibata-Modern-Ice" ;;
     esac
+
+    # Terapkan Matugen
+    if ERROR_MSG=$(matugen image "$RANDOM_WALLPAPER" --source-color-index 0 --import-json-string "{ \"cursor\": \"$CURSOR\", \"gtktheme\": \"$THEME\" }" 2>&1); then
+        dunstify -u normal -a "Theme Manager" "Theme Applied!" "Rice: $RICE\nWallpaper: $(basename "$RANDOM_WALLPAPER")"
+    else
+        dunstify -r 999 -u critical -a "Theme Manager" "Failed!" "$ERROR_MSG"
+        exit 1
+    fi
 
     # Apply GTK & Kitty
     set-gtk-theme "dynamic" "$THEME" "$CURSOR"
     kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.cache/wal/colors-kitty.conf" || true
 
     "$DIR/rices/$RICE/launch.sh" &
-
-    # Terapkan Matugen
-    if ERROR_MSG=$(matugen image "$RANDOM_WALLPAPER" --source-color-index 0 --import-json-string "{ \"cursor\": \"$CURSOR\", \"gtktheme\": \"$THEME\" }" 2>&1); then
-        dunstify -u normal -a "Theme Manager" "Theme Applied!" "Rice: $RICE\nWallpaper: $(basename "$RANDOM_WALLPAPER")"
-    else
-        dunstify -u critical -a "Theme Manager" "Failed!" "$ERROR_MSG"
-        exit 1
-    fi
 }
 
 preview_theme() {
@@ -86,3 +86,5 @@ if [[ "$action" == "--preview" ]]; then
 else
     set_theme
 fi
+
+wait
