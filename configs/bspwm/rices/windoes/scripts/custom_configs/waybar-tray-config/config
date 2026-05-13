@@ -27,7 +27,7 @@
     
     "custom/start": {
         "format": "               ",
-        "on-click": "~/.config/eww/scripts/toggle-overview.sh"
+        "on-click": "~/.config/$XDG_CURRENT_DESKTOP/rices/windoes/scripts/toggle-overview.sh"
     },
     
     "wlr/taskbar": {
