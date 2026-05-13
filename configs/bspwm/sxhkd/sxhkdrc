@@ -136,13 +136,7 @@ super + shift + {plus,minus}
     }
 # ---------------------------------------------------------  switch nodes
 super + Tab
-    rofi \
-        -show window \
-        -theme $HOME/.config/rofi/themes/switch-node.rasi \
-        -window-hide-active-window true \
-        -kb-accept-entry "!Super+Tab,!Super_L" \
-        -kb-element-next "super-Tab" \
-		# -window-thumbnail 
+	open --switcher
 
 # ========================================== FLOATING NODES
 # ---------------------------------------------------------  Move floating window
