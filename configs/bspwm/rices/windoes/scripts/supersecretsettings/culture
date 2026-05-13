@@ -8,7 +8,7 @@ while true; do
     if [[ "$STATE" = "Charging" ]]; then 
         if [ "$plugged" -eq "0" ]; then 
             plugged=1
-            notify-send 'Aghh~~~~'
+            dunstify 'Aghh~~~~'
             play scripts/supersecretsettings/culture.mp3
         fi
     else 
