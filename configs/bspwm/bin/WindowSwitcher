@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+case $1 in
+    --execute)
+        if [[ "${ROFI_RETV:-0}" == 0 ]]; then
+
+            # Bangun map: wid_decimal -> baris wmctrl
+            declare -A win_map
+            while IFS= read -r line; do
+                wid=$(awk '{print $1}' <<< "$line")
+                wid_dec=$(printf '%d' "$wid" 2> /dev/null) || continue
+                win_map[$wid_dec]="$line"
+            done < <(wmctrl -lx)
+
+            # Ambil urutan focus dari _NET_CLIENT_LIST_STACKING
+            # (urutan: bawah → atas, jadi `tac` = paling terakhir fokus duluan)
+            while read -r hex_id; do
+                dec_id=$(printf '%d' "$hex_id") || continue
+                line="${win_map[$dec_id]}"
+                [[ -z "$line" ]] && continue
+
+                wid=$(awk '{print $1}' <<< "$line")
+                class=$(awk '{print $3}' <<< "$line")
+
+                case "$class" in
+                    *TerminalDefault* | *TerminalPinned*)
+                        icon="$HOME/.config/Assets/Icons/terminal.png"
+                        ;;
+                    *ChatAi*)
+                        icon="$HOME/.config/Assets/Icons/chatGPT.png"
+                        ;;
+                    *GeminiAi*)
+                        icon="$HOME/.config/Assets/Icons/gemini.png"
+                        ;;
+                    *ClaudeAi*)
+                        icon="$HOME/.config/Assets/Icons/claude.png"
+                        ;;
+                    *"dev.zed.Zed"*)
+                        icon="zed"
+                        ;;
+                    *)
+                        icon="${class%%.*}"
+                        ;;
+                esac
+
+                echo -en "$class\0icon\x1f$icon\x1finfo\x1f$wid\n"
+
+            done < <(xprop -root _NET_CLIENT_LIST_STACKING |
+                grep -oP '0x[0-9a-fA-F]+' |
+                tac |
+                tail -n +2)
+
+        else
+            [ -n "$ROFI_INFO" ] && wmctrl -ia "$ROFI_INFO"
+        fi
+        ;;
+    --switcher)
+        rofi \
+            -show switcher \
+            -theme "$HOME/.config/rofi/themes/switch-node.rasi" \
+            -kb-element-next "super+Tab" \
+            -window-hide-active-window true \
+            -kb-accept-entry "!Super+Tab,Super_L"
+            # -window-thumbnail
+        ;;
+esac
