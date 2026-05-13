@@ -20,11 +20,16 @@ if [[ ! -f "$TMP_CONFIG" ]]; then
     if [[ ! -f "$TMP" ]]; then
         GenerateTheme
         touch "$TMP"
-    elif pgrep -x eww >/dev/null; then
-        eww_bar_config="$DIR_CONFIG/rices/$BAR"
-        eww_widgets="$HOME/.config/eww"
-        [ -d "$eww_bar_config" ] && eww reload -c "$eww_bar_config"
-        [ -d "$eww_widgets" ] && eww reload -c "$eww_widgets"
+    elif pgrep -f eww >/dev/null; then
+        pgrep -af "eww.*" \
+        | awk '{for(i=1;i<=NF;i++) if($i=="-c") print $(i+1)}' \
+        | sort -u \
+        | while read -r cfg; do
+            [ -d "$cfg" ] || continue
+
+            eww -c "$cfg" ping >/dev/null 2>&1 || eww -c "$cfg" daemon
+            eww -c "$cfg" reload
+        done
     else
         "$DIR_CONFIG/rices/$BAR/launch.sh" &
     fi
