@@ -1,5 +1,5 @@
 ; Const vars
-(defvar FILE_BROWSER "nautilus")
+(defvar FILE_BROWSER "thunar")
 (defvar RES_WIDTH 1920)
 (defvar RES_HEIGHT 1080)
 (defvar BG_ZOOM 1.2)
