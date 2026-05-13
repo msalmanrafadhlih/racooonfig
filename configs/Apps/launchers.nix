@@ -30,6 +30,4 @@ in
   ".config/Assets/Sounds"   = "./Assets/Sounds";
   ".config/zsh/.nomedia"    = "./zsh/zcompdump";
   ".config/Assets/asciiart" = "./Assets/asciiart";
-
-  "Pictures/Wallpaper"      = "./Assets/Wallpaper";
 } // appMappings
