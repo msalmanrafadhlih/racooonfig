@@ -28,7 +28,6 @@ in
     pamixer
     xclip
     dunst
-    qview
     pywal
     maim
     feh
