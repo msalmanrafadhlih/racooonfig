@@ -6,21 +6,32 @@ action="${1:-"--apply"}"
 theme_name="${2:-""}"
 
 DIR="$HOME/.config/$XDG_CURRENT_DESKTOP"
+TMP_CONFIG="/tmp/polybar_${UID}".ini
 read -r RICE < "$DIR/.rice"
 
 usage() {
 	cat <<- EOF
-	to preview available modules
 
-	Usage : GenerateTheme --preview [theme]		
+	to preview available Themes
 
 	Available Themes :
+	Usage : GenerateTheme --preview [theme]		
 	--blocks    --colorblocks    --cuts      --docky
 	--forest    --grayblocks     --hack      --material
 	--panels    --shades         --shapes
 	EOF
 	exit 1
 }
+
+# kill polybar or eww
+if pgrep -f "$TMP_CONFIG" >/dev/null; then
+    pkill -9 -f "$TMP_CONFIG" || true
+    rm -f "$TMP_CONFIG"
+fi
+
+if pgrep -u ${UID} -f eww >/dev/null; then
+    eww kill 2>/dev/null || pkill eww || true
+fi
 
 set_theme() {
     # Cari wallpaper secara efisien
@@ -63,7 +74,7 @@ preview_theme() {
     fi
 
     pkill polybar || true
-    while pgrep -x polybar >/dev/null; do sleep 0.2; done
+    while pgrep -f polybar >/dev/null; do sleep 0.2; done
 
     echo "Previewing: $style"
     "$DIR/rices/$style/preview.sh" &
