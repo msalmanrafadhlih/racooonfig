@@ -14,6 +14,8 @@ run() {
     fi
 }
 
+bspc config external_rules_command ~/.config/bspwm/bin/ExternalRules
+
 # Border
 bspc config left_padding 50
 bspc config border_width 3
@@ -37,36 +39,17 @@ bspc config automatic_scheme longest_side
 bspc config initial_polarity second_child
 bspc config removal_adjustment true
 
-bspc config external_rules_command ~/.config/bspwm/bin/ExternalRules
 CornerLogic &
 Colors &
-
-# picom
-pkill picom
-sleep 0.1
-picom &
-
-# Clipboard manager
-clipmenud &
-
-# sxhkd
-pgrep -x sxhkd > /dev/null || sxhkd &
-
-# polybar
-LaunchPolybar &
-
-# wallpaper
 ~/.fehbg &
+LaunchBar &
+Dock &
 
-# dunst untuk widget notifikasi
+pgrep -x clipmenud > /dev/null || clipmenud &
+pgrep -x picom > /dev/null || picom &
+pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x dunst > /dev/null || dunst &
-
-chmod +x ~/.local/bin/*
-update-desktop-database ~/.local/share/applications/
 
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     eval "$(dbus-launch --sh-syntax)"
 fi
-
-pkill daktilo
-daktilo --config ~/.config/daktilo/daktilo.toml --preset ducduggo -d pipewire
