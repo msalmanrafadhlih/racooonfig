@@ -4,22 +4,47 @@ set -euo pipefail
 
 DIR="$HOME/.config/polybar"
 VAR_FILE="$DIR/pwidgets/.var"
-TMP_CONFIG="/tmp/pwidgets_${UID}.ini"
+TMP_WIDGETS="/tmp/pwidgets_${UID}.ini"
 MODULES="$DIR/pwidgets/modules"
 SHARED="$DIR/shared"
 
-mkdir -p "$(dirname "$VAR_FILE")"
-find "$DIR/pwidgets/scripts" -type f -exec chmod +x {} + 2>/dev/null
+find "$DIR/pwidgets/scripts" -type f -exec chmod +x {} + 2>/dev/null || true
+
+# Deteksi Hardware
+adp=$(find /sys/class/power_supply -maxdepth 1 -type l -name "A*" -exec basename {} \; | head -n1 || echo "AC")
+bat=$(find /sys/class/power_supply -maxdepth 1 -type l -name "BAT*" -exec basename {} \; | head -n1 || echo "BAT0")
+card=$(find /sys/class/backlight -maxdepth 1 -type l -exec basename {} \; | head -n1 || echo "")
+net=$(ip -o -4 route show to default | awk '{print $5}' | head -n1 || echo "eth0")
+temp=$(for i in /sys/class/hwmon/hwmon*/temp*_input; do
+    if [ "$(<$(dirname "$i")/name)" = "coretemp" ] && [ "$(<${i%_*}_label)" = "Package id 0" ]; then
+        echo "$i"
+        exit 0
+    fi
+done || echo "")
+
+launch_polybar() {
+    local target_bar=$1
+    local config_file=$2
+    local monitor_name=$3
+
+    MONITOR="$monitor_name" \
+    ADAPTER="$adp" \
+    BATTERY="$bat" \
+    BACKLIGHT="$card" \
+    TEMPERATURE="$temp" \
+    NETWORK="$net" \
+    polybar -q "$target_bar" -c "$config_file" &
+}
 
 change_widgets() {
     local widget="$1"
     
+    pkill -f "$TMP_WIDGETS" || true
     echo "widgets=$widget" > "$VAR_FILE"
 
     if [[ "$widget" == "0" ]]; then
-        if [[ -f "$TMP_CONFIG" ]]; then
-            pkill -f "$TMP_CONFIG" || true
-            rm -f "$TMP_CONFIG"
+        if [[ -f "$TMP_WIDGETS" ]]; then
+            rm -f "$TMP_WIDGETS"
 
             dunstify -t 5000 -i "$DIR/pwidgets/Icons/polybar.png" -u low \
                 "Widgets Removed" "Widget has been stopped."
@@ -32,20 +57,26 @@ change_widgets() {
         MAIN_CONFIG="$DIR/pwidgets/widgets/$widget.ini"
     
         if [[ ! -f "$MAIN_CONFIG" ]]; then
-            echo "Error: Config $widget.ini tidak ditemukan!"
+            dunstify -r 999 -t 5000 -i "$DIR/pwidgets/Icons/polybar.png" -u low \
+                "Error" "Config $widget.ini Not Found!"
             exit 1
         fi
 
         # Gabungkan config
-        cat "$SHARED"/* "$MODULES"/* "$MAIN_CONFIG" > "$TMP_CONFIG"
+        cat "$SHARED"/* "$MODULES"/* "$MAIN_CONFIG" > "$TMP_WIDGETS" 2>/dev/null || true
 
         # Ambil nama bar
-        bars=$(grep '^\[bar/' "$MAIN_CONFIG" | sed 's/^\[bar\///; s/\]$//' | tr '\n' ' ')
+        bars=$(grep '^\[bar/' "$MAIN_CONFIG" | sed 's/^\[bar\///; s/\]$//' | tr '\n' ' ' || true)
 
         dunstify -r 999 -t 5000 -i "$DIR/pwidgets/Icons/polybar.png" -u low \
             "Widgets Started" "Bars: $bars\nStyle: $widget"
 
-        LaunchPolybar --widgets & 
+        # Jalankan Widgets
+        while read -r mon; do
+            for w in $bars; do
+                launch_polybar "$w" "$TMP_WIDGETS" "$mon"
+            done
+        done < <(polybar --list-monitors | cut -d: -f1)
     fi
 }
 
@@ -70,6 +101,5 @@ case "${1:-}" in
 
 	-- [ empty for disable widgets ]
 	EOF
-
         ;;
 esac
