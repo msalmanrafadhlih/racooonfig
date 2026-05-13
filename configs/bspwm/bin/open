@@ -12,6 +12,9 @@ case "$1" in
 	--selectwallpaper)
 		WallSelect
 		;;
+	--switcher)
+		WindowSwitcher --switcher
+		;;
 	--powermenu)
 		PowerMenu
 		;;
@@ -82,14 +85,15 @@ case "$1" in
 	--audiocontrol)
 		pavucontrol
 		;;
+
 		# Eww Widgets
 	--KeyHelp)
 		eww -c "$DIR" open --toggle csheet
 		;;
-	--usercard)
+	--wgd-card)
 		eww -c "$DIR" open --toggle launchermenu
 		;;
-	--player)
+	--wgd-music)
 		eww -c "$DIR" open --toggle music
 		;;
 	*)
