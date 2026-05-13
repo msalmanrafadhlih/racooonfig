@@ -1,6 +1,7 @@
 .cheatsheet {
   background-color: $bg;
   border-radius: 0.5rem;
+  border: 3px solid $bg-alt;
 }
 
 .title {
@@ -28,7 +29,7 @@
   font-weight: Bold;
   font-size: 0.8rem;
   background-color: $green;
-  color: $bg;
+  color: $fg-alt;
   margin: 8px 0;
   padding: 2px 0;
   border-radius: 2px;
@@ -39,7 +40,7 @@
   font-weight: Bold;
   font-size: 0.8rem;
   background-color: $red;
-  color: $bg;
+  color: $fg-alt;
   margin: 8px 0;
   padding: 2px 0;
   border-radius: 2px;
@@ -50,7 +51,7 @@
   font-weight: Bold;
   font-size: 0.8rem;
   background-color: $yellow;
-  color: $bg;
+  color: $fg-alt;
   margin: 8px 0;
   padding: 2px 0;
   border-radius: 2px;
@@ -61,7 +62,7 @@
   font-weight: Bold;
   font-size: 0.8rem;
   background-color: $magenta;
-  color: $bg;
+  color: $fg-alt;
   margin: 8px 0;
   padding: 2px 0;
   border-radius: 2px;
@@ -72,7 +73,7 @@
   font-weight: Bold;
   font-size: 0.8rem;
   background-color: $archicon;
-  color: $bg;
+  color: $fg-alt;
   margin: 8px 0;
   padding: 2px 0;
   border-radius: 2px;
@@ -83,7 +84,7 @@
   font-weight: Bold;
   font-size: 0.8rem;
   background-color: $green;
-  color: $bg;
+  color: $fg-alt;
   margin: 8px 0;
   padding: 2px 0;
   border-radius: 2px;
@@ -94,7 +95,7 @@
   font-weight: Bold;
   font-size: 0.8rem;
   background-color: $blue;
-  color: $bg;
+  color: $fg-alt;
   margin: 8px 0;
   padding: 2px 0;
   border-radius: 2px;
@@ -105,7 +106,7 @@
   font-weight: Bold;
   font-size: 0.8rem;
   background-color: $red;
-  color: $bg;
+  color: $fg-alt;
   margin: 8px 0;
   padding: 2px 0;
   border-radius: 2px;
@@ -116,7 +117,7 @@
   font-weight: Bold;
   font-size: 0.8rem;
   background-color: $cyan;
-  color: $bg;
+  color: $fg-alt;
   margin: 8px 0;
   padding: 2px 0;
   border-radius: 2px;
