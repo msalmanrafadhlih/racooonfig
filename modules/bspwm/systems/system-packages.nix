@@ -60,6 +60,7 @@ in
     glib
 
     # tray
+    wmctrl
     snixembed
     libappindicator
     kdocker
