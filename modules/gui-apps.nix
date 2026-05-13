@@ -23,15 +23,15 @@
     zoom
     libreoffice
     evince # Document Viewer
+    kdePackages.kdenlive
     audacity
-    # gimp
+    gimp
+    gthumb
     # godot
-    # kdePackages.kdenlive
 
     # CLI TOOLS
     ani-cli # butuh mpv(GUI) untuk streaming
     go-grip # Markdown Preview via http server: butuh browser
-    timg
 
     # UTILS
     ffmpeg-full # absolutely need GUI
