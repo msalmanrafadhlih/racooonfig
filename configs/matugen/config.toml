@@ -62,7 +62,8 @@ output_path = "~/.config/spicetify.css"
 
 [templates.kitty]
 input_path = "templates/kitty-colors.conf"
-output_path = "~/.config/kitty/additional-colors.conf"
+output_path = "~/.config/kitty/themes/racooonfig.conf"
+post_hook = "kitten themes --reload-in=all racooonfig"
 
 [templates.zed-dark]
 input_path = "templates/zed-colors.json"
