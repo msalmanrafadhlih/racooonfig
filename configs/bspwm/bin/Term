@@ -13,7 +13,7 @@
 # Licensed under GPL-3.0 license
 # =============================================================
 
-CFG_TERM="$HOME/.config/bspwm/.term"
+CFG_TERM="$HOME/.config/$XDG_CURRENT_DESKTOP/.term"
 ROFI_THEME="$HOME/.config/rofi/themes/TermSelector.rasi"
 
 [ -f "$CFG_TERM" ] || echo "alacritty" > "$CFG_TERM"
