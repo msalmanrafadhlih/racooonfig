@@ -163,7 +163,7 @@ esac
 
 # Rules murni berdasarkan Class
 case "$class" in
-    "TerminalDefault")
+    "TerminalDefault" | "kitty" | "Alacritty" | "St" )
         echo "state=floating sticky=off rectangle=$TERMINAL_DEFAULT"
         ;;
     "TerminalPinned")
@@ -172,11 +172,8 @@ case "$class" in
     "floating_rmpc")
         echo "state=floating rectangle=$RMPC"
         ;;
-    "St")
-        echo "state=floating rectangle=$MAIN"
-        ;;
-    "TerminalNvim")
-        echo "desktop=^3 state=floating sticky=off rectangle=$MAIN"
+    "TerminalIDE")
+        echo "desktop=^3 state=floating follow=on rectangle=$MAIN"
         ;;
     "dev.zed.Zed")
         echo "desktop=^3"
@@ -214,7 +211,7 @@ case "$class" in
     "Dconf-editor")
         echo "state=floating"
         ;;
-    "Audacity")
+    "Audacity" | "Org.gnome.gThumb")
         echo "state=floating center=on"
         ;;
 esac
