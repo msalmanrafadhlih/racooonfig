@@ -64,7 +64,7 @@ set_theme() {
 
     # Apply GTK & Kitty
     set-gtk-theme "dynamic" "$THEME" "$CURSOR"
-    kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.config/kitty/current-theme.conf" || true
+    kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.config/kitty/themes/racooonfig.conf" || true
 
     "$DIR/rices/$RICE/launch.sh" &
 }
