@@ -4,7 +4,7 @@
 # /run/current-system/sw/bin/feh --no-fehbg --bg-fill '{{ image }}' 
 
 feh --bg-fill {{ image }} && \
-wal -i {{ image }} -q -e -n -s -a 0 &
+wal -i {{ image }} -q -e -n -s -a 70 &
 
 sleep 0.5
 WallSync &
