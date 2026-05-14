@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-SDIR="$HOME/.config/$XDG_CURRENT_DESKTOP/rices/cuts/scripts"
+DIR="$HOME/.config/$XDG_CURRENT_DESKTOP"
+read -r RICE < "$DIR/.rice"
+SDIR="$DIR/rices/$RICE/scripts"
 
 # Launch Rofi
 MENU="$(rofi -no-config -no-lazy-grab -sep "|" -dmenu -i -p '' \
