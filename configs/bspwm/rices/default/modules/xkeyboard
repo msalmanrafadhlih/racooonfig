@@ -1,9 +1,0 @@
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-label-layout = %layout%
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-overline = ${module/bspwm.label-focused-underline}
