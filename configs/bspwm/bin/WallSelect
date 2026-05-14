@@ -79,6 +79,6 @@ if [ -n "$wall_selection" ]; then
     actual_file=$(find "$wall_dir" -maxdepth 1 -type f -name "${wall_selection}.*" | head -n 1)
     
     [ -n "$actual_file" ] && \
-        feh --bg-fill "$actual_file" && \
+        wall "$actual_file" && \
         WallSync &
 fi
