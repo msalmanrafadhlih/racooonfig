@@ -35,9 +35,11 @@ fi
 
 set_theme() {
     # Cari wallpaper secara efisien
-    RANDOM_WALLPAPER=$(find "$DIR/rices/$RICE/wallpapers" -type f -iregex '.*\.\(jpg\|jpeg\|png\|webp\|bmp\|gif\)' | shuf -n 1)
+    # RANDOM_WALLPAPER=$(find "$DIR/rices/$RICE/wallpapers/default"* -type f -iregex '.*\.\(jpg\|jpeg\|png\|webp\|bmp\|gif\)' | shuf -n 1)
 
-    if [[ -z "$RANDOM_WALLPAPER" ]]; then
+    if RANDOM_WALLPAPER=$(find "$DIR/rices/$RICE/wallpapers/default"* -type f -iregex '.*\.\(jpg\|jpeg\|png\|webp\|bmp\|gif\)' | shuf -n 1 2>&1); then
+        echo "get wallpaper..."
+    else
         dunstify -r 999 -u critical -a "Theme Manager" "Error" "Wallpaper tidak ditemukan!"
         exit 1
     fi
@@ -62,7 +64,7 @@ set_theme() {
 
     # Apply GTK & Kitty
     set-gtk-theme "dynamic" "$THEME" "$CURSOR"
-    kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.cache/wal/colors-kitty.conf" || true
+    kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.config/kitty/current-theme.conf" || true
 
     "$DIR/rices/$RICE/launch.sh" &
 }
