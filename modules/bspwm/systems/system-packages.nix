@@ -1,67 +1,74 @@
 { pkgs, inputs, ... }:
+
 let
+  system = pkgs.stdenv.hostPlatform.system;
   inp = inputs.racooonfig.inputs;
 in
 {
-  environment.systemPackages = [
-    inp.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inp.plank-reloaded.defaultPackage.${pkgs.stdenv.hostPlatform.system}
+  environment.systemPackages =
+    [
+      inp.matugen.packages.${system}.default
+      inp.plank-reloaded.packages.${system}.default
+    ]
+    ++ (with pkgs; [
+      # ======== BSPWM Stuff
+      polybarFull
+      sxhkd
+      picom
+      rofi
+      eww
+      i3lock-color
 
-  ]
-  ++ (with pkgs; [
-    # ======== BSPWM Stuff
-    polybarFull
-    sxhkd
-    picom
-    rofi
-    eww
-    i3lock-color
+      # ======== TOOLS
+      sound-theme-freedesktop
+      libcanberra-gtk3
+      mpv-unwrapped
+      brightnessctl
+      flameshot
+      imagemagick
+      clipmenu
+      pamixer
+      xclip
+      dunst
+      maim
+      feh
+      bc
 
-    # ======== TOOLS
-    sound-theme-freedesktop
-    libcanberra-gtk3
-    mpv-unwrapped
-    brightnessctl
-    flameshot
-    imagemagick
-    clipmenu
-    pamixer
-    xclip
-    dunst
-    pywal
-    maim
-    feh
-    bc
+      # ======== X UTILS
+      (python3.withPackages (ps: with ps; [
+        pywal
+        colorthief
+        haishoku
+      ]))
 
-    # ======== X UTILS
-    imlib2
-    xinit
-    psmisc
-    xsetroot
-    xrandr
-    xinput
-    xdotool
-    xcolor
-    xdo
-    xev
-    xxHash
+      imlib2
+      xinit
+      psmisc
+      xsetroot
+      xrandr
+      xinput
+      xdotool
+      xcolor
+      xdo
+      xev
+      xxhash
 
-    # ======== GTK
-    gtk2
-    gtk3
-    gtk4
-    dconf
-    dconf-editor
+      # ======== GTK
+      gtk2
+      gtk3
+      gtk4
+      dconf
+      dconf-editor
 
-    # ======== GTK engine
-    gtk-engine-murrine
-    nwg-look
-    glib
+      # ======== GTK engine
+      gtk-engine-murrine
+      nwg-look
+      glib
 
-    # tray
-    wmctrl
-    snixembed
-    libappindicator
-    kdocker
-  ]);
+      # tray
+      wmctrl
+      snixembed
+      libappindicator
+      kdocker
+    ]);
 }
