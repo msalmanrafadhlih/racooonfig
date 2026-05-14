@@ -70,7 +70,7 @@ in
       copy_on_select = true;
 
       cursor_trail = 1;
-      cursor_trail_decay = [ 0.1 0.4 ];
+      cursor_trail_decay = "0.1 0.4";
       cursor_shape = "block";
       cursor_shape_unfocused = "beam";
       cursor_beam_thickness = 1.5;
