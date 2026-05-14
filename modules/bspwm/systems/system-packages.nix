@@ -51,7 +51,7 @@ in
       xcolor
       xdo
       xev
-      xxhash
+      xxHash
 
       # ======== GTK
       gtk2
