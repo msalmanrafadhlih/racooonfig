@@ -75,14 +75,14 @@ case $MY_TERM in
     "alacritty")
         case $1 in
             "--term") echo alacritty ;;
-            "--terminal") alacritty --class TerminalDefault;;
+            "--terminal") alacritty ;;
             "--pinned") alacritty --class TerminalPinned ;;
             "--update") alacritty --hold --class FloaTerm,FloaTerm -e paru -Syu --nocombinedupgrade ;;
             "--checkupdates") alacritty --hold --class Updating,Updating -e Updates --print-updates ;;
             "--yazi") alacritty --class YaziTerm -e yazi ;;
-            "--nvim") alacritty --class TerminalNvim -e nvim ;;
-            "--vi") alacritty --class TerminalNvim -e vi ;;
-            "--hx") st --class TerminalNvim -e hx ;;
+            "--nvim") alacritty --class TerminalIDE -e nvim ;;
+            "--vi") alacritty --class TerminalIDE -e vi ;;
+            "--hx") st --class TerminalIDE -e hx ;;
             "--music") kdocker -f -q alacritty --class floating_rmpc -e rmpc ;;
             "--btop") alacritty -e btop ;;
             "--fetch") alacritty --class FloaTerm,FetchTerm -e ~/.local/bin/sysfetch ;;
@@ -91,14 +91,14 @@ case $MY_TERM in
     "st")
         case $1 in
             "--term") echo st ;;
-            "--terminal") st -c TerminalDefault;;
+            "--terminal") st ;;
             "--pinned") st -c TerminalPinned ;;
             "--update") st -c FloaTerm -e sh -c 'paru -Syu --nocombinedupgrade; read _ </dev/tty 2>/dev/null' ;;
             "--checkupdates") st -c Updating -e sh -c 'Updates --print-updates; read _ </dev/tty 2>/dev/null' ;;
             "--yazi") st -c YaziTerm -e yazi ;;
-            "--nvim") st -c TerminalNvim -e nvim ;;
-            "--vi") st -c TerminalNvim -e vi ;;
-            "--hx") st -c TerminalNvim -e hx ;;
+            "--nvim") st -c TerminalIDE -e nvim ;;
+            "--vi") st -c TerminalIDE -e vi ;;
+            "--hx") st -c TerminalIDE -e hx ;;
             "--music") kdocker -f -q st -c floating_rmpc -e rmpc ;;
             "--btop") st -e btop ;;
             "--fetch") st -n FetchTerm -c FloaTerm -e ~/.local/bin/sysfetch ;;
@@ -107,17 +107,17 @@ case $MY_TERM in
     "kitty")
         case $1 in
             "--term") echo kitty ;;
-            "--terminal") kitty --listen-on unix:/tmp/kitty --class=TerminalDefault ;;
-            "--pinned") kitty --listen-on unix:/tmp/kitty --class=TerminalPinned ;;
-            "--update") kitty --listen-on unix:/tmp/kitty --hold --class=FloaTerm -e paru -Syu --nocombinedupgrade ;;
-            "--checkupdates") kitty --listen-on unix:/tmp/kitty --hold --class=Updating -e Updates --print-updates ;;
-            "--yazi") kitty --listen-on unix:/tmp/kitty --hold --class=YaziTerm -e yazi ;;
-            "--nvim") kitty --listen-on unix:/tmp/kitty --class=TerminalNvim -e nvim ;;
-            "--vi") kitty --listen-on unix:/tmp/kitty --class=TerminalNvim -e vi ;;
-            "--hx") kitty --listen-on unix:/tmp/kitty --class=TerminalNvim -e hx ;;
-            "--music") kdocker -f -q kitty --listen-on unix:/tmp/kitty --class=floating_rmpc -e rmpc ;;
-            "--btop") kitty --listen-on unix:/tmp/kitty -e btop ;;
-            "--fetch") kitty --listen-on unix:/tmp/kitty --name=FetchTerm --class=FloaTerm -e ~/.local/bin/sysfetch ;;
+            "--terminal") kitty ;;
+            "--pinned") kitty --class=TerminalPinned ;;
+            "--update") kitty --hold --class=FloaTerm -e paru -Syu --nocombinedupgrade ;;
+            "--checkupdates") kitty --hold --class=Updating -e Updates --print-updates ;;
+            "--yazi") kitty --hold --class=YaziTerm -e yazi ;;
+            "--nvim") kitty --class=TerminalIDE -e nvim ;;
+            "--vi") kitty --class=TerminalIDE -e vi ;;
+            "--hx") kitty --class=TerminalIDE -e hx ;;
+            "--music") kdocker -f -q kitty --class=floating_rmpc -e rmpc ;;
+            "--btop") kitty -e btop ;;
+            "--fetch") kitty --name=FetchTerm --class=FloaTerm -e ~/.local/bin/sysfetch ;;
         esac
         ;;
 esac
