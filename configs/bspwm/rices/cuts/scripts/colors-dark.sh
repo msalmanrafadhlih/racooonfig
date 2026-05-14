@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
 # Color files
+DIR="$HOME/.config/$XDG_CURRENT_DESKTOP"
+read -r RICE < "$DIR/.rice"
+RFILE="$DIR/rices/$RICE/scripts/rofi/colors.rasi"
+
 PFILE="/tmp/polybar_${UID}.ini"
-RFILE="$HOME/.config/$XDG_CURRENT_DESKTOP/rices/cuts/scripts/rofi/colors.rasi"
 
 BG="0a0a0a"
 FG="f5f5f5"
