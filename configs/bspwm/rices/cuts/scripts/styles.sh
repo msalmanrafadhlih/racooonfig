@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
 # Color files
+DIR="$HOME/.config/$XDG_CURRENT_DESKTOP"
+read -r RICE < "$DIR/.rice"
+RFILE="$DIR/rices/$RICE/scripts"
+
 PFILE="/tmp/polybar_${UID}.ini"
-RFILE="$HOME/.config/$XDG_CURRENT_DESKTOP/rices/cuts/scripts"
 
 # Change colors
 change_color() {
