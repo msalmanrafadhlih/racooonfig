@@ -36,7 +36,7 @@ in
     };
 
     extraConfig = ''
-      include current-theme.conf
+      include themes/racooonfig.conf
       allow_remote_control yes
     '';
 
