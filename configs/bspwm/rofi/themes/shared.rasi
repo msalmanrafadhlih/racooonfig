@@ -64,7 +64,7 @@
     surface-container-highest: #33353a;
 
     font: "JetBrains Mono Nerd Font 10";
-    image: url("/home/tquilla/.dotfiles/bspwm/configs/bspwm/rices/default/wallpapers/wallpaper10.png", width);
+    image: url("/home/tquilla/.dotfiles/bspwm/configs/bspwm/rices/default/wallpapers/default.jpg", width);
 
     /* background: #1a0a0aff; */
     /* background-alt: #331111ff; */
