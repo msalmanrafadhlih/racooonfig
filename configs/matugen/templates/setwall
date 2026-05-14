@@ -1,10 +1,71 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# "$HOME/.config/polybar/material/scripts/pywal.sh" {{ image }} &
-# /run/current-system/sw/bin/feh --no-fehbg --bg-fill '{{ image }}' 
+# Mengambil argumen pertama, jika kosong default ke --apply
+action="${1:-"--apply"}"
 
-feh --bg-fill {{ image }} && \
-wal -i {{ image }} -q -e -n -s -a 70 &
+MODE={{ mode }}
+
+if [[ "$MODE" == "light" ]]; then
+    mode="-l"
+    scheme="lighten"
+    alpa=70
+    fg_args=(--fg "#1a1a1a") 
+else
+    mode=""
+    scheme="darken"
+    alpa=70
+    fg_args=() 
+fi
+
+usage() {
+    local wall_default={{ image }}
+    
+    feh --bg-fill "$wall_default" &
+
+    wal -i "$wall_default" \
+        $mode \
+        --cols16 "$scheme" \
+        -q "${fg_args[@]}" \
+        --vte \
+        -e -n -s \
+        -a "$alpa" \
+        --contrast 4.5 &
+}
+
+manual() {
+    local image="$1"
+    
+    # Validasi: Jika argumen kosong ATAU file tidak ada
+    if [[ -z "$image" || ! -f "$image" ]]; then
+       local file
+       file=$(basename "$image" 2>/dev/null || echo "File")
+       echo "Error: '$file' no such file in directory."
+       return 1 
+    fi
+
+    feh --bg-fill "$image" &
+
+    wal -i "$image" \
+        $mode \
+        --cols16 "$scheme" \
+        -q "${fg_args[@]}" \
+        --vte \
+        -e -n \
+        -a "$alpa" \
+        --contrast 4.5 &
+}
+
+# Logic switch
+if [[ "$action" == "--apply" ]]; then
+    usage
+else
+    manual "$action"
+fi
 
 sleep 0.5
-WallSync &
+
+if command -v WallSync &> /dev/null; then
+    WallSync &
+fi
+
+wait
