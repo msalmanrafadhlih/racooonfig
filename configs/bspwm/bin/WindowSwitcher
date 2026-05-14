@@ -23,7 +23,7 @@ case $1 in
                 class=$(awk '{print $3}' <<< "$line")
 
                 case "$class" in
-                    *TerminalDefault* | *TerminalPinned*)
+                    *St* | *TerminalPinned*)
                         icon="$HOME/.config/Assets/Icons/terminal.png"
                         ;;
                     *ChatAi*)
