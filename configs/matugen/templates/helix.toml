@@ -18,9 +18,9 @@
 "punctuation" = "orange1"
 "special" = "pink2"
 "string" = "{{ colors.primary.default.hex | to_color | set_lightness: 70 | set_saturation: 50.0 }}"
-"string.regexp" = "{{ colors.tertiary_container.default.hex }}"
-"string.special" = "{{ colors.primary_fixed.default.hex }}"
-"string.special.symbol" = "{{ colors.error.default.hex }}"
+# "string.regexp" = "{{ colors.tertiary_container.default.hex }}"
+# "string.special" = "{{ colors.primary_fixed.default.hex }}"
+# "string.special.symbol" = "{{ colors.error.default.hex }}"
 "tag" = "green0"
 "type" = "blue0"
 "type.builtin" = "orange0"
@@ -76,7 +76,7 @@
 "ui.highlight" = { bg = "{{ colors.secondary_container.default.hex }}", modifiers = [
   "bold",
 ] }
-"ui.menu" = { fg = "{{ colors.on_surface.default.hex }}", bg = "none" }
+"ui.menu" = { fg = "green0", bg = "none" }
 "ui.menu.selected" = { fg = "orange1", modifiers = ["bold"] }
 
 # --- Diagnostics ---
