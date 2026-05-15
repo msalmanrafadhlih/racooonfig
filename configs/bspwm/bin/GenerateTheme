@@ -8,9 +8,10 @@ theme_name="${2:-""}"
 DIR="$HOME/.config/$XDG_CURRENT_DESKTOP"
 TMP_CONFIG="/tmp/polybar_${UID}".ini
 read -r RICE < "$DIR/.rice"
+. "$DIR/rices/$RICE/.var"
 
 usage() {
-	cat <<- EOF
+    cat <<- EOF
 
 	to preview available Themes
 
@@ -20,64 +21,97 @@ usage() {
 	--forest    --grayblocks     --hack      --material
 	--panels    --shades         --shapes
 	EOF
-	exit 1
+    exit 1
 }
 
 # kill polybar or eww
-if pgrep -f "$TMP_CONFIG" >/dev/null; then
+if pgrep -f "$TMP_CONFIG" > /dev/null; then
     pkill -9 -f "$TMP_CONFIG" || true
     rm -f "$TMP_CONFIG"
 fi
 
-if pgrep -u ${UID} -f eww >/dev/null; then
-    eww kill 2>/dev/null || pkill eww || true
+if pgrep -u ${UID} -f eww > /dev/null; then
+    eww kill 2> /dev/null || pkill eww || true
 fi
 
 set_theme() {
-    # Cari wallpaper secara efisien
-    # RANDOM_WALLPAPER=$(find "$DIR/rices/$RICE/wallpapers" -type f -iregex '.*\.\(jpg\|jpeg\|png\|webp\|bmp\|gif\)' | shuf -n 1)
+    scheme=${mode:-$RICE}
+    RANDOM_WALLPAPER=$(find "$DIR/rices/$RICE/wallpapers/$scheme"* -type f -iregex '.*\.\(jpg\|jpeg\|png\|webp\|bmp\|gif\)' | shuf -n 1 2>&1)
 
-    if RANDOM_WALLPAPER=$(find "$DIR/rices/$RICE/wallpapers/default"* -type f -iregex '.*\.\(jpg\|jpeg\|png\|webp\|bmp\|gif\)' | shuf -n 1 2>&1); then
-        echo "get wallpaper..."
-    else
+    if [ -z "$RANDOM_WALLPAPER" ]; then
         dunstify -r 999 -u critical -a "Theme Manager" "Error" "Wallpaper tidak ditemukan!"
         exit 1
     fi
 
-    # Mapping Tema & Cursor
+    echo "Wallpaper ditemukan: $(basename "$RANDOM_WALLPAPER")"
+
     case "$RICE" in
-        colorblocks) THEME="Vimix-ruby-dark";  CURSOR="Kafka"; MODE="dark" ;;
-        cuts) THEME="Vimix-ruby-dark";  CURSOR="Kafka"; MODE="dark" ;;
-        docky) THEME="Vimix-white"; CURSOR="Kiana"; MODE="light" ;;
-        blocks)  THEME="Vimix-doder-dark"; CURSOR="Erika-Furudo"; MODE="dark" ;;
-        forest)  THEME="Vimix-jade-dark"; CURSOR="Ellen-Joe"; MODE="dark" ;;
-        grayblocks) THEME="Vimix-white-dark";  CURSOR="Bibata-Modern-Ice"; MODE="light" ;;
-        gruvboks) THEME="Vimix-black-dark";  CURSOR="Ellen-Joe"; MODE="dark" ;;
-        hack)  THEME="Vimix"; CURSOR="Ju-Fufu"; MODE="light" ;;
-        material)   THEME="Vimix-doder-dark";  CURSOR="Erika-Furudo"; MODE="dark" ;;
-        panels)   THEME="Vimix-white";  CURSOR="Bibata-Modern-Ice"; MODE="dark" ;;
-        shades)   THEME="Vimix-doder";  CURSOR="Erika-Furudo"; MODE="light" ;;
-        shapes)   THEME="Vimix-white";  CURSOR="Bibata-Modern-Ice"; MODE="dark" ;;
-        yatch) THEME="Vimix-white"; CURSOR="Kiana"; MODE="dark" ;;
-        *)     THEME="Vimix-white-dark"; CURSOR="Bibata-Modern-Ice"; MODE="dark";;
+        colorblocks | cuts)
+            THEME="Vimix-ruby-dark"
+            CURSOR="Kafka"
+            MODE="dark"
+            ;;
+        docky)
+            THEME="Vimix-white"
+            CURSOR="Kiana"
+            MODE="light"
+            ;;
+        blocks | material)
+            THEME="Vimix-doder-dark"
+            CURSOR="Erika-Furudo"
+            MODE="dark"
+            ;;
+        forest)
+            THEME="Vimix-jade-dark"
+            CURSOR="Ellen-Joe"
+            MODE="dark"
+            ;;
+        grayblocks)
+            THEME="Vimix-white-dark"
+            CURSOR="Bibata-Modern-Ice"
+            MODE="light"
+            ;;
+        gruvboks)
+            THEME="Vimix-black-dark"
+            CURSOR="Ellen-Joe"
+            MODE="dark"
+            ;;
+        hack)
+            THEME="Vimix"
+            CURSOR="Ju-Fufu"
+            MODE="light"
+            ;;
+        panels | shapes)
+            THEME="Vimix-white"
+            CURSOR="Bibata-Modern-Ice"
+            MODE="dark"
+            ;;
+        shades)
+            THEME="Vimix-doder"
+            CURSOR="Erika-Furudo"
+            MODE="light"
+            ;;
+        yatch)
+            THEME="Vimix-white"
+            CURSOR="Kiana"
+            MODE="dark"
+            ;;
+        *)
+            THEME="Vimix-white-dark"
+            CURSOR="Bibata-Modern-Ice"
+            MODE="dark"
+            ;;
     esac
 
-    # Terapkan Matugen
-    if ERROR_MSG=$(matugen image "$RANDOM_WALLPAPER" \
-        --mode "$MODE" \
-        --source-color-index 0 \
-        --import-json-string "{ \"mode\": \"$MODE\", \"cursor\": \"$CURSOR\", \"gtktheme\": \"$THEME\" }" 2>&1); then
-         
+    if ERROR_MSG=$(matugen image "$RANDOM_WALLPAPER" --mode "$MODE" --source-color-index 0 --import-json-string "{ \"mode\": \"$MODE\", \"cursor\": \"$CURSOR\", \"gtktheme\": \"$THEME\" }" 2>&1); then
         dunstify -u normal -a "Theme Manager" "Theme Applied!" "Rice: $RICE\nWallpaper: $(basename "$RANDOM_WALLPAPER")"
     else
         dunstify -r 999 -u critical -a "Theme Manager" "Failed!" "$ERROR_MSG"
         exit 1
     fi
 
-    # Apply GTK & Kitty
     set-gtk-theme "dynamic" "$THEME" "$CURSOR"
     kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.config/kitty/themes/racooonfig.conf" || true
-
     "$DIR/rices/$RICE/launch.sh" &
 }
 
@@ -88,7 +122,7 @@ preview_theme() {
     fi
 
     pkill polybar || true
-    while pgrep -f polybar >/dev/null; do sleep 0.2; done
+    while pgrep -f polybar > /dev/null; do sleep 0.2; done
 
     echo "Previewing: $style"
     "$DIR/rices/$style/preview.sh" &
