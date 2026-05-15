@@ -24,13 +24,13 @@
         default = [ "gtk" ];
         # Eksplisit assign per-interface agar tidak ambigu
         "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-        "org.freedesktop.impl.portal.AppChooser"  = [ "gtk" ];
-        "org.freedesktop.impl.portal.Screenshot"  = [ "gtk" ];
-        "org.freedesktop.impl.portal.OpenURI"     = [ "gtk" ];
+        "org.freedesktop.impl.portal.AppChooser" = [ "gtk" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "gtk" ];
+        "org.freedesktop.impl.portal.OpenURI" = [ "gtk" ];
       };
-    };
-    bspwm = {
-      default = [ "gtk" ];
+      bspwm = {
+        default = [ "gtk" ];
+      };
     };
   };
 }
