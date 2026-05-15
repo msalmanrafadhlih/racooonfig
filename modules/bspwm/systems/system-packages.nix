@@ -41,6 +41,7 @@ in
         haishoku
       ]))
 
+      shared-mime-info
       imlib2
       xinit
       psmisc
