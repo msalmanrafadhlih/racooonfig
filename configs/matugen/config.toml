@@ -30,11 +30,6 @@ output_path = "~/.config/btop/themes/racooon.theme"
 input_path = "templates/rofi-colors.rasi"
 output_path = "~/.config/rofi/themes/shared.rasi"
 
-[templates.xresources]
-input_path = "templates/xresources"
-output_path = "~/.Xresources"
-post_hook = "xrdb -merge ~/.Xresources && killall -USR1 $(Term --term)"
-
 [templates.wallpaper]
 input_path = "templates/setwall"
 output_path = "~/.local/bin/wall"
@@ -85,3 +80,7 @@ post_hook = "dunstctl reload '~/.config/dunst/dunstrc'"
 input_path = "templates/brightness.svg"
 output_path = "~/.config/Assets/Icons/brightness.svg"
 
+[templates.xresources]
+input_path = "templates/xresources"
+output_path = "~/.Xresources"
+post_hook = "killall -USR1 $(Term --term)"
