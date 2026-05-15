@@ -34,7 +34,7 @@ if [[ ! -f "$TMP_CONFIG" ]]; then
         "$DIR_CONFIG/rices/$BAR/launch.sh" &
     fi
     exit 0
-elif pgrep -x polybar >/dev/null; then
+elif pgrep -x polybar >/dev/null; then 
     polybar-msg cmd restart >/dev/null
     exit 0
 else
@@ -66,6 +66,7 @@ else
         local config_file=$2
         local monitor_name=$3
 
+        RICE="$BAR" \
         MONITOR="$monitor_name" \
         ADAPTER="$adp" \
         BATTERY="$bat" \
