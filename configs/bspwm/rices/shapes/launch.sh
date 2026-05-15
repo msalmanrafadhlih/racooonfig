@@ -63,6 +63,7 @@ Bottom Padding: ${bottom:-0}"
     # Jalankan polybar
     while read -r mon; do
         for w in $bars; do
+            RICE="$RICE" \
             MONITOR="$mon" \
             ADAPTER="$adp" \
             BATTERY="$bat" \
