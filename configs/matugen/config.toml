@@ -83,4 +83,4 @@ output_path = "~/.config/Assets/Icons/brightness.svg"
 [templates.xresources]
 input_path = "templates/xresources"
 output_path = "~/.Xresources"
-post_hook = "killall -USR1 $(Term --term)"
+post_hook = "xrdb -merge ~/.Xresources && killall -USR1 $(Term --term)"
