@@ -10,7 +10,13 @@ WFILE="$HOME/.cache/wal/colors.sh"
 
 # Get colors
 pywal_get() {
-	wal -i "$1" -q -t
+wal -i "$1" \
+        -q -e \
+        --vte \
+        -a 70 \
+        --contrast 4.5 \
+        --backend haishoku &
+
 }
 
 # Change colors
