@@ -1,6 +1,9 @@
 # ./modules/xsession.nix
 {
   home.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "bspwm";
+    XDG_SESSION_TYPE = "x11";
+
     BROWSER = "vivaldi";
     TERMINAL = "st";
     XCURSOR_SIZE = "24";
@@ -16,6 +19,10 @@
     initExtra = ''
       [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
       xsetroot -cursor_name left_ptr	    
+
+      if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+          eval "$(dbus-launch --sh-syntax --exit-with-session)"
+      fi
 
   		mpDris2 &
 
