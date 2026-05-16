@@ -8,7 +8,10 @@ theme_name="${2:-""}"
 DIR="$HOME/.config/$XDG_CURRENT_DESKTOP"
 TMP_CONFIG="/tmp/polybar_${UID}".ini
 read -r RICE < "$DIR/.rice"
-. "$DIR/rices/$RICE/.var"
+
+if [[ -f "$DIR/rices/$RICE/.var" ]]; then
+    . "$DIR/rices/$RICE/.var"
+fi 
 
 usage() {
     cat <<- EOF
