@@ -84,7 +84,7 @@ case $MY_TERM in
             "--vi") alacritty --class TerminalIDE -e vi ;;
             "--hx") st --class TerminalIDE -e hx ;;
             "--music") kdocker -f -q alacritty --class floating_rmpc -e rmpc ;;
-            "--btop") alacritty -e btop ;;
+            "--btop") alacritty --class TerminalIDE -e btop ;;
             "--fetch") alacritty --class FloaTerm,FetchTerm -e ~/.local/bin/sysfetch ;;
         esac
         ;;
@@ -100,7 +100,7 @@ case $MY_TERM in
             "--vi") st -c TerminalIDE -e vi ;;
             "--hx") st -c TerminalIDE -e hx ;;
             "--music") kdocker -f -q st -c floating_rmpc -e rmpc ;;
-            "--btop") st -e btop ;;
+            "--btop") st -c TerminalIDE -e btop ;;
             "--fetch") st -n FetchTerm -c FloaTerm -e ~/.local/bin/sysfetch ;;
         esac
         ;;
@@ -116,7 +116,7 @@ case $MY_TERM in
             "--vi") kitty --class=TerminalIDE -e vi ;;
             "--hx") kitty --class=TerminalIDE -e hx ;;
             "--music") kdocker -f -q kitty --class=floating_rmpc -e rmpc ;;
-            "--btop") kitty -e btop ;;
+            "--btop") kitty --class=TerminalIDE -e btop ;;
             "--fetch") kitty --name=FetchTerm --class=FloaTerm -e ~/.local/bin/sysfetch ;;
         esac
         ;;
