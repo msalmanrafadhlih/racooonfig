@@ -46,7 +46,7 @@ export process_func_def cacheDir wall_dir
 rm -f "${cacheDir}"/.lock_* 2>/dev/null || true
 
 # Process files in parallel
-find "$wall_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) -print0 | \
+find "$wall_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" -o -iname "*.avif" \) -print0 | \
     xargs -0 -P "$PARALLEL_JOBS" -I {} sh -c "$process_func_def; process_image \"{}\""
 
 # Clean orphaned cache files and their locks
@@ -65,7 +65,7 @@ done
 rm -f "${cacheDir}"/.lock_* 2>/dev/null || true
 
 # Launch rofi
-wall_selection=$(find "${wall_dir}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) -print0 |
+wall_selection=$(find "${wall_dir}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" -o -iname "*.avif" \) -print0 |
     xargs -0 basename -a |
     LC_ALL=C sort |
     while IFS= read -r A; do
