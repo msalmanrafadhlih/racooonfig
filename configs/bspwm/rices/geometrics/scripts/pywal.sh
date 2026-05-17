@@ -46,9 +46,10 @@ change_color() {
 }
 
 # Main
-if [[ -x "`which wal`" ]]; then
+if [[ -x "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
 		pywal_get "$1"
+		sleep 0.5
 
 		# Source the pywal color file
 		if [[ -e "$WFILE" ]]; then
@@ -59,9 +60,9 @@ if [[ -x "`which wal`" ]]; then
 		fi
 
 		BG=`printf "%s\n" "$background"`
-		FG=`printf "%s\n" "$background"`
+		FG=`printf "%s\n" "$foreground"`
 		BGA=`printf "%s\n" "$color7"`
-		FGA=`printf "%s\n" "$color7"`
+		FGA=`printf "%s\n" "$color3"`
 		AC=`printf "%s\n" "$color1"`
 
 		change_color
