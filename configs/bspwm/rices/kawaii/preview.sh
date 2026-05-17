@@ -3,14 +3,13 @@
 set -euo pipefail
 
 DIR="$HOME/.config/$XDG_CURRENT_DESKTOP"
-read -r RICE < "$DIR/.rice"
 
-VAR_FILE="$DIR/rices/hack/.var"
+VAR_FILE="$DIR/rices/docky/.var"
 TMP_CONFIG="/tmp/polybar_${UID}.ini"
 
 SHARED="$HOME/.config/polybar/shared"
-MODULES="$DIR/rices/hack/modules"
-MAIN_CONFIG="$DIR/rices/hack/preview.ini"
+MODULES="$DIR/rices/docky/modules"
+MAIN_CONFIG="$DIR/rices/docky/preview.ini"
 
 # Load variables
 # Example:
@@ -24,7 +23,7 @@ bspc config top_padding "${top:-0}"
 bspc config bottom_padding "${bottom:-0}"
 
 # Make all scripts executable
-find "$DIR/rices/hack/scripts" -type f -exec chmod +x {} +
+find "$DIR/rices/docky/scripts" -type f -exec chmod +x {} +
 
 # Generate merged polybar config
 cat \
