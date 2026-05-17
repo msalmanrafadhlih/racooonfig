@@ -46,9 +46,10 @@ change_color() {
 }
 
 # Main
-if [[ -x "`which wal`" ]]; then
+if [[ -x "$(which wal)" ]]; then
 	if [[ "$1" ]]; then
 		pywal_get "$1"
+		sleep 0.5
 
 		# Source the pywal color file
 		if [[ -e "$WFILE" ]]; then
