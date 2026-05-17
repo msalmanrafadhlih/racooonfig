@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 read -r RICE < "$HOME/.config/$XDG_CURRENT_DESKTOP/.rice"
 SDIR="$HOME/.config/$XDG_CURRENT_DESKTOP/rices/$RICE/scripts"
 
@@ -12,21 +11,26 @@ change_color() {
 	# polybar
 	sed -i -e "s/background = #.*/background = $BG/g" $PFILE
 	sed -i -e "s/foreground = #.*/foreground = $FG/g" $PFILE
+	sed -i -e "s/foreground-alt = #.*/foreground-alt = $FGA/g" $PFILE
+	sed -i -e "s/module-fg = #.*/module-fg = $MF/g" $PFILE
 	sed -i -e "s/primary = #.*/primary = $AC/g" $PFILE
+	sed -i -e "s/secondary = #.*/secondary = $SC/g" $PFILE
+	sed -i -e "s/alternate = #.*/alternate = $AL/g" $PFILE
 	
 	# rofi
 	cat > $RFILE <<- EOF
 	/* colors */
 
 	* {
-	  al:    #00000000;
-	  bg:    #1F1F1FFF;
-	  ac:    ${AC}FF;
-	  se:    ${AC}26;
-	  fg:    #FFFFFFFF;
+	  al:   #00000000;
+	  bg:   ${BG}FF;
+	  bga:  ${AC}33;
+	  bar:  ${MF}FF;
+	  fg:   ${FG}FF;
+	  ac:   ${AC}FF;
 	}
 	EOF
-	
+
 	polybar-msg cmd restart
 }
 
@@ -73,20 +77,22 @@ get_fg_color(){
     INTENSITY=$(calc "$R*0.299 + $G*0.587 + $B*0.114")
     
     if [ $(echo "$INTENSITY>186" | bc) -eq 1 ]; then
-        FG="#0a0a0a"
+        MF="#0a0a0a"
     else
-        FG="#F5F5F5"
+        MF="#F5F5F5"
     fi
 }
 
 # Main
-BG='#1f1f1f'	# change to light bg
+BG='#1F1F1F'	# change to light bg
 FG='#FFFFFF'	# change to dark fg
+FGA=`get_random_color`
 AC=`get_random_color`
+SC=`get_random_color`
+AL=`get_random_color`
 
-#BG=`get_random_color`
-#HEX=${BG:1}
-#hex_to_rgb $HEX
-#get_fg_color
+HEX=${AC:1}
 
+hex_to_rgb $HEX
+get_fg_color
 change_color
