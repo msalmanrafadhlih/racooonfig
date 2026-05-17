@@ -22,7 +22,7 @@ pywal_get() {
 change_color() {
     # polybar
     sed -i -e "s/background = #.*/background = $BG/g" $PFILE
-    sed -i -e "s/foreground = #.*/foreground = $FG/g" $PFILE
+    sed -i -e "s/foreground = #.*/foreground = $BG/g" $PFILE
     sed -i -e "s/foreground-alt = #.*/foreground-alt = $FGA/g" $PFILE
     sed -i -e "s/shade1 = #.*/shade1 = $SH1/g" $PFILE
     sed -i -e "s/shade2 = #.*/shade2 = $SH2/g" $PFILE
@@ -54,6 +54,7 @@ change_color() {
 if [[ -x "$(which wal)" ]]; then
     if [[ "$1" ]]; then
         pywal_get "$1"
+        sleep 0.5
 
         # Source the pywal color file
         if [[ -e "$WFILE" ]]; then
@@ -68,12 +69,12 @@ if [[ -x "$(which wal)" ]]; then
         FGA=$(printf "%s\n" "$foreground")
         SH1=$(printf "%s\n" "$color1")
         SH2=$(printf "%s\n" "$color2")
-        SH3=$(printf "%s\n" "$color1")
-        SH4=$(printf "%s\n" "$color2")
-        SH5=$(printf "%s\n" "$color1")
-        SH6=$(printf "%s\n" "$color2")
-        SH7=$(printf "%s\n" "$color1")
-        SH8=$(printf "%s\n" "$color7")
+        SH3=$(printf "%s\n" "$color3")
+        SH4=$(printf "%s\n" "$color4")
+        SH5=$(printf "%s\n" "$color5")
+        SH6=$(printf "%s\n" "$color6")
+        SH7=$(printf "%s\n" "$color7")
+        SH8=$(printf "%s\n" "$color8")
 
         change_color
     else
