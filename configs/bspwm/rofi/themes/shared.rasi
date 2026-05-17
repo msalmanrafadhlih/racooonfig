@@ -6,7 +6,7 @@
     background-normal: #00000000; /* Tetap transparan (tidak ada di palet) */
     background-transparent: #e91f1e20; /* #ed0928 + 20 */
     background-gradient-active: linear-gradient(to left, #ff5447, transparent);
-    background-gradient-selected: linear-gradient(to right, #c0000d, transparent);
+    background-gradient-selected: linear-gradient(to left, #c0000d, transparent);
 
     foreground: #ffb4aa; /* #ffecea */
     foreground-selected: #f1dedc; /* #ffffff */
