@@ -6,7 +6,7 @@
     background-normal: #00000000; /* Tetap transparan (tidak ada di palet) */
     background-transparent: {{palettes.primary._50.hex}}20; /* #ed0928 + 20 */
     background-gradient-active: linear-gradient(to left, {{palettes.primary._60.hex}}, transparent);
-    background-gradient-selected: linear-gradient(to right, {{palettes.primary._40.hex}}, transparent);
+    background-gradient-selected: linear-gradient(to left, {{palettes.primary._40.hex}}, transparent);
 
     foreground: {{colors.primary.default.hex}}; /* #ffecea */
     foreground-selected: {{colors.on_surface.default.hex}}; /* #ffffff */
