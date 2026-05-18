@@ -230,14 +230,15 @@ let
 
 in
 {
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     wallSelect
-    pkgs.libheif
+
+    libheif
+    imlib2Full
+    libavif
   ];
 
   programs.gdk-pixbuf.modulePackages = with pkgs; [
     webp-pixbuf-loader
-    gdk-pixbuf
-    gdk-pixbuf-xlib
   ];
 }
