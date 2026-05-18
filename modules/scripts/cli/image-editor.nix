@@ -138,4 +138,4 @@ let
     '';
   };
 in
-{ home.packages = [ image-magick ]; }
+{ environment.systemPackages = [ image-magick ]; }
