@@ -128,7 +128,7 @@ let
         FIND, wall_dir
       )
       os.execute(string.format(
-        "%s | %s -0 -P %d sh '%s'",
+        "%s | %s -0 -n 1 -P %d sh '%s'",
         find_cmd, XARGS, jobs, helper
       ))
 
