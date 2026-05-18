@@ -20,5 +20,6 @@
 	  ./cli/image-editor.nix
 	  ./cli/set-gtk-theme.nix
 	  ./cli/get-github-hash.nix
+	  ./cli/wallpaper-selection.nix
   ];
 }
