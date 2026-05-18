@@ -224,21 +224,17 @@ let
 
 in
 {
-  home.packages = with pkgs; [
+  home.packages = let
+    gtkEnv = pkgs.buildEnv {
+      name = "gtk-env";
+      paths = with pkgs; [
+        gdk-pixbuf
+        webp-pixbuf-loader
+        libavif
+      ];
+    };
+  in [
     wallSelect
-
-    gdk-pixbuf
-    webp-pixbuf-loader
-    libavif
-    glycin-loaders
-    imlib2Full
+    gtkEnv
   ];
-
-  home.sessionVariables = {
-    GDK_PIXBUF_MODULEDIR =
-      "${pkgs.gdk-pixbuf.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders";
-
-    GDK_PIXBUF_MODULE_FILE =
-      "${pkgs.gdk-pixbuf.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
-  };
 }
