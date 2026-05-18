@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = [
+  environment.systemPackages = [
     (pkgs.writeShellApplication {
       name = "set-gtk-theme";
       runtimeInputs = with pkgs; [
