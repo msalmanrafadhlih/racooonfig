@@ -102,6 +102,7 @@ THUNAR=$(calc_rect "right" 1102 989 -10 5)
 EVINCE=$(calc_rect "left" 746 996 50 5)
 CENTER_PINNED=$(calc_rect "top" 550 350 0 -35)
 RECT_YAZI=$(calc_rect "center" 900 442)
+FLATPAK=$(calc_rect "center" 1576 971)
 
 # --- LOGIC RULES ---
 case "$class" in
@@ -172,11 +173,8 @@ case "$class" in
     "floating_rmpc")
         echo "state=floating rectangle=$RMPC"
         ;;
-    "TerminalIDE")
-        echo "desktop=^3 state=floating follow=on rectangle=$MAIN"
-        ;;
-    "dev.zed.Zed")
-        echo "desktop=^3"
+    "TerminalIDE" | "dev.zed.Zed")
+        echo "desktop=^3 state=pseudo_tiled rectangle=$FLATPAK"
         ;;
     "YaziTerm")
         echo "state=floating rectangle=$(calc_rect "center" 0 0)"
@@ -185,10 +183,10 @@ case "$class" in
         echo "state=floating rectangle=$(calc_rect "center" 0 0) sticky=off"
         ;;
     "Spotify")
-        echo "desktop=^4"
+        echo "desktop=^4 state=pseudo_tiled rectangle=$FLATPAK"
         ;;
     "vesktop")
-        echo "desktop=^5"
+        echo "desktop=^5 state=pseudo_tiled rectangle=$FLATPAK"
         ;;
     "Vivaldi-stable")
         echo "desktop=^2 state=fullscreen"
