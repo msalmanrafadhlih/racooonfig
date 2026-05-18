@@ -1,27 +1,117 @@
 #!/usr/bin/env bash
+# ~/.config/polybar/scripts/spotify.sh
+# Polybar Spotify module — display + dunstify notification on song change
+#
+# Dependencies: playerctl, dunstify (or notify-send), (optional) ImageMagick for art cropping
 
-# Daftar prioritas player
-players=(spotify mpd)
+# ── Config ────────────────────────────────────────────────────────────────────
+PLAYER="spotify"
+MAX_LEN=45          # max total chars before truncating
+CACHE_FILE="/tmp/polybar-spotify-last"
+ICON_PLAY="" # ""       # nerd-font icons (requires NF-compatible font)
+ICON_PAUSE=""
+ICON_NOTE="N"
+NOTIFY_ID=9913      # fixed ID so dunstify replaces instead of stacking
+NOTIFY_TIMEOUT=4000 # ms
+# ──────────────────────────────────────────────────────────────────────────────
 
-for p in "${players[@]}"; do
-    if playerctl -p "$p" status &>/dev/null; then
-        player="$p"
-        break
+# ── Helpers ───────────────────────────────────────────────────────────────────
+truncate() {
+    local str="$1"
+    local max="$2"
+    if [[ ${#str} -gt $max ]]; then
+        echo "${str:0:$((max - 1))}…"
+    else
+        echo "$str"
     fi
-done
+}
 
-# Kalau tak ada player aktif
-[[ -z "$player" ]] && echo "🎵" && exit
+notify() {
+    local title="$1"
+    local body="$2"
+    local icon="$3"   # path to image or icon name
 
-status=$(playerctl -p "$player" status 2>/dev/null)
-meta=$(playerctl -p "$player" metadata --format "{{ artist }} - {{ title }}" 2>/dev/null)
+    if command -v dunstify &>/dev/null; then
+        if [[ -n "$icon" && -f "$icon" ]]; then
+            dunstify -r "$NOTIFY_ID" -t "$NOTIFY_TIMEOUT" -i "$icon" "$title" "$body"
+        else
+            dunstify -r "$NOTIFY_ID" -t "$NOTIFY_TIMEOUT" -i "spotify" "$title" "$body"
+        fi
+    elif command -v notify-send &>/dev/null; then
+        if [[ -n "$icon" && -f "$icon" ]]; then
+            notify-send -t "$NOTIFY_TIMEOUT" -i "$icon" "$title" "$body"
+        else
+            notify-send -t "$NOTIFY_TIMEOUT" -i "spotify" "$title" "$body"
+        fi
+    fi
+}
 
-if [[ "$status" == "Playing" ]]; then
-    icon=""
-elif [[ "$status" == "Paused" ]]; then
-    icon=""
-else
-    icon=""
+fetch_art() {
+    # Download album art to /tmp and return path (empty on failure)
+    local art_url="$1"
+    local art_cache="/tmp/polybar-spotify-art.jpg"
+
+    [[ -z "$art_url" ]] && return
+
+    # Only re-download when URL changes
+    local url_cache="/tmp/polybar-spotify-art-url"
+    local cached_url=""
+    [[ -f "$url_cache" ]] && cached_url=$(cat "$url_cache")
+
+    if [[ "$art_url" != "$cached_url" ]]; then
+        if curl -fsSL --max-time 3 -o "$art_cache" "$art_url" 2>/dev/null; then
+            echo "$art_url" > "$url_cache"
+        else
+            rm -f "$art_cache"
+            return
+        fi
+    fi
+
+    [[ -f "$art_cache" ]] && echo "$art_cache"
+}
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ── Main ──────────────────────────────────────────────────────────────────────
+STATUS=$(playerctl -p "$PLAYER" status 2>/dev/null)
+
+if [[ -z "$STATUS" || "$STATUS" == "No players found" ]]; then
+    echo ""   # Spotify not running — output nothing
+    exit 0
 fi
 
-echo "$meta"
+ARTIST=$(playerctl -p "$PLAYER" metadata xesam:artist 2>/dev/null)
+TITLE=$(playerctl -p "$PLAYER"  metadata xesam:title  2>/dev/null)
+ART_URL=$(playerctl -p "$PLAYER" metadata mpris:artUrl 2>/dev/null)
+
+# Nothing is playing yet
+if [[ -z "$TITLE" ]]; then
+    echo "${ICON_NOTE} Spotify"
+    exit 0
+fi
+
+# ── Song-change detection & notification ──────────────────────────────────────
+CURRENT="${ARTIST} - ${TITLE}"
+LAST=""
+[[ -f "$CACHE_FILE" ]] && LAST=$(cat "$CACHE_FILE")
+
+if [[ "$CURRENT" != "$LAST" ]]; then
+    echo "$CURRENT" > "$CACHE_FILE"
+
+    # Only notify on Play/Paused, not when Spotify is first opened
+    if [[ "$STATUS" == "Playing" || "$STATUS" == "Paused" ]]; then
+        ART_PATH=$(fetch_art "$ART_URL")
+        notify "$TITLE" "${ARTIST:-(Unknown Artist)}" "$ART_PATH"
+    fi
+fi
+
+# ── Format output for Polybar ─────────────────────────────────────────────────
+if [[ "$STATUS" == "Playing" ]]; then
+    ICON="$ICON_PLAY"
+else
+    ICON="$ICON_PAUSE"
+fi
+
+LABEL="${ARTIST} - ${TITLE}"
+LABEL=$(truncate "$LABEL" "$MAX_LEN")
+
+echo "${ICON} ${LABEL}"
