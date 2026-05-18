@@ -102,7 +102,7 @@ THUNAR=$(calc_rect "right" 1102 989 -10 5)
 EVINCE=$(calc_rect "left" 746 996 50 5)
 CENTER_PINNED=$(calc_rect "top" 550 350 0 -35)
 RECT_YAZI=$(calc_rect "center" 900 442)
-FLATPAK=$(calc_rect "center" 1576 971)
+FLATPAK=$(calc_rect "center" 1870 1029)
 
 # --- LOGIC RULES ---
 case "$class" in
@@ -189,7 +189,7 @@ case "$class" in
         echo "desktop=^5 state=pseudo_tiled rectangle=$FLATPAK"
         ;;
     "Vivaldi-stable")
-        echo "desktop=^2 state=fullscreen"
+        echo "desktop=^2 state=pseudo_tiled rectangle=$FLATPAK"
         ;;
     "emulator")
         echo "state=floating center=on"
