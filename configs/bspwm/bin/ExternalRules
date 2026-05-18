@@ -102,7 +102,7 @@ THUNAR=$(calc_rect "right" 1102 989 -10 5)
 EVINCE=$(calc_rect "left" 746 996 50 5)
 CENTER_PINNED=$(calc_rect "top" 550 350 0 -35)
 RECT_YAZI=$(calc_rect "center" 900 442)
-FLATPAK=$(calc_rect "center" 1870 1029)
+FLATPAK=$(calc_rect "center" 1796 968)
 
 # --- LOGIC RULES ---
 case "$class" in
