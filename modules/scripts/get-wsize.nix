@@ -1,5 +1,5 @@
 {
-  home.file.".local/bin/github-repos" = {
+  home.file.".local/bin/wsize" = {
 	text = ''
 #!/usr/bin/env bash
 
