@@ -264,5 +264,5 @@ let
 
 in
 {
-  home.packages = [ ai-chat ];
+  environment.systemPackages = [ ai-chat ];
 }
