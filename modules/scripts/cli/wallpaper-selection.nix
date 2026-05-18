@@ -222,13 +222,23 @@ let
     if sel then set_wallpaper(sel) end
   '';
 
-in {
-  home.packages = [
+in
+{
+  home.packages = with pkgs; [
     wallSelect
-  ] ++ (with pkgs;[
+
     gdk-pixbuf
-    imlib2Full
     webp-pixbuf-loader
     libavif
-  ]);
+    glycin
+    imlib2Full
+  ];
+
+  home.sessionVariables = {
+    GDK_PIXBUF_MODULEDIR =
+      "${pkgs.gdk-pixbuf.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders";
+
+    GDK_PIXBUF_MODULE_FILE =
+      "${pkgs.gdk-pixbuf.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
+  };
 }
