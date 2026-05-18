@@ -19,13 +19,13 @@
 
 |                       Desktop Preview                        |                        IDE & File Manager                        |
 | :----------------------------------------------------------: | :--------------------------------------------------------------: |
-|  ![Desktop](./configs/Assets/Previews/desktop-preview.png)   |      ![IDE](./configs/Assets/Previews/IDE-filemanager.png)       |
+|  ![Desktop](./configs/Assets/Previews/desktop-preview.webp)   |      ![IDE](./configs/Assets/Previews/IDE-filemanager.webp)       |
 |                        Terminal Apps                         |                        Discord (vesktop)                         |
-| ![TerminalApps](./configs/Assets/Previews/Terminal-Apps.png) | ![Discord](./configs/Assets/Previews/vivaldi&discord-themed.png) |
+| ![TerminalApps](./configs/Assets/Previews/Terminal-Apps.webp) | ![Discord](./configs/Assets/Previews/vivaldi&discord-themed.webp) |
 
 |                      Vivaldi Themed                      |
 | :------------------------------------------------------: |
-| ![Vivaldi](./configs/Assets/Previews/vivaldi-themed.png) |
+| ![Vivaldi](./configs/Assets/Previews/vivaldi-themed.webp) |
 
 </details>
 
