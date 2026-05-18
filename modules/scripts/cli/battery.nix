@@ -37,8 +37,8 @@ let
   };
 in
 {
-  # Opsional: Tambahkan ke home.packages jika ingin mengeksekusinya secara manual via terminal
-  home.packages = [ batteryScript ];
+  # Opsional: Tambahkan ke packages jika ingin mengeksekusinya secara manual via terminal
+  environment.systemPackages = [ batteryScript ];
 
   systemd.user.services.battery-check = {
     Unit.Description = "Battery check notifier";
