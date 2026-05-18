@@ -92,6 +92,7 @@
       bspwm-core = {
         imports = [
           ./modules/bspwm/systems
+          ./modules/scripts/cli
         ];
       };
     };
