@@ -46,10 +46,10 @@ change_widgets() {
         if [[ -f "$TMP_WIDGETS" ]]; then
             rm -f "$TMP_WIDGETS"
 
-            dunstify -t 5000 -i "$DIR/pwidgets/Icons/polybar.png" -u low \
+            dunstify -t 5000 -i "$DIR/pwidgets/Icons/polybar.webp" -u low \
                 "Widgets Removed" "Widget has been stopped."
         else
-            dunstify -r 999 -t 5000 -i "$DIR/pwidgets/Icons/polybar.png" -u low \
+            dunstify -r 999 -t 5000 -i "$DIR/pwidgets/Icons/polybar.webp" -u low \
                 "Widgets" "No active widgets to remove."
         fi
         return 0
@@ -57,7 +57,7 @@ change_widgets() {
         MAIN_CONFIG="$DIR/pwidgets/widgets/$widget.ini"
     
         if [[ ! -f "$MAIN_CONFIG" ]]; then
-            dunstify -r 999 -t 5000 -i "$DIR/pwidgets/Icons/polybar.png" -u low \
+            dunstify -r 999 -t 5000 -i "$DIR/pwidgets/Icons/polybar.webp" -u low \
                 "Error" "Config $widget.ini Not Found!"
             exit 1
         fi
@@ -68,7 +68,7 @@ change_widgets() {
         # Ambil nama bar
         bars=$(grep '^\[bar/' "$MAIN_CONFIG" | sed 's/^\[bar\///; s/\]$//' | tr '\n' ' ' || true)
 
-        dunstify -r 999 -t 5000 -i "$DIR/pwidgets/Icons/polybar.png" -u low \
+        dunstify -r 999 -t 5000 -i "$DIR/pwidgets/Icons/polybar.webp" -u low \
             "Widgets Started" "Bars: $bars\nStyle: $widget"
 
         # Jalankan Widgets
