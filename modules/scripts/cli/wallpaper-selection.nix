@@ -230,7 +230,7 @@ in
     gdk-pixbuf
     webp-pixbuf-loader
     libavif
-    glycin
+    glycin-loaders
     imlib2Full
   ];
 
