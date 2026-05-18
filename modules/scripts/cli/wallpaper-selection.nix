@@ -226,6 +226,7 @@ in {
   home.packages = [
     wallSelect
   ] ++ (with pkgs;[
+    gdk-pixbuf
     imlib2Full
     webp-pixbuf-loader
     libavif
