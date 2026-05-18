@@ -41,7 +41,7 @@ let
             INPUT="''${2:-}"
             FORMAT="''${3:-}"
 
-            if [[ -z "$INPUT" || -z "$FORMAT" ]]; then
+            if [[ ! -z "$INPUT" || ! -z "$FORMAT" ]]; then
                 echo "use ez-magick convert [name file or folder] [format] instead! "
                 exit 1
             fi
