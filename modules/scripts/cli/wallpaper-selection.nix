@@ -104,7 +104,7 @@ let
         "imagen=$1\n"                                                                ..
         "nombre=$(basename \"$imagen\")\n"                                           ..
         "nombre_stem=$(echo \"$nombre\" | sed 's/\\.[^.]*$//')\n"                    ..
-        "cache_file=$CACHE_DIR/$nombre_stem.png\n"                                   ..
+        "cache_file=$CACHE_DIR/$nombre_stem.webp\n"                                   ..
         "md5_file=$CACHE_DIR/.$nombre.md5\n"                                         ..
         "lock_file=$CACHE_DIR/.lock_$nombre\n"                                       ..
         "current_md5=$($BIN_XXHSUM \"$imagen\" | cut -d ' ' -f1)\n"                 ..
@@ -123,7 +123,7 @@ let
 
       local find_cmd = string.format(
         "%s '%s' -type f \\("                                               ..
-        " -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png'"             ..
+        " -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp'"             ..
         " -o -iname '*.webp' -o -iname '*.avif' \\) -print0",
         FIND, wall_dir
       )
@@ -140,11 +140,11 @@ let
 
     local function clean_orphan_cache()
       local h = io.popen(
-        FIND .. " '" .. cache_dir .. "' -maxdepth 1 -type f -name '*.png'"
+        FIND .. " '" .. cache_dir .. "' -maxdepth 1 -type f -name '*.webp'"
       )
       if not h then return end
       for fpath in h:lines() do
-        local stem = fpath:match("([^/]+)%.png$")
+        local stem = fpath:match("([^/]+)%.webp$")
         if stem then
           -- cek apakah ada file asli dengan stem ini (ekstensi apapun)
           local found = run(string.format(
@@ -192,7 +192,7 @@ let
         -- Format rofi: "stem NUL icon US /path/cache/fname LF"
         -- \0  = NUL  (0x00) – pemisah field rofi
         -- \31 = US   (0x1F) – unit separator, sama dengan \037 di shell
-        tf:write(stem .. "\0icon\31" .. cache_dir .. "/" .. stem .. ".png\n")
+        tf:write(stem .. "\0icon\31" .. cache_dir .. "/" .. stem .. ".webp\n")
       end
       tf:close()
 
@@ -237,5 +237,7 @@ in
 
   programs.gdk-pixbuf.modulePackages = with pkgs; [
     webp-pixbuf-loader
+    gdk-pixbuf
+    gdk-pixbuf-xlib
   ];
 }
