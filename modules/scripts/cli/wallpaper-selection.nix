@@ -240,7 +240,7 @@ in
     webp-pixbuf-loader
   ];
 
-  programs.gdk-pixbuf.modulePackages = with pkgs; [
+  services.gdk-pixbuf.modulePackages = with pkgs; [
     webp-pixbuf-loader
   ];
 }
