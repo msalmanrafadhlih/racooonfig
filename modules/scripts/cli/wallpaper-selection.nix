@@ -224,17 +224,12 @@ let
 
 in
 {
-  home.packages = let
-    gtkEnv = pkgs.buildEnv {
-      name = "gtk-env";
-      paths = with pkgs; [
-        gdk-pixbuf
-        webp-pixbuf-loader
-        libavif
-      ];
-    };
-  in [
+  environment.systemPackages = [
     wallSelect
-    gtkEnv
+  ];
+
+  programs.gdk-pixbuf.modulePackages = with pkgs; [
+    webp-pixbuf-loader 
+    libheif 
   ];
 }
