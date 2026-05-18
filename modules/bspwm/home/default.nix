@@ -4,7 +4,7 @@ let
   dotfiles = "bspwm";
   branch = "main";
   home = config.home.homeDirectory;
-  dotfiles_path = "${home}/.dotfiles/${dotfiles}";
+  dotfiles_path = "${home}/.dotfiles/${dotfiles}-r";
   repo_url = "https://github.com/msalmanrafadhlih/racooonfig.git";
   mkSymlink = import ../../mkSymlink.nix { inherit config dotfiles; };
 in
