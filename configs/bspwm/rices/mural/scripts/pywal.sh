@@ -10,7 +10,8 @@ WFILE="$HOME/.cache/wal/colors.sh"
 
 # Get colors
 pywal_get() {
-wal -i "$1" \
+feh --bg-fill "$1"
+wal -i "$1" -n \
         -q -e \
         --vte \
         -a 70 \
@@ -43,6 +44,9 @@ change_color() {
 	  ac:   ${AC}FF;
 	}
 	EOF
+	
+	polybar-msg cmd restart
+
 }
 
 hex_to_rgb() {
