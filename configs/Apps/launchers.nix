@@ -17,6 +17,7 @@ let
     "Gemini"
     "Claude"
     "chromium-browser"
+    "mpv-audio"
   ];
 
   appMappings =
