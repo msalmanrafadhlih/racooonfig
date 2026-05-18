@@ -180,7 +180,7 @@ let
       local tf  = assert(io.open(tmp, "w"))
 
       for _, fname in ipairs(wallpapers) do
-        -- Strip ekstensi di Lua (pengganti ${A%.*} dari shell)
+        -- Strip ekstensi di Lua (pengganti ''${A%.*} dari shell)
         local stem = fname:match("^(.+)%.[^.]+$") or fname
 
         -- Format rofi: "stem NUL icon US /path/cache/fname LF"
