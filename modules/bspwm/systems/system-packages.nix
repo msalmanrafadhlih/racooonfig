@@ -28,7 +28,6 @@ in
       imagemagick
       clipmenu
       pamixer
-      xclip
       dunst
       maim
       feh
@@ -37,13 +36,12 @@ in
       # ======== X UTILS
       (python3.withPackages (ps: with ps; [
         pywal
-        colorthief
         haishoku
       ]))
 
       shared-mime-info
-      imlib2
       xinit
+      xclip
       psmisc
       xsetroot
       xrandr
@@ -52,7 +50,8 @@ in
       xcolor
       xdo
       xev
-      xxHash
+      xxHash # ../../../configs/bspwm/bin/WallSync
+      calc 
 
       # ======== GTK
       gtk2
@@ -62,14 +61,11 @@ in
       dconf-editor
 
       # ======== GTK engine
-      gtk-engine-murrine
       nwg-look
       glib
 
       # tray
-      wmctrl
-      snixembed
-      libappindicator
+      wmctrl # ../../../configs/bspwm/bin/WindowSwitcher
       kdocker
     ]);
 }

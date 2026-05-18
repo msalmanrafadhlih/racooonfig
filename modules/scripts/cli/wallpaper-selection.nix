@@ -225,5 +225,9 @@ let
 in {
   home.packages = [
     wallSelect
-  ];
+  ] ++ (with pkgs;[
+    imlib2Full
+    webp-pixbuf-loader
+    libavif
+  ]);
 }

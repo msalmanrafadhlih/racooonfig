@@ -19,91 +19,91 @@ change_panel() {
 
 if  [[ "$1" = "--budgie" ]]; then
 	panel="budgie"
-	bg="budgie.jpg"
+	bg="budgie.webp"
 	top=35
 	btm=0
 	change_panel
 
 elif  [[ "$1" = "--deepin" ]]; then
 	panel="deepin"
-	bg="deepin.jpg"
+	bg="deepin.webp"
 	top=0
 	btm=50
 	change_panel
 
 elif  [[ "$1" = "--elight" ]]; then
 	panel="elementary"
-	bg="elementary.jpg"
+	bg="elementary.webp"
 	top=30
 	btm=0
 	change_panel
 
 elif  [[ "$1" = "--edark" ]]; then
 	panel="elementary_dark"
-	bg="elementary_2.jpg"
+	bg="elementary_2.webp"
 	top=30
 	btm=0
 	change_panel
 
 elif  [[ "$1" = "--gnome" ]]; then
 	panel="gnome"
-	bg="gnome.jpg"
+	bg="gnome.webp"
 	top=30
 	btm=0
 	change_panel
 
 elif  [[ "$1" = "--klight" ]]; then
 	panel="kde"
-	bg="kde.jpg"
+	bg="kde.webp"
 	top=0
 	btm=35
 	change_panel
 
 elif  [[ "$1" = "--kdark" ]]; then
 	panel="kde_dark"
-	bg="kde_2.jpg"
+	bg="kde_2.webp"
 	top=0
 	btm=35
 	change_panel
 
 elif  [[ "$1" = "--liri" ]]; then
 	panel="liri"
-	bg="liri.png"
+	bg="liri.webp"
 	top=0
 	btm=45
 	change_panel
 
 elif  [[ "$1" = "--mint" ]]; then
 	panel="mint"
-	bg="mint.jpg"
+	bg="mint.webp"
 	top=0
 	btm=35
 	change_panel
 
 elif  [[ "$1" = "--ugnome" ]]; then
 	panel="ubuntu_gnome"
-	bg="ubuntu.jpg"
+	bg="ubuntu.webp"
 	top=30
 	btm=0
 	change_panel
 
 elif  [[ "$1" = "--unity" ]]; then
 	panel="ubuntu_unity"
-	bg="ubuntu.jpg"
+	bg="ubuntu.webp"
 	top=30
 	btm=0
 	change_panel
 
 elif  [[ "$1" = "--xubuntu" ]]; then
 	panel="xubuntu"
-	bg="xubuntu.png"
+	bg="xubuntu.webp"
 	top=30
 	btm=0
 	change_panel
 
 elif  [[ "$1" = "--zorin" ]]; then
 	panel="zorin"
-	bg="zorin.png"
+	bg="zorin.webp"
 	top=0
 	btm=45
 	change_panel
