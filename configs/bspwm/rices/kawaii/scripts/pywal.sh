@@ -10,13 +10,13 @@ WFILE="$HOME/.cache/wal/colors.sh"
 
 # Get colors
 pywal_get() {
-wal -i "$1" \
-        -q -e \
-        --vte \
-        -a 70 \
-        --contrast 4.5 \
-        --backend haishoku &
-
+	feh --bg-fill "$1"
+	wal -i "$1" -n \
+	        -q -e \
+	        --vte \
+	        -a 70 \
+	        --contrast 4.5 \
+	        --backend haishoku &
 }
 
 # Change colors
@@ -43,6 +43,9 @@ change_color() {
 	  ac:   ${AC}FF;
 	}
 	EOF
+	
+	polybar-msg cmd restart
+
 }
 
 hex_to_rgb() {
@@ -76,8 +79,8 @@ if [[ -x "$(which wal)" ]]; then
 			exit 1
 		fi
 
-		BG=`printf "%s\n" "$background"`
-		FG=`printf "%s\n" "$foreground"`
+		BG=`printf "%s\n" "#FFFFFF"`
+		FG=`printf "%s\n" "$background"`
 		FGA=`printf "%s\n" "$color8"`
 		AC=`printf "%s\n" "$color1"`
 		SC=`printf "%s\n" "$color2"`
