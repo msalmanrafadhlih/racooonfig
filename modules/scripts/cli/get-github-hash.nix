@@ -68,5 +68,5 @@ let
   };
 in
 {
-  home.packages = [ get-github-hash ];
+  environment.systemPackages = [ get-github-hash ];
 }
