@@ -10,7 +10,7 @@ let
         echo "Usage: ez-magick <command> [options] <input> <output>"
         echo ""
         echo "Commands:"
-        echo "  convert <in> <out>               : Ubah format gambar (contoh: .webp ke .png)"
+        echo "  convert <in> <format>            : Ubah format gambar (contoh: .webp ke .png)"
         echo "  resize <size> <in> <out>         : Ubah ukuran gambar (contoh: 800x600, 50%)"
         echo "  compress <quality> <in> <out>    : Kompresi gambar (1-100, contoh: 80)"
         echo "  crop <geometry> <in> <out>       : Potong gambar (contoh: 800x600+0+0)"
@@ -38,10 +38,39 @@ let
 
       case "$COMMAND" in
         convert)
-          if [ $# -ne 2 ]; then echo "Error: ez-magick convert <in> <out>"; exit 1; fi
-          magick "$1" "$2"
-          echo "✅ Berhasil dikonversi: $2"
+            INPUT="''${2:-}"
+            FORMAT="''${3:-}"
+
+            if [[ -z "$INPUT" || -z "$FORMAT" ]]; then
+                echo "use ez-magick convert [name file or folder] [format] instead! "
+                exit 1
+            fi
+
+            if [[ -f "$INPUT" ]]; then
+                dir="$(dirname "$INPUT")"
+                filename="$(basename "''${INPUT%.*}")"
+                mkdir -p "$dir/converted"
+                magick "$INPUT" \
+                    -define heic:lossless=true \
+                    "$dir/converted/''${filename}.''${FORMAT}"
+                echo "✅ Converted: $INPUT"
+
+            elif [[ -d "$INPUT" ]]; then
+                mkdir -p "$INPUT/converted"
+                for img in "$INPUT"/*; do
+                    [[ -f "$img" ]] || continue
+                    filename="$(basename "''${img%.*}")"
+                    magick "$img" \
+                        -define heic:lossless=true \
+                        "$INPUT/converted/''${filename}.''${FORMAT}"
+                    echo "✅ Converted: $img"
+                done
+            else
+                echo "Error: path tidak valid"
+                exit 1
+            fi
           ;;
+
         resize)
           if [ $# -ne 3 ]; then echo "Error: ez-magick resize <size> <in> <out>"; exit 1; fi
           magick "$2" -resize "$1" "$3"
