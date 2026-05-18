@@ -33,7 +33,7 @@ let
 in
 {
   # Panggil skripnya di home.packages
-  home.packages = [
+  environment.systemPackages = [
     brightness-script
   ];
 }
