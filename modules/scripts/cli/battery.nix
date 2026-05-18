@@ -54,7 +54,7 @@ in
   systemd.user.timers.battery-check = {
     description = "Run battery notifier every 1 minute";
 
-    timeConfig = {
+    timerConfig = {
       OnBootSec = "30s";
       OnUnitActiveSec = "1m";
       Unit = "battery-check.service";
