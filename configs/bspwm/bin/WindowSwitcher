@@ -26,6 +26,9 @@ case $1 in
                     *St* | *TerminalPinned*)
                         icon="$HOME/.config/Assets/Icons/terminal.png"
                         ;;
+                    *floating_rmpc*)
+                        icon="$HOME/.config/Assets/Icons/rmpc.png"
+                        ;;
                     *ChatAi*)
                         icon="$HOME/.config/Assets/Icons/chatGPT.png"
                         ;;
