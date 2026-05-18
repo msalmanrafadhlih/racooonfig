@@ -41,23 +41,24 @@ in
   environment.systemPackages = [ batteryScript ];
 
   systemd.user.services.battery-check = {
-    Unit.Description = "Battery check notifier";
-    Service = {
+    description = "Battery check notifier";
+
+    serviceConfig = {
       # Panggil path executable-nya secara langsung
       ExecStart = "${batteryScript}/bin/battery-notify";
-      Environment = [
-        "XDG_RUNTIME_DIR=%t"
-      ];
+      Environment = [ "XDG_RUNTIME_DIR=%t" ];
+      Type = "oneshot";
     };
   };
 
   systemd.user.timers.battery-check = {
-    Unit.Description = "Run battery notifier every 1 minute";
-    Timer = {
+    description = "Run battery notifier every 1 minute";
+
+    timeConfig = {
       OnBootSec = "30s";
       OnUnitActiveSec = "1m";
       Unit = "battery-check.service";
     };
-    Install.WantedBy = [ "timers.target" ];
+    wantedBy = [ "timers.target" ];
   };
 }
