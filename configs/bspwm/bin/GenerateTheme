@@ -39,7 +39,7 @@ fi
 
 set_theme() {
     scheme=${mode:-$RICE}
-    RANDOM_WALLPAPER=$(find "$DIR/rices/$RICE/wallpapers/$scheme"* -type f -iregex '.*\.\(jpg\|jpeg\|png\|webp\|bmp\|gif\)' | shuf -n 1 2>&1)
+    RANDOM_WALLPAPER=$(find "$DIR/rices/$RICE/wallpapers/$scheme"* -type f -iregex '.*\.\(jpg\|jpeg\|png\|webp\|bmp\|gif\|avif\)' | shuf -n 1 2>&1)
 
     if [ -z "$RANDOM_WALLPAPER" ]; then
         dunstify -r 999 -u critical -a "Theme Manager" "Error" "Wallpaper tidak ditemukan!"
@@ -77,7 +77,7 @@ set_theme() {
         geometrics)
             THEME="Vimix-white-dark"
             CURSOR="Bibata-Modern-Ice"
-            MODE="light"
+            MODE="dark"
             ;;
         gruvbox)
             THEME="Vimix-black-dark"
