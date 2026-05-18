@@ -234,8 +234,9 @@ in
     wallSelect
 
     libheif
-    imlib2Full
+    imlib2
     libavif
+    libwebp
   ];
 
   programs.gdk-pixbuf.modulePackages = with pkgs; [
