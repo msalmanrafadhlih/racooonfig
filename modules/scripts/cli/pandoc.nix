@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
+  environment.systemPackages = [
     (pkgs.writeShellApplication {
       name = "pandoc";
       runtimeInputs = [ pkgs.pandoc ];
