@@ -28,7 +28,7 @@ let
   };
 in
 {
-  home.packages = [
+  environment.systemPackages = [
     volume-script
   ];
 }
