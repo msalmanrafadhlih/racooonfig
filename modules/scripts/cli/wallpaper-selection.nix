@@ -237,10 +237,5 @@ in
     imlib2
     libavif
     libwebp
-    webp-pixbuf-loader
-  ];
-
-  services.gdk-pixbuf.modulePackages = with pkgs; [
-    webp-pixbuf-loader
   ];
 }
