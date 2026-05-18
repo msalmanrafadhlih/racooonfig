@@ -10,7 +10,8 @@ WFILE="$HOME/.cache/wal/colors.sh"
 
 # Get colors
 pywal_get() {
-wal -i "$1" \
+feh --bg-fill "$1"
+wal -i "$1" -n \
         -q -e \
         --vte \
         -a 70 \
@@ -25,7 +26,7 @@ change_color() {
 	sed -i -e "s/background = #.*/background = $BG/g" $PFILE
 	sed -i -e "s/background-alt = #.*/background-alt = $BGA/g" $PFILE
 	sed -i -e "s/foreground = #.*/foreground = $FG/g" $PFILE
-	sed -i -e "s/foreground-alt = #.*/foreground-alt = $FGA/g" $PFILE
+	sed -i -e "s/foreground-alt = #.*/foreground-alt = $FG/g" $PFILE
 	sed -i -e "s/primary = #.*/primary = $AC/g" $PFILE
 	sed -i -e 's/red = #.*/red = #B71C1C/g' $PFILE
 	sed -i -e 's/yellow = #.*/yellow = #F57F17/g' $PFILE
@@ -38,11 +39,12 @@ change_color() {
 	  al:   #00000000;
 	  bg:   ${BG}FF;
 	  bga:  ${BGA}FF;
-	  fga:  ${FGA}FF;
 	  fg:   ${FG}FF;
 	  ac:   ${AC}FF;
 	}
 	EOF
+
+	polybar-msg cmd restart
 }
 
 # Main
@@ -59,8 +61,8 @@ if [[ -x "$(which wal)" ]]; then
 			exit 1
 		fi
 
-		BG=`printf "%s\n" "$background"`
-		FG=`printf "%s\n" "$foreground"`
+		BG=`printf "%s\n" "#FFFFFF"`
+		FG=`printf "%s\n" "$background"`
 		BGA=`printf "%s\n" "$color7"`
 		FGA=`printf "%s\n" "$color3"`
 		AC=`printf "%s\n" "$color1"`
