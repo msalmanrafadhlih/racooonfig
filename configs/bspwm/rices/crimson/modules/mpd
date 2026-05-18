@@ -30,32 +30,31 @@ bar-progress-fill-font = 3
 bar-progress-empty = ─
 bar-progress-empty-font = 3
 bar-progress-empty-foreground = #44
+left-click = st -c floating_rmpc -e rmpc &
 
 [module/mpd-title]
 inherit = mpd
 format-online = <label-song>
-
-left-click = st -c floating_rmpc -e rmpc
 
 [module/mpd-progress]
 inherit = mpd
 format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>
 
 [module/spotify]
-type = custom/script
-interval = 2
-exec = playerctl -p spotify metadata --format "{{ artist }} - {{ title }}" 2>/dev/null || echo ""
-click-left = playerctl play-pause
-click-right = playerctl next
-scroll-up = playerctl next
-scroll-down = playerctl previous
+type                = custom/script
+interval            = 2
+exec                = playerctl-status &
+exec-if             = pgrep -x spotify > /dev/null
 
+click-left          = playerctl -p spotify play-pause
+click-right         = playerctl -p spotify next
+click-middle        = playerctl -p spotify previous
+scroll-up           = playerctl -p spotify next
+scroll-down         = playerctl -p spotify previous
 
-# add pkgs.mpDris2 if want to mix mpd + playerctl
-[module/music]
-type = custom/script
-interval = 2
-exec = playerctl-status
-click-left = playerctl play-pause
-click-right = playerctl next
-click-middle = playerctl previous
+format              = <label>
+format-prefix       = "  "
+format-prefix-foreground = #00ff00
+
+label               = %output%
+label-maxlen        = 50       
