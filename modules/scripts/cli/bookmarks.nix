@@ -107,5 +107,5 @@ let
   };
 in
 {
-  home.packages = [ bookmarksScript ];
+  environment.systemPackages = [ bookmarksScript ];
 }
