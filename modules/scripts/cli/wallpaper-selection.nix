@@ -265,11 +265,8 @@ in
     rofiWithWebp
 
     gdk-pixbuf.dev
-    webp-pixbuf-loader
-    libwebp
     libavif
     libheif.out
     libheif.bin
-    imlib2Full
   ];
 }
