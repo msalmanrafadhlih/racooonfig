@@ -238,18 +238,19 @@ let
 
   cache =
     pkgs.runCommand "gdk-pixbuf-cache"
-      { nativeBuildInputs = [ pkgs.gdk-pixbuf ]; }
+      {
+        nativeBuildInputs = [ pkgs.gdk-pixbuf.dev ];
+      }
       ''
         mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0
 
         GDK_PIXBUF_MODULEDIR="${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
-          ${pkgs.gdk-pixbuf}/bin/gdk-pixbuf-query-loaders \
+          ${pkgs.gdk-pixbuf.dev}/bin/gdk-pixbuf-query-loaders \
           > $out/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
       '';
 in
 {
   environment.systemPackages = with pkgs; [
-    wallSelect
     gdk-pixbuf
     webp-pixbuf-loader
     libwebp
