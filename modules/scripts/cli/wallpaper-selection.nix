@@ -1,22 +1,11 @@
 { pkgs, ... }:
 
 let
-  # ─────────────────────────────────────────────────────────────────────────
-  # WallSelect – Lua port dari bash wallpaper selector
-  #
-  # Strategi wrapping:
-  #   • pkgs.writeScriptBin  → buat script dengan shebang Lua dari Nix store
-  #   • ${pkgs.xxx}          → Nix interpolasi path tool langsung ke source Lua
-  #   • $VAR (tanpa kurung)  → shell syntax yang AMAN dari Nix interpolasi
-  #   • ${...} shell syntax  → DIHINDARI; logika seperti ${A%.*} dipindah ke Lua
-  # ─────────────────────────────────────────────────────────────────────────
-
   loaders = pkgs.buildEnv {
     name = "gdk-pixbuf-loaders";
-    paths = with pkgs; [
-      librsvg
-      gdk-pixbuf
-      webp-pixbuf-loader
+    paths = [
+      pkgs.gdk-pixbuf
+      pkgs.webp-pixbuf-loader
     ];
   };
 
@@ -33,7 +22,7 @@ let
           > $out/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
       '';
 
-  rofiWithWebp = pkgs.symlinkJoin {
+  rofiWrapper = pkgs.symlinkJoin {
     name = "rofi";
     paths = [ pkgs.rofi ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
@@ -62,7 +51,7 @@ let
     local MAGICK = "${pkgs.imagemagick}/bin/magick"
     local XXHSUM = "${pkgs.xxHash}/bin/xxhsum"
     local FLOCK  = "${pkgs.util-linux}/bin/flock"
-    local ROFI   = "${rofiWithWebp}/bin/rofi"
+    local ROFI   = "${rofiWrapper}/bin/rofi"
     local NPROC  = "${pkgs.coreutils}/bin/nproc"
 
     -- ── Utilities ─────────────────────────────────────────────────────────
@@ -271,19 +260,22 @@ let
     if sel then set_wallpaper(sel) end
   '';
 
+
 in
 {
   environment.systemPackages = with pkgs; [
     wallSelect
-    rofiWithWebp
+    rofiWrapper
 
     gdk-pixbuf.dev
     libavif
     libheif.out
     libheif.bin
+    librsvg
   ];
 
   environment.sessionVariables = {
     GDK_PIXBUF_MODULE_FILE = "${cache}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
+    GDK_PIXBUF_MODULEDIR = "${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders";
   };
 }
