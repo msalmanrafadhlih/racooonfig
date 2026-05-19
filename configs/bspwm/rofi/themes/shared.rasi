@@ -1,70 +1,70 @@
 * {
-    background: #1a1111; /* #1e100f */
-    background-alt: #410006; /* #410004 */
+    background: #1a1110; /* #1e100f */
+    background-alt: #410001; /* #410004 */
     background-window: #15100fdd; /* #15100f + dd */
-    background-selected: #dc3841df; /* #ed0928 + df */
+    background-selected: #e92020df; /* #ed0928 + df */
     background-normal: #00000000; /* Tetap transparan (tidak ada di palet) */
-    background-transparent: #dc384120; /* #ed0928 + 20 */
-    background-gradient-active: linear-gradient(to left, #ff5358, transparent);
-    background-gradient-selected: linear-gradient(to left, #b91c2b, transparent);
+    background-transparent: #e9202020; /* #ed0928 + 20 */
+    background-gradient-active: linear-gradient(to left, #ff5447, transparent);
+    background-gradient-selected: linear-gradient(to left, #c0000e, transparent);
 
-    foreground: #ffb3b0; /* #ffecea */
-    foreground-selected: #f0dedd; /* #ffffff */
+    foreground: #ffb4aa; /* #ffecea */
+    foreground-selected: #f1dedc; /* #ffffff */
     foreground-normal: #15100f; /* #15100f */
 
-    transparent: #1a1111c0; /* #1e100f + c0 */
-    selected: #ff5358; /* #ff5451 */
-    active: #b91c2b; /* #c0001c */
+    transparent: #1a1110c0; /* #1e100f + c0 */
+    selected: #ff5447; /* #ff5451 */
+    active: #c0000e; /* #c0001c */
     urgent: #ff5449; /* #ff5449 */
 
-    primary: #ffb3b0;
-    primary-fixed: #ffdad8;
-    primary-fixed-dim: #ffb3b0;
-    on-primary: #571d1e;
-    on-primary-fixed: #3b080b;
-    on-primary-fixed-variant: #733332;
-    primary-container: #733332;
-    on-primary-container: #ffdad8;
-    secondary: #e7bdba;
-    secondary-fixed: #ffdad8;
-    secondary-fixed-dim: #e7bdba;
-    on-secondary: #442928;
-    on-secondary-fixed: #2c1514;
-    on-secondary-fixed-variant: #5d3f3e;
-    secondary-container: #5d3f3e;
-    on-secondary-container: #ffdad8;
-    tertiary: #e3c28c;
-    tertiary-fixed: #ffdeaa;
-    tertiary-fixed-dim: #e3c28c;
-    on-tertiary: #412d05;
-    on-tertiary-fixed: #271900;
-    on-tertiary-fixed-variant: #5a4319;
-    tertiary-container: #5a4319;
-    on-tertiary-container: #ffdeaa;
+    primary: #ffb4aa;
+    primary-fixed: #ffdad5;
+    primary-fixed-dim: #ffb4aa;
+    on-primary: #561e18;
+    on-primary-fixed: #3b0906;
+    on-primary-fixed-variant: #73342d;
+    primary-container: #73342d;
+    on-primary-container: #ffdad5;
+    secondary: #e7bdb7;
+    secondary-fixed: #ffdad5;
+    secondary-fixed-dim: #e7bdb7;
+    on-secondary: #442926;
+    on-secondary-fixed: #2c1512;
+    on-secondary-fixed-variant: #5d3f3b;
+    secondary-container: #5d3f3b;
+    on-secondary-container: #ffdad5;
+    tertiary: #dfc38c;
+    tertiary-fixed: #fddfa6;
+    tertiary-fixed-dim: #dfc38c;
+    on-tertiary: #3f2e04;
+    on-tertiary-fixed: #261a00;
+    on-tertiary-fixed-variant: #574419;
+    tertiary-container: #574419;
+    on-tertiary-container: #fddfa6;
     error: #ffb4ab;
     on-error: #690005;
     error-container: #93000a;
     on-error-container: #ffdad6;
-    surface: #1a1111;
-    on-surface: #f0dedd;
-    on-surface-variant: #d7c1c0;
-    outline: #a08c8b;
-    outline-variant: #534342;
+    surface: #1a1110;
+    on-surface: #f1dedc;
+    on-surface-variant: #d8c2bf;
+    outline: #a08c8a;
+    outline-variant: #534341;
     shadow: #000000;
     scrim: #000000;
-    inverse-surface: #f0dedd;
-    inverse-on-surface: #382e2d;
-    inverse-primary: #904a48;
-    surface-dim: #1a1111;
-    surface-bright: #423736;
-    surface-container-lowest: #140c0c;
-    surface-container-low: #231919;
-    surface-container: #271d1d;
-    surface-container-high: #322827;
-    surface-container-highest: #3d3232;
+    inverse-surface: #f1dedc;
+    inverse-on-surface: #392e2d;
+    inverse-primary: #904a42;
+    surface-dim: #1a1110;
+    surface-bright: #423735;
+    surface-container-lowest: #140c0b;
+    surface-container-low: #231918;
+    surface-container: #271d1c;
+    surface-container-high: #322826;
+    surface-container-highest: #3d3231;
 
     font: "JetBrains Mono Nerd Font 10";
-    image: url("/home/tquilla/.dotfiles/bspwm/configs/bspwm/rices/glsswrks/wallpapers/glsswrks.webp", width);
+    image: url("/home/tquilla/.dotfiles/bspwm/configs/bspwm/rices/crimson/wallpapers/crimson.webp", width);
 
     /* background: #1a0a0aff; */
     /* background-alt: #331111ff; */
