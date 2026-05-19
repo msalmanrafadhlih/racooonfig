@@ -112,7 +112,7 @@ set_theme() {
     esac
 
     if ERROR_MSG=$(matugen image "$RANDOM_WALLPAPER" --mode "$MODE" --source-color-index 0 --import-json-string "{ \"mode\": \"$MODE\", \"cursor\": \"$CURSOR\", \"gtktheme\": \"$THEME\" }" 2>&1); then
-        dunstify -u normal -a "Theme Manager" "Theme Applied!" "Rice: $RICE\nWallpaper: $(basename "$RANDOM_WALLPAPER")"
+        dunstify -r 99 -u normal -a "Theme Manager" "Theme Applied!" "Rice: $RICE\nWallpaper: $(basename "$RANDOM_WALLPAPER")"
     else
         dunstify -r 999 -u critical -a "Theme Manager" "Failed!" "$ERROR_MSG"
         exit 1
