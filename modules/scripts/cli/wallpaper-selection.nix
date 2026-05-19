@@ -16,7 +16,9 @@ let
     paths = with pkgs; [
       gdk-pixbuf
       webp-pixbuf-loader
-      librsvg
+      (gnome._gdkPixbufCacheBuilder_DO_NOT_USE {
+        extraLoaders = lib.unique;
+      })
     ];
   };
 
@@ -62,7 +64,7 @@ let
     local MAGICK = "${pkgs.imagemagick}/bin/magick"
     local XXHSUM = "${pkgs.xxHash}/bin/xxhsum"
     local FLOCK  = "${pkgs.util-linux}/bin/flock"
-    local ROFI   = "${pkgs.rofiWithWebp}/bin/rofi"
+    local ROFI   = "${rofiWithWebp}/bin/rofi"
     local NPROC  = "${pkgs.coreutils}/bin/nproc"
 
     -- ── Utilities ─────────────────────────────────────────────────────────
