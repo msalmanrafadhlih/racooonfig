@@ -228,61 +228,21 @@ let
     if sel then set_wallpaper(sel) end
   '';
 
-  loaders = pkgs.buildEnv {
-    name = "gdk-pixbuf-loaders";
-    paths = [
-      pkgs.gdk-pixbuf
-      pkgs.webp-pixbuf-loader
-    ];
-  };
-
-  cache =
-    pkgs.runCommand "gdk-pixbuf-cache"
-      {
-        nativeBuildInputs = [ pkgs.gdk-pixbuf.dev ];
-      }
-      ''
-        mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0
-
-        GDK_PIXBUF_MODULEDIR="${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
-          ${pkgs.gdk-pixbuf.dev}/bin/gdk-pixbuf-query-loaders \
-          > $out/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
-      '';
-
-  rofiWithWebp = pkgs.symlinkJoin {
-    name = "rofi";
-    paths = [ pkgs.rofi ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      # Hapus symlink ke C wrapper yang hardcode GDK_PIXBUF_MODULE_FILE
-      rm $out/bin/rofi
-
-      # Buat shell wrapper langsung ke rofi-unwrapped dengan env var kita
-      makeWrapper ${pkgs.rofi}/bin/rofi $out/bin/rofi \
-        --prefix GIO_EXTRA_MODULES : ${pkgs.dconf.lib}/lib/gio/modules \
-        --set GDK_PIXBUF_MODULE_FILE "${cache}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" \
-        --set GDK_PIXBUF_MODULEDIR "${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
-        --prefix XDG_DATA_DIRS : "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}" \
-        --prefix XDG_DATA_DIRS : "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}" \
-        --prefix XDG_DATA_DIRS : "${pkgs.rofi}/share" \
-        --prefix XDG_DATA_DIRS : "${pkgs.hicolor-icon-theme}/share"
-    '';
-  };
+  rofiWithWebp = pkgs.rofi.overrideAttrs (old: {
+    buildInputs = (old.buildInputs or [ ]) ++ [ pkgs.webp-pixbuf-loader ];
+  });
 
 in
 {
+  programs.gdk-pixbuf.modulePackages = [ pkgs.webp-pixbuf-loader ];
+
   environment.systemPackages = with pkgs; [
     wallSelect
-    rofiWithWebp
+    rofiWithWebp # Gunakan rofi yang sudah di-override
 
     gdk-pixbuf.dev
     libavif
     libheif.out
     libheif.bin
   ];
-
-  environment.sessionVariables = {
-    GDK_PIXBUF_MODULE_FILE = "${cache}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
-    GDK_PIXBUF_MODULEDIR = "${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders";
-  };
 }
