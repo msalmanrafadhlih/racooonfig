@@ -14,7 +14,6 @@ in
     polybarFull
     sxhkd
     picom
-    rofi
     eww
     i3lock-color
 
