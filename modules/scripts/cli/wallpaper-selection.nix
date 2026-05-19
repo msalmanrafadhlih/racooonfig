@@ -228,14 +228,39 @@ let
     if sel then set_wallpaper(sel) end
   '';
 
+  loaders = pkgs.buildEnv {
+    name = "gdk-pixbuf-loaders";
+    paths = [
+      pkgs.gdk-pixbuf
+      pkgs.webp-pixbuf-loader
+    ];
+  };
+
+  cache =
+    pkgs.runCommand "gdk-pixbuf-cache"
+      { nativeBuildInputs = [ pkgs.gdk-pixbuf ]; }
+      ''
+        mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0
+
+        GDK_PIXBUF_MODULEDIR="${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
+          ${pkgs.gdk-pixbuf}/bin/gdk-pixbuf-query-loaders \
+          > $out/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
+      '';
 in
 {
   environment.systemPackages = with pkgs; [
     wallSelect
-
-    libheif
-    imlib2
-    libavif
+    gdk-pixbuf
+    webp-pixbuf-loader
     libwebp
+    libavif
+    libheif
+    imlib2Full
   ];
+
+  environment.sessionVariables = {
+    GDK_PIXBUF_MODULEDIR = "${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders";
+
+    GDK_PIXBUF_MODULE_FILE = "${cache}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
+  };
 }
