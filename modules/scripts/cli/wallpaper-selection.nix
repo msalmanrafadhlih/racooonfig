@@ -236,32 +236,40 @@ let
     ];
   };
 
-  cache =
-    pkgs.runCommand "gdk-pixbuf-cache"
-      {
-        nativeBuildInputs = [ pkgs.gdk-pixbuf.dev ];
-      }
-      ''
-        mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0
+  cache = pkgs.runCommand "gdk-pixbuf-cache"
+    {
+      nativeBuildInputs = [ pkgs.gdk-pixbuf ];
+    }
+    ''
+      mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0
 
-        GDK_PIXBUF_MODULEDIR="${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
-          ${pkgs.gdk-pixbuf.dev}/bin/gdk-pixbuf-query-loaders \
-          > $out/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
-      '';
+      GDK_PIXBUF_MODULEDIR="${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
+        ${pkgs.gdk-pixbuf}/bin/gdk-pixbuf-query-loaders \
+        > $out/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
+    '';
+
+  rofiWithWebp = pkgs.symlinkJoin {
+    name = "rofi";
+    paths = [ pkgs.rofi ];  # atau pkgs.rofi-wayland
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/rofi \
+        --set GDK_PIXBUF_MODULE_FILE "${cache}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" \
+        --set GDK_PIXBUF_MODULEDIR "${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders"
+    '';
+  };
 in
 {
   environment.systemPackages = with pkgs; [
-    gdk-pixbuf
+    wallSelect
+    rofiWithWebp
+
+    gdk-pixbuf.dev
     webp-pixbuf-loader
     libwebp
     libavif
-    libheif
+    libheif.out
+    libheif.bin
     imlib2Full
   ];
-
-  environment.sessionVariables = {
-    GDK_PIXBUF_MODULEDIR = "${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders";
-
-    GDK_PIXBUF_MODULE_FILE = "${cache}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
-  };
 }
