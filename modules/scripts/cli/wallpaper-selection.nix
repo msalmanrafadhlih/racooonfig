@@ -16,9 +16,7 @@ let
     paths = with pkgs; [
       gdk-pixbuf
       webp-pixbuf-loader
-      (gnome._gdkPixbufCacheBuilder_DO_NOT_USE {
-        extraLoaders = lib.unique;
-      })
+      librsvg
     ];
   };
 
