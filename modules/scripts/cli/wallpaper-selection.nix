@@ -236,28 +236,39 @@ let
     ];
   };
 
-  cache = pkgs.runCommand "gdk-pixbuf-cache"
-    {
-      nativeBuildInputs = [ pkgs.gdk-pixbuf.dev ];
-    }
-    ''
-      mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0
+  cache =
+    pkgs.runCommand "gdk-pixbuf-cache"
+      {
+        nativeBuildInputs = [ pkgs.gdk-pixbuf.dev ];
+      }
+      ''
+        mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0
 
-      GDK_PIXBUF_MODULEDIR="${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
-        ${pkgs.gdk-pixbuf.dev}/bin/gdk-pixbuf-query-loaders \
-        > $out/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
-    '';
+        GDK_PIXBUF_MODULEDIR="${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
+          ${pkgs.gdk-pixbuf.dev}/bin/gdk-pixbuf-query-loaders \
+          > $out/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
+      '';
 
   rofiWithWebp = pkgs.symlinkJoin {
     name = "rofi";
-    paths = [ pkgs.rofi ];  
+    paths = [ pkgs.rofi ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
-      wrapProgram $out/bin/rofi \
+      # Hapus symlink ke C wrapper yang hardcode GDK_PIXBUF_MODULE_FILE
+      rm $out/bin/rofi
+
+      # Buat shell wrapper langsung ke rofi-unwrapped dengan env var kita
+      makeWrapper ${pkgs.rofi-unwrapped}/bin/rofi $out/bin/rofi \
+        --prefix GIO_EXTRA_MODULES : ${pkgs.dconf.lib}/lib/gio/modules \
         --set GDK_PIXBUF_MODULE_FILE "${cache}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" \
-        --set GDK_PIXBUF_MODULEDIR "${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders"
+        --set GDK_PIXBUF_MODULEDIR "${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
+        --prefix XDG_DATA_DIRS : "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}" \
+        --prefix XDG_DATA_DIRS : "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}" \
+        --prefix XDG_DATA_DIRS : "${pkgs.rofi-unwrapped}/share" \
+        --prefix XDG_DATA_DIRS : "${pkgs.hicolor-icon-theme}/share"
     '';
   };
+
 in
 {
   environment.systemPackages = with pkgs; [
