@@ -6,6 +6,7 @@ let
     paths = [
       pkgs.gdk-pixbuf
       pkgs.webp-pixbuf-loader
+      pkgs.librsvg
     ];
   };
 
