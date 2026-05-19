@@ -219,7 +219,7 @@ case "$title" in
         echo "state=floating rectangle=$RECT_YAZI"
         ;;
     *"Thunar"*)
-        echo "desktop=^1 follow=on state=pseudo_tiled rectangle=$FLATPAK"
+        echo "desktop=^1 follow=on state=floating rectangle=$THUNAR"
         ;;
     "Bluetooth Devices")
         echo "state=floating sticky=on rectangle=$CENTER_PINNED"
