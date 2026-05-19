@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   # ─────────────────────────────────────────────────────────────────────────
@@ -11,13 +11,8 @@ let
   #   • ${...} shell syntax  → DIHINDARI; logika seperti ${A%.*} dipindah ke Lua
   # ─────────────────────────────────────────────────────────────────────────
 
-  loaders = pkgs.buildEnv {
-    name = "gdk-pixbuf-loaders";
-    paths = with pkgs; [
-      gdk-pixbuf
-      webp-pixbuf-loader
-      librsvg
-    ];
+  loaders = pkgs.gnome._gdkPixbufCacheBuilder_DO_NOT_USE {
+    extraLoaders = lib.unique ++ [ pkgs.webp-pixbuf-loader ];
   };
 
   cache =
