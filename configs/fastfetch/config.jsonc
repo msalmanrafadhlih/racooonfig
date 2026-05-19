@@ -21,7 +21,7 @@
       "type": "custom"
     },
     {
-      "format": "{name} [{serial}]",
+      "format": "{name} ~ {serial}",
       "key": "󰌢 PC",
       "keyColor": "red",
       "type": "host"
