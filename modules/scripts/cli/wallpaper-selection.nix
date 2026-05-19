@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 let
-  #hello
   loaders = pkgs.symlinkJoin {
     name = "gdk-pixbuf-loaders";
     paths = with pkgs; [
