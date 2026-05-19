@@ -11,18 +11,9 @@ let
   #   • ${...} shell syntax  → DIHINDARI; logika seperti ${A%.*} dipindah ke Lua
   # ─────────────────────────────────────────────────────────────────────────
 
-  loaders = with pkgs; [
-    (gnome._gdkPixbufCacheBuilder_DO_NOT_USE {
-      extraLoaders = lib.unique cfg.modulePackages;
-    })
-    (buildEnv {
-      name = "gdk-pixbuf-loaders";
-      paths = with pkgs; [
-        gdk-pixbuf
-        webp-pixbuf-loader
-      ];
-    })
-  ];
+  loaders = pkgs.gnome._gdkPixbufCacheBuilder_DO_NOT_USE {
+    extraLoaders = [ lib.unique pkgs.webp-pixbuf-loader ];
+  };
 
   cache =
     pkgs.runCommand "gdk-pixbuf-cache"
