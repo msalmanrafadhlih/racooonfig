@@ -72,9 +72,9 @@ input_path = "templates/dunstrc-colors"
 output_path = "~/.config/dunst/dunstrc"
 post_hook = "dunstctl reload '~/.config/dunst/dunstrc'"
 
-# [templates.vivaldi]
-# input_path = "templates/vivaldi.css"
-# output_path = "~/.config/vivaldi/CustomCSS/colors.css"
+[templates.vivaldi]
+input_path = "templates/vivaldi.css"
+output_path = "~/.config/vivaldi/CustomCSS/colors.css"
 
 [templates.svg]
 input_path = "templates/brightness.svg"
@@ -84,3 +84,8 @@ output_path = "~/.config/Assets/Icons/brightness.svg"
 input_path = "templates/xresources"
 output_path = "~/.Xresources"
 post_hook = "xrdb -merge ~/.Xresources && killall -USR1 $(Term --term)"
+
+[templates.discord]
+input_path = "templates/midnight-discord.css"
+output_path = "~/.config/vesktop/themes/dynamic.theme.css"
+
