@@ -1,13 +1,21 @@
 { pkgs, ... }:
 
 let
-  loaders = pkgs.buildEnv {
+
+  loaders = pkgs.symlinkJoin {
     name = "gdk-pixbuf-loaders";
     paths = [
       pkgs.gdk-pixbuf
       pkgs.webp-pixbuf-loader
-      pkgs.librsvg
     ];
+
+    postBuild = ''
+      mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0/loaders
+
+      ln -s \
+        ${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.so \
+        $out/lib/gdk-pixbuf-2.0/2.10.0/loaders/
+    '';
   };
 
   cache =
@@ -260,7 +268,6 @@ let
     local sel   = launch_rofi(walls)
     if sel then set_wallpaper(sel) end
   '';
-
 
 in
 {
