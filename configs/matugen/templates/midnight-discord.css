@@ -41,7 +41,7 @@
 	/* text colors */
 	--text-0: {{colors.surface.default.hex}};               /* text on colored elements */
 	--text-1: {{colors.on_surface.default.hex}};            /* other normally white text */
-	--text-2: {{colors.on_surface.default.hex}};            /* headings and important text */
+	--text-2: {{colors.primary.default.hex | to_color | lighten: 20.0}};            /* headings and important text */
 	--text-3: {{colors.on_surface_variant.default.hex}};    /* normal text */
 	--text-4: {{colors.on_surface_variant.default.hex}};    /* icon buttons and channels */
 	--text-5: {{colors.outline.default.hex}};               /* muted channels/chats and timestamps */
@@ -49,11 +49,11 @@
 	/* background and dark colors */
     --bg-1: {{colors.surface_variant.default.hex}};                             /* dark buttons when clicked */
 	--bg-2: {{colors.surface_container_high.default.hex}};              /* dark buttons */
-	--bg-3: {{colors.surface_container_low.default.hex}};               /* spacing, secondary elements */
-	--bg-4: {{colors.surface.default.hex}};                             /* main background color */
+	--bg-3: {{colors.surface_container_low.default.rgba | set_alpha: 0.7}};               /* spacing, secondary elements */
+	--bg-4: {{colors.surface.default.rgba | set_alpha: 0.5}};                             /* main background color */
 	--hover: {{colors.surface_bright.default.hex}};                     /* channels and buttons when hovered */
 	--active: {{colors.surface_bright.default.hex}};                    /* channels and buttons when clicked or selected */
-	--message-hover: {{colors.surface_bright.default.hex}};             /* messages when hovered */
+	--message-hover: {{colors.surface_bright.default.rgba | set_alpha: 0.5}};             /* messages when hovered */
 
 	/* amount of spacing and padding */
 	--spacing: 12px;
