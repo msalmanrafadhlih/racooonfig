@@ -1,65 +1,47 @@
 { pkgs, ... }:
 
 let
+  loaders = pkgs.symlinkJoin {
+    name = "gdk-pixbuf-loaders";
+    paths = with pkgs; [
+      gdk-pixbuf
+      webp-pixbuf-loader
+      librsvg
+    ];
+  };
 
-  # loaders = pkgs.symlinkJoin {
-  #   name = "gdk-pixbuf-loaders";
-  #   paths = [
-  #     pkgs.gdk-pixbuf
-  #     pkgs.webp-pixbuf-loader
-  #   ];
+  cache =
+    pkgs.runCommand "gdk-pixbuf-cache"
+      {
+        nativeBuildInputs = [ pkgs.gdk-pixbuf.dev ];
+      }
+      ''
+        mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0
 
-  #   postBuild = ''
-  #     mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0/loaders
+        GDK_PIXBUF_MODULEDIR="${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
+          ${pkgs.gdk-pixbuf.dev}/bin/gdk-pixbuf-query-loaders \
+          > $out/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
+      '';
 
-  #     ln -s \
-  #       ${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-svg.so \
-  #       $out/lib/gdk-pixbuf-2.0/2.10.0/loaders/
-  #   '';
-  # };
+  rofiWrapper = pkgs.symlinkJoin {
+    name = "rofi";
+    paths = [ pkgs.rofi ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      # Hapus symlink ke C wrapper yang hardcode GDK_PIXBUF_MODULE_FILE
+      rm $out/bin/rofi
 
-  # cache =
-  #   pkgs.runCommand "gdk-pixbuf-cache"
-  #     {
-  #       nativeBuildInputs = [ pkgs.gdk-pixbuf.dev ];
-  #     }
-  #     ''
-  #       mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0
-
-  #       GDK_PIXBUF_MODULEDIR="${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
-  #         ${pkgs.gdk-pixbuf.dev}/bin/gdk-pixbuf-query-loaders \
-  #         > $out/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
-  #     '';
-
-  # rofiWrapper = pkgs.symlinkJoin {
-  #   name = "rofi";
-  #   paths = [ pkgs.rofi ];
-  #   nativeBuildInputs = [ pkgs.makeWrapper ];
-  #   postBuild = ''
-  #     # Hapus symlink ke C wrapper yang hardcode GDK_PIXBUF_MODULE_FILE
-  #     rm $out/bin/rofi
-
-  #     # Buat shell wrapper langsung ke rofi-unwrapped dengan env var kita
-  #     makeWrapper ${pkgs.rofi-unwrapped}/bin/rofi $out/bin/rofi \
-  #       --prefix GIO_EXTRA_MODULES : ${pkgs.dconf.lib}/lib/gio/modules \
-  #       --set GDK_PIXBUF_MODULE_FILE "${cache}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" \
-  #       --set GDK_PIXBUF_MODULEDIR "${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
-  #       --prefix XDG_DATA_DIRS : "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}" \
-  #       --prefix XDG_DATA_DIRS : "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}" \
-  #       --prefix XDG_DATA_DIRS : "${pkgs.rofi-unwrapped}/share" \
-  #       --prefix XDG_DATA_DIRS : "${pkgs.hicolor-icon-theme}/share"
-  #   '';
-  # };
-
-  rofiWithWebp = pkgs.rofi.overrideAttrs (old: {
-    postFixup = ''
-      wrapProgram $out/bin/rofi \
-        --prefix XDG_DATA_DIRS : $out/share \
-        --set GDK_PIXBUF_MODULE_FILE ${pkgs.gnome._gdkPixbufCacheBuilder_DO_NOT_USE {
-          extraLoaders = [ pkgs.librsvg pkgs.webp-pixbuf-loader ];
-        }}
+      # Buat shell wrapper langsung ke rofi-unwrapped dengan env var kita
+      makeWrapper ${pkgs.rofi-unwrapped}/bin/rofi $out/bin/rofi \
+        --prefix GIO_EXTRA_MODULES : ${pkgs.dconf.lib}/lib/gio/modules \
+        --set GDK_PIXBUF_MODULE_FILE "${cache}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" \
+        --set GDK_PIXBUF_MODULEDIR "${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
+        --prefix XDG_DATA_DIRS : "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}" \
+        --prefix XDG_DATA_DIRS : "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}" \
+        --prefix XDG_DATA_DIRS : "${pkgs.rofi-unwrapped}/share" \
+        --prefix XDG_DATA_DIRS : "${pkgs.hicolor-icon-theme}/share"
     '';
-  });
+  };
 
   wallSelect = pkgs.writeScriptBin "WallSelect" ''
     #!${pkgs.lua5_4}/bin/lua
@@ -70,7 +52,7 @@ let
     local MAGICK = "${pkgs.imagemagick}/bin/magick"
     local XXHSUM = "${pkgs.xxHash}/bin/xxhsum"
     local FLOCK  = "${pkgs.util-linux}/bin/flock"
-    local ROFI   = "${rofiWithWebp}/bin/rofi"
+    local ROFI   = "${rofiWrapper}/bin/rofi"
     local NPROC  = "${pkgs.coreutils}/bin/nproc"
 
     -- ── Utilities ─────────────────────────────────────────────────────────
@@ -281,9 +263,14 @@ let
 
 in
 {
+
+  programs.gdk-pixbuf.modulePackages = [
+    pkgs.webp-pixbuf-loader
+  ];
+
   environment.systemPackages = with pkgs; [
     wallSelect
-    rofiWithWebp
+    rofiWrapper
 
     gdk-pixbuf.dev
     libavif
@@ -292,12 +279,4 @@ in
     librsvg
   ];
 
-  programs.gdk-pixbuf.modulePackages = [
-    pkgs.webp-pixbuf-loader
-  ];
-
-  # environment.sessionVariables = {
-  #   GDK_PIXBUF_MODULE_FILE = "${cache}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
-  #   GDK_PIXBUF_MODULEDIR = "${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders";
-  # };
 }
