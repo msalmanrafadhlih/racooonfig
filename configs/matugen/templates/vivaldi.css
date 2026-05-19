@@ -1,5 +1,17 @@
+#header {
+  display: none;
+}
+
+#tabs-container, .tab-bar, .panel-group {
+    background-color: transparent !important;
+}
 
 #browser {
+    background-image: url("background") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+
 --colorFg: {{colors.on_surface.default.rgb}} !important;  /* foreground text */
 --colorFgAlpha: {{colors.on_surface.default.rgba | set_alpha: 0.10}} !important; /* foreground text */
 --colorFgIntense: {{colors.on_surface.default.rgb}} !important; /* foreground text */
