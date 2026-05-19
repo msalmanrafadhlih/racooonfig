@@ -3,6 +3,7 @@
 RICE=$(cat "$HOME/.config/bspwm/.rice")
 CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
 HASH_FILE="$CACHE_DIR/current_wall.hash"
+VIVALDI_BG="$HOME/.config/vivaldi/CustomCSS/background"
 
 # Common magick parameters
 MAGICK_PARAMS="-strip -resize 30% -gravity center -crop 760x196+0+0 +repage -quality 65 -define webp:method=3 -define webp:thread-level=1"
@@ -50,6 +51,7 @@ WALL=$(awk -F"'" '/feh --no-fehbg --bg/ {print $2}' "$HOME/.fehbg" 2>/dev/null)
 [ -z "$WALL" ] && exit 1
 
 ln -sf "$WALL" "$CACHE_DIR/current_wall"
+ln -sf "$WALL" "$VIVALDI_BG"
 check_and_update "$WALL"
 
 exit 0
