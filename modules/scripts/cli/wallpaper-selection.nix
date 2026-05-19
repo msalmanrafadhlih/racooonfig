@@ -12,7 +12,7 @@ let
   # ─────────────────────────────────────────────────────────────────────────
 
   loaders = pkgs.gnome._gdkPixbufCacheBuilder_DO_NOT_USE {
-    extraLoaders = [ lib.unique pkgs.webp-pixbuf-loader ];
+    extraLoaders = lib.unique [ pkgs.webp-pixbuf-loader ];
   };
 
   cache =
