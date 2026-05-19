@@ -19,6 +19,7 @@
       
     in {
       # Browser
+      "x-scheme-handler/vivaldi"= browser;
       "x-scheme-handler/http"   = browser;
       "x-scheme-handler/https"  = browser;
       "x-scheme-handler/ftp"    = browser;
