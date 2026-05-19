@@ -14,16 +14,7 @@ in
     polybarFull
     sxhkd
     picom
-    (symlinkJoin {
-      name = "rofi-webp-support";
-      paths = [ rofi ]; 
-      buildInputs = [ makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/rofi \
-          --prefix GDK_PIXBUF_MODULE_FILE : "${librsvg.out}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache" \
-          --set GDK_PIXBUF_MODULEDIR "${webp-pixbuf-loader}/lib/gdk-pixbuf-2.0/2.10.0/loaders"
-      '';
-    })
+    rofi
     eww
     i3lock-color
 
