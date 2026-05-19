@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 
 let
   # ─────────────────────────────────────────────────────────────────────────
@@ -233,30 +228,26 @@ let
     if sel then set_wallpaper(sel) end
   '';
 
-  loaders = with pkgs; [
-    (buildEnv {
-      name = "gdk-pixbuf-loaders";
-      paths = [
-        pkgs.webp-pixbuf-loader
-      ];
-    })
-  ];
+  loaders = pkgs.buildEnv {
+    name = "gdk-pixbuf-loaders";
+    paths = [
+      pkgs.gdk-pixbuf
+      pkgs.webp-pixbuf-loader
+    ];
+  };
 
-  cache = with pkgs; [
-    (gnome._gdkPixbufCacheBuilder_DO_NOT_USE {
-      extraLoaders = lib.unique;
-    })
-
-    (runCommand "gdk-pixbuf-cache"
-      { nativeBuildInputs = [ pkgs.gdk-pixbuf.dev ]; }
+  cache =
+    pkgs.runCommand "gdk-pixbuf-cache"
+      {
+        nativeBuildInputs = [ pkgs.gdk-pixbuf.dev ];
+      }
       ''
         mkdir -p $out/lib/gdk-pixbuf-2.0/2.10.0
 
         GDK_PIXBUF_MODULEDIR="${loaders}/lib/gdk-pixbuf-2.0/2.10.0/loaders" \
           ${pkgs.gdk-pixbuf.dev}/bin/gdk-pixbuf-query-loaders \
           > $out/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
-      '')
-  ];
+      '';
 
   rofiWithWebp = pkgs.symlinkJoin {
     name = "rofi";
