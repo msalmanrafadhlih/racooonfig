@@ -2,7 +2,7 @@
   lib,
   pkgs,
   config,
-  mapAll,
+  inputs,
   ...
 }:
 
@@ -12,6 +12,8 @@ let
   home = config.home.homeDirectory;
   dotfiles_path = "${home}/.dotfiles/racooonfig";
   repo_url = "https://github.com/msalmanrafadhlih/racooonfig.git";
+
+  mapAll = inputs.racooonfig.mapAll;
 
   mkSymlink = { target ? "", }: configs:
     let
