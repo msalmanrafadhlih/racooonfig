@@ -35,6 +35,5 @@
 
     # UTILS
     ffmpeg-full # absolutely need GUI
-    inputs.st-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
