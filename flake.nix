@@ -19,7 +19,7 @@
       };
 
       legacyPackages = myLibs.legacyPackages; # applies overlays.default to nixpkgs.legacyPackages
-      devShells      = myLibs.devShells;
+      # devShells      = myLibs.devShells;
       packages       = myLibs.packages; # custom packages built against nixpkgs
       overlays       = myLibs.overlays; # overlays.default is the sum of all the overlays
     };
