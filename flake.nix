@@ -25,7 +25,9 @@
     };
 
   inputs = {
+    # /// package_managers /////////////////////////////////////////////
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     ## ---- System Packages
@@ -78,13 +80,6 @@
     yazi-compress = {
       url = "github:KKV9/compress.yazi";
       flake = false;
-    };
-
-    # /// package_managers /////////////////////////////////////////////
-    nur.url = "github:nix-community/NUR";
-    nix-snapd = {
-      url = "github:nix-community/nix-snapd";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
