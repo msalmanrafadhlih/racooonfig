@@ -1,10 +1,19 @@
-{ pkgs, config, inputs, ... }: {
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
+let
+  inp = inputs.racooonfig.inputs;
+in
+{
   # Target Applications
   imports = [
     ./gtk.nix
     ./disable.nix
 
-  inputs.stylix.homeModules.stylix
+    inp.stylix.homeModules.stylix
   ];
 
   stylix = {
