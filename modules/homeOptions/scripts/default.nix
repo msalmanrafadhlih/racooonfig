@@ -1,15 +1,18 @@
 # exported to ../flake.nix
-{ mapFile, ... }: 
+{ inputs, ... }:
+let
+  mapFile = inputs.racooonfig.mapFile;
+in
 {
-	imports = [
-	  ./opencam.nix
-	  ./github-repos.nix
-	  ./media.nix
-	  ./run.nix
-	  ./xyz.nix
-	  ./tar.nix
-	  ./get-wsize.nix
-	  ./colorscript.nix
+  imports = [
+    ./opencam.nix
+    ./github-repos.nix
+    ./media.nix
+    ./run.nix
+    ./xyz.nix
+    ./tar.nix
+    ./get-wsize.nix
+    ./colorscript.nix
   ]
   ++ mapFile ./cli [] {};
 }
