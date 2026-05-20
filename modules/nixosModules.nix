@@ -1,0 +1,2 @@
+{ mapFile, ... }:
+{ imports = mapFile ./nixosOptions [] {}; }
