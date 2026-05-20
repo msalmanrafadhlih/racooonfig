@@ -8,8 +8,7 @@
       myLibs = import ./.lib { inherit inputs self; };
     in
     {
-      inherit
-        (myLibs.mapping) mapFile mapDir mapAll; 
+      inherit (myLibs) mapping; 
 
       homeModules.racooonfig = {
         imports = [ ./modules/homeModules.nix ];
