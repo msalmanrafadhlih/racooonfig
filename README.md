@@ -31,6 +31,7 @@
 
 # Commit penting!
 
+- [a3114f1](https://github.com/msalmanrafadhlih/racooonfig/tree/a3114f1c574c6b449ee53c56d241fa3b9a94ccce) : racooonfig-v4
 - [2998540](https://github.com/msalmanrafadhlih/racooonfig/blob/c009d2e0c215b4386eec195eec26e62448d47e7f/configs/zed-editor/themes/racooonfig.json#L134-L230) : Zed Syntax Themes
 - [2998540](https://github.com/msalmanrafadhlih/racooonfig/commit/29985406d927e7785deceea1df4b11864055a835) : Zed Keymaps
 - [dc7ccc2](https://github.com/msalmanrafadhlih/racooonfig/tree/dc7ccc2989708d776eaa1f912aec7cab00cc85aa) : update flake to racoonfig-v3
