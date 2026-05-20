@@ -7,13 +7,13 @@
 }:
 
 let
-  user = config.home.username;
+  inp = inputs.racooonfig.inputs;
   home = config.home.homeDirectory;
   cursorTheme = "Skyrim-by-ru5tyshark-cursors";
   cursorSize = "24";
 in
 {
-  imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
+  imports = [ inp.nix-flatpak.homeManagerModules.nix-flatpak ];
 
   services.flatpak = {
     remotes = lib.mkOptionDefault [
