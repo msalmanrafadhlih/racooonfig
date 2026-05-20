@@ -1,4 +1,4 @@
-{ inputs, pkgs,... }:
+{ inputs, pkgs, ... }:
 let
   inp = inputs.racooonfig.inputs;
 in
@@ -11,6 +11,7 @@ in
     	'';
   services = {
     # install flatpak binary
+    # nix-snapd = true;
     flatpak = {
       enable = true;
       uninstallUnmanaged = true;
