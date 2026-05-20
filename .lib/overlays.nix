@@ -10,5 +10,7 @@ rec {
 
   default = inputs.nixpkgs.lib.composeManyExtensions [
     local-packages
+
+    inputs.nur.overlays.default
   ];
 }
