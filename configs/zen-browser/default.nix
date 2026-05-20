@@ -1,17 +1,23 @@
 # ./zen-browser
-{ inputs, system, ... }:
-
+{
+  inputs,
+  pkgs,
+  ...
+}:
+let
+  inp = inputs.racooonfig.inputs;
+in
 {
   programs.zen-browser = {
     enable = true;
-    package = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}}.default;
+    package = inp.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     # Profil default
     profiles.default = {
       id = 0;
       name = "default";
       isDefault = true;
-      
+
       # Settings (about:config)
       # Zen sudah punya banyak default bagus, kita hanya tweak sedikit.
       settings = {
@@ -19,16 +25,16 @@
         "zen.view.compact" = true; # Aktifkan Compact Mode (Hide Top Bar)
         "toolkit.tabbox.switchByScrolling" = true; # Ganti tab dengan scroll mouse di sidebar
         "browser.tabs.allow_transparent_browser" = true; # Efek transparan/blur (jika compositor support)
-        
+
         # --- PRIVACY (Zen sudah hardened, jangan over-do) ---
         "privacy.donottrackheader.enabled" = true;
         "privacy.trackingprotection.enabled" = true;
         "privacy.fingerprintingProtection" = true; # Hati-hati, bisa bikin jam UTC (cek penjelasan sebelumnya)
-        
+
         # --- PERFORMANCE ---
         "media.ffmpeg.vaapi.enabled" = true;
         "gfx.webrender.all" = true;
-        
+
         # --- STARTUP ---
         "browser.startup.homepage" = "about:blank";
         "browser.sessionstore.resume_from_crash" = false;
@@ -41,7 +47,7 @@
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
       DisablePocket = true;
-      
+
       # Auto-install Extensions (Cari ID-nya di URL Add-ons Mozilla)
       ExtensionSettings = {
         # uBlock Origin
