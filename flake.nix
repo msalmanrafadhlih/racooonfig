@@ -84,7 +84,7 @@
     nur.url = "github:nix-community/NUR";
     nix-snapd = {
       url = "github:nix-community/nix-snapd";
-      inputs.nixpkgs.follows = "nixos-stable-lib";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 }
