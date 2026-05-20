@@ -38,12 +38,8 @@
 #     { environment.systemPackages = ...; }
 #
 # ⚠  KENDALA (baca bagian bawah file ini)
-
+{ ... }:
 let
-  # ---------------------------------------------------------------------------
-  # Internal helpers
-  # ---------------------------------------------------------------------------
-
   readDir = path: builtins.readDir path;
 
   isNixFile = name: builtins.match ".*\\.nix" name != null;
