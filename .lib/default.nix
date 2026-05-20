@@ -20,7 +20,7 @@ let
 
   mapping        = import ./map-lib.nix         args;
   overlays       = import ./overlays.nix        args;
-  devShells      = import ./devShells.nix       args;
+  devShells      = import ./devShells           args;
   legacyPackages = import ./legacyPackages.nix  args;
 in
 {
