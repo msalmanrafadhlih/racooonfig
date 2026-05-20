@@ -8,20 +8,21 @@
       myLibs = import ./.lib { inherit inputs self; };
     in
     {
+      inherit
+        (myLibs.mapping) mapFile mapDir mapAll; 
+
       homeModules.racooonfig = {
-        _module.args = { inherit (myLibs.mapping) mapFile mapDir mapAll; };
         imports = [ ./modules/homeModules.nix ];
       };
 
       nixosModules.racooonfig = {
-        _module.args = { inherit (myLibs.mapping) mapFile mapDir mapAll; };
         imports = [ ./modules/nixosModules.nix ];
       };
 
       legacyPackages = myLibs.legacyPackages; # applies overlays.default to nixpkgs.legacyPackages
-      # devShells      = myLibs.devShells;
       packages       = myLibs.packages; # custom packages built against nixpkgs
       overlays       = myLibs.overlays; # overlays.default is the sum of all the overlays
+      # devShells      = myLibs.devShells;
     };
 
   inputs = {
