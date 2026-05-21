@@ -4,7 +4,10 @@ bspc monitor -d 1 2 3 4 5 6
 
 # Set environment variables
 export PATH="$HOME/.config/bspwm/bin:$HOME/.local/bin:$PATH"
-export XDG_CURRENT_DESKTOP='bspwm'
+
+export XDG_CURRENT_DESKTOP=bspwm
+export XDG_SESSION_TYPE=x11
+
 ## Fix java applications
 export _JAVA_AWT_WM_NONREPARENTING=1
 
