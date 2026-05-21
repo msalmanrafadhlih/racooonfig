@@ -1,7 +1,15 @@
 [module/backlight]
-type = ${system.sys_graphics_card}
 format =<ramp> <label>
 label = %percentage%%
+
+;type = internal/xbacklight
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+;card = intel_backlight
+card = ${system.sys_graphics_card}
+
 
 ramp-0 = 󰪞
 ramp-1 = 󰪟
