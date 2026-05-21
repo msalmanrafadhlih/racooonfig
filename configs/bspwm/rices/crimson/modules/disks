@@ -7,4 +7,4 @@ mount-0 = /
 label-mounted = %{T3}%used:disk% / %total:disk%%{T-}
 
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.disabled}
+label-unmounted-foreground = #555555aa 
