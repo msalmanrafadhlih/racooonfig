@@ -21,7 +21,6 @@
 	../../configs/rmpc 
 	../../configs/xytz # TUI Youtube downloader and Streaming
 	../../configs/matugen
-	../../configs/tmux
 	# ...../configs/rclone
   # ../../configs/zen-browser
   # ../../configs/firefox
