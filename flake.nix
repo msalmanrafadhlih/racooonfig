@@ -5,7 +5,7 @@
     { self, ... }@inputs:
     let
       # mapping nix files & directories
-      myLibs = import ./.lib.nix { inherit inputs self; };
+      myLibs = import ./.lib { inherit inputs self; };
     in
     {
       inherit (myLibs) packages mapAll mapDir mapFile;
