@@ -118,7 +118,7 @@ set_theme() {
         exit 1
     fi
 
-    set-gtk-theme "dynamic" "$THEME" "$CURSOR"
+    set-gtk-theme "dynamic" "$THEME" "$CURSOR" &
     kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.config/kitty/themes/racooonfig.conf" || true
     "$DIR/rices/$RICE/launch.sh" &
 }
@@ -138,9 +138,9 @@ preview_theme() {
 
 # Logic switch
 if [[ "$action" == "--preview" ]]; then
-    preview_theme "$theme_name"
+    preview_theme "$theme_name" &
 else
-    set_theme
+    set_theme &
 fi
 
 wait
