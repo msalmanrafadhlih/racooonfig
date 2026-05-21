@@ -17,7 +17,7 @@ rec {
     }
   );
 
-  default = inputs.nixos-stable.lib.composeManyExtensions [
+  default = inputs.nixpkgs.lib.composeManyExtensions [
     local-packages
 
     inputs.nur.overlays.default
