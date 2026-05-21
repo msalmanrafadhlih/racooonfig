@@ -35,9 +35,6 @@ bspc config borderless_monocle false
 bspc config gapless_monocle true
 bspc config single_monocle true
 
-# Automatic floating all nodes
-bspc rule -a '*' state=floating
-
 # tiled mode
 bspc config automatic_scheme longest_side # options: alternate, longest_side, spiral
 bspc config initial_polarity second_child # to set new node in left or right
