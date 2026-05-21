@@ -1,14 +1,23 @@
-{ mkSymlink, ... }:
+{
+  mkSymlink,
+  lib,
+  config,
+  ...
+}:
 
 let
   configs = {
-		"com.kdocker/icons" = "icons";
-		"com.kdocker/KDocker.conf" = "KDocker.conf";
+    "com.kdocker/icons" = "icons";
+    "com.kdocker/KDocker.conf" = "KDocker.conf";
   };
+  cfg = config.racooonfig;
 in
 
 {
-  xdg.configFile = mkSymlink {
-    target = "com.kdocker";
-  } configs;
+  config = lib.mkIf (builtins.elem "bspwm" cfg.listConfigurations) {
+    xdg.configFile = mkSymlink {
+      target = "com.kdocker";
+    } configs;
+  };
+
 }
