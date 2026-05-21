@@ -1,19 +1,29 @@
-{ mkSymlink, pkgs, ... }:
+{
+  mkSymlink,
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   configs = {
-		"fastfetch/config.jsonc" = "config.jsonc";
+    "fastfetch/config.jsonc" = "config.jsonc";
 
-		"fastfetch/ascii" = "ascii";
-		"fastfetch/gifs" = "gifs";
-		"fastfetch/pngs" = "pngs";
+    "fastfetch/ascii" = "ascii";
+    "fastfetch/gifs" = "gifs";
+    "fastfetch/pngs" = "pngs";
   };
+  cfg = config.racooonfig;
 in
 {
-  xdg.configFile = mkSymlink {
-    target = "fastfetch";
-  } configs;
+  config = lib.mkIf (builtins.elem "fastfetch" cfg.listConfigurations) {
+    xdg.configFile = mkSymlink {
+      target = "fastfetch";
+    } configs;
 
-  home.packages = with pkgs; [
-    fastfetch
-  ];
+    home.packages = with pkgs; [
+      fastfetch
+    ];
+  };
+
 }
