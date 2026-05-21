@@ -1,12 +1,22 @@
-{ mkSymlink, ... }:
+{
+  mkSymlink,
+  lib,
+  config,
+  ...
+}:
 let
   configs = {
     config = "bat/config";
   };
 
+  cfg = config.racooonfig;
 in
 {
-  xdg.configFile = mkSymlink {
-    target = "bat";
-  } configs;
+  config = lib.mkIf (builtins.elem "bat" cfg.listConfigurations) {
+
+    xdg.configFile = mkSymlink {
+      target = "bat";
+    } configs;
+  };
+
 }
