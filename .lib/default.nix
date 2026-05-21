@@ -17,7 +17,7 @@ let
         pkgs = import inputs.nixpkgs {
           inherit system;
           config   = configs.default;
-          overlays = overlays.default;
+          overlays = [ overlays.default ];
         };
       in
       import modulePath { inherit pkgs; }
