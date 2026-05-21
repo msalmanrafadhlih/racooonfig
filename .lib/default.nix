@@ -1,7 +1,7 @@
 { inputs, ... }@args:
 let
   lib            = inputs.nixpkgs.lib;
-  systems        = lib.systems.flakeExposed;
+  forAllSystem   = lib.genAttrs lib.systems.flakeExposed;
 
   configs        = import ./configs.nix        args;
   mapping        = import ./map-lib.nix        args;
@@ -11,7 +11,7 @@ let
   # Bagian yang menangani outputs.packages
   mkSystemPackages =
     modulePath:
-    lib.genAttrs systems (
+    forAllSystem (
       system:
       let
         pkgs = import inputs.nixpkgs {
