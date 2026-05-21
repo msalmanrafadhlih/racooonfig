@@ -5,10 +5,10 @@
     { self, ... }@inputs:
     let
       # mapping nix files & directories
-      myLibs = import ./.lib { inherit inputs self; };
+      myLibs = import ./.lib.nix { inherit inputs self; };
     in
     {
-      inherit (myLibs.mapping) mapFile mapDir mapAll; 
+      inherit (myLibs) packages mapAll mapDir mapFile;
 
       homeModules.racooonfig = {
         imports = [ ./modules/homeModules.nix ];
@@ -17,11 +17,6 @@
       nixosModules.racooonfig = {
         imports = [ ./modules/nixosModules.nix ];
       };
-
-      legacyPackages = myLibs.legacyPackages; # applies overlays.default to nixpkgs.legacyPackages
-      packages       = myLibs.packages; # custom packages built against nixpkgs
-      overlays       = myLibs.overlays; # overlays.default is the sum of all the overlays
-      # devShells      = myLibs.devShells;
     };
 
   inputs = {
@@ -29,6 +24,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+    racooon = "github:msalmanrafadhlih/flexinix";
 
     ## ---- System Packages
     xytz = {
