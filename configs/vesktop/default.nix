@@ -1,12 +1,20 @@
-{ mkSymlink, ... }:
+{
+  mkSymlink,
+  lib,
+  config,
+  ...
+}:
 
 let
+  cfg = config.racooonfig;
   configs = {
     "vesktop/themes" = "themes";
   };
 in
 {
-  xdg.configFile = mkSymlink {
-    target = "vesktop";
-  } configs;
+  config = lib.mkIf (builtins.elem "vesktop" cfg.listConfigurations) {
+    xdg.configFile = mkSymlink {
+      target = "vesktop";
+    } configs;
+  };
 }
