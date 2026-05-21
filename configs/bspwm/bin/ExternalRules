@@ -173,12 +173,12 @@ case "$class" in
     "floating_rmpc")
         echo "state=floating rectangle=$RMPC"
         ;;
-    "TerminalIDE" | "dev.zed.Zed")
+    "TerminalIDE")
         echo "desktop=^3 follow=on state=pseudo_tiled rectangle=$FLATPAK"
         ;;
     "YaziTerm")
         echo "state=floating rectangle=$(calc_rect "center" 0 0)"
-    TALL   ;;
+        ;;
     "qView")
         echo "state=floating rectangle=$(calc_rect "center" 0 0) sticky=off"
         ;;
@@ -212,6 +212,9 @@ case "$class" in
     "Audacity" | "Org.gnome.gThumb")
         echo "state=floating center=on"
         ;;
+    *)
+        echo "state=floating"
+        ;;
 esac
 
 case "$title" in
@@ -224,7 +227,7 @@ case "$title" in
     "Bluetooth Devices")
         echo "state=floating sticky=on rectangle=$CENTER_PINNED"
         ;;
-    *"Zed"*"Settings"* | *"Settings"* | *"Preferences"* | *"Configuration"*)
+    *"Settings"* | *"Preferences"* | *"Configuration"*)
         echo "state=floating center=on follow=on"
         ;;
 esac
