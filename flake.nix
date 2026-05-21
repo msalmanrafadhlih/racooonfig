@@ -21,11 +21,11 @@
       packages       = myLibs.packages; # custom packages built against nixpkgs
 
       homeModules.racooonfig = {
-        imports = mkModule [ ./modules/homeModules.nix ];
+        imports = mkModule [ ./modules/homeOptions.nix ];
       };
 
       nixosModules.racooonfig = {
-        imports = mkModule [ ./modules/nixosModules.nix ];
+        imports = mkModule [ ./modules/nixosOptions.nix ];
       };
     };
 
