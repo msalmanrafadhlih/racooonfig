@@ -9,6 +9,7 @@
     in
     {
       inherit (myLibs.mapping) mapAll mapDir mapFile;
+
       configs        = myLibs.configs;
       mapping        = myLibs.mapping;
       legacyPackages = myLibs.legacyPackages; # applies overlays.default to nixpkgs.legacyPackages
