@@ -6,6 +6,10 @@
     let
       # mapping nix files & directories
       myLibs = import ./.lib { inherit inputs self; };
+
+      mkModule = extraModules: {
+        imports = [ ./modules/starter.nix  ] ++ extraModules;
+      };
     in
     {
       inherit (myLibs.mapping) mapAll mapDir mapFile;
@@ -17,11 +21,11 @@
       packages       = myLibs.packages; # custom packages built against nixpkgs
 
       homeModules.racooonfig = {
-        imports = [ ./modules/homeModules.nix ];
+        imports = mkModule [ ./modules/homeModules.nix ];
       };
 
       nixosModules.racooonfig = {
-        imports = [ ./modules/nixosModules.nix ];
+        imports = mkModule [ ./modules/nixosModules.nix ];
       };
     };
 
