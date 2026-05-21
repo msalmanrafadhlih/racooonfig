@@ -19,7 +19,7 @@ done
 # Generate list untuk rofi dengan ikon
 selected=$(
     for rice in "${rices[@]}"; do
-        printf "%s\0icon\x1f%s/rices/%s/preview.png\n" "$rice" "$DIR" "$rice"
+        printf "%s\0icon\x1f%s/rices/%s/preview.webp\n" "$rice" "$DIR" "$rice"
     done | rofi -dmenu -show-icons -p "RiceSelector" \
         -theme "$HOME/.config/rofi/themes/RiceSelector.rasi" \
         -selected-row "$selected_index"
@@ -28,5 +28,5 @@ selected=$(
 # Eksekusi jika ada pilihan baru
 if [[ -n "$selected" && "$selected" != "$current_rice" ]]; then
     echo "$selected" > "$DIR/.rice"
-    "$DIR/bin/GenerateTheme"
+    "$DIR/bin/GenerateTheme" &
 fi
