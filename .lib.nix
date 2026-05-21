@@ -4,5 +4,5 @@
   mapFile        = inputs.racooon.mapFile;
   mapAll         = inputs.racooon.mapAll;
   mapDir         = inputs.racooon.mapDir;
-  overlays       = [ inputs.nur.overlays.default ];
+  overlays       = inputs.nur.overlays.default;
 }
