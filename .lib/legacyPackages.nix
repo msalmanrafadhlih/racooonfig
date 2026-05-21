@@ -1,9 +1,9 @@
 { inputs, ... }: let
-  lib = inputs.nixos-stable.lib;
+  lib = inputs.nixpkgs.lib;
   forAllSystems = lib.genAttrs lib.systems.flakeExposed;
 in forAllSystems (
   system:
-    import inputs.nixos-unstable {
+    import inputs.nixpkgs {
       inherit system;
       overlays = [ (import ./overlays.nix { inherit inputs; }).default ];
       config = (import ./configs.nix { inherit inputs; }).default;
