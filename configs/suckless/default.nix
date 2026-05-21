@@ -1,11 +1,19 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   inp = inputs.racooonfig.inputs;
+  st  = inp.st-nix.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
+  cfg = config.racooonfig;
 in
 {
-  home.packages = [
-    inp.st-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
-  ];
+  home.packages =
+    lib.optional (builtins.elem "st" cfg.listConfigurations) st;
 
   #  home.packages = with pkgs; [
   # (pkgs.st.overrideAttrs (_: {
@@ -19,5 +27,4 @@ in
   # slock
   # surf
   #  ];
-
 }
