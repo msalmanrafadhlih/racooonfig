@@ -7,7 +7,7 @@
 }:
 let
   inp = inputs.racooonfig.inputs;
-  st  = inp.st-nix.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  st  = [ inp.st-nix.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
   cfg = config.racooonfig;
 in
