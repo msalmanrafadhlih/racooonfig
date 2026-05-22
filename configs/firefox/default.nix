@@ -9,7 +9,7 @@ let
 in
 {
   import = [ ./firefox.nix ]; 
-  config = lib.mkIf (builtins.elem "firefox" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "firefox" cfg.listConfigurations) {
     programs.firefox = {
       enable = true;
       package = pkgs.firefox-bin;
