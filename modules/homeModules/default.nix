@@ -36,12 +36,11 @@ in
 {
   _module.args = { inherit mkSymlink; };
 
-  imports =
-    bspwm
-    ++ mapAll ./scripts [ ] { };
-    # lib.optionals (builtins.elem "bspwm" cfg.windowManager) bspwm
-    # ++ lib.optionals (builtins.elem "hyprland" cfg.windowManager) hyprland
-    # ++ lib.optionals (builtins.elem "niri" cfg.windowManager) niri
+  imports = [ ./scripts ]
+    lib.optionals (builtins.elem "bspwm" cfg.windowManager) bspwm
+    ++ lib.optionals (builtins.elem "hyprland" cfg.windowManager) hyprland
+    ++ lib.optionals (builtins.elem "niri" cfg.windowManager) niri;
+    # ++ mapAll ./scripts [ ] { };
 
   home.activation = {
     setupDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
