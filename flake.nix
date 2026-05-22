@@ -20,13 +20,11 @@
       overlays       = myLibs.overlays; # overlays.default is the sum of all the overlays
       packages       = myLibs.packages; # custom packages built against nixpkgs
 
-      homeModules.racooonfig = {
-        imports = mkModule [ ./modules/homeOptions.nix ];
-      };
-
-      nixosModules.racooonfig = {
-        imports = mkModule [ ./modules/nixosOptions.nix ];
-      };
+      homeModules.racooonfig = 
+        mkModule [ ./modules/homeOptions.nix ];
+      
+      nixosModules.racooonfig = 
+        mkModule [ ./modules/nixosOptions.nix ];
     };
 
   inputs = {
