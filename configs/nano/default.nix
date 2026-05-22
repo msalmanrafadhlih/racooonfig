@@ -16,10 +16,9 @@ let
 in
 
 {
-  config = lib.mkIf (builtins.elem "nano" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "nano" cfg.listConfigurations) {
     home.file = mkSymlink {
       target = "nano";
     } configs;
   };
-
 }
