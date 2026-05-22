@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   # ──────────────────────────────────────────────
@@ -264,5 +269,8 @@ let
 
 in
 {
-  home.packages = [ ai-chat ];
+
+  config = lib.mkIf config.racooonfig.homeManager {
+    home.packages = [ ai-chat ];
+  };
 }
