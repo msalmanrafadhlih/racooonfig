@@ -8,7 +8,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "yazelix" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "yazelix" cfg.listConfigurations) {
     programs.yazelix = {
       enable = true;
 
