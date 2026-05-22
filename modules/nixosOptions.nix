@@ -13,7 +13,7 @@
 
     enableDisplayManager = lib.mkOption {
       type = lib.types.bool;
-      default = false;
+      default = true;
       description = ''
         enable display manager configurations
       '';
