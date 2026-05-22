@@ -35,7 +35,6 @@ in
     ../configs/zathura
     ../configs/zed-editor
     ../configs/bat
-    ../configs/btm
   ];
 
   options.racooonfig = {
@@ -60,7 +59,6 @@ in
           # Apps configs
           "alacritty"
           "bat"
-          "bottom"
           "vscode"
           "fastfetch"
           "firefox"
