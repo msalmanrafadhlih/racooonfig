@@ -5,20 +5,18 @@
   ...
 }:
 let
-  mapFile = inputs.racooonfig.mapFile;
-  mapDir  = inputs.racooonfig.mapDir;
-  cfg     = config.racooonfig;
-
-  bspwm    = mapFile ./nixosModules/bspwm [ ] { };
-  hyprland = mapFile ./nixosModules/hyprland [ ] { };
-  niri     = mapFile ./nixosModules/niri [ ] { };
+  mapDir = inputs.racooonfig.mapDir;
+  cfg = config.racooonfig;
 in
 {
   imports =
-    lib.optional cfg.enable [ ./nixosModules/default.nix ]
-    ++ lib.optionals (cfg.enable && builtins.elem "bspwm" cfg.windowManager) bspwm
-    ++ lib.optionals (cfg.enable && builtins.elem "hyprland" cfg.windowManager) hyprland
-    ++ lib.optionals (cfg.enable && builtins.elem "niri" cfg.windowManager) niri
-    ++ mapDir ../configs [ "bspwm" "hyprland" "niri" ] { }
-    ++ [ ./homeModules/default.nix ];
+    lib.optionals cfg.enable [ ./nixosModules/default.nix ]
+    ++ lib.optionals cfg.homeManager [ ./homeModules/default.nix ]
+    ++ lib.optionals (cfg.enable && builtins.elem "bspwm" cfg.windowManager) [ ./nixosModules/bspwm ]
+    ++ lib.optionals (cfg.enable && builtins.elem "hyprland" cfg.windowManager) [ ./nixosModules/hyprland ]
+    ++ lib.optionals (cfg.enable && builtins.elem "niri" cfg.windowManager) [ ./nixosModules/niri ]
+    ++ lib.optionals (builtins.elem "niri" cfg.listConfigurations) [ ./homeModules/bspwm ]
+    ++ lib.optionals (builtins.elem "hyprland" cfg.listConfigurations) [ ./homeModules/hyprland ]
+    ++ lib.optionals (builtins.elem "niri" cfg.listConfigurations) [ ./homeModules/niri ]
+    ++ mapDir ../configs [ "bspwm" "hyprland" "niri" ] { };
 }
