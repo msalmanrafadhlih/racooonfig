@@ -1,16 +1,22 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
+
   bookmarksScript = pkgs.writeShellApplication {
     name = "bookmarks";
 
     # Dependensi dimasukkan otomatis ke PATH
-    runtimeInputs = with pkgs; [ 
-      coreutils 
-      gnugrep 
-      gnused 
-      xdg-utils 
-      kdocker 
+    runtimeInputs = with pkgs; [
+      coreutils
+      gnugrep
+      gnused
+      xdg-utils
+      kdocker
     ];
 
     text = ''
@@ -107,5 +113,7 @@ let
   };
 in
 {
-  home.packages = [ bookmarksScript ];
+  config = lib.mkIf config.racooonfig.homeManager {
+    home.packages = [ bookmarksScript ];
+  };
 }
