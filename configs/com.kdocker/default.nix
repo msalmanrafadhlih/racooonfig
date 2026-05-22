@@ -14,7 +14,7 @@ let
 in
 
 {
-  config = lib.mkIf (builtins.elem "bspwm" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "bspwm" cfg.listConfigurations) {};
     xdg.configFile = mkSymlink {
       target = "com.kdocker";
     } configs;
