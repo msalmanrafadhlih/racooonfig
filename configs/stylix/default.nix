@@ -12,9 +12,9 @@ let
   cfg = config.racooonfig;
 in
 {
-  imports = 
-    lib.optional (builtins.elem "stylix" cfg.listConfigurations)
-      [ inp.stylix.nixosModules.stylix ];
+  imports = [  inp.stylix.nixosModules.stylix  ];
+    # lib.optional (builtins.elem "stylix" cfg.listConfigurations)
+    #   [ inp.stylix.nixosModules.stylix ];
 
   config = lib.mkIf (builtins.elem "stylix" cfg.listConfigurations) {
     # Target Applications
