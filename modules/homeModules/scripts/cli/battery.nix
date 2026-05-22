@@ -1,13 +1,18 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   batteryScript = pkgs.writeShellApplication {
     name = "battery-notify";
-    
-    runtimeInputs = with pkgs; [ 
-      coreutils 
-      dunst 
-      libcanberra-gtk3 
+
+    runtimeInputs = with pkgs; [
+      coreutils
+      dunst
+      libcanberra-gtk3
     ];
 
     text = ''
@@ -37,22 +42,25 @@ let
   };
 in
 {
-  home.packages = [ batteryScript ];
+  config = lib.mkIf config.racooonfig.homeManager {
 
-  systemd.user.services.battery-check = {
-    Unit.Description = "Battery check notifier";
-    Service = {
-      ExecStart = "${batteryScript}/bin/battery-notify";
-      Type = "oneshot";
-    };
-  };
+    home.packages = [ batteryScript ];
 
-  systemd.user.timers.battery-check = {
-    Unit.Description = "Run battery notifier every 1 minute";
-    Timer = {
-      OnBootSec = "30s";
-      OnUnitActiveSec = "1m";
+    systemd.user.services.battery-check = {
+      Unit.Description = "Battery check notifier";
+      Service = {
+        ExecStart = "${batteryScript}/bin/battery-notify";
+        Type = "oneshot";
+      };
     };
-    Install.WantedBy = [ "timers.target" ];
+
+    systemd.user.timers.battery-check = {
+      Unit.Description = "Run battery notifier every 1 minute";
+      Timer = {
+        OnBootSec = "30s";
+        OnUnitActiveSec = "1m";
+      };
+      Install.WantedBy = [ "timers.target" ];
+    };
   };
 }
