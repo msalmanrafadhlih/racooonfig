@@ -37,10 +37,11 @@ in
   _module.args = { inherit mkSymlink; };
 
   imports =
-    lib.optionals (builtins.elem "bspwm" cfg.windowManager) bspwm
-    ++ lib.optionals (builtins.elem "hyprland" cfg.windowManager) hyprland
-    ++ lib.optionals (builtins.elem "niri" cfg.windowManager) niri
+    bspwm
     ++ mapAll ./scripts [ ] { };
+    # lib.optionals (builtins.elem "bspwm" cfg.windowManager) bspwm
+    # ++ lib.optionals (builtins.elem "hyprland" cfg.windowManager) hyprland
+    # ++ lib.optionals (builtins.elem "niri" cfg.windowManager) niri
 
   home.activation = {
     setupDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
