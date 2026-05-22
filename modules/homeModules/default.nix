@@ -34,10 +34,7 @@ in
 
 {
 
-  imports =  mapAll ./bspwm    [ ] { }
-          ++ mapAll ./hyprland [ ] { }
-          ++ mapAll ./niri     [ ] { }
-          ++ mapAll ./scripts  [ ] { };
+  imports = [ ./scripts ./bspwm ];
 
   config = lib.mkIf cfg.homeManager {
     _module.args = { inherit mkSymlink; };
