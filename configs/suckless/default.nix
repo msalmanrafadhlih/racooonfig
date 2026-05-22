@@ -13,7 +13,7 @@ let
 in
 {
   home.packages =
-    lib.optional (builtins.elem "st" cfg.listConfigurations) st;
+    lib.optionals (builtins.elem "st" cfg.listConfigurations) st;
 
   #  home.packages = with pkgs; [
   # (pkgs.st.overrideAttrs (_: {
