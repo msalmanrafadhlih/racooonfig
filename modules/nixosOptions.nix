@@ -5,7 +5,7 @@
   options.racooonfig = {
     enable = lib.mkOption {
       type = lib.types.bool;
-      default = false;
+      default = true;
       description = ''
         enable system configurations for racooonfig 
       '';
