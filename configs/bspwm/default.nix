@@ -29,7 +29,5 @@ in
     xdg.configFile = mkSymlink {
       target = "bspwm";
     } configs;
-
   };
-
 }
