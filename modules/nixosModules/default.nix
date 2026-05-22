@@ -10,9 +10,7 @@ let
   mapAll = inputs.racooonfig.mapAll;
 in
 {
-  imports  = mapAll ./bspwm    [ ] { }
-          ++ mapAll ./hyprland [ ] { }
-          ++ mapAll ./niri     [ ] { };
+  imports  = [ ./bspwm ];
 
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
