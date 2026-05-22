@@ -8,19 +8,18 @@
 let
   cfg = config.racooonfig;
   mapAll = inputs.racooonfig.mapAll;
-  mapFile = inputs.racooonfig.mapFile;
-
-  bspwm    = mapFile ./bspwm [ ] { };
-  hyprland = mapFile ./hyprland [ ] { };
-  niri     = mapFile ./niri [ ] { };
 
   branch = "main";
   home = config.home.homeDirectory;
   dotfiles_path = "${home}/.dotfiles/racooonfig";
   repo_url = "https://github.com/msalmanrafadhlih/racooonfig.git";
 
-  mkSymlink = { target ? "", }:
-    configs: let
+  mkSymlink =
+    {
+      target ? "",
+    }:
+    configs:
+    let
       create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
       # Jika target kosong, suffix kosong. Jika ada, tambahkan slash.
       targetSuffix = if target == "" then "" else "/${target}";
@@ -36,11 +35,11 @@ in
 {
   _module.args = { inherit mkSymlink; };
 
-  imports = [ ./scripts ]
-    lib.optionals (builtins.elem "bspwm" cfg.windowManager) bspwm
-    ++ lib.optionals (builtins.elem "hyprland" cfg.windowManager) hyprland
-    ++ lib.optionals (builtins.elem "niri" cfg.windowManager) niri;
-    # ++ mapAll ./scripts [ ] { };
+  imports =
+    lib.optionals (builtins.elem "bspwm" cfg.listConfigurations) [ ./bspwm ]
+    ++ lib.optionals (builtins.elem "hyprland" cfg.listConfigurations) [ ./hyprland ]
+    ++ lib.optionals (builtins.elem "niri" cfg.listConfigurations) [ ./niri ]
+    ++ mapAll ./scripts [ ] { };
 
   home.activation = {
     setupDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
