@@ -14,7 +14,7 @@ in
 {
   imports = [ inp.stylix.nixosModules.stylix ];
 
-  config = lib.mkIf (builtins.elem "stylix" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "stylix" cfg.listConfigurations) {
     # Target Applications
     stylix = {
       enable = true;
