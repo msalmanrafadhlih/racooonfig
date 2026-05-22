@@ -8,7 +8,7 @@
       myLibs = import ./.lib { inherit inputs self; };
 
       mkModule = extraModules: {
-        imports = [ ./modules/starter.nix  ] ++ extraModules;
+        imports = extraModules;
       };
     in
     {
