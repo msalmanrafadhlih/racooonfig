@@ -11,7 +11,7 @@ in
 {
   imports = [ inp.xytz.homeManagerModules.default ];
 
-  config = lib.mkIf (builtins.elem "xytz" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "xytz" cfg.listConfigurations) {
 
     programs.xytz = {
       enable = true;
