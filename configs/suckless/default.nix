@@ -12,7 +12,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "stylix" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "st" cfg.listConfigurations) {
     home.packages = [ st ];
   };
 
