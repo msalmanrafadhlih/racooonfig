@@ -1,23 +1,35 @@
 # ./bspwm/default.nix
-{ mkSymlink, ... }:
+{
+  mkSymlink,
+  config,
+  lib,
+  ...
+}:
 
 let
-  configs = {
-		polybar = "polybar";
-		picom = "picom";
-		sxhkd = "sxhkd";
-		dunst = "dunst";
-		rofi = "rofi";
-		eww = "eww";
+  cfg = config.racooonfig;
 
-		"bspwm/bin" = "bin";
-		"bspwm/rices" = "rices";
-		"bspwm/bspwmrc" = "bspwmrc";
-		"bspwm/.term" = "var/.term";
-		"bspwm/.rice" = "var/.rice";
+  configs = {
+    polybar = "polybar";
+    picom = "picom";
+    sxhkd = "sxhkd";
+    dunst = "dunst";
+    rofi = "rofi";
+    eww = "eww";
+
+    "bspwm/bin" = "bin";
+    "bspwm/rices" = "rices";
+    "bspwm/bspwmrc" = "bspwmrc";
+    "bspwm/.term" = "var/.term";
+    "bspwm/.rice" = "var/.rice";
   };
-in {
-  xdg.configFile = mkSymlink {
-    target = "bspwm";
-  } configs; 
+in
+{
+  config = lib.mkIf (cfg.homeManager && builtins.elem "bspwm" cfg.listConfigurations) {
+    xdg.configFile = mkSymlink {
+      target = "bspwm";
+    } configs;
+
+  };
+
 }
