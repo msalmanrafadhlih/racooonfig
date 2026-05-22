@@ -15,7 +15,7 @@ let
 in
 
 {
-  config = lib.mkIf (builtins.elem "zed-editor" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "zed-editor" cfg.listConfigurations) {
     xdg.configFile = mkSymlink {
       target = "zed-editor";
     } configs;
