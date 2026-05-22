@@ -12,7 +12,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "rclone" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "rclone" cfg.listConfigurations) {
 
     programs.rclone = {
       enable = true;
