@@ -1,6 +1,6 @@
 { lib, ... }:
 {
-  imports = [ ./starter.nix ];
+  imports = [ ./nixosModules ];
 
   options.racooonfig = {
     enable = lib.mkOption {
