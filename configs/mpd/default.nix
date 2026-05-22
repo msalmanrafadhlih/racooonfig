@@ -11,7 +11,7 @@ let
   home = "${config.home.homeDirectory}";
 in
 {
-  config = lib.mkIf (builtins.elem "mpd" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "mpd" cfg.listConfigurations) {
     services.mpd = {
       enable = true;
 
