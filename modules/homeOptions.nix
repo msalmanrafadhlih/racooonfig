@@ -23,7 +23,6 @@ in
     ../configs/Apps
     ../configs/nwg-drawer
     ../configs/rclone
-    ../configs/stylix
     ../configs/zen-browser
     ../configs/gtk
     ../configs/nano
