@@ -6,7 +6,7 @@
 }:
 let
   mapFile = inputs.racooonfig.mapFile;
-  mapDir  = inputs.racooonfig.mapFile;
+  mapDir  = inputs.racooonfig.mapDir;
   cfg     = config.racooonfig;
 
   wmMap = {
