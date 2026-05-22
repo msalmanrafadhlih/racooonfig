@@ -1,10 +1,10 @@
 { inputs, lib, ... }:
 let
-  mapDir = inputs.racooonfig.mapDir;
+  mapAll = inputs.racooonfig.mapDir;
 in
 {
   imports = [ ./homeModules ]
-    ++ mapDir ../configs [ "bspwm" "niri" "hyprland" ] { };
+    ++ mapAll ../configs [ "bspwm" "niri" "hyprland" ] { };
 
   options.racooonfig = {
 
