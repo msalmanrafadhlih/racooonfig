@@ -8,7 +8,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "bottom" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "bottom" cfg.listConfigurations) {
 
     programs.bottom = {
       enable = true;
