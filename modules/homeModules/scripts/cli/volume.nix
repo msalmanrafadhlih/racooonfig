@@ -1,9 +1,17 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   volume-script = pkgs.writeShellApplication {
     name = "set-volume";
-    runtimeInputs = with pkgs; [ pamixer dunst ];
+    runtimeInputs = with pkgs; [
+      pamixer
+      dunst
+    ];
     text = ''
       case "$1" in
         --inc) pamixer -i 1 ;;
@@ -28,7 +36,10 @@ let
   };
 in
 {
-  home.packages = [
-    volume-script
-  ];
+  config = lib.mkIf config.racooonfig.homeManager {
+
+    home.packages = [
+      volume-script
+    ];
+  };
 }
