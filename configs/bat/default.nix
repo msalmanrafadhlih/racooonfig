@@ -12,7 +12,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "bat" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "bat" cfg.listConfigurations) {
 
     xdg.configFile = mkSymlink {
       target = "bat";
