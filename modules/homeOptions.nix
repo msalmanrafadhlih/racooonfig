@@ -1,6 +1,6 @@
 { inputs, lib, ... }:
 let
-  mapDir = inputs.racooonfig;
+  mapDir = inputs.racooonfig.mapDir;
 in
 {
   imports = [ ./homeModules ]
