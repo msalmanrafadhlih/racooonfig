@@ -12,7 +12,7 @@ let
   };
 in
 {
-  config = lib.mkIf (builtins.elem "vesktop" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "vesktop" cfg.listConfigurations) {
     xdg.configFile = mkSymlink {
       target = "vesktop";
     } configs;
