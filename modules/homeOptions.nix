@@ -23,7 +23,7 @@ in
     ../configs/Apps
     ../configs/nwg-drawer
     ../configs/rclone
-    ../configs/zen-browser
+    # ../configs/zen-browser
     ../configs/gtk
     ../configs/nano
     ../configs/ncmpcpp
