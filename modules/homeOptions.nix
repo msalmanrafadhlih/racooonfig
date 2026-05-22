@@ -3,6 +3,15 @@
   imports = [ ./starter.nix ];
 
   options.racooonfig = {
+
+    homeManager = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = ''
+        enable system configurations for racooonfig 
+      '';
+    };
+
     listConfigurations = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
