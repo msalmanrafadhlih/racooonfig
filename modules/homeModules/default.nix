@@ -7,6 +7,7 @@
 }:
 let
   cfg = config.racooonfig;
+  mapFile = inputs.racooonfig.mapFile;
   mapAll = inputs.racooonfig.mapAll;
 
   branch = "main";
@@ -33,8 +34,10 @@ let
 in
 
 {
-
-  imports = [ ./scripts ./bspwm ];
+  imports =  mapFile ./bspwm    [ ] { }
+          ++ mapFile ./hyprland [ ] { }
+          ++ mapFile ./niri     [ ] { }
+          ++ mapAll  ./scripts  [ ] { };
 
   config = lib.mkIf cfg.homeManager {
     _module.args = { inherit mkSymlink; };
