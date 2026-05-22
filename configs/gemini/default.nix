@@ -12,7 +12,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "gemini" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "gemini" cfg.listConfigurations) {
     home.file = mkSymlink {
       target = "gemini";
     } configs;
