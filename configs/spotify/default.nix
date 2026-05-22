@@ -8,7 +8,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "spotify" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "spotify" cfg.listConfigurations) {
     home.packages = [ pkgs.spicetify-cli ];
 
     home.activation = {
