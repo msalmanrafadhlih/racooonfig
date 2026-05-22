@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   ezMagick = pkgs.writeShellApplication {
@@ -218,5 +223,7 @@ let
 
 in
 {
-  home.packages = [ ezMagick ];
+  config = lib.mkIf config.racooonfig.homeManager {
+    home.packages = [ ezMagick ];
+  };
 }
