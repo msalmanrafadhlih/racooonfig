@@ -16,7 +16,8 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "fastfetch" cfg.listConfigurations) {
+
+  config = lib.mkIf (cfg.homeManager && builtins.elem "fastfetch" cfg.listConfigurations) {
     xdg.configFile = mkSymlink {
       target = "fastfetch";
     } configs;
