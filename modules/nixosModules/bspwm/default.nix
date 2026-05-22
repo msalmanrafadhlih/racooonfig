@@ -9,6 +9,7 @@ in
     ./fonts.nix
     ./services.nix
     ./xdg-portal.nix
+    ./packages.nix
   ];
 
   config = lib.mkIf (cfg.enable && builtins.elem "bspwm" cfg.windowManager) {
