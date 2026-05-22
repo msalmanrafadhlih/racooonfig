@@ -26,7 +26,6 @@ in
     ../configs/zen-browser
     ../configs/gtk
     ../configs/nano
-    ../configs/yazelix
     ../configs/ncmpcpp
     ../configs/firefox
     ../configs/fastfetch
@@ -77,7 +76,6 @@ in
           "st"
           "vesktop"
           "xytz"
-          "yazelix"
           "zathura"
           "zed-editor"
           "zen-browser"
