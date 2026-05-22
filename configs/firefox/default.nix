@@ -8,7 +8,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  import = lib.optionals (builtins.elem "firefox" cfg.listConfigurations) [ ./firefox.nix ]; 
+  import = [ ./firefox.nix ]; 
   config = lib.mkIf (builtins.elem "firefox" cfg.listConfigurations) {
     programs.firefox = {
       enable = true;
