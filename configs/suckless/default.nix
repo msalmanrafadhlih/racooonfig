@@ -7,13 +7,14 @@
 }:
 let
   inp = inputs.racooonfig.inputs;
-  st = [ inp.st-nix.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
   cfg = config.racooonfig;
 in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "st" cfg.listConfigurations) {
-    home.packages = [ st ];
+    home.packages = [
+      inp.st-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
   };
 
   #  home.packages = with pkgs; [
