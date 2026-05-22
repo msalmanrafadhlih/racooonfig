@@ -89,3 +89,6 @@ post_hook = "xrdb -merge ~/.Xresources && killall -USR1 $(Term --term)"
 input_path = "templates/midnight-discord.css"
 output_path = "~/.config/vesktop/themes/dynamic.theme.css"
 
+[templates.alacritty]
+input_path = "~/.cache/wal/colors-alacritty.toml"
+output_path = "~/.config/alacritty/colors.toml"
