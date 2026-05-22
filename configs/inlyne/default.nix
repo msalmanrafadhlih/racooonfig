@@ -9,7 +9,7 @@ let
 in
 # Markdown Viewer
 {
-  config = lib.mkIf (builtins.elem "inlyne" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "inlyne" cfg.listConfigurations) {
 
     home.packages = [ pkgs.inlyne ];
     xdg.mimeApps.defaultApplications = {
