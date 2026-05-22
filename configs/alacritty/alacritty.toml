@@ -1,16 +1,15 @@
+[general]
+import = ["colors.toml", "fonts.toml"]
+
+live_config_reload = true
+
 [env]
-TERM = 'alacritty'
+TERM = "alacritty"
 WINIT_X11_SCALE_FACTOR = "1.0"
-
-[font]
-size = 10
-bold = { family = "Monospace", style = "Regular" }
-
-builtin_box_drawing = true
 
 [cursor]
 blink_interval = 550
-unfocused_hollow = true
+unfocused_hollow = false
 thickness = 0.15
 
 [cursor.style]
@@ -23,16 +22,16 @@ save_to_clipboard = true
 [window]
 decorations = "none"
 dynamic_title = true
-opacity = 0.7
+opacity = 1.0
 padding = { x = 15, y = 15 }
 dynamic_padding = true
 resize_increments = true
 
 [scrolling]
-history = 9990
+history = 10000
 multiplier = 3
 
 [bell]
-animation = "linear"
-duration = 1
-# command = { program = "paplay", args = ["/usr/share/sounds/freedesktop/stereo/dialog>
+animation = "Linear"
+duration = 0
+command = { program = "canberra-gtk-play", args = ["~/.config/Assets/Sounds/Ding.wav"] }
