@@ -10,7 +10,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "nwg-drawer" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "nwg-drawer" cfg.listConfigurations) {
     home.packages = with pkgs; [
       nwg-drawer
 
