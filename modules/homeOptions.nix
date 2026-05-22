@@ -1,10 +1,43 @@
 { inputs, lib, ... }:
 let
-  mapAll = inputs.racooonfig.mapDir;
+  # mapAll = inputs.racooonfig.mapDir;
 in
 {
-  imports = [ ./homeModules ]
-    ++ mapAll ../configs [ "bspwm" "niri" "hyprland" ] { };
+  imports = [
+    ./homeModules
+
+    ../configs/matugen
+    ../configs/suckless
+    ../configs/vesktop
+    ../configs/xytz
+    ../configs/com.kdocker
+    ../configs/rmpc
+    ../configs/qt
+    ../configs/kitty
+    ../configs/code
+    ../configs/spotify
+    ../configs/mpd
+    ../configs/gemini
+    ../configs/inlyne
+    ../configs/alacritty
+    ../configs/Apps
+    ../configs/nwg-drawer
+    ../configs/rclone
+    ../configs/stylix
+    ../configs/zen-browser
+    ../configs/gtk
+    ../configs/nano
+    ../configs/yazelix
+    ../configs/ncmpcpp
+    ../configs/firefox
+    ../configs/fastfetch
+    ../configs/geany
+    ../configs/ghostty
+    ../configs/zathura
+    ../configs/zed-editor
+    ../configs/bat
+    ../configs/btm
+  ];
 
   options.racooonfig = {
 
