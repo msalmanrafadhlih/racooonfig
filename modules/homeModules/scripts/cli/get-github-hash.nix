@@ -1,15 +1,20 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   get-github-hash = pkgs.writeShellApplication {
     name = "get-github-hash";
-    runtimeInputs = [ pkgs.nix ]; 
-    
+    runtimeInputs = [ pkgs.nix ];
+
     text = ''
       read -r -p "Input Owner: " owner
       read -r -p "Name Repo: " repo
       read -r -p "Input Rev (Commit/Tag/Branch): " rev
-      
+
       # Ubah instruksi menjadi menggunakan koma
       read -r -p "Input SparseCheckout (pisahkan dgn KOMA, misal: .github, src, README.md): " sparse
 
@@ -48,9 +53,9 @@ let
       EOF
 
       echo "Memproses hash (Nix sedang mengunduh repo dan menghitung hash)..."
-      
+
       output=$(nix-build "$tmp_file" --no-out-link 2>&1 || true)
-      
+
       # Ekstrak hash dari output
       hash=$(echo "$output" | awk '/got:/ {print $2}')
 
@@ -68,5 +73,7 @@ let
   };
 in
 {
-  home.packages = [ get-github-hash ];
+  config = lib.mkIf config.racooonfig.homeManager {
+    home.packages = [ get-github-hash ];
+  };
 }
