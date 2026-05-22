@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   loaders = pkgs.symlinkJoin {
@@ -263,16 +268,17 @@ let
 
 in
 {
+  config = lib.mkIf config.racooonfig.homeManager {
 
-  home.packages = with pkgs; [
-    wallSelect
-    rofiWrapper
+    home.packages = with pkgs; [
+      wallSelect
+      rofiWrapper
 
-    gdk-pixbuf.dev
-    libavif
-    libheif.out
-    libheif.bin
-    librsvg
-  ];
-
+      gdk-pixbuf.dev
+      libavif
+      libheif.out
+      libheif.bin
+      librsvg
+    ];
+  };
 }
