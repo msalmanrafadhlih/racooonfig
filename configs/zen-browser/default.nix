@@ -11,7 +11,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "zen-browser" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "zen-browser" cfg.listConfigurations) {
     programs.zen-browser = {
       enable = true;
       package = inp.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
