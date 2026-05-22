@@ -3,7 +3,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "zathura" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "zathura" cfg.listConfigurations) {
     xdg.mimeApps.defaultApplications = {
       "application/pdf" = [ "org.pwmt.zathura.desktop" ];
     };
