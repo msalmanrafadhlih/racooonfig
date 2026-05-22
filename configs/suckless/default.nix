@@ -7,13 +7,14 @@
 }:
 let
   inp = inputs.racooonfig.inputs;
-  st  = [ inp.st-nix.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+  st = [ inp.st-nix.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
   cfg = config.racooonfig;
 in
 {
-  home.packages =
-    lib.optionals (builtins.elem "st" cfg.listConfigurations) st;
+  config = lib.mkIf (builtins.elem "stylix" cfg.listConfigurations) {
+    home.packages = [ st ];
+  };
 
   #  home.packages = with pkgs; [
   # (pkgs.st.overrideAttrs (_: {
