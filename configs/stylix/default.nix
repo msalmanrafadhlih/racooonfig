@@ -13,7 +13,7 @@ let
 in
 {
   imports = 
-    lib.optional (builtins.elem "stylix" cfg.listConfigurations)
+    lib.optionals (builtins.elem "stylix" cfg.listConfigurations)
       [ inp.stylix.nixosModules.stylix ];
 
   config = lib.mkIf (builtins.elem "stylix" cfg.listConfigurations) {
