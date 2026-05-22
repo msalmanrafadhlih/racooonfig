@@ -7,10 +7,12 @@
 }:
 let
   cfg = config.racooonfig;
-  mapAll = inputs.racooonfig.mapAll;
+  mapFile = inputs.racooonfig.mapFile;
 in
 {
-  imports  = [ ./bspwm ];
+  imports =  mapFile ./bspwm    [ ] { }
+          ++ mapFile ./hyprland [ ] { }
+          ++ mapFile ./niri     [ ] { };
 
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
