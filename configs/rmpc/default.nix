@@ -17,7 +17,7 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "rmpc" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "rmpc" cfg.listConfigurations) {
 
     programs.rmpc = {
       enable = true;
