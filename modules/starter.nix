@@ -15,11 +15,10 @@ let
 in
 {
   imports =
-    lib.optional cfg.enable ./nixosModules/default.nix
-    ++ bspwm
-    # ++ lib.optionals (cfg.enable && builtins.elem "bspwm" cfg.windowManager) bspwm
-    # ++ lib.optionals (cfg.enable && builtins.elem "hyprland" cfg.windowManager) hyprland
-    # ++ lib.optionals (cfg.enable && builtins.elem "niri" cfg.windowManager) niri
+    lib.optional cfg.enable [ ./nixosModules/default.nix ]
+    ++ lib.optionals (cfg.enable && builtins.elem "bspwm" cfg.windowManager) bspwm
+    ++ lib.optionals (cfg.enable && builtins.elem "hyprland" cfg.windowManager) hyprland
+    ++ lib.optionals (cfg.enable && builtins.elem "niri" cfg.windowManager) niri
     ++ mapDir ../configs [ "bspwm" "hyprland" "niri" ] { }
     ++ [ ./homeModules/default.nix ];
 }
