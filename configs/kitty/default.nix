@@ -14,7 +14,8 @@ let
 
 in
 {
-  config = lib.mkIf (builtins.elem "kitty" cfg.listConfigurations) {
+
+  config = lib.mkIf (cfg.homeManager && builtins.elem "kitty" cfg.listConfigurations) {
 
     xdg.configFile = mkSymlink {
       target = "kitty";
