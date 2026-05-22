@@ -9,7 +9,7 @@ let
   cfg = config.racoonfig;
 in
 {
-  config = lib.mkIf (builtins.elem "ghostty" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && builtins.elem "ghostty" cfg.listConfigurations) {
     home.packages = with pkgs; [
       ghostty
     ];
