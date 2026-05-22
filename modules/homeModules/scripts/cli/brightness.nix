@@ -1,9 +1,17 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   brightness-script = pkgs.writeShellApplication {
     name = "brightness";
-    runtimeInputs = with pkgs; [ brightnessctl dunst ];
+    runtimeInputs = with pkgs; [
+      brightnessctl
+      dunst
+    ];
     text = ''
       current=$(brightnessctl get)
       max=$(brightnessctl max)
@@ -32,8 +40,11 @@ let
   };
 in
 {
-  # Panggil skripnya di home.packages
-  home.packages = [
-    brightness-script
-  ];
+  config = lib.mkIf config.racooonfig.homeManager {
+
+    # Panggil skripnya di home.packages
+    home.packages = [
+      brightness-script
+    ];
+  };
 }
