@@ -1,21 +1,21 @@
 ;; variables
-(defpoll art :interval "1s" "Player/scripts/player --cover")
-(defpoll title :interval "1s" "Player/scripts/music-title --status")
-(defpoll artist :interval "1s" "Player/scripts/player --artist")
-(defpoll album :interval "1s" "Player/scripts/player --album")
-(defpoll current-pos :interval "1s" "Player/scripts/player --current-pos")
-(defpoll length-info :interval "1s" "Player/scripts/player --length-info")
+(defpoll art :interval "1s" "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/player --cover")
+(defpoll title :interval "1s" "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/music-title --status")
+(defpoll artist :interval "1s" "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/player --artist")
+(defpoll album :interval "1s" "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/player --album")
+(defpoll current-pos :interval "1s" "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/player --current-pos")
+(defpoll length-info :interval "1s" "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/player --length-info")
 (defpoll length :interval "0s" "dbus-send --dest=org.mpris.MediaPlayer2.spotify --print-reply /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata | grep uint | awk '{print $3}'")
 (defpoll position :interval "1s" "dbus-send --dest=org.mpris.MediaPlayer2.spotify --print-reply /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Position | awk 'FNR==2 {print $3}'")
 (defpoll trackid :interval "1s" "playerctl -p spotify metadata mpris:trackid")
-(defpoll current-volume :interval "1s" "Player/scripts/player --current-volume")
-(defpoll pp-icon :interval "1s" "Player/scripts/music-title --icon")
+(defpoll current-volume :interval "1s" "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/player --current-volume")
+(defpoll pp-icon :interval "1s" "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/music-title --icon")
 (defpoll shuffle :interval "1s" "playerctl -p spotify shuffle")
-(deflisten eq-status "tail -F Player/status/eq-status")
-(deflisten vz-status "tail -F Player/status/vz-status")
-(deflisten ly-status "tail -F Player/status/ly-status")
-(defpoll get-lyrics :interval "1s" "python Player/scripts/lyrics.py")
-(defpoll lyrics :interval "300ms" "Player/scripts/fetch-lyrics")
+(deflisten eq-status "tail -F $HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/status/eq-status")
+(deflisten vz-status "tail -F $HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/status/vz-status")
+(deflisten ly-status "tail -F $HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/status/ly-status")
+(defpoll get-lyrics :interval "1s" "python $HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/lyrics.py")
+(defpoll lyrics :interval "300ms" "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/fetch-lyrics")
 (defvar hover false)
 
 ;; widgets
@@ -43,10 +43,10 @@
     (box :class "main-player-control-box" :hexpand "false" :vexpand "false" :space-evenly "false" :orientation "h" :height 70
       (box :class "player-volume-box" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 10
         (label :class "player-volume-icon" :text "󰕾")
-        (scale :class "player-volume-slider" :width 150 :min 0 :max 100 :orientation "h" :value current-volume :halign "start" :onchange "Player/scripts/player --volume {}")
-        (button :class "lyrics-btn ${ly-status == "On" ? "lyrics-btn-on" : "lyrics-btn-off"}" :onclick "Player/scripts/toggle-lyrics" "󰭷"))
+        (scale :class "player-volume-slider" :width 150 :min 0 :max 100 :orientation "h" :value current-volume :halign "start" :onchange "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/player --volume {}")
+        (button :class "lyrics-btn ${ly-status == "On" ? "lyrics-btn-on" : "lyrics-btn-off"}" :onclick "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/toggle-lyrics" "󰭷"))
       (box :class "player-buttons" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 10
-        (button :class "shuffle-btn ${shuffle == "On" ? "shuffle-btn-on" : "shuffle-btn-off"}" :onclick "Player/scripts/player --shuffle" "󰒟")
+        (button :class "shuffle-btn ${shuffle == "On" ? "shuffle-btn-on" : "shuffle-btn-off"}" :onclick "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/player --shuffle" "󰒟")
         (button :class "previous-btn" :onclick "playerctl -p spotify previous" "󰒮")
         (button :class "player-pp-btn" :onclick "playerctl -p spotify play-pause" "${pp-icon}")
         (button :class "next-btn" :onclick "playerctl -p spotify next" "󰒭"))
@@ -54,8 +54,8 @@
         (label :class "current-position" :text "${current-pos} ")
         (label :class "length-of-song" :text "/ ${length-info}"))
       (box :class "player-control-box-right" :space-evenly "false" :hexpand "false" :vexpand "false" :spacing 15 :halign "end"
-        (button :class "visualizer-btn ${vz-status == "On" ? "visualizer-btn-on" : "visualizer-btn-off"}" :onclick "Player/scripts/visualizer" "󱑽")
-        (button :class "equalizer-btn ${eq-status == "On" ? "equalizer-btn-on" : "equalizer-btn-off"}" :onclick "Player/scripts/equalizer" "󰺢")))))
+        (button :class "visualizer-btn ${vz-status == "On" ? "visualizer-btn-on" : "visualizer-btn-off"}" :onclick "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/visualizer" "󱑽")
+        (button :class "equalizer-btn ${eq-status == "On" ? "equalizer-btn-on" : "equalizer-btn-off"}" :onclick "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Player/scripts/equalizer" "󰺢")))))
 
 (defwidget visualizer []
   (box :class "main-album-box" :hexpand "false" :vexpand "false" :space-evenly "false" :width 720 :height 280 :orientation "v"
