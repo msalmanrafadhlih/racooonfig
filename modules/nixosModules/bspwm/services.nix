@@ -24,6 +24,7 @@ in
         enable = true;
         uninstallUnmanaged = true;
       };
+    power-profiles-daemon.enable = true;
       ###################################
       ## THUNAR OPTIMALIZATION
       #####################################
