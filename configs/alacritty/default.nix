@@ -8,7 +8,7 @@
 let
   configs = {
     "alacritty/alacritty.toml" = "alacritty.toml";
-    "alacritty/fonst.toml" = "fonts.toml";
+    "alacritty/fonts.toml" = "fonts.toml";
   };
   cfg = config.racooonfig;
 in
