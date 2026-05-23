@@ -1,6 +1,9 @@
 #!/bin/bash
 
-tmp_dir="$HOME/.config/eww/Main/images"
+dir="$HOME/.config/$XDG_CURRENT_DESKTOP"
+read -r RICE "$dir/.rice"
+
+tmp_dir="$dir/rices/$RICE/widgets/Main/images"
 tmp_cover_path=$tmp_dir/cover.png
 tmp_temp_path=$tmp_dir/temp.png
 
