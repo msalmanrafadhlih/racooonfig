@@ -1,15 +1,19 @@
 #!/bin/bash
-STATE=$(cat $HOME/.config/eww/Player/status/ly-status)
+
+dir="$HOME/.config/$XDG_CURRENT_DESKTOP"
+read -r RICE < "$dir/.rice"
+
+EWW="$dir/rices/$RICE/widgets"
+read -r STATE < "$EWW/Player/status/ly-status"
 
 if [[ $STATE == "On" ]]; then
-    eww close lyrics
+    eww -c "$EWW" daemon && eww -c "$EWW" close visualizer lyrics 
     pkill glava 
-    eww close visualizer
-    echo "Off" > $HOME/.config/eww/Player/status/ly-status
+    echo "Off" > "$EWW/Player/status/ly-status"
 else
-    eww open lyrics
-    eww close visualizer &
+    eww -c "$EWW" daemon && eww -c "$EWW" open lyrics
+    eww -c "$EWW" daemon && eww -c "$EWW" close visualizer &
     pkill visualizer
-    echo "On" > $HOME/.config/eww/Player/status/ly-status
+    echo "On" > "$EWW/Player/status/ly-status"
 fi
 exit
