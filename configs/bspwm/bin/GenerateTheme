@@ -104,6 +104,11 @@ set_theme() {
             CURSOR="Kafka"
             MODE="dark"
             ;;
+        tokyoNight)
+            THEME="Vimix-ruby-dark"
+            CURSOR="Ellen-Joe"
+            MODE="dark"
+            ;;
         *)
             THEME="Vimix-white-dark"
             CURSOR="Bibata-Modern-Ice"
