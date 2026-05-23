@@ -123,8 +123,9 @@ set_theme() {
         exit 1
     fi
 
-    set-gtk-theme "dynamic" "$THEME" "$CURSOR" &
-    kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.config/kitty/themes/racooonfig.conf" || true
+    set-gtk-theme "dynamic" "$THEME" "$CURSOR" & 
+    kitten @ --to unix:/tmp/kitty set-colors --all "$HOME/.config/kitty/themes/racooonfig.conf" || true 
+    thunar -q && thunar & 
     "$DIR/rices/$RICE/launch.sh" &
 }
 
