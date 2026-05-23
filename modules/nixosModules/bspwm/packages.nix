@@ -42,6 +42,7 @@ in
       picom
       eww
       i3lock-color
+      tint2
 
       # ======== TOOLS
       sound-theme-freedesktop
