@@ -1,70 +1,70 @@
 * {
-    background: #131318; /* #1e100f */
-    background-alt: #090764; /* #410004 */
-    background-window: #111114dd; /* #15100f + dd */
-    background-selected: #6b6fc4df; /* #ed0928 + df */
+    background: #111318; /* #1e100f */
+    background-alt: #001a41; /* #410004 */
+    background-window: #101114dd; /* #15100f + dd */
+    background-selected: #2b74e2df; /* #ed0928 + df */
     background-normal: #00000000; /* Tetap transparan (tidak ada di palet) */
-    background-transparent: #6b6fc420; /* #ed0928 + 20 */
-    background-gradient-active: linear-gradient(to left, #8589e0, transparent);
-    background-gradient-selected: linear-gradient(to left, #5256a9, transparent);
+    background-transparent: #2b74e220; /* #ed0928 + 20 */
+    background-gradient-active: linear-gradient(to left, #4d8efe, transparent);
+    background-gradient-selected: linear-gradient(to left, #005ac1, transparent);
 
-    foreground: #c0c1ff; /* #ffecea */
-    foreground-selected: #e4e1e9; /* #ffffff */
-    foreground-normal: #111114; /* #15100f */
+    foreground: #adc6ff; /* #ffecea */
+    foreground-selected: #e2e2e9; /* #ffffff */
+    foreground-normal: #101114; /* #15100f */
 
-    transparent: #131318c0; /* #1e100f + c0 */
-    selected: #8589e0; /* #ff5451 */
-    active: #5256a9; /* #c0001c */
+    transparent: #111318c0; /* #1e100f + c0 */
+    selected: #4d8efe; /* #ff5451 */
+    active: #005ac1; /* #c0001c */
     urgent: #ff5449; /* #ff5449 */
 
-    primary: #c0c1ff;
-    primary-fixed: #e1e0ff;
-    primary-fixed-dim: #c0c1ff;
-    on-primary: #282a60;
-    on-primary-fixed: #12144b;
-    on-primary-fixed-variant: #3f4178;
-    primary-container: #3f4178;
-    on-primary-container: #e1e0ff;
-    secondary: #c5c4dd;
-    secondary-fixed: #e2e0f9;
-    secondary-fixed-dim: #c5c4dd;
-    on-secondary: #2e2f42;
-    on-secondary-fixed: #191a2c;
-    on-secondary-fixed-variant: #454559;
-    secondary-container: #454559;
-    on-secondary-container: #e2e0f9;
-    tertiary: #e8b9d4;
-    tertiary-fixed: #ffd8ec;
-    tertiary-fixed-dim: #e8b9d4;
-    on-tertiary: #46263b;
-    on-tertiary-fixed: #2e1125;
-    on-tertiary-fixed-variant: #5f3c52;
-    tertiary-container: #5f3c52;
-    on-tertiary-container: #ffd8ec;
+    primary: #adc6ff;
+    primary-fixed: #d8e2ff;
+    primary-fixed-dim: #adc6ff;
+    on-primary: #102f60;
+    on-primary-fixed: #001a41;
+    on-primary-fixed-variant: #2b4678;
+    primary-container: #2b4678;
+    on-primary-container: #d8e2ff;
+    secondary: #bfc6dc;
+    secondary-fixed: #dbe2f9;
+    secondary-fixed-dim: #bfc6dc;
+    on-secondary: #293041;
+    on-secondary-fixed: #141b2c;
+    on-secondary-fixed-variant: #3f4759;
+    secondary-container: #3f4759;
+    on-secondary-container: #dbe2f9;
+    tertiary: #debcdf;
+    tertiary-fixed: #fbd7fc;
+    tertiary-fixed-dim: #debcdf;
+    on-tertiary: #402843;
+    on-tertiary-fixed: #29132d;
+    on-tertiary-fixed-variant: #583e5b;
+    tertiary-container: #583e5b;
+    on-tertiary-container: #fbd7fc;
     error: #ffb4ab;
     on-error: #690005;
     error-container: #93000a;
     on-error-container: #ffdad6;
-    surface: #131318;
-    on-surface: #e4e1e9;
-    on-surface-variant: #c7c5d0;
-    outline: #918f9a;
-    outline-variant: #46464f;
+    surface: #111318;
+    on-surface: #e2e2e9;
+    on-surface-variant: #c4c6d0;
+    outline: #8e9099;
+    outline-variant: #44474f;
     shadow: #000000;
     scrim: #000000;
-    inverse-surface: #e4e1e9;
-    inverse-on-surface: #303036;
-    inverse-primary: #575992;
-    surface-dim: #131318;
-    surface-bright: #39383f;
-    surface-container-lowest: #0e0e13;
-    surface-container-low: #1b1b21;
-    surface-container: #1f1f25;
-    surface-container-high: #2a292f;
-    surface-container-highest: #35343a;
+    inverse-surface: #e2e2e9;
+    inverse-on-surface: #2f3036;
+    inverse-primary: #445e91;
+    surface-dim: #111318;
+    surface-bright: #37393e;
+    surface-container-lowest: #0c0e13;
+    surface-container-low: #1a1b20;
+    surface-container: #1e1f25;
+    surface-container-high: #282a2f;
+    surface-container-highest: #33353a;
 
     font: "JetBrains Mono Nerd Font 10";
-    image: url("/home/tquilla/.dotfiles/racooonfig/configs/bspwm/rices/tokyoNight/wallpapers/tokyoNight.webp", width);
+    image: url("/home/tquilla/.dotfiles/racooonfig/configs/bspwm/rices/glsswrks/wallpapers/glsswrks.webp", width);
 
     /* background: #1a0a0aff; */
     /* background-alt: #331111ff; */
