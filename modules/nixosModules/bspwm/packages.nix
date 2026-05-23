@@ -61,6 +61,8 @@ in
       feh
       bc
 
+      gamemode
+
       # ======== X UTILS
       (python3.withPackages (
         ps: with ps; [
