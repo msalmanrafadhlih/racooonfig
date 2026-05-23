@@ -49,6 +49,9 @@ in
           "zathura"
           "zed-editor"
           "zen-browser"
+
+          # enable program
+          "gamemode"
         ]
       );
       default = [ ];
