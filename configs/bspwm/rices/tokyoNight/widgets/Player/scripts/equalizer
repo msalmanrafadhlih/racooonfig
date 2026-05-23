@@ -1,11 +1,13 @@
 #!/bin/bash
+dir="$HOME/.config/$XDG_CURRENT_DESKTOP"
+read -r RICE "$dir/.rice"
 
 if pgrep easyeffects; then
     pkill easyeffects
-    echo "Off" > $HOME/.config/eww/Player/status/eq-status
+    echo "Off" > "$dir/rices/$RICE/widgets/Player/status/eq-status"
     exit 1
 else
     exec easyeffects --gapplication-service &
-    echo "On" > $HOME/.config/eww/Player/status/eq-status
+    echo "On" > "$dir/rices/$RICE/widgets/Player/status/eq-status"
 fi
 exit
