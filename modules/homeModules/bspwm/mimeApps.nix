@@ -22,6 +22,7 @@ in
             "Helix.desktop"
             "dev.zed.Zed.desktop"
           ];
+
           browser = [
             "vivaldi-stable.desktop"
             "chromium-browser.desktop"
@@ -70,6 +71,8 @@ in
           "text/xml" = textEditor; # Tambahan XML
           "application/x-zerosize" = textEditor;
           "application/octet-stream" = textEditor;
+          "application/x-shellscript" = textEditor;
+          "text/x-script" = textEditor;
 
           # PDF / Dokumen
           "application/pdf" = pdfViewer;
