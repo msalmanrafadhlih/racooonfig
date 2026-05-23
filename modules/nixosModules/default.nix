@@ -64,7 +64,7 @@ in
       };
     })
 
-    (lib.mkIf (cfg.enable && builtins.elem "gamemode" cfg.listConfigurations) {
+    (lib.mkIf (cfg.enable && builtins.elem "gamemode" cfg.windowManager) {
       programs.steam = {
         enable = true;
         package = pkgs.steam.override {
