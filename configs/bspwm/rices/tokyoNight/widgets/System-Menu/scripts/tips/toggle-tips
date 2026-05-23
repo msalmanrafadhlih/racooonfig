@@ -1,13 +1,17 @@
 #!/bin/bash
+dir = "$HOME/.config/$XDG_CURRENT_DESKTOP"
+read -r RICE < "$dir/.rice"
 
-STATUS=$(cat $HOME/.config/eww/System-Menu/scripts/tips/tips-lock)
+TIPS="$dir/rices/$RICE/widgets/System-Menu/scripts/tips/tips-lock"
+
+STATUS=$(cat "$TIPS")
 
 toggle() {
     if [[ $STATUS == "on" ]]; then
-        echo "off" > $HOME/.config/eww/System-Menu/scripts/tips/tips-lock
+        echo "off" > "$TIPS"
         eww open --toggle tips
     else
-        echo "on" > $HOME/.config/eww/System-Menu/scripts/tips/tips-lock
+        echo "on" > "$TIPS"
         eww open --toggle tips
     fi
 }
