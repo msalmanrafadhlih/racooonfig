@@ -1,5 +1,5 @@
 ;;variables
-(defpoll greeting :interval "10h" "Misc/scripts/quote")
+(defpoll greeting :interval "10h" "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/widgets/Misc/scripts/quote")
 (defvar volume-hidden false)
 (defvar volume-level 50)
 (defvar volume-muted false)
@@ -14,7 +14,7 @@
       (button :tooltip "Shutdown your PC." :class "shutdown" :onclick "shutdown now" "󰐥")
       (button :tooltip "Reboot your PC." :class "reboot" :onclick "reboot" "󰜉")
       (button :tooltip "Exit BSPWM." :class "exit" :onclick "bspc quit" "󰍃")
-      (button :tooltip "Lock" :class "lock" :onclick "$HOME/.scripts/lock" "󰌾"))))
+      (button :tooltip "Lock" :class "lock" :onclick "$HOME/.config/$XDG_CURRENT_DESKTOP/rices/tokyoNight/scripts/lock" "󰌾"))))
 
 (defwidget volume-indicator[]
   (box :class "volume-window"
