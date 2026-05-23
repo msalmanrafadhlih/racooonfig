@@ -17,8 +17,6 @@ in
     programs.gamemode = {
       enable = true;
       enableRenice = true;
-      cpu.
-
       settings = {
         park_cores = "no";
         general = {
