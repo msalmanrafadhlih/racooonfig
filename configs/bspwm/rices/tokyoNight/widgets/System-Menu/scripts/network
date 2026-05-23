@@ -6,10 +6,10 @@ STRENGTH=$(awk 'NR==3 {printf("%.0f",$3*10/7)}' /proc/net/wireless)
 toggle() {
     if [[ $STATUS == "connected" ]]; then
         nmcli radio wifi off
-        notify-send --icon=window-close --urgency=normal "Wi-Fi" "Wi-Fi has been turned off!"
+        dunstify --icon=window-close --urgency=normal "Wi-Fi" "Wi-Fi has been turned off!"
     else
         nmcli radio wifi on
-        notify-send --icon=checkmark --urgency=normal "Wi-Fi" "Wi-Fi has been turned on, you are back online!"
+        dunstify --icon=checkmark --urgency=normal "Wi-Fi" "Wi-Fi has been turned on, you are back online!"
     fi
 }
 
