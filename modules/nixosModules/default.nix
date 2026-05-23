@@ -10,9 +10,7 @@ let
   mapFile = inputs.racooonfig.mapFile;
 in
 {
-  imports =  mapFile ./bspwm    [ ] { }
-          ++ mapFile ./hyprland [ ] { }
-          ++ mapFile ./niri     [ ] { };
+  imports = mapFile ./bspwm [ ] { } ++ mapFile ./hyprland [ ] { } ++ mapFile ./niri [ ] { };
 
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
@@ -28,6 +26,7 @@ in
         "d /usr/share/themes 0775 root wheel -"
       ];
     })
+
     (lib.mkIf (cfg.enable && cfg.enableDisplayManager) {
       environment.systemPackages = [
         pkgs.qylock-sddm-theme
@@ -60,6 +59,27 @@ in
               pkgs.gst_all_1.gst-plugins-ugly
               pkgs.gst_all_1.gst-libav
             ];
+          };
+        };
+      };
+    })
+
+    (lib.mkIf (cfg.enable && builtins.elem "gamemode" cfg.listConfigurations) {
+      programs.steam = {
+        enable = true;
+        package = pkgs.steam.override {
+          extraEnv = {
+            MANGOHUD = "1";
+            MANGOHUD_CONFIG = "read_cfg,no_display";
+            GAMEMODERUN = "1";
+            AMD_VULKAN_ICD = "RADV";
+            VKD3D_CONFIG = "dxr,dxr11";
+            PROTON_ADD_CONFIG = "fsr4rdna3";
+            PROTON_LOCAL_SHADER_CACHE = "1";
+            MESA_SHADER_CACHE_MAX_SIZE = "16G";
+            WINE_VK_VULKAN_ONLY = "1";
+            MESA_GLSL_CACHE_MAX_SIZE = "16G";
+            WINEDLLOVERRIDES = "dinput8,dxgi,dsound=n,b";
           };
         };
       };
