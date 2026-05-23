@@ -40,6 +40,7 @@ in
           ++ mapAll  ./scripts  [ ] { };
 
   config = lib.mkIf cfg.homeManager {
+
     _module.args = { inherit mkSymlink; };
 
     home.activation = {
