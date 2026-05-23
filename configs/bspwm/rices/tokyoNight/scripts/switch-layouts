@@ -26,15 +26,15 @@ case "$CURRENT" in
 
     "[M]")
         bsp-layout set grid
-        echo "[ | ]" > "$path"
+        echo "[|]" > "$path"
         ;;
 
-    "[ | ]")
+    "[|]")
         bsp-layout set wide
-        echo "[_]" > "$path"
+        echo "[*]" > "$path"
         ;;
 
-    "[_]")
+    "[*]")
         bsp-layout set even
         echo "[~]" > "$path"
         ;;
