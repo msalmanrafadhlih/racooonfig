@@ -37,6 +37,7 @@ in
 
     ++ (with pkgs; [
       # ======== BSPWM Stuff
+      bsp-layout
       polybarFull
       sxhkd
       picom
