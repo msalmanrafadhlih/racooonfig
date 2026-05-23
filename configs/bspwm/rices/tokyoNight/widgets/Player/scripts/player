@@ -1,4 +1,8 @@
 #!/bin/bash
+dir="$HOME/.config/$XDG_CURRENT_DESKTOP"
+read -r RICE < "$dir/.rice"
+
+EWW="$dir/rices/$RICE/widgets"
 
 if [[ $1 == "--length" ]]; then
     playerctl -p spotify metadata mpris:length              
@@ -10,23 +14,23 @@ if [[ $1 == "--open" ]]; then
 fi
 
 if [[ $1 == "--artist" ]]; then
-   "$HOME/.config/eww/Player/scripts/music-artist"
+   "$dir/rices/$RICE/widgets/Player/scripts/music-artist"
 fi
 
 if [[ $1 == "--length-time" ]]; then
-   "$HOME/.config/eww/Player/scripts/music-length"
+   "$dir/rices/$RICE/widgets/Player/scripts/music-length"
 fi
 
 if [[ $1 == "--length-info" ]]; then
-   "$HOME/.config/eww/Player/scripts/music-length-info"
+   "$dir/rices/$RICE/widgets/Player/scripts/music-length-info"
 fi
 
 if [[ $1 == "--cover" ]]; then
-   "$HOME/.config/eww/Player/scripts/music-art"
+   "$dir/rices/$RICE/widgets/Player/scripts/music-art"
 fi
 
 if [[ $1 == "--album" ]]; then
-   "$HOME/.config/eww/Player/scripts/music-album"
+   "$dir/rices/$RICE/widgets/Player/scripts/music-album"
 fi
 
 if [[ $1 == "--current-volume" ]]; then
@@ -53,5 +57,5 @@ if [[ $1 == "--current-pos" ]]; then
 fi
 
 if [[ $1 == "--launch-lyrics" ]]; then
-   eww open --toggle lyrics
+   eww -c "$EWW" daemon && eww -c "$EWW" open --toggle lyrics
 fi
