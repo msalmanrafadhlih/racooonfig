@@ -51,6 +51,7 @@ in
       flameshot
       imagemagick
       clipmenu
+      redshift
       pamixer
       dunst
       maim
