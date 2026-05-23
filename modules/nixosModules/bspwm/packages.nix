@@ -13,10 +13,26 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && builtins.elem "bspwm" cfg.windowManager) {
+
+    programs.gamemode = {
+      enable = true;
+      enableRenice = true;
+      cpu.park_cores = "no";
+
+      settings.general = {
+        renice = 10;
+        softrealtime = "auto";
+      };
+
+      custom.start = ''${pkgs.dunst}/bin/dunstify "GameMode" "enabled"'';
+      custom.end   = ''${pkgs.dunst}/bin/dunstify "GameMode" "disabled"'';
+    };
+
     environment.systemPackages = [
       inp.matugen.packages.${system}.default
       inp.plank-reloaded.packages.${system}.default
     ]
+
     ++ (with pkgs; [
       # ======== BSPWM Stuff
       polybarFull
@@ -36,6 +52,7 @@ in
       pamixer
       dunst
       maim
+      lsof
       feh
       bc
 
@@ -75,6 +92,7 @@ in
       # tray
       wmctrl # ../../../configs/bspwm/bin/WindowSwitcher
       kdocker
+      zscroll # ../../../configs/bspwm/rices/tokyoNight/scripts/scroll-spotify
     ]);
   };
 }
