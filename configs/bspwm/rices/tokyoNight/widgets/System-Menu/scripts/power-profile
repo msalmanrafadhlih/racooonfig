@@ -1,15 +1,16 @@
-MODE=$(system76-power profile | grep Profile | awk '{print $3}')
+#!/usr/bin/env bash
+MODE=$(powerprofilesctl get)
 
 toggle() {
-    if [[ $MODE == 'Balanced' ]]; then
-        system76-power profile performance
+    if [[ $MODE == 'balanced' ]]; then
+        powerprofilesctl set performance
     else
-        system76-power profile balanced
+        powerprofilesctl set balanced
     fi
 }
 
 icon() {
-    if [[ $MODE == 'Balanced' ]]; then
+    if [[ $MODE == 'balanced' ]]; then
         echo "󰔢"
     else
         echo "󰔡"
