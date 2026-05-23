@@ -8,40 +8,40 @@ path="$HOME/.config/$XDG_CURRENT_DESKTOP/rices/$RICE/scripts/current-layout"
 
 # Default state
 if [[ ! -f "$path" ]]; then
-    echo "[~]" > "$path"
+    echo "~" > "$path"
 fi
 
 read -r CURRENT < "$path"
 
 case "$CURRENT" in
-    "[~]")
+    "~")
         bsp-layout set tiled
-        echo "[=]" > "$path"
+        echo "=" > "$path"
         ;;
 
-    "[=]")
+    "=")
         bsp-layout set monocle
-        echo "[M]" > "$path"
+        echo "#" > "$path"
         ;;
 
-    "[M]")
+    "#")
         bsp-layout set grid
-        echo "[|]" > "$path"
+        echo "^" > "$path"
         ;;
 
-    "[|]")
+    "^")
         bsp-layout set wide
-        echo "[*]" > "$path"
+        echo "*" > "$path"
         ;;
 
-    "[*]")
+    "*")
         bsp-layout set even
-        echo "[~]" > "$path"
+        echo "~" > "$path"
         ;;
 
     *)
         # fallback jika isi file rusak/tidak dikenal
         bsp-layout set tiled
-        echo "[=]" > "$path"
+        echo "=" > "$path"
         ;;
 esac
