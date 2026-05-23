@@ -40,6 +40,7 @@ in
       # CLI TOOLS
       ani-cli # butuh mpv(GUI) untuk streaming
       go-grip # Markdown Preview via http server: butuh browser
+      spotdl
 
       # UTILS
       ffmpeg-full # absolutely need GUI
