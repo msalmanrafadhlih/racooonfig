@@ -43,7 +43,6 @@ in
       picom
       eww
       i3lock-color
-      tint2
 
       # ======== TOOLS
       sound-theme-freedesktop
@@ -60,8 +59,6 @@ in
       lsof
       feh
       bc
-
-      gamemode
 
       # ======== X UTILS
       (python3.withPackages (
@@ -99,7 +96,7 @@ in
       # tray
       wmctrl # ../../../configs/bspwm/bin/WindowSwitcher
       kdocker
-      zscroll # ../../../configs/bspwm/rices/tokyoNight/scripts/scroll-spotify
+      # zscroll # ../../../configs/bspwm/rices/tokyoNight/scripts/scroll-spotify
     ]);
   };
 }
