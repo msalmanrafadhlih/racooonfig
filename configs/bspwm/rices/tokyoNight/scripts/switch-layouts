@@ -1,37 +1,47 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# A script to toggle between various desktop layouts for bspwm, intended to be used for my polybar module.
+# Toggle bsp-layout layouts
 
-CURRENT=$(cat $HOME/.config/bspwm/scripts/current-layout)
+read -r RICE < "$HOME/.config/$XDG_CURRENT_DESKTOP/.rice"
 
-# Switch layouts
+path="$HOME/.config/$XDG_CURRENT_DESKTOP/rices/$RICE/scripts/current-layout"
 
-# Tiled
-if [[ $CURRENT == "[~]" ]]; then
+# Default state
+if [[ ! -f "$path" ]]; then
+    echo "[~]" > "$path"
+fi
+
+read -r CURRENT < "$path"
+
+case "$CURRENT" in
+    "[~]")
         bsp-layout set tiled
-        echo "[=]" > $HOME/.config/bspwm/scripts/current-layout
-fi
+        echo "[=]" > "$path"
+        ;;
 
-# Monocle
-if [[ $CURRENT == "[=]" ]]; then
+    "[=]")
         bsp-layout set monocle
-        echo "[M]" > $HOME/.config/bspwm/scripts/current-layout
-fi
+        echo "[M]" > "$path"
+        ;;
 
-# Grid
-if [[ $CURRENT == "[M]" ]]; then
+    "[M]")
         bsp-layout set grid
-        echo "[ | ]" > $HOME/.config/bspwm/scripts/current-layout
-fi
+        echo "[ | ]" > "$path"
+        ;;
 
-# Wide
-if [[ $CURRENT == "[ | ]" ]]; then
+    "[ | ]")
         bsp-layout set wide
-        echo "[_]" > $HOME/.config/bspwm/scripts/current-layout
-fi
+        echo "[_]" > "$path"
+        ;;
 
-# Even
-if [[ $CURRENT == "[_]" ]]; then
+    "[_]")
         bsp-layout set even
-        echo "[~]" > $HOME/.config/bspwm/scripts/current-layout
-fi
+        echo "[~]" > "$path"
+        ;;
+
+    *)
+        # fallback jika isi file rusak/tidak dikenal
+        bsp-layout set tiled
+        echo "[=]" > "$path"
+        ;;
+esac
