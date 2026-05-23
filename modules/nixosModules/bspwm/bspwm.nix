@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.racooonfig;
 in
@@ -11,6 +11,8 @@ in
         windowManager = {
           bspwm.enable = true;
         };
+        desktopManager.xterm.enable = false;
+        excludePackages = [ pkgs.xterm ];
         autoRepeatDelay = 300;
         autoRepeatInterval = 35;
         displayManager = {
