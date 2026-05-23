@@ -1,9 +1,13 @@
 #!/bin/bash
 
-TIPS_STATUS=$(cat $HOME/.config/eww/System-Menu/scripts/tips/tips-lock)
+dir="$HOME/.config/$XDG_CURRENT_DESKTOP"  
+read -r RICE < "$dir/.rice"
+
+TIPS_STATUS=$(cat tail -F "$dir/rices/$RICE/widgets/System-Menu/scripts/tips/tips-lock")
+EWW="$dir/rices/$RICE/widgets"
 
 if [[ $TIPS_STATUS == "on" ]]; then
-    eww open-many --toggle background-closer system-menu tips
+    eww -c "$EWW" daemon && eww -c "$EWW" open-many --toggle background-closer system-menu tips
 else 
-    eww open-many --toggle background-closer system-menu
+    eww -c "$EWW" daemon && eww -c "$EWW" open-many --toggle background-closer system-menu
 fi
