@@ -17,15 +17,19 @@ in
     programs.gamemode = {
       enable = true;
       enableRenice = true;
-      cpu.park_cores = "no";
+      cpu.
 
-      settings.general = {
-        renice = 10;
-        softrealtime = "auto";
+      settings = {
+        park_cores = "no";
+        general = {
+          renice = 10;
+          softrealtime = "auto";
+
+        };
       };
 
       custom.start = ''${pkgs.dunst}/bin/dunstify "GameMode" "enabled"'';
-      custom.end   = ''${pkgs.dunst}/bin/dunstify "GameMode" "disabled"'';
+      custom.end = ''${pkgs.dunst}/bin/dunstify "GameMode" "disabled"'';
     };
 
     environment.systemPackages = [
