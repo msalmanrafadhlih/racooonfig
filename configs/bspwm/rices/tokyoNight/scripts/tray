@@ -1,14 +1,15 @@
 #!/bin/bash
 dir="$HOME/.config/$XDG_CURRENT_DESKTOP"
 read -r RICE < "$dir/.rice"
+EWW="$dir/rices/$RICE/widgets"
 
 if [[ $1 == "--toggle" ]]; then
         if pgrep tint2; then
                 pkill tint2
-                echo "" > "$dir/rices/scripts/tray-status"
+                echo "" > "$dir/rices/$RICE/scripts/tray-status"
                 exit 1
         else
-                eww open --toggle background-closer && tint2 &
+                eww -c "$EWW" daemon && eww -c "$EWW" open --toggle background-closer && tint2 &
                 echo "" > "$dir/rices/scripts/tray-status"
         fi
         exit
@@ -16,6 +17,6 @@ fi
 
 if [[ $1 == "--kill" ]]; then
         pkill tint2
-        echo "" > "$dir/rices/scripts/tray-status"
+        echo "" > "$dir/rices/$RICE/scripts/tray-status"
         exit 1
 fi
