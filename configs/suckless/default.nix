@@ -7,7 +7,6 @@
 }:
 let
   inp = inputs.racooonfig.inputs;
-
   cfg = config.racooonfig;
 in
 {
