@@ -1,13 +1,10 @@
 # ./bspwm/default.nix
 {
   mkSymlink,
-  config,
-  lib,
   ...
 }:
 
 let
-  cfg = config.racooonfig;
 
   configs = {
     polybar = "polybar";
@@ -25,9 +22,7 @@ let
   };
 in
 {
-  config = lib.mkIf (cfg.homeManager && builtins.elem "bspwm" cfg.listConfigurations) {
-    xdg.configFile = mkSymlink {
-      target = "bspwm";
-    } configs;
-  };
+  configFile = mkSymlink {
+    target = "bspwm";
+  } configs;
 }
