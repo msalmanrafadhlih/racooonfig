@@ -45,7 +45,8 @@ in
       git
       jq
       neovim
-      python3
+      python311
+      python314
       ripgrep
       socat
       yq-go
