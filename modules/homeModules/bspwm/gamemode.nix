@@ -9,8 +9,6 @@ let
   cfg = config.racooonfig;
 in
 {
-  imports = [ ../../../configs/bspwm ];
-
   # Then use with `nixos-rebuild switch --specialisation gamemode`
   config = lib.mkIf (cfg.homeManager && builtins.elem "gamemode" cfg.listConfigurations) {
     # Well, My laptop sekarang kentang! dan butuh minimal usage.
