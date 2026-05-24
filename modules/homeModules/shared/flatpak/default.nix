@@ -16,7 +16,7 @@ in
 {
   imports = [ inp.nix-flatpak.homeManagerModules.nix-flatpak ];
 
-  config = lib.mkIf (cfg.homeManager && builtins.elem "spotify" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.homeManager && cfg.flatpak) {
     services.flatpak = {
       remotes = lib.mkOptionDefault [
         {
