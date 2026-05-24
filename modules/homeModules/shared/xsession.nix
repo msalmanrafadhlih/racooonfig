@@ -8,7 +8,6 @@ in
     home.sessionVariables = {
       BROWSER = "vivaldi";
       TERMINAL = "st";
-      XCURSOR_SIZE = "24";
     };
 
     xsession = {
