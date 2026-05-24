@@ -11,11 +11,19 @@
       '';
     };
 
-    enableDisplayManager = lib.mkOption {
+    displayManager = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = false;
       description = ''
-        enable display manager configurations
+        enable display manager 
+      '';
+    };
+
+    steam = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = ''
+        enable steam programs
       '';
     };
 
