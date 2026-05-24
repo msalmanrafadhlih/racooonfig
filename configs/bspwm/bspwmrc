@@ -2,14 +2,43 @@
 
 bspc monitor -d 1 2 3 4 5 6
 
-# Set environment variables
+# Clean Wayland leftovers
+unset WAYLAND_DISPLAY
+unset WAYLAND_SOCKET
+unset HYPRLAND_INSTANCE_SIGNATURE
+unset HYPRLAND_CMD
+unset SWAYSOCK
+unset NIXOS_OZONE_WL
+
+# X11 session
+export DISPLAY=:0
+export XDG_SESSION_TYPE=x11
+export XDG_CURRENT_DESKTOP=bspwm
+export XDG_SESSION_DESKTOP=bspwm
+export DESKTOP_SESSION=bspwm
+
+# Toolkit backend
+export GDK_BACKEND=x11
+export QT_QPA_PLATFORM=xcb
+export SDL_VIDEODRIVER=x11
+export CLUTTER_BACKEND=x11
+
+# Electron
+export OZONE_PLATFORM=x11
+export ELECTRON_OZONE_PLATFORM_HINT=x11
+
+# Java
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# PATH
 export PATH="$HOME/.config/bspwm/bin:$HOME/.local/bin:$PATH"
 
-export XDG_CURRENT_DESKTOP=bspwm
-export XDG_SESSION_TYPE=x11
-
-## Fix java applications
-export _JAVA_AWT_WM_NONREPARENTING=1
+# Sync dbus env
+dbus-update-activation-environment --systemd \
+    DISPLAY \
+    XDG_CURRENT_DESKTOP \
+    XDG_SESSION_TYPE \
+    DESKTOP_SESSION
 
 run() {
     if ! pidof -q "$1"; then
