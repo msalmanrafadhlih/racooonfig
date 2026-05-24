@@ -49,7 +49,7 @@ in
         };
       };
 
-      fonts.packages = with pkgs; [
+      packages = with pkgs; [
         # --- Core Fonts (Wajib ada untuk web/dokumen) ---
         noto-fonts
         noto-fonts-cjk-sans # Penting untuk karakter Asia (China/Jepang/Korea)
