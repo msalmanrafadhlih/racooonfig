@@ -13,7 +13,6 @@ let
 in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "bat" cfg.listConfigurations) {
-
     xdg.configFile = mkSymlink {
       target = "bat";
     } configs;
