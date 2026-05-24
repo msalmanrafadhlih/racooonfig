@@ -6,7 +6,9 @@
 
 let
   configs = {
-    "Hyprland/rices" = "rices";
+    "Hyprland/rices"     = "rices";
+    "hypr/scripts"       = "scripts";
+    "hypr/hyprland.conf" = "hyprland.conf";
   };
 in
 {
