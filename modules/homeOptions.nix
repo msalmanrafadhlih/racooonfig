@@ -4,10 +4,14 @@ let
 in
 {
   imports = [ ./homeModules ]
-      ++ mapAll ../configs [ "bspwm" "niri" "hyprland" "zen-browser" ] { };
+    ++ mapAll ../configs [
+      "bspwm"
+      "hyprland"
+      "niri"
+      "zen-browser"
+    ] { };
 
   options.racooonfig = {
-
     homeManager = lib.mkOption {
       type = lib.types.bool;
       default = true;
@@ -42,13 +46,15 @@ in
           "mpd"
           "rclone"
           "rmpc"
-          "spotify"
           "st"
           "vesktop"
           "xytz"
           "zathura"
           "zed-editor"
-          "zen-browser"
+
+          "zen-flatpak"
+          "spotify-flatpak"
+          "riff-flatpak"
 
           # enable program
           "gamemode"
