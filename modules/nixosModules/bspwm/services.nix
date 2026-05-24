@@ -21,8 +21,8 @@ in
       # install flatpak binary
       # nix-snapd = true;
       flatpak = {
-        enable = true;
-        uninstallUnmanaged = true;
+        enable = lib.mkDefault true;
+        uninstallUnmanaged = lib.mkDefault true;
       };
     power-profiles-daemon.enable = true;
       ###################################
