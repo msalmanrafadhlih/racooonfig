@@ -1,0 +1,14 @@
+[Desktop Entry]
+Categories=Network;InstantMessaging;Chat
+Exec=vesktop %U
+GenericName=Internet Messenger
+Icon=~/.config/Assets/Icons/Discord-Symbol-White.png
+Keywords=discord;vencord;electron;chat
+Name=Discord
+StartupWMClass=Vesktop
+Type=Application
+Version=1.4
+Comment=
+Path=
+Terminal=false
+StartupNotify=true

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Rmpc
+Comment=rmpc emulator music terminal
+Icon=~/.config/Assets/Icons/rmpc.png
+Exec=kdocker -f -q st -c floating_rmpc -e rmpc
+Categories=System;TerminalEmulator
+Path=
+Terminal=false
+StartupNotify=true

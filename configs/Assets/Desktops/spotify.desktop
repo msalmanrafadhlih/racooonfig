@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Spotify
+GenericName=Spotify
+Comment=Launch Spotify minimized to tray via KDocker
+Exec=open --spotify
+Icon=spotify
+Terminal=false
+Type=Application
+Categories=Audio;Music;Player;
+StartupNotify=false
+Path=
