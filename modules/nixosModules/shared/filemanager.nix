@@ -10,7 +10,7 @@ in
 {
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
-      (lib.mkIf (cfg.filemanager == "dolphin") {
+      (lib.mkIf (cfg.fileManager == "dolphin") {
         programs = {
           dolphin = {
             enable = true;
@@ -18,7 +18,7 @@ in
         };
       })
 
-      (lib.mkIf (cfg.filemanager == "thunar") {
+      (lib.mkIf (cfg.fileManager == "thunar") {
         programs = {
           thunar = {
             enable = lib.mkDefault true;
