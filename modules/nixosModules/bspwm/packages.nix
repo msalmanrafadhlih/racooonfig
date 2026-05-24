@@ -61,6 +61,13 @@ in
       nwg-look
       glib
 
+      # ======== GTK
+      gtk2
+      gtk3
+      gtk4
+      dconf
+      dconf-editor
+
       # tray
       wmctrl # ../../../configs/bspwm/bin/WindowSwitcher
       kdocker
