@@ -56,7 +56,7 @@ case "$1" in
         ChatGPT
         ;;
     --filemanager)
-        thunar
+        dolphin
         ;;
     --browser)
         kdocker -f -q "$BROWSER" \
