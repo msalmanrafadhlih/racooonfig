@@ -9,23 +9,172 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && builtins.elem "hyprland" cfg.windowManager) {
     environment.systemPackages = with pkgs; [
+      ##################################################
+      # ----------------- SYSTEM --------------------- #
+      ##################################################
+      acpi
+      bc
+      file
+      inotify-tools
+      killall
+      lm_sensors
+      power-profiles-daemon
+      tree
+      wget
 
-      # ======== X UTILS
-      (python3.withPackages (
-        ps: with ps; [
-          pywal
-          haishoku
-        ]
-      ))
+      ##################################################
+      # ---------------- TERMINAL -------------------- #
+      ##################################################
+      btop
+      cava
+      cbonsai
+      clock-rs
+      fastfetch
+      fortune
+      lavat
+      pipes
 
-      # ======== GTK
-      gtk2
+      ##################################################
+      # ---------------- SHELL DEV ------------------- #
+      ##################################################
+      direnv
+      fd
+      fzf
+      git
+      jq
+      neovim
+      python311
+      python314
+      ripgrep
+      socat
+      yq-go
+
+      ##################################################
+      # ---------------- NETWORK --------------------- #
+      ##################################################
+      iw
+      networkmanager
+      networkmanager_dmenu
+
+      ##################################################
+      # --------------- BLUETOOTH -------------------- #
+      ##################################################
+      bluez
+
+      ##################################################
+      # ----------------- AUDIO ---------------------- #
+      ##################################################
+      alsa-utils
+      ladspa-sdk
+      ladspaPlugins
+      pamixer
+      pavucontrol
+      playerctl
+      pulseaudio
+
+      ##################################################
+      # ---------------- DISPLAY --------------------- #
+      ##################################################
+      brightnessctl
+      libnotify
+      swayosd
+
+      ##################################################
+      # ---------------- WAYLAND --------------------- #
+      ##################################################
+      grim
+      satty
+      slurp
+      swappy
+      swww
+      wl-clipboard
+      wl-screenrec
+      xdg-desktop-portal-gtk
+
+      ##################################################
+      # ---------------- HYPRLAND -------------------- #
+      ##################################################
+      eww
+      mpvpaper
+      quickshell
+
+      ##################################################
+      # ---------------- GTK / QT -------------------- #
+      ##################################################
+      adw-gtk3
+      adwaita-icon-theme
+      gnome-shell-extensions
+      gnome-tweaks
       gtk3
-      gtk4
-      dconf
-      dconf-editor
+      libsForQt5.qt5ct
+      qt6.qtmultimedia
+      qt6.qt5compat
+      qt6.qtwebengine
+      qt6.qtwebsockets
+      qt6Packages.qt6ct
+
+      ##################################################
+      # ---------------- MEDIA ----------------------- #
+      ##################################################
+      ffmpeg
+      glaxnimate
+      gpu-screen-recorder
+      imagemagick
+      inkscape
+      mpv
+      obs-studio
+      zbar
+
+      ##################################################
+      # ---------------- OFFICE ---------------------- #
+      ##################################################
+      hunspell
+      hunspellDicts.en_US
+      hunspellDicts.ru_RU
+      libreoffice-qt
+      onlyoffice-desktopeditors
+      papers
+
+      ##################################################
+      # ---------------- INTERNET -------------------- #
+      ##################################################
+      (wrapFirefox (pkgs.firefox-unwrapped.override {
+        pipewireSupport = true;
+      }) { })
+      qbittorrent
+      telegram-desktop
+
+      ##################################################
+      # ---------------- DEVELOPMENT ----------------- #
+      ##################################################
+      jdk8
+      jetbrains.idea-community
+      pkgsCross.mingwW64.stdenv.cc
+      steam-run
+
+      ##################################################
+      # ---------------- UTILITIES ------------------- #
+      ##################################################
+      bottles
+      cliphist
+      obsidian
+      p7zip
+      taskwarrior3
+      wmctrl
+
+      ##################################################
+      # ---------------- TERMINAL -------------------- #
+      ##################################################
+      kitty
+    ];
+
+    fonts.packages = with pkgs; [
+      udev-gothic-nf
+      noto-fonts
+      liberation_ttf
+      iosevka
     ];
   };
 }
