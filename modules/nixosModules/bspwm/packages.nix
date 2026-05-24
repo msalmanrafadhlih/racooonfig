@@ -14,7 +14,6 @@ in
 {
   config = lib.mkIf (cfg.enable && builtins.elem "bspwm" cfg.windowManager) {
     environment.systemPackages = [
-      inp.matugen.packages.${system}.default
       inp.plank-reloaded.packages.${system}.default
     ]
 
@@ -44,13 +43,6 @@ in
       bc
 
       # ======== X UTILS
-      (python3.withPackages (
-        ps: with ps; [
-          pywal
-          haishoku
-        ]
-      ))
-
       shared-mime-info
       xinit
       xclip
@@ -64,13 +56,6 @@ in
       xev
       xxHash # ../../../configs/bspwm/bin/WallSync
       calc
-
-      # ======== GTK
-      gtk2
-      gtk3
-      gtk4
-      dconf
-      dconf-editor
 
       # ======== GTK engine
       nwg-look
