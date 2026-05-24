@@ -30,6 +30,15 @@
       description = "Which display manager to use";
     };
 
+    fileManager = lib.mkOption {
+      type = lib.types.enum [
+        "dolphin"
+        "thunar"
+      ];
+      default = "";
+      description = "Which display manager to use";
+    };
+
     gamemode = lib.mkOption {
       default = { };
       description = "Gamemode configuration";
