@@ -1,15 +1,8 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-let
-  cfg = config.racooonfig;
+{ pkgs, lib, config, ... }: let cfg = config.racooonfig;
 in
 {
-  imports = [ ./firefox.nix ]; 
   config = lib.mkIf (cfg.homeManager && builtins.elem "firefox" cfg.listConfigurations) {
+    xdg.desktopEntries = import ./firefox.nix { inherit pkgs; }; 
     programs.firefox = {
       enable = true;
       package = pkgs.firefox-bin;
