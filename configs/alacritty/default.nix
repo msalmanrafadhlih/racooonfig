@@ -13,7 +13,6 @@ let
   cfg = config.racooonfig;
 in
 {
-
   config = lib.mkIf (cfg.homeManager && builtins.elem "alacritty" cfg.listConfigurations) {
     xdg.configFile = mkSymlink {
       target = "alacritty";
@@ -23,5 +22,4 @@ in
       alacritty
     ];
   };
-
 }
