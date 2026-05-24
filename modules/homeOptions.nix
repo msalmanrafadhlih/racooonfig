@@ -24,7 +24,7 @@ in
       type = lib.types.bool;
       default = false;
       description = ''
-        enable flatpak Apps
+        enable flatpak configs
       '';
     };
 
