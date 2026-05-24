@@ -40,6 +40,7 @@ in
           # Apps configs
           "alacritty"
           "bat"
+          "cava"
           "vscode"
           "fastfetch"
           "firefox"
@@ -49,6 +50,7 @@ in
           "kitty"
           "gemini"
           "nano"
+          "neovim"
           "ncmpcpp"
           "nwg-drawer"
           "mpd"
