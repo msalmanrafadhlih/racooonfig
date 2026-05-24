@@ -116,7 +116,7 @@ set_theme() {
             ;;
     esac
 
-    if ERROR_MSG=$(matugen image "$RANDOM_WALLPAPER" -c "$DIR/matugen/config.ini" --mode "$MODE" --source-color-index 0 --import-json-string "{ \"mode\": \"$MODE\", \"cursor\": \"$CURSOR\", \"gtktheme\": \"$THEME\" }" 2>&1); then
+    if ERROR_MSG=$(matugen image "$RANDOM_WALLPAPER" -c "$HOME/.config/matugen/bspwm.ini" --mode "$MODE" --source-color-index 0 --import-json-string "{ \"mode\": \"$MODE\", \"cursor\": \"$CURSOR\", \"gtktheme\": \"$THEME\" }" 2>&1); then
         dunstify -r 99 -u normal -a "Theme Manager" "Theme Applied!" "Rice: $RICE\nWallpaper: $(basename "$RANDOM_WALLPAPER")"
     else
         dunstify -r 999 -u critical -a "Theme Manager" "Failed!" "$ERROR_MSG"
