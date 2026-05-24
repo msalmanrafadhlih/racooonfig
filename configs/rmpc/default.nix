@@ -18,7 +18,6 @@ let
 in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "rmpc" cfg.listConfigurations) {
-
     programs.rmpc = {
       enable = true;
       package = pkgs.rmpc;
@@ -29,5 +28,4 @@ in
       target = "rmpc";
     } configs;
   };
-
 }
