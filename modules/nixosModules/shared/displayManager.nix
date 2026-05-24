@@ -10,7 +10,7 @@ in
 {
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
-      (lib.mkIf (cfg.displayManager.programs == "sddm") {
+      (lib.mkIf (cfg.displayManager == "sddm") {
         environment.systemPackages = [
           pkgs.qylock-sddm-theme
           pkgs.cursor-memes
@@ -47,7 +47,7 @@ in
         };
       })
 
-      (lib.mkIf (cfg.displayManager.programs == "lightdm") {
+      (lib.mkIf (cfg.displayManager == "lightdm") {
         services.xserver.displayManager.lightdm.enable = lib.mkDefault true;
       })
     ]
