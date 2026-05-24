@@ -21,7 +21,6 @@ in
     };
 
     home.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
       hypr = "${config.home.homeDirectory}/.dotfiles/racooonfig/configs/hyprland/";
       programs = "${config.home.homeDirectory}/.dotfiles/racooonfig/configs";
     };
