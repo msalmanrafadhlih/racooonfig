@@ -11,7 +11,6 @@ let
 in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "hyprland" cfg.listConfigurations) {
-    wayland.windowManager.hyprland.enable = true;
     services.easyeffects.enable = true;  
     xdg = import ../../../configs/hyprland { inherit mkSymlink; };
 
