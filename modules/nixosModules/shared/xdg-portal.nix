@@ -11,6 +11,14 @@ in
   # Apps to System Communication
   # OpenFolder, ScreenSharing, OpenURL, Notif, Printing..
   config = lib.mkIf cfg.enable {
+
+    environment.pathsToLink = [
+      "/share/applications"
+      "/share/xdg-desktop-portal"
+      "/share/thumbnailers"
+      "/share/gsettings-schemas"
+    ];
+
     xdg.portal = {
       enable = lib.mkDefault true;
       xdgOpenUsePortal = lib.mkDefault true;
@@ -33,21 +41,23 @@ in
         bspwm = {
           default = [ "gtk" ];
           "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-          "org.freedesktop.impl.portal.AppChooser"  = [ "gtk" ];
-          "org.freedesktop.impl.portal.Screenshot"  = [ "gtk" ];
-          "org.freedesktop.impl.portal.OpenURI"     = [ "gtk" ];
+          "org.freedesktop.impl.portal.AppChooser" = [ "gtk" ];
+          "org.freedesktop.impl.portal.Screenshot" = [ "gtk" ];
+          "org.freedesktop.impl.portal.OpenURI" = [ "gtk" ];
         };
 
         Hyprland = {
-          default = [ "hyprland" "gtk" ];
-          "org.freedesktop.impl.portal.Screenshot"  = [ "hyprland" ];
-          "org.freedesktop.impl.portal.ScreenCast"  = [ "hyprland" ];
+          default = [
+            "hyprland"
+            "gtk"
+          ];
+          "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
+          "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
           "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-          "org.freedesktop.impl.portal.AppChooser"  = [ "gtk" ];
-          "org.freedesktop.impl.portal.OpenURI"     = [ "gtk" ];
+          "org.freedesktop.impl.portal.AppChooser" = [ "gtk" ];
+          "org.freedesktop.impl.portal.OpenURI" = [ "gtk" ];
         };
       };
-
     };
   };
 }
