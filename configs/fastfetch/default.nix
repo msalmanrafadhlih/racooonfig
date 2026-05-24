@@ -6,6 +6,7 @@
   ...
 }:
 let
+  cfg = config.racooonfig;
   configs = {
     "fastfetch/config.jsonc" = "config.jsonc";
 
@@ -13,10 +14,8 @@ let
     "fastfetch/gifs" = "gifs";
     "fastfetch/pngs" = "pngs";
   };
-  cfg = config.racooonfig;
 in
 {
-
   config = lib.mkIf (cfg.homeManager && builtins.elem "fastfetch" cfg.listConfigurations) {
     xdg.configFile = mkSymlink {
       target = "fastfetch";
