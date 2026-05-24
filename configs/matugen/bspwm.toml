@@ -1,0 +1,94 @@
+[config]
+
+[templates.gtk2]
+input_path = "templates/gtkrc-2.0"
+output_path = "~/.gtkrc-2.0.mine"
+
+[templates.gtk3]
+input_path = "templates/gtk3-colors.css"
+output_path = "~/.config/gtk-3.0/gtk.css"
+
+[templates.gtk4]
+input_path = "templates/gtk4-colors.css"
+output_path = "~/.config/gtk-4.0/gtk.css"
+
+[templates.helix]
+input_path = "templates/helix.toml"
+output_path = "~/.config/helix/themes/racooon.toml"
+post_hook = "hx -c ~/.config/helix/config.toml"
+
+[templates.bspwm]
+input_path = "templates/bspwm"
+output_path = "~/.config/bspwm/bin/colors"
+post_hook = "colors"
+
+[templates.btop]
+input_path = "templates/btop.theme"
+output_path = "~/.config/btop/themes/racooon.theme"
+
+[templates.rofi]
+input_path = "templates/rofi-colors.rasi"
+output_path = "~/.config/rofi/themes/shared.rasi"
+
+[templates.wallpaper]
+input_path = "templates/setwall"
+output_path = "~/.local/bin/wall"
+post_hook = "wall"
+
+[templates.kvantum]
+input_path = "templates/kvantum-colors.kvconfig"
+output_path = "~/.config/Kvantum/racooon/Base16Kvantum.kvconfig"
+
+[templates.kvantum1]
+input_path = "templates/kvantum-colors.svg"
+output_path = "~/.config/Kvantum/racooon/Base16Kvantum.svg"
+
+[templates.qt5]
+input_path = "templates/qtct-colors.conf"
+output_path = "~/.config/qt5ct/qt5ct.conf"
+
+[templates.qt6]
+input_path = "templates/qtct-colors.conf"
+output_path = "~/.config/qt6ct/qt6ct.conf"
+
+[templates.spicetify]
+input_path = "templates/spicetify.css"
+output_path = "~/.config/spicetify.css"
+
+[templates.kitty]
+input_path = "templates/kitty-colors.conf"
+output_path = "~/.config/kitty/themes/racooonfig.conf"
+
+[templates.zed-dark]
+input_path = "templates/zed-colors.json"
+output_path = "~/.config/zed/themes/racooonfig-dark.json"
+
+[templates.zed-light]
+input_path = "templates/zed-colors-light.json"
+output_path = "~/.config/zed/themes/racooonfig-light.json"
+
+[templates.dunst]
+input_path = "templates/dunstrc-colors"
+output_path = "~/.config/dunst/dunstrc"
+post_hook = "dunstctl reload '~/.config/dunst/dunstrc'"
+
+[templates.vivaldi]
+input_path = "templates/vivaldi.css"
+output_path = "~/.config/vivaldi/CustomCSS/colors.css"
+
+[templates.svg]
+input_path = "templates/brightness.svg"
+output_path = "~/.config/Assets/Icons/brightness.svg"
+
+[templates.xresources]
+input_path = "templates/xresources"
+output_path = "~/.Xresources"
+post_hook = "xrdb -merge ~/.Xresources && killall -USR1 $(Term --term)"
+
+[templates.discord]
+input_path = "templates/midnight-discord.css"
+output_path = "~/.config/vesktop/themes/dynamic.theme.css"
+
+[templates.alacritty]
+input_path = "~/.cache/wal/colors-alacritty.toml"
+output_path = "~/.config/alacritty/colors.toml"
