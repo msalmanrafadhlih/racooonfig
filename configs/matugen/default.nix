@@ -5,6 +5,7 @@ let
     "matugen/templates" = "templates";
     "matugen/websites" = "websites";
     "matugen/config.toml" = "config.toml";
+    "matugen/bspwm.toml" = "bspwm.toml";
   };
 in
 {
