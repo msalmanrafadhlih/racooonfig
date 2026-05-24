@@ -15,29 +15,16 @@ let
   dotfiles_path = "${home}/.dotfiles/racooonfig";
   repo_url = "https://github.com/msalmanrafadhlih/racooonfig.git";
 
-  mkSymlink =
-    {
-      target ? "",
-    }:
-    configs:
-    let
-      create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-      # Jika target kosong, suffix kosong. Jika ada, tambahkan slash.
-      targetSuffix = if target == "" then "" else "/${target}";
-      path = "${dotfiles_path}/configs${targetSuffix}";
-    in
-    builtins.mapAttrs (name: subpath: {
-      source = create_symlink "${path}/${subpath}";
-      recursive = true;
-    }) configs;
-
+  mkSymlink = import ../../.lib/mkSymlink.nix {
+    inherit config dotfiles_path;
+  };
 in
 
 {
   imports =  mapFile ./bspwm    [ ] { }
           ++ mapFile ./hyprland [ ] { }
           ++ mapFile ./niri     [ ] { }
-          ++ mapAll  ./scripts  [ ] { };
+          ++ mapAll  ./shared   [ ] { };
 
   config = lib.mkIf cfg.homeManager {
 
