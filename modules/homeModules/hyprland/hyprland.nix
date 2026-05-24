@@ -11,7 +11,7 @@ let
 in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "hyprland" cfg.listConfigurations) {
-    services.easyeffects.enable = true;  
+    services.easyeffects.enable = true;
     xdg = import ../../../configs/hyprland { inherit mkSymlink; };
 
     services.swayosd = {
@@ -22,18 +22,26 @@ in
 
     home.sessionVariables = {
       NIXOS_OZONE_WL = "1";
-      hypr           = "${config.home.homeDirectory}/.dotfiles/racooonfig/configs/hyprland/";
-      programs       = "${config.home.homeDirectory}/.dotfiles/racooonfig/configs";
+      hypr = "${config.home.homeDirectory}/.dotfiles/racooonfig/configs/hyprland/";
+      programs = "${config.home.homeDirectory}/.dotfiles/racooonfig/configs";
     };
 
-    home.activation.copyHyprConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        ${pkgs.rsync}/bin/rsync -a --update ${config.home.homeDirectory}/.dotfiles/configs/hyprland/config/ $HOME/.config/hypr/config/
-        chmod -R u+w $HOME/.config/hypr/config
+    home.activation.copyHyprConfig = lib.hm.dag.entryAfter [ "setupDotfiles" ] ''
+      if [ -d "${config.home.homeDirectory}/.dotfiles/racooonfig/configs/hyprland/config" ]; then
+          ${pkgs.rsync}/bin/rsync -a --update ${config.home.homeDirectory}/.dotfiles/racooonfig/configs/hyprland/config/ $HOME/.config/hypr/config/
+          chmod -R u+w $HOME/.config/hypr/config
+      else
+          echo "Skip copyHyprConfig: Source directory not found."
+      fi
     '';
 
-    home.activation.copyHyprTemplates = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        ${pkgs.rsync}/bin/rsync -a --update ${config.home.homeDirectory}/.dotfiles/configs/hyprland/templates/ $HOME/.config/hypr/templates/
-        chmod -R u+w $HOME/.config/hypr/templates
+    home.activation.copyHyprTemplates = lib.hm.dag.entryAfter [ "setupDotfiles" ] ''
+      if [ -d "${config.home.homeDirectory}/.dotfiles/racooonfig/configs/hyprland/templates" ]; then
+          ${pkgs.rsync}/bin/rsync -a --update ${config.home.homeDirectory}/.dotfiles/racooonfig/configs/hyprland/templates/ $HOME/.config/hypr/templates/
+          chmod -R u+w $HOME/.config/hypr/templates
+      else
+          echo "Skip copyHyprTemplates: Source directory not found."
+      fi
     '';
 
     programs.zsh.initContent = lib.mkAfter (builtins.readFile ./init-zsh.sh);
