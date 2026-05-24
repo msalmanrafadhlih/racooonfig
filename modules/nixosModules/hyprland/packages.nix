@@ -45,8 +45,7 @@ in
       git
       jq
       neovim
-      python311
-      python314
+      python3
       ripgrep
       socat
       yq-go
@@ -87,7 +86,7 @@ in
       satty
       slurp
       swappy
-      swww
+      awww
       wl-clipboard
       wl-screenrec
       xdg-desktop-portal-gtk
