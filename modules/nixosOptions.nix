@@ -1,7 +1,4 @@
-{ lib, config, ... }:
-let
-  cfg = config.racooonfig;
-in
+{ lib, ... }:
 {
   imports = [ ./nixosModules ];
 
