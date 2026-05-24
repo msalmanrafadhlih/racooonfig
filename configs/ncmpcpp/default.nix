@@ -9,7 +9,6 @@ let
 in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "ncmpcpp" cfg.listConfigurations) {
-
     home.packages = [ pkgs.ncmpcpp ];
   };
 }
