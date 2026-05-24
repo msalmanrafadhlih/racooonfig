@@ -79,7 +79,6 @@ in
       ##################################################
       brightnessctl
       libnotify
-      swayosd
 
       ##################################################
       # ---------------- WAYLAND --------------------- #
@@ -131,8 +130,6 @@ in
       # ---------------- OFFICE ---------------------- #
       ##################################################
       hunspell
-      hunspellDicts.en_US
-      hunspellDicts.ru_RU
       libreoffice-qt
       onlyoffice-desktopeditors
       papers
@@ -150,7 +147,6 @@ in
       # ---------------- DEVELOPMENT ----------------- #
       ##################################################
       jdk8
-      jetbrains.idea-community
       pkgsCross.mingwW64.stdenv.cc
       steam-run
 
