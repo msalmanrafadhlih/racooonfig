@@ -3,6 +3,7 @@ in {
   config = lib.mkIf cfg.homeManager {
     qt = {
       enable = true;
+      platformTheme.name = "qt6ct";
       kvantum.enable = true;
     };
   };
