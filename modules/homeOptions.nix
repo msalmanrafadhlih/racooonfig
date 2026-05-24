@@ -20,6 +20,14 @@ in
       '';
     };
 
+    flatpak = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = ''
+        enable flatpak Apps
+      '';
+    };
+
     listConfigurations = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
@@ -51,7 +59,9 @@ in
           "xytz"
           "zathura"
           "zed-editor"
+          "zen-browser"
 
+          # flatpak
           "zen-flatpak"
           "spotify-flatpak"
           "riff-flatpak"
