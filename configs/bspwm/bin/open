@@ -3,100 +3,104 @@
 DIR="$HOME/.config/eww"
 
 case "$1" in
-	--launcher)
-		launcher
-		;;
-	--rice)
-		SelectRice
-		;;
-	--selectwallpaper)
-		WallSelect
-		;;
-	--switcher)
-		WindowSwitcher --switcher
-		;;
-	--powermenu)
-		PowerMenu
-		;;
-	--bookmarks)
-		Bookmarks
-		;;
-	--clipboard)
-		clipboard
-		;;
-	--switchterminal)
-		Term --selecterm
-		;;
-	--terminal)
-		Term --terminal
-		;;
-	--terminalpin)
-		Term --pinned
-		;;
-	--btop)
-		Term --btop
-		;;
-	--yazi)
-		Term --yazi
-		;;
-	--music)
-		Term --music
-		;;
-	--terminalIDE)
-		Term --"$EDITOR"
-		;;
-		# Apps
-	--gemini)
-		GeminiAI
-		;;
-	--cloude)
-		CloudeAI
-		;;
-	--chatgpt)
-		ChatGPT
-		;;
-	--filemanager)
-		thunar
-		;;
-	--browser)
-		kdocker -f -q "$BROWSER"
-		;;
-	--editor)
-		zeditor
-		;;
-	--ulauncher)
-		ulauncher
-		;;
-	--discord)
-		vesktop
-		;;
-	--spotify)
-		flatpak run com.spotify.Client
-		;;
-	--musictagger)
-		picard
-		;;
-	--telegram)
-		telegram-desktop
-		;;
-	--whatsapp)
-		firefox -new-tab https://web.whatsapp.com/
-		;;
-	--audiocontrol)
-		pavucontrol
-		;;
+    --launcher)
+        launcher
+        ;;
+    --rice)
+        SelectRice
+        ;;
+    --selectwallpaper)
+        WallSelect
+        ;;
+    --switcher)
+        WindowSwitcher --switcher
+        ;;
+    --powermenu)
+        PowerMenu
+        ;;
+    --bookmarks)
+        Bookmarks
+        ;;
+    --clipboard)
+        clipboard
+        ;;
+    --switchterminal)
+        Term --selecterm
+        ;;
+    --terminal)
+        Term --terminal
+        ;;
+    --terminalpin)
+        Term --pinned
+        ;;
+    --btop)
+        Term --btop
+        ;;
+    --yazi)
+        Term --yazi
+        ;;
+    --music)
+        Term --music
+        ;;
+    --terminalIDE)
+        Term --"$EDITOR"
+        ;;
+        # Apps
+    --gemini)
+        GeminiAI
+        ;;
+    --cloude)
+        CloudeAI
+        ;;
+    --chatgpt)
+        ChatGPT
+        ;;
+    --filemanager)
+        thunar
+        ;;
+    --browser)
+        kdocker -f -q "$BROWSER" \
+            --disable-breakpad --disable-logging \
+            --disable-crash-reporter --disk-cache-dir=/tmp \
+            --disk-cache-size=104857600 &
+        ;;
+    --editor)
+        zeditor
+        ;;
+    --ulauncher)
+        ulauncher
+        ;;
+    --discord)
+        vesktop
+        ;;
+    --spotify)
+        sh -c 'flatpak run com.spotify.Client --disable-gpu &' && \
+            sleep 5 && kdocker -w "$(xdotool search --onlyvisible --name "Spotify")"
+        ;;
+    --musictagger)
+        picard
+        ;;
+    --telegram)
+        telegram-desktop
+        ;;
+    --whatsapp)
+        firefox -new-tab https://web.whatsapp.com/
+        ;;
+    --audiocontrol)
+        pavucontrol
+        ;;
 
-		# Eww Widgets
-	--KeyHelp)
-		eww -c "$DIR" open --toggle csheet
-		;;
-	--wgd-card)
-		eww -c "$DIR" open --toggle launchermenu
-		;;
-	--wgd-music)
-		eww -c "$DIR" open --toggle music
-		;;
-	*)
-		echo "Invalid Option"
-		;;
+        # Eww Widgets
+    --KeyHelp)
+        eww -c "$DIR" open --toggle csheet
+        ;;
+    --wgd-card)
+        eww -c "$DIR" open --toggle launchermenu
+        ;;
+    --wgd-music)
+        eww -c "$DIR" open --toggle music
+        ;;
+    *)
+        echo "Invalid Option"
+        ;;
 esac
