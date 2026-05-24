@@ -10,7 +10,9 @@ let
   mapFile = inputs.racooonfig.mapFile;
 in
 {
-  imports = mapFile ./bspwm [ ] { } ++ mapFile ./hyprland [ ] { } ++ mapFile ./niri [ ] { };
+  imports =  mapFile ./bspwm    [ ] { }
+          ++ mapFile ./hyprland [ ] { }
+          ++ mapFile ./niri     [ ] { };
 
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
@@ -27,7 +29,7 @@ in
       ];
     })
 
-    (lib.mkIf (cfg.enable && cfg.enableDisplayManager) {
+    (lib.mkIf (cfg.enable && cfg.displayManager ) {
       environment.systemPackages = [
         pkgs.qylock-sddm-theme
         pkgs.cursor-memes
@@ -64,7 +66,7 @@ in
       };
     })
 
-    (lib.mkIf (cfg.enable && builtins.elem "gamemode" cfg.windowManager) {
+    (lib.mkIf (cfg.enable && cfg.steam ) {
       programs.steam = {
         enable = true;
         package = pkgs.steam.override {
