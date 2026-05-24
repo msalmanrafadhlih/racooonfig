@@ -6,12 +6,10 @@
   ...
 }:
 let
-
   cfg = config.racooonfig;
   configs = {
     "kitty/themes" = "themes";
   };
-
 in
 {
 
