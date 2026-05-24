@@ -3,7 +3,7 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
 cd() {
-  builtin cd $@ &&
+  builtin cd "$@" &&
   ls
 }
 
@@ -212,4 +212,12 @@ stsetup() {
     nix develop --command zsh -ic "edit; exec zsh"
 }
 
-fetch
+# # Hanya jalan di session Hyprland
+# if [[ "$XDG_CURRENT_DESKTOP" == "Hyprland" ]] || [[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
+#     fetch
+# fi
+
+if [[ -n "$HYPRLAND_INSTANCE_SIGNATURE" && -z "$FETCH_SHOWN" ]]; then
+    export FETCH_SHOWN=1
+    fetch
+fi
