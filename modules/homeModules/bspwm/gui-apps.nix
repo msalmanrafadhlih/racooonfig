@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.racooonfig;
+  cfg = config.home;
 in
 {
-  config = lib.mkIf (cfg.homeManager && builtins.elem "bspwm" cfg.listConfigurations) {
+  config = lib.mkIf (cfg.username == "tquilla") {
     # GUI Apps
     programs = {
       obs-studio.enable = true;
