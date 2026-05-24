@@ -11,11 +11,10 @@ in
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       (lib.mkIf (cfg.fileManager == "dolphin") {
-        programs = {
-          dolphin = {
-            enable = true;
-          };
-        };
+        environment.systemPackages = with pkgs; [
+          kdePackages.dolphin
+          kdePackages.dolphin-plugins
+        ];
       })
 
       (lib.mkIf (cfg.fileManager == "thunar") {
