@@ -6,7 +6,7 @@
 
 let
   configs = {
-    "hyprland/rices" = "rices";
+    "Hyprland/rices" = "rices";
   };
 in
 {
