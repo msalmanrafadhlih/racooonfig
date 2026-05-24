@@ -43,14 +43,6 @@ bspc config automatic_scheme longest_side # options: alternate, longest_side, sp
 bspc config initial_polarity second_child # to set new node in left or right
 bspc config removal_adjustment true # atur ulang layout, saat window (tiled mode) ditutup
 
-# Set semua desktop ke layout monocle saat startup
-for monitor in $(bspc query -M); do
-    for desktop in $(bspc query -D -m "$monitor"); do
-        bspc desktop "$desktop" -l monocle
-    done
-done
-
-CornerLogic &
 Colors &
 ~/.fehbg &
 LaunchBar &
