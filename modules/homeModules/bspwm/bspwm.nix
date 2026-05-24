@@ -6,8 +6,8 @@ in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "bspwm" cfg.listConfigurations) {
     xdg = import ../../../configs/bspwm { inherit mkSymlink; };
-    # xsession = {
-    #   windowManager.command = "bspwm";
-    # };
+    xsession = {
+      windowManager.command = "bspwm";
+    };
   };
 }
