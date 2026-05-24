@@ -1,12 +1,11 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 let
   cfg = config.racooonfig;
 in
 
 {
   config = lib.mkIf (cfg.enable && builtins.elem "hyprland" cfg.windowManager) {
-    environment.systemPackages = with pkgs; [
-      hyprland
-    ];
+    programs.hyprland.enable = true;
+    services.pipewire.enable = true;
   };
 }
