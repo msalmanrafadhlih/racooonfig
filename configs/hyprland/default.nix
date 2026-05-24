@@ -9,6 +9,7 @@ let
     "Hyprland/rices"     = "rices";
     "hypr/scripts"       = "scripts";
     "hypr/hyprland.conf" = "hyprland.conf";
+    "hypr/config"        = "config";
   };
 in
 {
