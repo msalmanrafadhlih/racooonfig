@@ -99,8 +99,8 @@ handle_wallpaper_prep() {
         SRC_LIST=$(mktemp)
         find "$SRC_DIR" -maxdepth 1 -type f \
             \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \
-               -o -iname "*.gif" -o -iname "*.mp4" -o -iname "*.mkv" \
-               -o -iname "*.mov" -o -iname "*.webm" \) \
+               -o -iname "*.gif" -o -iname "*.mp4" -o -iname "*.mkv" -o -iname "*.webp" \
+               -o -iname "*.mov" -o -iname "*.webm" -o -iname "*.avif" \) \
             -printf "%f\n" | sort > "$SRC_LIST"
 
         comm -23 <(sed 's/^000_//' "$MANIFEST" | sort) "$SRC_LIST" | while read -r orphan; do
@@ -186,7 +186,7 @@ if [[ "$ACTION" == "open" || "$ACTION" == "toggle" ]]; then
         if [ -n "$CURRENT_SRC" ]; then
             BASE=$(basename "$CURRENT_SRC")
             EXT="${BASE##*.}"
-            [[ "${EXT,,}" =~ ^(mp4|mkv|mov|webm|avif)$ ]] && TARGET_THUMB="000_$BASE" || TARGET_THUMB="$BASE"
+            [[ "${EXT,,}" =~ ^(mp4|mkv|mov|webm)$ ]] && TARGET_THUMB="000_$BASE" || TARGET_THUMB="$BASE"
         fi
 
         quickshell -p "$SHELL_QML_PATH" ipc call main handleCommand "$ACTION" "$TARGET" "$TARGET_THUMB" >/dev/null 2>&1
