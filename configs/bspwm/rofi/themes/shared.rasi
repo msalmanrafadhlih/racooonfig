@@ -64,7 +64,7 @@
     surface-container-highest: #33353a;
 
     font: "JetBrains Mono Nerd Font 10";
-    image: url("/home/tquilla/.dotfiles/racooonfig/configs/hyprland/rices/windoes/wallpapers/windoes.jpg", width);
+    image: url("/home/tquilla/.dotfiles/racooonfig/configs/hyprland/rices/hybrid-vertical/wallpapers/hybrid-vertical.jpg", width);
 
     /* background: #1a0a0aff; */
     /* background-alt: #331111ff; */
