@@ -102,12 +102,12 @@ in
       mpvpaper
 
       (quickshell.override {
-        # Memaksa quickshell membawa qtmultimedia ke dalam runtime-nya
-        libs = with pkgs; [
-          qt6.qtmultimedia
-          qt6.qt5compat
-          qt6.qtwebengine
-          qt6.qtwebsockets
+        libs = [
+          kdePackages.qtmultimedia
+          kdePackages.qt5compat
+          kdePackages.qtwebengine
+          kdePackages.qtwebsockets
+          kdePackages.qtsvg
         ];
       })
 
@@ -124,13 +124,6 @@ in
       kdePackages.qt5compat
       kdePackages.qtsvg
       kdePackages.qtdeclarative # qt6-declarative di dokumen
-
-      # GStreamer Plugins (Wajib untuk video background di qylock)
-      gst_all_1.gst-plugins-base
-      gst_all_1.gst-plugins-good
-      gst_all_1.gst-plugins-bad
-      gst_all_1.gst-plugins-ugly
-      gst_all_1.gst-libav
 
       libsForQt5.qt5ct
       qt6Packages.qt6ct
