@@ -9,6 +9,7 @@ unset HYPRLAND_INSTANCE_SIGNATURE
 unset HYPRLAND_CMD
 unset SWAYSOCK
 unset NIXOS_OZONE_WL
+pkill swayosd
 
 # X11 session
 export DISPLAY=:0
