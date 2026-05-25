@@ -104,8 +104,9 @@ in
       (pkgs.symlinkJoin {
         name = "quickshell-with-qt-modules";
         paths = [ pkgs.quickshell ];
-        buildInputs = [ pkgs.qt6.wrapQtAppsHook ];
+        buildInputs = [ pkgs.qt6.qtbase ];
         nativeBuildInputs = [ pkgs.qt6.wrapQtAppsHook ];
+
         qtWrapperArgs = [
           "--prefix QML2_IMPORT_PATH : ${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
           "--prefix QML2_IMPORT_PATH : ${pkgs.kdePackages.qt5compat}/lib/qt-6/qml"
