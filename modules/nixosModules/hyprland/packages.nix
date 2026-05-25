@@ -100,16 +100,21 @@ in
       ##################################################
       eww
       mpvpaper
+      quickshell
 
-      (quickshell.override {
-        libs = [
-          kdePackages.qtmultimedia
-          kdePackages.qt5compat
-          kdePackages.qtwebengine
-          kdePackages.qtwebsockets
-          kdePackages.qtsvg
-        ];
-      })
+      # (pkgs.symlinkJoin {
+      #   name = "quickshell-with-qt-modules";
+      #   paths = [ pkgs.quickshell ];
+      #   buildInputs = [ pkgs.qt6.wrapQtAppsHook ];
+      #   nativeBuildInputs = [ pkgs.qt6.wrapQtAppsHook ];
+      #   qtWrapperArgs = [
+      #     "--prefix QML2_IMPORT_PATH : ${pkgs.kdePackages.qtmultimedia}/lib/qt-6/qml"
+      #     "--prefix QML2_IMPORT_PATH : ${pkgs.kdePackages.qt5compat}/lib/qt-6/qml"
+      #     "--prefix QML2_IMPORT_PATH : ${pkgs.kdePackages.qtwebengine}/lib/qt-6/qml"
+      #     "--prefix QML2_IMPORT_PATH : ${pkgs.kdePackages.qtwebsockets}/lib/qt-6/qml"
+      #     "--prefix QML2_IMPORT_PATH : ${pkgs.kdePackages.qtsvg}/lib/qt-6/qml"
+      #   ];
+      # })
 
       # #################################################
       # ---------------- GTK / QT -------------------- #
@@ -122,6 +127,8 @@ in
 
       kdePackages.qtmultimedia
       kdePackages.qt5compat
+      kdePackages.qtwebengine
+      kdePackages.qtwebsockets
       kdePackages.qtsvg
       kdePackages.qtdeclarative # qt6-declarative di dokumen
 
