@@ -83,9 +83,6 @@ case "$1" in
     --telegram)
         telegram-desktop
         ;;
-    --whatsapp)
-        firefox -new-tab https://web.whatsapp.com/
-        ;;
     --audiocontrol)
         pavucontrol
         ;;
