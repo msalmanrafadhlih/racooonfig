@@ -11,6 +11,8 @@ in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "hyprland" cfg.listConfigurations) {
     services.easyeffects.enable = true;
+    systemd.services.easyeffects.wantedBy = lib.mkForce [ ];
+
     xdg = import ../../../configs/hyprland { inherit mkSymlink; };
 
     services.swayosd = {
