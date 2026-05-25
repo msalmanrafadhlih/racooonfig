@@ -212,6 +212,9 @@ case "$class" in
     "Audacity" | "Org.gnome.gThumb")
         echo "state=floating center=on"
         ;;
+    "steam" )
+        echo "state=pseudo_tiled rectangle=$FLATPAK desktop=^6"
+        ;;
     *)
         echo "state=floating"
         ;;
