@@ -50,7 +50,7 @@ in
       yq-go
 
       # ======= LANGUAGE / COMPILER
-      luajit        # High-performance Lua implementation
+      luajit # High-performance Lua implementation
       python3 # Python interpreter
 
       ##################################################
@@ -100,9 +100,18 @@ in
       ##################################################
       eww
       mpvpaper
-      quickshell
 
-      ##################################################
+      (quickshell.override {
+        # Memaksa quickshell membawa qtmultimedia ke dalam runtime-nya
+        libs = with pkgs; [
+          qt6.qtmultimedia
+          qt6.qt5compat
+          qt6.qtwebengine
+          qt6.qtwebsockets
+        ];
+      })
+
+      # #################################################
       # ---------------- GTK / QT -------------------- #
       ##################################################
       adw-gtk3
@@ -110,11 +119,20 @@ in
       gnome-shell-extensions
       gnome-tweaks
       gtk3
+
+      kdePackages.qtmultimedia
+      kdePackages.qt5compat
+      kdePackages.qtsvg
+      kdePackages.qtdeclarative # qt6-declarative di dokumen
+
+      # GStreamer Plugins (Wajib untuk video background di qylock)
+      gst_all_1.gst-plugins-base
+      gst_all_1.gst-plugins-good
+      gst_all_1.gst-plugins-bad
+      gst_all_1.gst-plugins-ugly
+      gst_all_1.gst-libav
+
       libsForQt5.qt5ct
-      qt6.qtmultimedia
-      qt6.qt5compat
-      qt6.qtwebengine
-      qt6.qtwebsockets
       qt6Packages.qt6ct
 
       ##################################################
