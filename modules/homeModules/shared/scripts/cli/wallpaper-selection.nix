@@ -93,7 +93,7 @@ let
     local home         = os.getenv("HOME")
     local de           = os.getenv("XDG_CURRENT_DESKTOP")
     local username     = os.getenv("USER")
-    local current_rice = trim(read_file(home .. "/.config/bspwm/.rice") or "")
+    local current_rice = trim(read_file(home .. "/.config/".. de .."/.rice") or "")
 
     if current_rice == "" then
       io.stderr:write("Error: tidak bisa membaca .rice\n")
@@ -269,7 +269,7 @@ let
 
 in
 {
-  config = lib.mkIf (cfg.homeManager && builtins.elem "bspwm" cfg.listConfigurations) {
+  config = lib.mkIf cfg.homeManager {
     home.packages = with pkgs; [
       wallSelect
       rofiWrapper
