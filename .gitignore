@@ -9,6 +9,7 @@
 # ---- direnv (optional, kalau pakai) ----
 /.direnv/
 /.envrc
+/.env
 
 # ---- Ignore machine-specific configs ----
 flake.lock
@@ -37,3 +38,4 @@ desktop.ini
 *.private
 *.key
 *.service
+*.env
