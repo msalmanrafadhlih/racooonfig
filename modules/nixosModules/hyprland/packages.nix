@@ -45,10 +45,18 @@ in
       git
       jq
       neovim
-      python3Full
       ripgrep
       socat
       yq-go
+
+      # ======= LANGUAGE / COMPILER
+      luajit        # High-performance Lua implementation
+      # Python interpreter
+      python311
+      python312
+      python313
+      python314
+      python315
 
       ##################################################
       # ---------------- NETWORK --------------------- #
