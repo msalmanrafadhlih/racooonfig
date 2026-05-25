@@ -45,8 +45,8 @@ in
       git
       jq
       neovim
-      # python311
-      python314
+      python311
+      # python314
       ripgrep
       socat
       yq-go
@@ -71,6 +71,7 @@ in
       ladspaPlugins
       pamixer
       pavucontrol
+      easyeffects
       playerctl
       pulseaudio
 
