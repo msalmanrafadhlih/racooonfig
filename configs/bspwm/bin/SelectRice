@@ -28,5 +28,5 @@ selected=$(
 # Eksekusi jika ada pilihan baru
 if [[ -n "$selected" && "$selected" != "$current_rice" ]]; then
     echo "$selected" > "$DIR/.rice"
-    "$DIR/bin/GenerateTheme" &
+    GenerateTheme &
 fi
