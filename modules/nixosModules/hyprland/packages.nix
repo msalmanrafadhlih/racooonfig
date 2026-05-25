@@ -90,7 +90,7 @@ in
       satty
       slurp
       swappy
-      swww
+      awww
       wl-clipboard
       wl-screenrec
       xdg-desktop-portal-gtk
