@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ## Author : Aditya Shakya (adi1090x)
-## Github : @adi1090x)
+## Github : @adi1090x
 
 # Current Theme
 dir="$HOME/.config/rofi/themes"
@@ -37,7 +37,7 @@ rofi_cmd() {
     rofi -dmenu \
         -p "See you, ${USER}" \
         -mesg "Uptime: $uptime" \
-        -theme ${dir}/${theme}.rasi
+        -theme "${dir}/${theme}.rasi"
 }
 
 # Confirmation CMD
@@ -45,7 +45,7 @@ confirm_cmd() {
     rofi -dmenu \
         -p 'Confirmation' \
         -mesg 'Are you Sure?' \
-        -theme ${dir}/powermenu-confirm.rasi
+        -theme "${dir}/powermenu-confirm.rasi"
 }
 
 # Ask for confirmation
@@ -61,19 +61,55 @@ run_rofi() {
 # Execute Command
 run_cmd() {
     selected="$(confirm_exit)"
+
     if [[ "$selected" == "$yes" ]]; then
+
         if [[ $1 == '--shutdown' ]]; then
             systemctl poweroff
+
         elif [[ $1 == '--reboot' ]]; then
             systemctl reboot
+
+        elif [[ $1 == '--lock' ]]; then
+
+            if [[ "$XDG_CURRENT_DESKTOP" == 'bspwm' ]]; then
+                Screenlock > /dev/null 2>&1 &
+
+            elif [[ "$XDG_CURRENT_DESKTOP" == 'Hyprland' ]]; then
+                ~/.config/hypr/scripts/lock.sh
+
+            else
+                exit 1
+            fi
+
         elif [[ $1 == '--suspend' ]]; then
-            Screenlock > /dev/null 2>&1 &
+
+            if [[ "$XDG_CURRENT_DESKTOP" == 'bspwm' ]]; then
+                Screenlock > /dev/null 2>&1 &
+
+            elif [[ "$XDG_CURRENT_DESKTOP" == 'Hyprland' ]]; then
+                ~/.config/hypr/scripts/lock.sh
+
+            else
+                exit 1
+            fi
+
             sleep 2
             mpc -q pause
             amixer set Master mute
             systemctl suspend
+
         elif [[ $1 == '--logout' ]]; then
-            bspc quit
+
+            if [[ "$XDG_CURRENT_DESKTOP" == 'bspwm' ]]; then
+                bspc quit
+
+            elif [[ "$XDG_CURRENT_DESKTOP" == 'Hyprland' ]]; then
+                hyprctl dispatch exit
+
+            else
+                exit 1
+            fi
         fi
     else
         exit 0
@@ -82,6 +118,7 @@ run_cmd() {
 
 # Actions
 chosen="$(run_rofi)"
+
 case ${chosen} in
     $shutdown)
         run_cmd --shutdown
@@ -90,7 +127,7 @@ case ${chosen} in
         run_cmd --reboot
         ;;
     $lock)
-        Screenlock > /dev/null 2>&1 &
+        run_cmd --lock
         ;;
     $suspend)
         run_cmd --suspend
