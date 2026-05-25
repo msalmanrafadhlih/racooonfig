@@ -15,7 +15,7 @@ ctrl + super + alt + Return
 ctrl + super + alt + @space
 	reload
 # ---------------------------------------------------------  Rice Selector
-super + w
+alt + W
 	open --rice
 # ---------------------------------------------------------  wall Selector
 alt + @space
@@ -26,7 +26,7 @@ super + Escape
 # ---------------------------------------------------------  Menu Apps
 super + @space
 	open --launcher
-# ---------------------------------------------------------  Close Apps
+# ---------------------------------------------------------  ulauncher
 ctrl + @space
 	ulauncher
 # ---------------------------------------------------------  Menu Bookmarks
