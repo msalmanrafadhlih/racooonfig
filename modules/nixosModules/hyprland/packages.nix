@@ -51,7 +51,7 @@ in
 
       # ======= LANGUAGE / COMPILER
       luajit        # High-performance Lua implementation
-      python314 # Python interpreter
+      python3 # Python interpreter
 
       ##################################################
       # ---------------- NETWORK --------------------- #
