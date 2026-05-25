@@ -51,12 +51,7 @@ in
 
       # ======= LANGUAGE / COMPILER
       luajit        # High-performance Lua implementation
-      # Python interpreter
-      python311
-      python312
-      python313
-      python314
-      python315
+      python314 # Python interpreter
 
       ##################################################
       # ---------------- NETWORK --------------------- #
@@ -95,7 +90,7 @@ in
       satty
       slurp
       swappy
-      awww
+      swww
       wl-clipboard
       wl-screenrec
       xdg-desktop-portal-gtk
