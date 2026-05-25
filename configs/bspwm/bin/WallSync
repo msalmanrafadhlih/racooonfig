@@ -1,6 +1,6 @@
 #!/bin/sh
 
-RICE=$(cat "$HOME/.config/bspwm/.rice")
+RICE=$(cat "$HOME/.config/$XDG_CURRENT_DESKTOP/.rice")
 CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
 HASH_FILE="$CACHE_DIR/current_wall.hash"
 VIVALDI_BG="$HOME/.config/vivaldi/CustomCSS/background"
@@ -29,7 +29,7 @@ check_and_update() {
 }
 
 handle_animated() {
-    THEME_CFG="$HOME/.config/bspwm/rices/$RICE/theme-config.bash"
+    THEME_CFG="$HOME/.config/$XDG_CURRENT_DESKTOP/rices/$RICE/theme-config.bash"
     ANIMATED_WALL=$(awk -F= '/^ANIMATED_WALL=/ {gsub(/"/,"",$2); print $2}' "$THEME_CFG")
     ANIMATED_WALL=$(printf '%s\n' "$ANIMATED_WALL" | sed "s|\$HOME|$HOME|")
 
