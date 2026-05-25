@@ -15,7 +15,7 @@ ctrl + super + alt + Return
 ctrl + super + alt + @space
 	reload
 # ---------------------------------------------------------  Rice Selector
-alt + W
+alt + w
 	open --rice
 # ---------------------------------------------------------  wall Selector
 alt + @space
