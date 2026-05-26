@@ -34,4 +34,6 @@ XTerm*eightBitInput: false
 XTerm*metaSendsEscape: true
 
 XTerm*VT100*translations: #override \
-    Alt <Key>BackSpace: string("\033\177")
+    Alt <Key>BackSpace: string("\033\177") \
+    Ctrl <Key>V: insert-selection(CLIPBOARD) \
+    Ctrl <Key>C: copy-selection(CLIPBOARD)
