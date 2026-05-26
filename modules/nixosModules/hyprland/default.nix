@@ -13,6 +13,7 @@ in
       enable = true;
       package = inp.hyprland.packages.${system}.hyprland;
       portalPackage = inp.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+      configType = "lua";
     };
 
     hardware.graphics = {
