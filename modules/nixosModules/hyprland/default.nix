@@ -11,9 +11,6 @@ in
   config = lib.mkIf (cfg.enable && builtins.elem "hyprland" cfg.windowManager) {
     programs.hyprland = {
       enable = true;
-      package = inp.hyprland.packages.${system}.hyprland;
-      portalPackage = inp.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-      withUWSM = true;
     };
 
     hardware.graphics = {
