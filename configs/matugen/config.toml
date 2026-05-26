@@ -9,6 +9,10 @@ output_path = "/tmp/qs_colors.json"
 input_path = "~/.config/matugen/templates/kitty-colors.conf.template"
 output_path = "/tmp/kitty-matugen-colors.conf"
 
+[templates.foot]
+input_path = "templates/foot.ini"
+output_path = "~/.config/foot/foot.ini"
+
 [templates.discord]
 input_path = "~/.config/matugen/templates/discord.css.template"
 output_path = "~/.config/vesktop/themes/matugen.theme.css"
