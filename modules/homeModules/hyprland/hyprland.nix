@@ -11,6 +11,9 @@ in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "hyprland" cfg.listConfigurations) {
     xdg = import ../../../configs/hyprland { inherit mkSymlink; };
+    wayland.windowManager.hyprland = {
+      configType = "lua";
+    };
 
     services.swayosd = {
       enable = true;
