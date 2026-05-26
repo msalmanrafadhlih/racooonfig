@@ -53,6 +53,7 @@ in
           "neovim"
           "ncmpcpp"
           "nwg-drawer"
+          "nix-search"
           "mpd"
           "rclone"
           "rmpc"
