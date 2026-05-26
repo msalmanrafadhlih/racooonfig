@@ -13,19 +13,18 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [
+    environment.systemPackages = with pkgs; [
       inp.matugen.packages.${system}.default
-    ]
 
-    ++ (with pkgs; [
+      # High-performance Lua implementation
+      luajit 
 
-      # ======== X UTILS
       (python3.withPackages (
         ps: with ps; [
           pywal
           haishoku
         ]
       ))
-    ]);
+    ];
   };
 }
