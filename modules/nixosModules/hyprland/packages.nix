@@ -46,7 +46,6 @@ in
       fzf
       git
       jq
-      neovim
       ripgrep
       socat
       yq-go
