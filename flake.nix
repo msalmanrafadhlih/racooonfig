@@ -30,7 +30,7 @@
   inputs = {
     # /// package_managers /////////////////////////////////////////////
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
+    nur.url         = "github:nix-community/NUR";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     ## ---- System Packages
@@ -55,7 +55,7 @@
     };
 
     ## ---- Home-Manager Packages
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland/v0.55.0";
 
     zjstatus = {
       url = "github:dj95/zjstatus";
