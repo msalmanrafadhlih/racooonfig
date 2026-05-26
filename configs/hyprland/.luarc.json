@@ -1,0 +1,10 @@
+{
+  "workspace": {
+    "library": [
+      "/home/tquilla/.conifg/hypr"
+    ]
+  },
+  "diagnostics": {
+    "globals": "hl"
+  }
+}
