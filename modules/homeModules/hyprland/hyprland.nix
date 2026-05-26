@@ -3,14 +3,9 @@
   config,
   lib,
   mkSymlink,
-  inputs,
-  pkgs,
   ...
 }:
 let
-  system = pkgs.stdenv.hostPlatform.system;
-  inp = inputs.racooonfig.inputs;
-
   cfg = config.racooonfig;
 in
 {
@@ -19,8 +14,6 @@ in
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inp.hyprland.packages.${system}.hyprland;
-      portalPackage = inp.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
       # configType = "lua";
     };
 
