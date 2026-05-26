@@ -7,9 +7,11 @@
 let
   configs = {
     "Hyprland/rices"     = "rices";
-    "hypr/scripts"       = "scripts";
-    "hypr/hyprland.conf" = "hyprland.conf";
     "hypr/config"        = "config";
+    "hypr/scripts"       = "scripts";
+    "hypr/.luarc.json"   = ".luarc.json";
+    "hypr/hyprland.lua"  = "hyprland.lua";
+    "hyhl.meta.lua"      = "hl.meta.lua";
   };
 in
 {
