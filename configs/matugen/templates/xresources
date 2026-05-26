@@ -1,4 +1,4 @@
-#include ".cache/wal/colors.Xresources"
+#include "~/.cache/wal/colors.Xresources"
 
 *.faceName: JetBrainsMono Nerd Font
 *.faceSize: 10
@@ -6,9 +6,32 @@
 
 *cursorColor: {{base16.base05.default.hex}}
 
+XTerm*selectionBackground: {{colors.background.default.hex}}
+XTerm*selectionForeground: {{colors.background.default.hex}}
 Sxiv.background: {{colors.background.default.hex}}
 Sxiv.foreground: {{colors.error.default.hex}}
 Sxiv.font: Inter-10
 
 Xcursor.size: 24
 Xcursor.theme: {{ cursor }}
+XTerm*cursorTheme: {{ cursor }}
+XTerm*pointerShape: left_ptr
+
+XTerm*decTerminalID: vt340
+XTerm*faceName: JetBrainsMono Nerd Font
+XTerm*saveLines: 5000
+XTerm*scrollBar: false
+
+XTerm*visualBell: true
+XTerm*colorMode: true
+XTerm*scrollKey: true
+XTerm*scrollTtyOutput: false
+XTerm*cursorBlink: true
+XTerm*underlineCursor: true
+XTerm*decTerminalID: vt340
+XTerm*internalBorder: 10
+XTerm*eightBitInput: false
+XTerm*metaSendsEscape: true
+
+XTerm*VT100*translations: #override \
+    Alt <Key>BackSpace: string("\033\177")
