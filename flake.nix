@@ -55,7 +55,7 @@
     };
 
     ## ---- Home-Manager Packages
-    hyprland.url = "github:hyprwm/Hyprland/v0.55.0";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
     zjstatus = {
       url = "github:dj95/zjstatus";
