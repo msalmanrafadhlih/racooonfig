@@ -13,6 +13,7 @@ in
   imports = [ inp.nix-flatpak.nixosModules.nix-flatpak ];
   config = lib.mkIf cfg.enable {
     services = {
+      pipewire.enable = true;
       # install flatpak binary
       # nix-snapd = true;
       flatpak = {
