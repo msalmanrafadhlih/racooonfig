@@ -3,14 +3,26 @@
   config,
   lib,
   mkSymlink,
+  inputs,
+  pkgs,
   ...
 }:
 let
+  system = pkgs.stdenv.hostPlatform.system;
+  inp = inputs.racooonfig.inputs;
+
   cfg = config.racooonfig;
 in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "hyprland" cfg.listConfigurations) {
     xdg = import ../../../configs/hyprland { inherit mkSymlink; };
+
+    wayland.windowManager.hyprland = {
+      enable = true;
+      package = inp.hyprland.packages.${system}.hyprland;
+      portalPackage = inp.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+      configType = "lua";
+    };
 
     services.swayosd = {
       enable = true;
