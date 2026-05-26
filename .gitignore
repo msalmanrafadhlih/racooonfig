@@ -1,41 +1,158 @@
-# ---- Nix build artifacts ----
-/result
-/result-*
-/.nix-*
-/.cache/
-/tmp/
-/var/
+# =============================================================================
+# Nix / Build Artifacts
+# =============================================================================
 
-# ---- direnv (optional, kalau pakai) ----
-/.direnv/
-/.envrc
-/.env
+# Nix build symlinks/results anywhere
+**/result
+**/result-*
 
-# ---- Ignore machine-specific configs ----
+# Nix temporary/build/cache files
+**/.nix-*
+**/nix-output
+**/nix-build*
+**/*.drv
+**/*.drv.chroot
+**/*.drv.lock
+
+# Generic caches/temp dirs anywhere
+**/.cache/
+**/cache/
+**/tmp/
+**/temp/
+**/.tmp/
+**/var/
+
+# =============================================================================
+# direnv / env files
+# =============================================================================
+
+**/.direnv/
+**/.envrc
+**/.env
+**/.env.*
+!**/.env.example
+
+# =============================================================================
+# Machine-specific / generated Nix files
+# =============================================================================
+
+# Usually machine-specific
 flake.lock
-# hardware-configuration.nix
 
-# ---- System & Editor junk ----
-*~
-*.swp
-*.swo
-*.bak
-*.log
+# Uncomment if hardware config should not be tracked
+# **/hardware-configuration.nix
 
-# ---- IDE / Editor files ----
-.vscode/
-.idea/
-*.iml
+# =============================================================================
+# Logs / temporary editor files
+# =============================================================================
 
-# ---- OS junk ----
-.DS_Store
-Thumbs.db
-ehthumbs.db
-desktop.ini
+**/*~
+**/*.swp
+**/*.swo
+**/*.tmp
+**/*.temp
+**/*.bak
+**/*.orig
+**/*.rej
+**/*.log
+**/*.pid
+**/*.seed
+**/*.stackdump
 
-# ---- Secrets (just in case) ----
-*.secret
-*.private
-*.key
-*.service
-*.env
+# =============================================================================
+# IDE / Editor files
+# =============================================================================
+
+**/.vscode/
+**/.idea/
+**/.fleet/
+**/.zed/
+**/*.iml
+**/.project
+**/.classpath
+**/.settings/
+
+# Vim / Neovim
+**/.netrwhist
+**/.nvimlog
+
+# Emacs
+**/.emacs.desktop
+**/.emacs.desktop.lock
+
+# =============================================================================
+# OS junk
+# =============================================================================
+
+**/.DS_Store
+**/.AppleDouble
+**/.LSOverride
+**/Thumbs.db
+**/ehthumbs.db
+**/desktop.ini
+
+# Linux trash
+**/.Trash-*
+**/.directory
+
+# =============================================================================
+# Secrets / sensitive files
+# =============================================================================
+
+**/*.secret
+**/*.private
+**/*.key
+**/*.pem
+**/*.p12
+**/*.crt
+**/*.csr
+**/*.asc
+**/*.kdbx
+
+# Service/account secrets
+**/secrets/
+**/private/
+**/.sops.yaml
+**/age.key
+**/id_rsa
+**/id_ed25519
+
+# =============================================================================
+# Language-specific junk
+# =============================================================================
+
+# Python
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache/
+**/.mypy_cache/
+**/.venv/
+**/venv/
+
+# NodeJS
+**/node_modules/
+**/.pnpm-store/
+**/.npm/
+**/.yarn/
+**/.next/
+**/dist/
+**/build/
+
+# Rust
+**/target/
+
+# Go
+**/bin/
+**/.coverprofile
+
+# Java/Kotlin
+**/.gradle/
+**/out/
+
+# =============================================================================
+# Git internals accidentally nested
+# =============================================================================
+# Ignore nested repositories/submodules accidentally created
+# **/.git
