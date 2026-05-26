@@ -75,7 +75,7 @@ case "$1" in
         vesktop
         ;;
     --spotify)
-        sh -c 'flatpak run com.spotify.Client --disable-gpu &' && \
+        sh -c 'flatpak run com.spotify.Client &' && \
             sleep 5 && kdocker -w "$(xdotool search --onlyvisible --name "Spotify")"
         ;;
     --musictagger)

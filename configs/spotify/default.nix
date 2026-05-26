@@ -5,6 +5,7 @@
   ...
 }:
 let
+  home = config.home.homeDirectory;
   cfg = config.racooonfig;
 in
 {
@@ -13,41 +14,41 @@ in
 
     home.activation = {
       setupSpicetifyFlatpak = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        # Tentukan path (sesuaikan username jika perlu)
-        SPOTIFY_PATH="$HOME/.local/share/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
-        PREFS_PATH="$HOME/.config/spotify/prefs"
+        SPOTIFY_PATH="${home}/.local/share/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
+        PREFS_PATH="${home}/.var/app/com.spotify.Client/config/spotify/prefs"
         SPICETIFY="${pkgs.spicetify-cli}/bin/spicetify"
 
-        # Pastikan Spotify sudah terinstall sebelum lanjut
-        if [ -d "$SPOTIFY_PATH" ]; then
-          # Beri izin tulis (Flatpak user-level biasanya sudah punya izin, tapi amankan saja)
-          chmod a+wr "$SPOTIFY_PATH"
-          chmod a+wr -R "$SPOTIFY_PATH/Apps"
+        if [[ -f "${home}/.cache/.spicetify" ]]; then
+          exit 0
+        fi
 
-          # Konfigurasi Spicetify secara otomatis
+        if [ -d "$SPOTIFY_PATH" ] && [ -f "$PREFS_PATH" ]; then
+          chmod a+wr "$SPOTIFY_PATH" || true
+          chmod a+wr -R "$SPOTIFY_PATH/Apps" || true
+
           $SPICETIFY config spotify_path "$SPOTIFY_PATH"
           $SPICETIFY config prefs_path "$PREFS_PATH"
-          
-          # Jalankan apply secara otomatis (opsional)
-          # $SPICETIFY apply
+
+          $SPICETIFY apply
+          touch "${home}/.cache/.spicetify"
         fi
       '';
     };
 
-    services.spotifyd = {
-      enable = true;
-      package = pkgs.spotifyd;
-      settings = {
-        global = {
-          username_cmd = "cat ~/.config/spotify/username";
-          password_cmd = "cat ~/.config/spotify/credentials";
-          backend = "alsa"; # atau "alsa" kalau kamu pakai ALSA saja
-          use_mpris = true;
-          device_name = "NixOS-Spotify";
-          bitrate = 160;
-          volume_normalisation = true;
-        };
-      };
-    };
+    # services.spotifyd = {
+    #   enable = true;
+    #   package = pkgs.spotifyd;
+    #   settings = {
+    #     global = {
+    #       username_cmd = "${pkgs.coreutils}/bin/cat %h/.config/spotify/username";
+    #       password_cmd = "${pkgs.coreutils}/bin/cat %h/.config/spotify/credentials";
+    #       backend = "alsa"; # atau "alsa" kalau kamu pakai ALSA saja
+    #       use_mpris = true;
+    #       device_name = "NixOS-Spotify";
+    #       bitrate = 160;
+    #       volume_normalisation = true;
+    #     };
+    #   };
+    # };
   };
 }
