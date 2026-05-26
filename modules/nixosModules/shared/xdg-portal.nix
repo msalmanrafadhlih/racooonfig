@@ -24,7 +24,7 @@ in
       xdgOpenUsePortal = lib.mkDefault true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
-        xdg-desktop-portal-hyprland
+        # xdg-desktop-portal-hyprland
         # xdg-desktop-portal-cosmic
         # xdg-desktop-portal-gnome
         # xdg-desktop-portal-luminous
