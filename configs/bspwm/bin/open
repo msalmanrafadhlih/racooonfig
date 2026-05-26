@@ -59,10 +59,11 @@ case "$1" in
         thunar
         ;;
     --browser)
-        kdocker -f -q "$BROWSER" \
-            --disable-breakpad --disable-logging \
-            --disable-crash-reporter --disk-cache-dir=/tmp \
-            --disk-cache-size=104857600 &
+        kdocker -q "$BROWSER" \
+          --use-gl=egl --enable-zero-copy \
+          --enable-features=VaapiVideoDecoder \
+          --disable-logging \
+          --disable-breakpad &
         ;;
     --editor)
         zeditor
