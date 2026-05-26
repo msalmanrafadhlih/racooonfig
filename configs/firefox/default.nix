@@ -5,7 +5,10 @@ in
     xdg.desktopEntries = import ./firefox.nix { inherit pkgs; }; 
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox-bin;
+      package = (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {
+        pipewireSupport = true;
+      }) { });
+
 
       # --- POLICIES (Level Sistem/Global) ---
       policies = {
