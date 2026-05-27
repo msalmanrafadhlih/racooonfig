@@ -29,7 +29,9 @@ in
           $SPICETIFY config spotify_path "$SPOTIFY_PATH"
           $SPICETIFY config prefs_path "$PREFS_PATH"
 
-          $SPICETIFY apply
+          # $SPICETIFY backup apply || \
+          # ($SPICETIFY restore backup apply) || true
+
           touch "${home}/.cache/.spicetify"
         fi
       '';
