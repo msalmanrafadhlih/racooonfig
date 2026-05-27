@@ -1,8 +1,8 @@
 {
   "theme": {
     "mode": "system",
-    "light": "racooonfig",
-    "dark": "racooonfig"
+    "light": "racooonfig dark",
+    "dark": "racooonfig light"
   },
   "icon_theme": "Material Icon Theme",
   "ui_font_family": ".ZedMono",
