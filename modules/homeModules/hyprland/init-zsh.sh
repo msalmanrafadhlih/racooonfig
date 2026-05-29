@@ -2,10 +2,10 @@ setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 
-cd() {
-  builtin cd "$@" &&
-  ls
-}
+# cd() {
+#   builtin cd "$@" &&
+#   ls
+# }
 
 qcopy() {
     # 1. Dependency Checks
