@@ -13,7 +13,7 @@ let
     "hypr/hl.meta.lua"   = "hl.meta.lua";
 
     "hypr/hyprland.conf" = "hyprland.conf";
-    "hypr/backup"        = "oldconfig";
+    "hypr/oldconfig"     = "backup";
   };
 in
 {
