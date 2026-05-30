@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = [
+  home.packages = [
     (pkgs.writeShellScriptBin "RACOOON" ''
       #!${pkgs.zsh}/bin/zsh
 
@@ -25,6 +25,32 @@
         echo "$result"
       }
 
+      commit_file_with_diff() {
+        local f="$1"
+        local msgfile diff
+
+        # Ambil diff dari file yang sudah di-stage
+        diff=$(git diff --cached --unified=0 --no-color -- "$f" \
+          | sed \
+            -e '/^diff --git /d' \
+            -e '/^index /d' \
+            -e '/^--- /d' \
+            -e '/^\+\+\+ /d' \
+            -e '/^@@ /d')
+
+        msgfile=$(mktemp)
+
+        {
+          printf '%s - %s\n\n' "$sys_msg" "$timestamp"
+          printf 'Update file: %s\n\n' "$f"
+          printf 'Changes:\n'
+          printf '%s\n' "$diff"
+        } > "$msgfile"
+
+        git commit -F "$msgfile"
+        rm -f "$msgfile"
+      }
+
       # ─── main ──────────────────────────────────────────────────────────────────
       dir="$HOME/.dotfiles/racooonfig"
       timestamp=$(date "+%Y-%m-%d %H:%M")
@@ -41,7 +67,7 @@
         # Commit setiap file yang berubah secara individual, lalu commit sisanya
         git diff --name-only | while IFS= read -r f; do
           git add -- "$f"
-          git commit -m "$timestamp | $sys_msg: $f"
+          commit_file_with_diff "$f"
         done
         # Tangani file baru / untracked yang belum ter-add
         git add .
@@ -87,11 +113,11 @@
         if [[ -n $(git status --porcelain) ]]; then
           git diff --name-only | while IFS= read -r f; do
             git add -- "$f"
-            git commit -m "$timestamp | $sys_msg: $f"
+            commit_file_with_diff "$f"
           done
           git add .
           git diff --cached --quiet || \
-            git commit -m "$timestamp | Rebuild system ($host): $sys_msg"
+          git commit -m "$timestamp | Rebuild system ($host): $sys_msg"
         fi
 
         echo "🚀 Rebuilding NixOS untuk $host..."
