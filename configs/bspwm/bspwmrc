@@ -74,7 +74,7 @@ bspc config initial_polarity second_child # to set new node in left or right
 bspc config removal_adjustment true # atur ulang layout, saat window (tiled mode) ditutup
 
 Colors &
-~/.fehbg &
+wall --apply &
 LaunchBar &
 Dock &
 

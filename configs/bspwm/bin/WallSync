@@ -46,8 +46,8 @@ if [ "$1" = "--animated" ]; then
     exit 0
 fi
 
-# Get current wallpaper from ~/.fehbg
-WALL=$(awk -F"'" '/feh --no-fehbg --bg/ {print $2}' "$HOME/.fehbg" 2>/dev/null)
+# Get current wallpaper from ~/.wall
+WALL=$(awk -F"'" '/feh --no-fehbg --bg/ {print $2}' "$HOME/.wall" 2>/dev/null)
 [ -z "$WALL" ] && exit 1
 
 ln -sf "$WALL" "$CACHE_DIR/current_wall"
