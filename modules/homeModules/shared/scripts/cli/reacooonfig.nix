@@ -49,6 +49,9 @@
       }
 
       # ─── main ──────────────────────────────────────────────────────────────────
+      ICON="$HOME/.config/Assets/Icons/rebuild.png"
+      SOUND="$HOME/.config/Assets/Sounds/notification.wav"
+
       dir="$HOME/.dotfiles/racooonfig"
       timestamp=$(date "+%Y-%m-%d %H:%M")
 
@@ -124,6 +127,11 @@
         fi
 
         echo "✅ System rebuild selesai!"
+
+        notify-send -i "$ICON" \
+          -r 2002 \
+          -u normal "Rebuild Done" "NixOS rebuild Switch"
+        canberra-gtk-play -f "$SOUND" -V 3.0
       else
         echo "🛑 Rebuild dibatalkan."
       fi
