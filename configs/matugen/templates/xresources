@@ -17,7 +17,6 @@ Xcursor.theme: {{ cursor }}
 XTerm*cursorTheme: {{ cursor }}
 XTerm*pointerShape: left_ptr
 
-XTerm*decTerminalID: vt340
 XTerm*faceName: JetBrainsMono Nerd Font
 XTerm*saveLines: 5000
 XTerm*scrollBar: false
@@ -28,12 +27,12 @@ XTerm*scrollKey: true
 XTerm*scrollTtyOutput: false
 XTerm*cursorBlink: true
 XTerm*underlineCursor: true
-XTerm*decTerminalID: vt340
 XTerm*internalBorder: 10
 XTerm*eightBitInput: false
 XTerm*metaSendsEscape: true
+XTerm*decTerminalID: vt340
 
-XTerm*VT100*translations: #override \
-    Alt <Key>BackSpace: string("\033\177") \
-    Ctrl <Key>V: insert-selection(CLIPBOARD) \
-    Ctrl <Key>C: copy-selection(CLIPBOARD)
+XTerm*VT100.translations: #override \n\
+    Alt <Key>BackSpace: string("\033\177") \n\
+    Ctrl Shift <Key>v: insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>c: copy-selection(CLIPBOARD)
