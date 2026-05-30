@@ -17,7 +17,15 @@ rec {
     }
   );
 
+  openldap = (
+    final: prev: {
+    openldap = prev.openldap.overrideAttrs (_: {
+      doCheck = false;
+    });
+  });
+
   default = inputs.nixpkgs.lib.composeManyExtensions [
+    openldap
     local-packages
 
     inputs.nur.overlays.default
