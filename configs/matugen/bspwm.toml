@@ -83,7 +83,7 @@ output_path = "~/.config/Assets/Icons/brightness.svg"
 [templates.xresources]
 input_path = "templates/xresources"
 output_path = "~/.Xresources"
-post_hook = "xrdb -merge ~/.Xresources && killall -USR1 $(Term --term)"
+post_hook = 'xrdb -merge <(sed "s|~|${HOME}|g" ~/.Xresources) && killall -USR1 $(Term --term)'
 
 [templates.discord]
 input_path = "templates/midnight-discord.css"
