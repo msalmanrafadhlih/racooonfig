@@ -2,7 +2,7 @@
 
 {
   home.packages = [
-    (pkgs.writeShellScriptBin "RACOOON" ''
+    (pkgs.writeShellScriptBin "SAVEFLAKE" ''
       #!${pkgs.zsh}/bin/zsh
 
       # ─── fzf helper ────────────────────────────────────────────────────────────
@@ -108,7 +108,7 @@
         [[ -z "$spec" ]] && { echo "🛑 Rebuild dibatalkan, specialisation tidak dipilih."; exit 1; }
 
         echo "🔄 Updating Nix flake..."
-        ${pkgs.nixFlakes}/bin/nix flake update racooonfig
+        ${pkgs.nix}/bin/nix flake update racooonfig
 
         if [[ -n $(git status --porcelain) ]]; then
           git diff --name-only | while IFS= read -r f; do
