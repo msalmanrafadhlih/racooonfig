@@ -144,7 +144,7 @@ flake.lock
 **/target/
 
 # Go
-**/bin/
+# **/bin/
 **/.coverprofile
 
 # Java/Kotlin
