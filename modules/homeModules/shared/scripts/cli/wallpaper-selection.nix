@@ -56,7 +56,7 @@ let
     local FIND   = "${pkgs.findutils}/bin/find"
     local XARGS  = "${pkgs.findutils}/bin/xargs"
     local MAGICK = "${pkgs.imagemagick}/bin/magick"
-    local XXHSUM = "${pkgs.xxHash}/bin/xxhsum"
+    local XXHSUM = "${pkgs.xxhash}/bin/xxhsum"
     local FLOCK  = "${pkgs.util-linux}/bin/flock"
     local ROFI   = "${rofiWrapper}/bin/rofi"
     local NPROC  = "${pkgs.coreutils}/bin/nproc"
