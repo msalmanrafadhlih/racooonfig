@@ -1,0 +1,6 @@
+[config]
+
+[templates.discord]
+input_path = "templates/midnight-discord.css"
+output_path = "~/.config/vesktop/themes/dynamic.theme.css"
+
