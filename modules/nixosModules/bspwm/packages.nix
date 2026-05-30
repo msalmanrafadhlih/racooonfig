@@ -54,7 +54,7 @@ in
       xcolor
       xdo
       xev
-      xxHash # ../../../configs/bspwm/bin/WallSync
+      xxhash # ../../../configs/bspwm/bin/WallSync
       calc
 
       # ======== GTK engine
