@@ -23,10 +23,20 @@ else
     fg_args=() 
 fi
 
+setwall() {
+    img=$1
+
+    if [[ $XDG_SESSION_TYPE == "x11" ]]; then
+        feh --bg-fill "$img" &
+    else
+        awww img "$img" &
+    fi
+}
+
 usage() {
     local wall_default={{ image }}
     
-    feh --bg-fill "$wall_default" &
+    setwall "$wall_default" &
 
     wal -i "$wall_default" \
         $mode \
@@ -52,7 +62,7 @@ manual() {
     fi
 
     if [[ ! -f "$pywal" ]]; then
-        feh --bg-fill "$image" &
+        setwall "$image" &
     
         wal -i "$image" \
             $mode \
