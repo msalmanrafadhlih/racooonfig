@@ -94,8 +94,8 @@
         [[ -z "$host" ]] && { echo "🛑 Rebuild dibatalkan, host tidak dipilih."; exit 1; }
 
         spec=$(tmux_fzf "$(printf "%s\n" \
-          "gamemode" \
-          "none")" \
+          "none" \
+          "gamemode")" \
           "Specialisation (ctrl-c to cancel): ")
 
         [[ -z "$spec" ]] && { echo "🛑 Rebuild dibatalkan, specialisation tidak dipilih."; exit 1; }
