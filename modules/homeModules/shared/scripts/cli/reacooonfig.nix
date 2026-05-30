@@ -3,8 +3,6 @@
 {
   home.packages = [
     (pkgs.writeShellScriptBin "SAVEFLAKE" ''
-      #!${pkgs.zsh}/bin/zsh
-
       # ─── fzf helper ────────────────────────────────────────────────────────────
       tmux_fzf() {
         local input="$1"
@@ -29,7 +27,6 @@
         local f="$1"
         local msgfile diff
 
-        # Ambil diff dari file yang sudah di-stage
         diff=$(git diff --cached --unified=0 --no-color -- "$f" \
           | sed \
             -e '/^diff --git /d' \
@@ -64,12 +61,10 @@
       echo "🚀 Memproses dotfiles di $dir..."
 
       if [[ -n $(git status --porcelain) ]]; then
-        # Commit setiap file yang berubah secara individual, lalu commit sisanya
         git diff --name-only | while IFS= read -r f; do
           git add -- "$f"
           commit_file_with_diff "$f"
         done
-        # Tangani file baru / untracked yang belum ter-add
         git add .
         git diff --cached --quiet || git commit -m "$timestamp | $sys_msg"
         sleep 0.1
@@ -82,14 +77,13 @@
       fi
 
       # ─── tanya rebuild ─────────────────────────────────────────────────────────
-      echo -n "\nLanjut rebuild system? (y/n) "
-      read -k 1 res
+      printf '\nLanjut rebuild system? (y/n) '
+      read -rn 1 res
       echo
 
       if [[ "$res" == "y" ]]; then
         cd "/etc/nixos" || { echo "❌ Directory system tidak ditemukan!"; exit 1; }
 
-        # === host selection ===
         host=$(tmux_fzf "$(printf "%s\n" \
           "infinix" \
           "wsl" \
@@ -99,7 +93,6 @@
 
         [[ -z "$host" ]] && { echo "🛑 Rebuild dibatalkan, host tidak dipilih."; exit 1; }
 
-        # === specialisation ===
         spec=$(tmux_fzf "$(printf "%s\n" \
           "gamemode" \
           "none")" \
