@@ -47,7 +47,16 @@ if [ "$1" = "--animated" ]; then
 fi
 
 # Get current wallpaper from ~/.wall
-WALL=$(awk -F"'" '/feh --no-fehbg --bg/ {print $2}' "$HOME/.wall" 2>/dev/null)
+WALL=$(awk -F"'" '/feh --no-fehbg --bg/ {print $2}' "$HOME/.fehbg" 2>/dev/null)
+WALL2=$(
+    awk -F= '
+        /^[[:space:]]*local wall_default=/ {
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", $2)
+            print $2
+        }
+    ' "$HOME/.local/bin/wall"
+)
+
 [ -z "$WALL" ] && exit 1
 
 ln -sf "$WALL" "$CACHE_DIR/current_wall"
