@@ -14,6 +14,7 @@ in
     mapFile    ./bspwm    [ ] { }
     ++ mapFile ./hyprland [ ] { }
     ++ mapFile ./niri     [ ] { }
+    ++ mapFile ./plasma   [ ] { }
     ++ mapAll  ./shared   [ ] { };
 
   config = lib.mkIf cfg.enable {
