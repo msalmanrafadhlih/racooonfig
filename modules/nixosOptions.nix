@@ -9,18 +9,6 @@
       description = "Enable racooonfig system configurations";
     };
 
-    windowManager = lib.mkOption {
-      type = lib.types.listOf (
-        lib.types.enum [
-          "bspwm"
-          "hyprland"
-          "niri"
-        ]
-      );
-      default = [ ];
-      description = "List of enabled window managers";
-    };
-
     displayManager = lib.mkOption {
       type = lib.types.enum [
         "sddm"
@@ -28,6 +16,32 @@
       ];
       default = "";
       description = "Which display manager to use";
+    };
+
+    windowManager = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.enum [
+          # Window Manager
+          "hyprland"
+          "bspwm"
+          "niri"
+          "qtile"
+        ]
+      );
+      default = [ ];
+      description = "List of enabled window managers";
+    };
+
+    desktopManager = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.enum [
+          # deskop Environment
+          "plasma"
+          "gnome"
+        ]
+      );
+      default = [ ];
+      description = "List of enabled window managers";
     };
 
     fileManager = lib.mkOption {
