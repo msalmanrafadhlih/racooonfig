@@ -7,6 +7,7 @@
 }
 
 #browser {
+    /* --browserBackgroundImage: url("background") !important; */
     background-image: url("background") !important;
     background-size: cover !important;
     background-position: center !important;
