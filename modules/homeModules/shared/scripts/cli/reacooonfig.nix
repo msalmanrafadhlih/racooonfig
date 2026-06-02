@@ -128,10 +128,16 @@
 
         echo "✅ System rebuild selesai!"
 
-        notify-send -i "$ICON" \
-          -r 2002 \
-          -u normal "Rebuild Done" "NixOS rebuild Switch"
-        canberra-gtk-play -f "$SOUND" -V 3.0
+        if [[ "$XDG_SESSION_TYPE" == "x11" ]]; then
+          dunstify -i "$ICON" \
+            -r 2002 \
+            -u normal "Rebuild Done" "NixOS rebuild Switch" &
+        else
+          notify-send -i "$ICON" \
+            -r 2002 \
+            -u normal "Rebuild Done" "NixOS rebuild Switch" &
+        fi
+        canberra-gtk-play -f "$SOUND" -V 15.0 &
       else
         echo "🛑 Rebuild dibatalkan."
       fi
