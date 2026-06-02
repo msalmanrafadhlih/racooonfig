@@ -2,55 +2,62 @@
 let
   cfg = config.racooonfig;
 in
-
 {
   config = lib.mkIf cfg.homeManager {
     xdg.mimeApps = {
       enable = true;
 
-      # Aplikasi default untuk jenis MIME tertentu
       defaultApplications =
         let
           imageViewer = [
+            "org.kde.gwenview.desktop"
             "com.interversehq.qView.desktop"
             "org.gnome.gThumb.desktop"
             "feh.desktop"
             "gimp.desktop"
           ];
+
           textEditor = [
+            "kate.desktop"
+            "org.kde.kate.desktop"
+            "kwrite.desktop"
             "geany.desktop"
             "Helix.desktop"
             "dev.zed.Zed.desktop"
           ];
 
           browser = [
+            "org.kde.falkon.desktop"
             "vivaldi-stable.desktop"
             "chromium-browser.desktop"
           ];
 
-          # media
           audioPlayer = [
+            "org.kde.elisa.desktop"
             "mpv.desktop"
             "audacity.desktop"
           ];
+
           videoPlayer = [
+            "org.kde.haruna.desktop"
+            "org.kde.dragonplayer.desktop"
             "mpv.desktop"
             "org.kde.kdenlive.desktop"
           ];
 
-          # Document
-          pdfViewer = [ "org.gnome.Evince.desktop" ];
-
+          pdfViewer = [
+            "org.kde.okular.desktop"
+            "org.gnome.Evince.desktop"
+          ];
         in
         {
           # Browser
-          "x-scheme-handler/vivaldi" = browser;
           "x-scheme-handler/http" = browser;
           "x-scheme-handler/https" = browser;
           "x-scheme-handler/ftp" = browser;
           "text/html" = browser;
 
-          # Images — semua format umum
+          # Images
           "image/png" = imageViewer;
           "image/jpeg" = imageViewer;
           "image/jpg" = imageViewer;
@@ -67,30 +74,29 @@ in
           "text/plain" = textEditor;
           "text/x-shellscript" = textEditor;
           "application/json" = textEditor;
-          "application/xml" = textEditor; # Tambahan XML
-          "text/xml" = textEditor; # Tambahan XML
+          "application/xml" = textEditor;
+          "text/xml" = textEditor;
           "application/x-zerosize" = textEditor;
-          "application/octet-stream" = textEditor;
           "application/x-shellscript" = textEditor;
           "text/x-script" = textEditor;
 
-          # PDF / Dokumen
+          # PDF
           "application/pdf" = pdfViewer;
 
           # Audio
           "audio/mp3" = audioPlayer;
           "audio/opus" = audioPlayer;
           "audio/webm" = audioPlayer;
-          "audio/mpeg" = audioPlayer; # MP3
-          "audio/x-wav" = audioPlayer; # WAV
+          "audio/mpeg" = audioPlayer;
+          "audio/x-wav" = audioPlayer;
           "audio/wav" = audioPlayer;
-          "audio/ogg" = audioPlayer; # OGG
+          "audio/ogg" = audioPlayer;
           "audio/x-ogg" = audioPlayer;
-          "audio/flac" = audioPlayer; # FLAC
-          "audio/aac" = audioPlayer; # AAC
-          "audio/mp4" = audioPlayer; # M4A/MP4 Audio
+          "audio/flac" = audioPlayer;
+          "audio/aac" = audioPlayer;
+          "audio/mp4" = audioPlayer;
           "audio/x-m4a" = audioPlayer;
-          "audio/x-matroska" = audioPlayer; # MKA
+          "audio/x-matroska" = audioPlayer;
           "audio/x-ms-wma" = audioPlayer;
           "application/ogg" = audioPlayer;
 
@@ -99,33 +105,36 @@ in
           "video/x-matroska" = videoPlayer;
           "video/webm" = videoPlayer;
           "video/x-msvideo" = videoPlayer;
-          "video/quicktime" = videoPlayer; # video (MPV)
-
+          "video/quicktime" = videoPlayer;
         };
 
-      # Aktifkan ini! Ini penting untuk fallback
       associations.added = {
         "image/png" = [
+          "org.kde.gwenview.desktop"
+          "com.interversehq.qView.desktop"
           "org.gnome.gThumb.desktop"
           "feh.desktop"
           "gimp.desktop"
         ];
         "image/jpeg" = [
+          "org.kde.gwenview.desktop"
+          "com.interversehq.qView.desktop"
           "org.gnome.gThumb.desktop"
           "feh.desktop"
           "gimp.desktop"
         ];
         "image/gif" = [
+          "org.kde.gwenview.desktop"
           "org.gnome.gThumb.desktop"
           "feh.desktop"
         ];
         "image/webp" = [
+          "org.kde.gwenview.desktop"
           "org.gnome.gThumb.desktop"
           "feh.desktop"
         ];
       };
 
-      # Kamu juga bisa hapus asosiasi tertentu (optional)
       associations.removed = { };
     };
   };
