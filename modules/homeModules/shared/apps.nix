@@ -18,10 +18,10 @@ in
       # ======================
       # Media # Browser
       # ======================
-      telegram-desktop
-      ungoogled-chromium
-      vivaldi
-      gthumb
+      # telegram-desktop
+      # ungoogled-chromium
+      # vivaldi
+      # gthumb
       # font-manager
       # picard
       # protonvpn-gui
@@ -30,9 +30,9 @@ in
       # ======================
       # Editor # Productivity
       # ======================
-      gimp
+      # gimp
       zoom
-      evince # Document Viewer
+      # evince # Document Viewer
       libreoffice
       obsidian
       # kdePackages.kdenlive
@@ -42,15 +42,15 @@ in
       # =====================
       # TOOLS
       # ====================
-      xarchiver
-      gparted # Manage Disk Partition
-      pavucontrol
-      ulauncher
+      # xarchiver
+      # gparted # Manage Disk Partition
+      # pavucontrol
+      # ulauncher
       # Cli =========
-      ffmpeg-full # absolutely need GUI
-      ani-cli # butuh mpv(GUI) untuk streaming
-      go-grip # Markdown Preview via http server: butuh browser
-      spotdl
+      # ffmpeg-full # absolutely need GUI
+      # ani-cli # butuh mpv(GUI) untuk streaming
+      # go-grip # Markdown Preview via http server: butuh browser
+      # spotdl
     ];
   };
 }
