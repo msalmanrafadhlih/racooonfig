@@ -21,7 +21,7 @@ in
         uninstallUnmanaged = lib.mkDefault true;
       };
 
-    power-profiles-daemon.enable = true;
+      power-profiles-daemon.enable = true;
       ###################################
       ## THUNAR OPTIMALIZATION
       #####################################
