@@ -18,6 +18,12 @@ in
       })
 
       (lib.mkIf (cfg.fileManager == "thunar") {
+        ###################################
+        ## THUNAR OPTIMALIZATION
+        #####################################
+        services.tumbler.enable = lib.mkDefault true; # enable thumbnail in thunar
+        services.gvfs.enable = lib.mkDefault true; # Thunar integration with plugins
+
         programs = {
           thunar = {
             enable = lib.mkDefault true;
