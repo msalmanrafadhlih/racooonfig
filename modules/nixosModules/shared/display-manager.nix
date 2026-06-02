@@ -19,7 +19,7 @@ in
           displayManager = {
             sddm = {
               enable = lib.mkDefault true;
-              theme = lib.mkDefault "orbital";
+              theme = "orbital";
               setupScript = ''
                 ${pkgs.xrdb}/bin/xrdb -merge - <<EOF
                 Xcursor.theme: Skyrim-by-ru5tyshark-cursors
