@@ -5,10 +5,10 @@ let
 in
 {
   config = lib.mkIf cfg.homeManager {
-    home.sessionVariables = {
-      BROWSER = "vivaldi";
-      TERMINAL = "st";
-    };
+    # home.sessionVariables = {
+    #   BROWSER = "vivaldi";
+    #   TERMINAL = "st";
+    # };
 
     xsession = {
       enable = true;
