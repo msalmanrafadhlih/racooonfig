@@ -65,11 +65,27 @@
         if [[ "$res" == "y" ]]; then
           cd "/etc/nixos" || { echo "❌ Directory system tidak ditemukan!"; exit 1; }
 
-          host=$(printf "infinix\nwsl\nmacbook\nvm-aarch64" | sort -u | tmux_fzf - "Pilih host: ")
-          [[ -z "$host" ]] && { echo "🛑 Dibatalkan."; exit 1; }
+          host=$(tmux_fzf "$(printf "%s\n" \
+              "infinix" \
+              "wsl" \
+              "macbook" \
+              "vm-aarch64" | sort -u)" \
+              "Pilih host (ctrl-c to cancel): ")
 
-          spec=$(printf "none\ngamemode" | tmux_fzf - "Specialisation: ")
-          [[ -z "$spec" ]] && { echo "🛑 Dibatalkan."; exit 1; }
+          [[ -z "$host" ]] && {
+              echo "🛑 Rebuild dibatalkan, host tidak dipilih."
+              exit 1
+          }
+
+          spec=$(tmux_fzf "$(printf "%s\n" \
+              "none" \
+              "gamemode")" \
+              "Specialisation (ctrl-c to cancel): ")
+
+          [[ -z "$spec" ]] && {
+              echo "🛑 Rebuild dibatalkan, specialisation tidak dipilih."
+              exit 1
+          }
 
           echo "🔄 Updating Nix flake..."
           nix flake update racooonfig
