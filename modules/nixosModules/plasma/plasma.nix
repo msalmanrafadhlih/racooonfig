@@ -68,6 +68,10 @@ in
 
     programs.kdeconnect.enable = true;
 
+    # Alat manajemen daya (power balanced)
+    services.tlp.enable = lib.mkForce false;
+    services.power-profiles-daemon.enable = true;
+
     # ──────────────────────────────────────────────────────────────
     # CATATAN: Apa yang SUDAH OTOMATIS aktif oleh Plasma 6
     # (tidak perlu kamu tulis ulang):
