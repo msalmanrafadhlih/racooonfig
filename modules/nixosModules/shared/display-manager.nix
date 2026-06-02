@@ -19,7 +19,6 @@ in
           displayManager = {
             sddm = {
               enable = lib.mkDefault true;
-              wayland.enable =  true;
               theme = lib.mkDefault "orbital";
               setupScript = ''
                 ${pkgs.xrdb}/bin/xrdb -merge - <<EOF
