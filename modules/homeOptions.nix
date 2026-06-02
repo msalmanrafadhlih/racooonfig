@@ -31,6 +31,8 @@ in
     listConfigurations = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
+          # desktop Environment
+          "plasma"
 
           # window manager Configs
           "bspwm"
@@ -59,6 +61,7 @@ in
           "rmpc"
           "st"
           "vesktop"
+          "wezterm"
           "xytz"
           "zathura"
           "zed-editor"
