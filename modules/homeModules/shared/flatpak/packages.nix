@@ -29,6 +29,12 @@ in
     origin = "flathub";
   })
 
+  # Zoom - Video Conferencing
+  (lib.mkIf (builtins.elem "zoom-flatpak" cfg.listConfigurations) {
+    appId = "us.zoom.Zoom";
+    origin = "flathub";
+  })
+
   # plasma addons - Music player
   (lib.mkIf enableMacOsKdeApps {
     appId = "io.bassi.Amberol";
