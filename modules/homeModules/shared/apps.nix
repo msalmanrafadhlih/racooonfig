@@ -18,6 +18,7 @@ in
       # ======================
       # Media # Browser
       # ======================
+      vlc
       # telegram-desktop
       # ungoogled-chromium
       # vivaldi
