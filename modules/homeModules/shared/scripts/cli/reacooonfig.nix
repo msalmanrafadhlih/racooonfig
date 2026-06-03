@@ -15,6 +15,17 @@
         pkgs.coreutils
       ];
       text = ''
+        # ─── Main ────────────────────────────────────────────────────────────────────
+        ICON="$HOME/.config/Assets/Icons/rebuild.png"
+        SOUND="$HOME/.config/Assets/Sounds/notification.wav"
+        dir="$HOME/.dotfiles/racooonfig"
+        timestamp=$(date "+%Y-%m-%d %H:%M")
+
+        # Menggunakan syntax ''${VAR:-default} yang aman untuk Bash
+        sys_msg=''${1:-"Update via SAVEFLAKE"}
+        current_branch=$(git -C "$dir" branch --show-current 2>/dev/null)
+        target_branch=''${2:-$current_branch}
+
         # ─── Helper Functions ────────────────────────────────────────────────────────
         tmux_fzf() {
           local input="$1" prompt="$2"
@@ -34,29 +45,22 @@
           rm -f "$msgfile"
         }
 
-        # ─── Main ────────────────────────────────────────────────────────────────────
-        ICON="$HOME/.config/Assets/Icons/rebuild.png"
-        SOUND="$HOME/.config/Assets/Sounds/notification.wav"
-        dir="$HOME/.dotfiles/racooonfig"
-        timestamp=$(date "+%Y-%m-%d %H:%M")
-
-        # Menggunakan syntax ''${VAR:-default} yang aman untuk Bash
-        sys_msg=''${1:-"Update via SAVEFLAKE"}
-        current_branch=$(git -C "$dir" branch --show-current 2>/dev/null)
-        target_branch=''${2:-$current_branch}
+        push_to_upstream() {
+          if [[ -n $(git status --porcelain) ]]; then
+            git diff --name-only | while IFS= read -r f; do
+              git add -- "$f"
+              commit_file_with_diff "$f"
+            done
+            git add .
+            git diff --cached --quiet || git commit -m "$timestamp | $sys_msg"
+            git push origin "$target_branch"
+          fi
+        }
 
         cd "$dir" || { echo "❌ Directory $dir tidak ditemukan!"; exit 1; }
 
         echo "🚀 Memproses dotfiles di $dir..."
-
-        if [[ -n $(git status --porcelain) ]]; then
-          git diff --name-only | while IFS= read -r f; do
-            git add -- "$f"
-            commit_file_with_diff "$f"
-          done
-          git add .
-          git diff --cached --quiet || git commit -m "$timestamp | $sys_msg"
-        fi
+        push_to_upstream
 
         # ─── Tanya Rebuild ──────────────────────────────────────────────────────────
         printf '\nLanjut rebuild system? (y/n) '
@@ -89,6 +93,7 @@
 
           echo "🔄 Updating Nix flake..."
           nix flake update racooonfig
+          push_to_upstream
 
           echo "🚀 Rebuilding NixOS untuk $host..."
           if [[ "$spec" == "none" ]]; then
@@ -103,9 +108,6 @@
           notify_cmd=$([[ "$XDG_SESSION_TYPE" == "x11" ]] && echo "dunstify" || echo "notify-send")
           $notify_cmd -i "$ICON" -r 2002 -u normal "Rebuild Done" "NixOS rebuild Switch" &
           canberra-gtk-play -f "$SOUND" -V 15.0 &
-          
-          # Push setelah sukses
-          cd "$dir" && git push origin "$target_branch"
         else
           echo "🛑 Rebuild dibatalkan."
         fi
