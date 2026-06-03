@@ -33,7 +33,7 @@ in
       # gimp
       zoom
       # evince # Document Viewer
-      libreoffice
+      libreoffice-qt-still
       obsidian
       # kdePackages.kdenlive
       # audacity
