@@ -9,13 +9,12 @@ let
   mapAll = inputs.racooonfig.mapAll;
 in
 {
-  imports = [
-    ./plasma
-  ]
-  ++ mapAll ./hyprland [ ] { }
-  ++ mapAll ./bspwm [ ] { }
-  ++ mapAll ./niri [ ] { }
-  ++ mapAll ./shared [ ] { };
+  imports =
+       mapAll ./plasma   [ ] { }
+    ++ mapAll ./hyprland [ ] { }
+    ++ mapAll ./bspwm    [ ] { }
+    ++ mapAll ./niri     [ ] { }
+    ++ mapAll ./shared   [ ] { };
 
   config = lib.mkIf cfg.enable {
     environment = {
