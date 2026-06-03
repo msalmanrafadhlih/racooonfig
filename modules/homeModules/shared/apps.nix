@@ -31,7 +31,6 @@ in
       # Editor # Productivity
       # ======================
       # gimp
-      zoom
       # evince # Document Viewer
       libreoffice-qt-still
       obsidian
