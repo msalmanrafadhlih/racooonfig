@@ -55,7 +55,7 @@ in
         # baloo-widgets # Panel metadata file di Dolphin
         # ffmpegthumbs # Thumbnail pratinjau video di Dolphin
       ];
-      systemPackages = import ./packages.nix { inherit pkgs; };
+      systemPackages = import ./packages.nix { inherit pkgs lib config; };
     };
     # ──────────────────────────────────────────────────────────────
     # 4. NONAKTIFKAN SERVICE YANG AUTO-AKTIF TAPI TIDAK DIBUTUHKAN
