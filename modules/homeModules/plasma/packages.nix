@@ -24,6 +24,8 @@ in
       rsync
       libsForQt5.qtstyleplugin-kvantum
       kdePackages.qtstyleplugin-kvantum
+      kdePackages.kdbusaddons
+      kdePackages.qttools
 
       gnome-weather
       gnome-maps
