@@ -46,6 +46,7 @@
 
     fileManager = lib.mkOption {
       type = lib.types.enum [
+        "nautilus"
         "dolphin"
         "thunar"
       ];
