@@ -1,3 +1,4 @@
+# packages.nix
 {
   pkgs,
   lib,
@@ -7,21 +8,19 @@
 let
   cfg = config.racooonfig;
 in
-with pkgs; [
-  # Audio visualizer
+with pkgs;
+[
   dconf-editor
 
   glib
   gsettings-desktop-schemas
   gsettings-qt
 
-] ++  (lib.mkIf (builtins.elem "macos-kdeplasma" cfg.listConfigurations) [
-  # Dependencies tema
+] ++ (lib.optionals (builtins.elem "macos-kdeplasma" cfg.listConfigurations) [
   sassc
   rsync
-  libsForQt5.qtstyleplugin-kvantum # kvantum-qt5
-  kdePackages.qtstyleplugin-kvantum # versi Qt6
-
+  libsForQt5.qtstyleplugin-kvantum
+  kdePackages.qtstyleplugin-kvantum
 
   gnome-weather
   gnome-maps
