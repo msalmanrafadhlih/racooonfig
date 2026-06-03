@@ -1,5 +1,9 @@
-{ config, lib }: let cfg = config.racooonfig;
-in [
+{ config, lib }:
+let
+  cfg = config.racooonfig;
+  enableMacOsKdeApps = builtins.elem "macos-kdeplasma-apps" cfg.listConfigurations;
+in
+[
   # Spotify original
   (lib.mkIf (builtins.elem "spotify-flatpak" cfg.listConfigurations) {
     appId = "com.spotify.Client";
@@ -25,21 +29,26 @@ in [
     origin = "flathub";
   })
 
-  # plasma addons
-  (lib.mkIf (builtins.elem "macos-kdeplasma-apps" cfg.listConfigurations) {
-    # Music player
+  # plasma addons - Music player
+  (lib.mkIf enableMacOsKdeApps {
     appId = "io.bassi.Amberol";
     origin = "flathub";
-  }{
-    # Dowload Manager
+  })
+
+  # plasma addons - Download Manager
+  (lib.mkIf enableMacOsKdeApps {
     appId = "net.agalwood.Motrix";
     origin = "flathub";
-  }{
-    # Listen to Ambient sound
+  })
+
+  # plasma addons - Listen to Ambient sound
+  (lib.mkIf enableMacOsKdeApps {
     appId = "com.rafaelmardojai.Blanket";
     origin = "flathub";
-  }{
-    # Another Spotify Client
+  })
+
+  # plasma addons - Another Spotify Client
+  (lib.mkIf enableMacOsKdeApps {
     appId = "com.github.KRTirtho.Spotube";
     origin = "flathub";
   })
