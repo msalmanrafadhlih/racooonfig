@@ -6,28 +6,32 @@
 }:
 let
   cfg = config.racooonfig;
-  mapFile = inputs.racooonfig.mapFile;
   mapAll = inputs.racooonfig.mapAll;
 in
 {
-  imports =
-    mapFile    ./bspwm    [ ] { }
-    ++ mapFile ./hyprland [ ] { }
-    ++ mapFile ./niri     [ ] { }
-    ++ mapFile ./plasma   [ ] { }
-    ++ mapAll  ./shared   [ ] { };
+  imports = [
+    ./plasma
+  ]
+  ++ mapAll ./hyprland [ ] { }
+  ++ mapAll ./bspwm [ ] { }
+  ++ mapAll ./niri [ ] { }
+  ++ mapAll ./shared [ ] { };
 
   config = lib.mkIf cfg.enable {
     environment = {
       extraInit = ''
-        export XCURSOR_PATH="/usr/share/icons''${XCURSOR_PATH:+:$XCURSOR_PATH}"
-        export XDG_DATA_DIRS="/usr/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+        export XCURSOR_PATH="/srv/share/icons:/usr/share/icons''${XCURSOR_PATH:+:$XCURSOR_PATH}"
+        export XDG_DATA_DIRS="/srv/share:/usr/share''${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
       '';
     };
 
     systemd.tmpfiles.rules = [
-      "d /usr/share/icons 0775 root wheel -"
-      "d /usr/share/themes 0775 root wheel -"
+      "d /srv/share            0755 root users -"
+      "d /srv/share/wallpapers 2775 root users -"
+      "d /srv/share/music      2775 root users -"
+      "d /srv/share/files      2775 root users -"
+      "d /srv/share/icons      2775 root users -"
+      "d /srv/share/themes     2775 root users -"
     ];
   };
 }
