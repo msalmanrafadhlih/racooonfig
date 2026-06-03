@@ -143,9 +143,9 @@
             echo "🚀 Rebuilding NixOS untuk $host..."
 
             if [[ "$spec" == "none" ]]; then
-                sudo nixos-rebuild boot --flake .#"$host"
+                sudo nixos-rebuild switch --flake .#"$host"
             else
-                sudo nixos-rebuild boot \
+                sudo nixos-rebuild switch \
                     --flake .#"$host" \
                     --specialisation "$spec"
             fi
