@@ -15,7 +15,7 @@ with pkgs; [
   gsettings-desktop-schemas
   gsettings-qt
 
-] ++ (lib.mkIf (builtins.elem "macos-kdeplasma" cfg.listConfigurations) [
+] ++  (lib.mkIf (builtins.elem "macos-kdeplasma" cfg.listConfigurations) [
   # Dependencies tema
   sassc
   rsync
