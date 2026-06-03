@@ -17,6 +17,13 @@ in
             "gimp.desktop"
           ];
 
+          filemanager = [
+            "org.gnome.Nautilus.desktop"
+            "org.kde.dolphin.desktop"
+            "thunar.desktop"
+            "yazi.desktop"
+          ];
+          
           textEditor = [
             "kate.desktop"
             "org.kde.kate.desktop"
@@ -27,6 +34,7 @@ in
           ];
 
           browser = [
+            "app.zen_browser.zen.desktop"
             "org.kde.falkon.desktop"
             "vivaldi-stable.desktop"
             "chromium-browser.desktop"
@@ -51,11 +59,22 @@ in
           ];
         in
         {
+
           # Browser
+          "application/x-extension-htm" = browser;
+          "application/x-extension-html" = browser;
+          "application/x-extension-shtml" = browser;
+          "application/x-extension-xht" = browser;
+          "application/x-extension-xhtml" = browser;
+          "x-scheme-handler/chrome" = browser;
           "x-scheme-handler/http" = browser;
           "x-scheme-handler/https" = browser;
           "x-scheme-handler/ftp" = browser;
+          "application/xhtml+xml" = browser;
           "text/html" = browser;
+
+          # filemanager
+          "inode/directory" = filemanager;
 
           # Images
           "image/png" = imageViewer;
@@ -134,7 +153,6 @@ in
           "feh.desktop"
         ];
       };
-
       associations.removed = { };
     };
   };
