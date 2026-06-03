@@ -73,6 +73,7 @@ in
           "spotify-flatpak"
           "riff-flatpak"
           "whatsapp-flatpak"
+          "zoom-flatpak"
 
           # enable program
           "gamemode"
