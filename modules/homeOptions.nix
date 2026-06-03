@@ -32,7 +32,8 @@ in
       type = lib.types.listOf (
         lib.types.enum [
           # desktop Environment
-          "plasma"
+          "macos-kdeplasma"
+          "macos-kdeplasma-apps"
 
           # window manager Configs
           "bspwm"
@@ -71,6 +72,7 @@ in
           "zen-flatpak"
           "spotify-flatpak"
           "riff-flatpak"
+          "whatsapp-flatpak"
 
           # enable program
           "gamemode"
