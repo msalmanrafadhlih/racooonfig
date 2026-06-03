@@ -41,14 +41,16 @@ in
       # =====================
       # TOOLS
       # ====================
+      kando # Pie-Menu
       # xarchiver
       # gparted # Manage Disk Partition
       # pavucontrol
-      # ulauncher
+      # albert # launcher
+
       # Cli =========
       # ffmpeg-full # absolutely need GUI
       # ani-cli # butuh mpv(GUI) untuk streaming
-      # go-grip # Markdown Preview via http server: butuh browser
+      go-grip # Markdown Preview via http server: butuh browser
       # spotdl
     ];
   };
