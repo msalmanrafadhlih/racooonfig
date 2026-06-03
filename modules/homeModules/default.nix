@@ -22,6 +22,7 @@ in
 
 {
   imports =  mapFile ./bspwm    [ ] { }
+          ++ mapAll  ./plasma   [ ] { }
           ++ mapFile ./hyprland [ ] { }
           ++ mapFile ./niri     [ ] { }
           ++ mapAll  ./shared   [ ] { };
