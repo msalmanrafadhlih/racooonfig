@@ -1,4 +1,4 @@
-{ config, lib }:
+{ config, lib, ... }:
 let
   cfg = config.racooonfig;
   enableMacOsKdeApps = builtins.elem "macos-kdeplasma-apps" cfg.listConfigurations;
