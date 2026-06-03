@@ -2,21 +2,9 @@
 
 let
   apps = [
-    "discord"
-    "rmpc"
-    "rofi"
-    "spotify"
-    "st"
-    "thunar"
-    "thunar-bulk-rename"
-    "thunar-settings"
-    "vesktop"
-    "discord"
-    "vivaldi-stable"
     "ChatGPT"
     "Gemini"
     "Claude"
-    "chromium-browser"
     "mpv-audio"
   ];
 
