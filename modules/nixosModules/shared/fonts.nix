@@ -8,12 +8,18 @@ let
   cfg = config.racooonfig;
 in
 {
-  config = lib.mkIf cfg.enable  {
+  config = lib.mkIf cfg.enable {
     fonts = {
       enableDefaultPackages = lib.mkDefault true;
 
       fontconfig = {
         enable = lib.mkDefault true;
+
+        localConf = ''
+          <fontconfig>
+            <dir>/srv/share/fonts</dir>
+          </fontconfig>
+        '';
 
         # Rendering settings
         antialias = lib.mkDefault true;
