@@ -25,7 +25,14 @@ in
       libsForQt5.qtstyleplugin-kvantum
       kdePackages.qtstyleplugin-kvantum
       kdePackages.kdbusaddons
-      kdePackages.qttools
+      # kdePackages.qttools
+
+      (writeShellScriptBin "qdbus" ''
+        exec ${kdePackages.qttools}/bin/qdbus "$@" 2>/dev/null || true
+      '')
+      (writeShellScriptBin "qdbus6" ''
+        exec ${kdePackages.qttools}/bin/qdbus6 "$@" 2>/dev/null || true
+      '')
 
       gnome-weather
       gnome-maps
