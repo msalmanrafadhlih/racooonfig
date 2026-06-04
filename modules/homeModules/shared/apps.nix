@@ -23,6 +23,7 @@ in
       # ungoogled-chromium
       # vivaldi
       # gthumb
+      whatsie
       # font-manager
       # picard
       # protonvpn-gui
@@ -52,6 +53,7 @@ in
       # ffmpeg-full # absolutely need GUI
       # ani-cli # butuh mpv(GUI) untuk streaming
       go-grip # Markdown Preview via http server: butuh browser
+      nchat
       # spotdl
     ];
   };
