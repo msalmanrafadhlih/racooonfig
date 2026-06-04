@@ -25,12 +25,20 @@ in
     };
 
     systemd.tmpfiles.rules = [
-      "d /srv/share            0755 root users -"
-      "d /srv/share/wallpapers 2775 root users -"
-      "d /srv/share/music      2775 root users -"
-      "d /srv/share/files      2775 root users -"
-      "d /srv/share/icons      2775 root users -"
-      "d /srv/share/themes     2775 root users -"
+      "d /srv/share                    0755 root users -"
+      "d /srv/share/wallpapers         2775 root users -"
+      "d /srv/share/music              2775 root users -"
+      "d /srv/share/files              2775 root users -"
+      "d /srv/share/icons              2775 root users -"
+      "d /srv/share/themes             2775 root users -"
+
+      "d /srv/share/fonts              2775 root users -"
+      "d /srv/share/plasma             2775 root users -"
+      "d /srv/share/plasma/plasmoids   2775 root users -"
+      "d /srv/share/plasma/wallpapers  2775 root users -"
+      "d /srv/share/kwin               2775 root users -"
+      "d /srv/share/aurorae            2775 root users -"
+      "d /srv/share/color-schemes      2775 root users -"
     ];
   };
 }
