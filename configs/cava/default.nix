@@ -18,7 +18,6 @@ in
     home.packages = with pkgs; [
       cava
       qt6.qtwebsockets
-      python3Packages.websockets
     ];
 
     xdg.configFile = mkSymlink {
