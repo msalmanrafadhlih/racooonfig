@@ -23,6 +23,7 @@ in
       kdePackages.qtstyleplugin-kvantum
       kdePackages.kdbusaddons  # kquitapp6
       kdePackages.qttools      # tool lain selain qdbus tetap tersedia
+      application-title-bar
 
       # hiPrio memastikan wrapper ini menang atas qdbus dari qttools
       (lib.hiPrio (writeShellScriptBin "qdbus" ''
