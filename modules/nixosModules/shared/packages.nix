@@ -23,6 +23,8 @@ in
         ps: with ps; [
           pywal
           haishoku
+          websocketd
+          websockets
         ]
       ))
     ];
