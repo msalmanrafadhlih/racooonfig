@@ -58,4 +58,10 @@ in
     appId = "com.github.KRTirtho.Spotube";
     origin = "flathub";
   })
+
+  # KDE Music streaming
+  (lib.mkIf (builtins.elem "audiotube-flatpak" cfg.listConfigurations) {
+    appId = "org.kde.audiotube";
+    origin = "flathub";
+  })
 ]
