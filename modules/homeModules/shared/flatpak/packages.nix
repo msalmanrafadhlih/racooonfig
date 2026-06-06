@@ -36,25 +36,25 @@ in
   })
 
   # plasma addons - Music player
-  (lib.mkIf enableMacOsKdeApps {
+  (lib.mkIf (builtins.elem "amberol-flatpak" cfg.listConfigurations) {
     appId = "io.bassi.Amberol";
     origin = "flathub";
   })
 
   # plasma addons - Download Manager
-  (lib.mkIf enableMacOsKdeApps {
+  (lib.mkIf (builtins.elem "motrix-flatpak" cfg.listConfigurations) {
     appId = "net.agalwood.Motrix";
     origin = "flathub";
   })
 
   # plasma addons - Listen to Ambient sound
-  (lib.mkIf enableMacOsKdeApps {
+  (lib.mkIf (builtins.elem "blanket-flatpak" cfg.listConfigurations) {
     appId = "com.rafaelmardojai.Blanket";
     origin = "flathub";
   })
 
   # plasma addons - Another Spotify Client
-  (lib.mkIf enableMacOsKdeApps {
+  (lib.mkIf (builtins.elem "spotube-flatpak" cfg.listConfigurations) {
     appId = "com.github.KRTirtho.Spotube";
     origin = "flathub";
   })
