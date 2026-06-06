@@ -78,6 +78,7 @@ in
           "blanket-flatpak"
           "spotube-flatpak"
           "motrix-flatpak"
+          "audiotube-flatpak"
 
           # enable program
           "gamemode"
