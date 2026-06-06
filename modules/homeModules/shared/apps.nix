@@ -24,8 +24,6 @@ in
       # vivaldi
       # gthumb
       whatsie
-      strawberry
-      kdePackages.audiotube
       # font-manager
       # picard
       # protonvpn-gui
