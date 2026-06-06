@@ -74,6 +74,10 @@ in
           "riff-flatpak"
           "whatsapp-flatpak"
           "zoom-flatpak"
+          "amberol-flatpak"
+          "blanket-flatpak"
+          "spotube-flatpak"
+          "motrix-flatpak"
 
           # enable program
           "gamemode"
