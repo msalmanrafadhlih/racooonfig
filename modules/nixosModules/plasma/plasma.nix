@@ -23,7 +23,7 @@ in
 
         # ── Aplikasi yang biasanya diganti dengan pilihan sendiri ───
         # Music player bawaan KDE
-        elisa
+        # elisa
         # → ganti dengan: pkgs.strawberry / pkgs.rhythmbox
 
         # ── Hemat storage ──────────────────────────────────────────
