@@ -19,11 +19,11 @@ in
       # Media # Browser
       # ======================
       vlc
+      whatsie
       # telegram-desktop
       # ungoogled-chromium
       # vivaldi
       # gthumb
-      whatsie
       # font-manager
       # picard
       # protonvpn-gui
@@ -54,6 +54,7 @@ in
       # ani-cli # butuh mpv(GUI) untuk streaming
       go-grip # Markdown Preview via http server: butuh browser
       nchat
+      beets
       # spotdl
     ];
   };
