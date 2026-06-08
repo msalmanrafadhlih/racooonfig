@@ -1,0 +1,50 @@
+directory: ~/Musics
+library: ~/.config/beets/library.db
+
+plugins:
+  - fetchart
+  - lyrics
+  - replaygain
+  - chroma
+  - scrub
+  - duplicates
+
+import:
+  move: yes               # Memindahkan file dari folder unduhan ke folder koleksi rapi
+  write: yes              # Menulis metadata langsung ke dalam file audio
+  autotag: yes            # WAJIB aktif untuk mencari metadata resmi
+  resume: no              # Ubah ke 'no' agar skrip otomatis tidak macet meminta konfirmasi resume
+  incremental: yes        # Mengabaikan file yang sudah pernah diimpor sebelumnya
+  quiet_fallback: asis    # PENTING: Jika tidak ketemu di internet, gunakan nama dari YouTube (jangan di-skip)
+
+paths:
+  default: $albumartist/$album/$track - $title
+
+fetchart:
+  auto: yes
+  cautious: true
+  sources:
+    - coverart
+    - itunes
+    - filesystem
+
+lyrics:
+  auto: yes
+  force: no
+  synced: yes
+  sources:
+    - genius
+    - lrclib
+    - google
+
+replaygain:
+  backend: ffmpeg
+
+chroma:
+  auto: yes
+
+scrub:
+  auto: yes
+
+duplicates:
+  checksum: ffmpeg
