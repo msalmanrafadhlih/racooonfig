@@ -18,7 +18,8 @@
         set -euo pipefail
 
         # PENTING: Pindahkan folder unduhan mentah ke luar folder ~/Musics untuk mencegah konflik pemindahan file
-        UNTAGGED_DIR="/tmp/dmusic-downloads"
+        RANDOM_ID=$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 8)
+        UNTAGGED_DIR="/tmp/dmusic-downloads-$RANDOM_ID"
         PLAYLIST_DIR="$HOME/Musics/Playlists"
 
         mkdir -p "$UNTAGGED_DIR"
@@ -42,7 +43,7 @@
           # Mengunduh lagu playlist ke folder sementara
           yt-dlp \
             --extract-audio \
-            --audio-format opus \
+            --audio-format m4a \
             --audio-quality 0 \
             --embed-thumbnail \
             --embed-metadata \
@@ -66,11 +67,10 @@
           yt-dlp \
             --no-playlist \
             --extract-audio \
-            --audio-format opus \
+            --audio-format m4a \
             --audio-quality 0 \
             --embed-thumbnail \
             --embed-metadata \
-            --parse-metadata 'playlist_index:%(track_number)s' \
             --format 'ba/best' \
             --retry-sleep 3 \
             --retries infinite \
@@ -86,7 +86,8 @@
           beet import -qA "$UNTAGGED_DIR"
         fi
 
-        echo
+        # Hapus folder temporary yang sudah kosong setelah dipindahkan oleh beets
+        rmdir "$UNTAGGED_DIR" 2>/dev/null || true
         echo "Selesai! File musik Anda telah dirapikan ke dalam folder ~/Musics"
       '';
     })
