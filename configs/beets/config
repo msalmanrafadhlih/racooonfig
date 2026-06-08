@@ -1,14 +1,6 @@
 directory: ~/Musics
 library: ~/.config/beets/library.db
 
-plugins:
-  - fetchart
-  - lyrics
-  - replaygain
-  - chroma
-  - scrub
-  - duplicates
-
 import:
   move: yes               # Memindahkan file dari folder unduhan ke folder koleksi rapi
   write: yes              # Menulis metadata langsung ke dalam file audio
@@ -20,31 +12,95 @@ import:
 paths:
   default: $albumartist/$album/$track - $title
 
+plugins:
+  - fetchart
+  - lyrics
+  - replaygain
+  - chroma
+  - scrub
+  - duplicates
+
+disabled_plugins: []
+
 fetchart:
-  auto: yes
-  cautious: true
-  sources:
+    auto: yes
+    minwidth: 0
+    maxwidth: 0
+    quality: 0
+    max_filesize: 0
+    enforce_ratio: no
+    cautious: true
+    cover_names:
+    - cover
+    - front
+    - art
+    - album
+    - folder
+    fallback:
+    sources:
+    - filesystem
     - coverart
     - itunes
-    - filesystem
+    - amazon
+    - albumart
+    - cover_art_url
+    store_source: no
+    high_resolution: no
+    deinterlace: no
+    cover_format:
+    google_key: REDACTED
+    google_engine: REDACTED
+    lastfm_key: REDACTED
+    fanarttv_key: REDACTED
 
 lyrics:
   auto: yes
-  force: no
   synced: yes
+  keep_synced: yes
+  force: yes
+
+  local: no
+  print: no
+
   sources:
-    - genius
     - lrclib
-    - google
 
 replaygain:
-  backend: ffmpeg
+    overwrite: yes
+    auto: yes
+    backend: ffmpeg
+    threads: 4
+    parallel_on_import: no
+    per_disc: no
+    peak: 'true'
+    targetlevel: 89
+    r128: [Opus]
+    r128_targetlevel: 84
+    command: ''
+    noclip: yes
 
 chroma:
-  auto: yes
+    search_limit: 5
+    data_source_mismatch_penalty: 0.5
+    auto: yes
 
 scrub:
-  auto: yes
+    auto: yes
 
 duplicates:
-  checksum: ffmpeg
+    album: no
+    checksum: 'ffmpeg'
+    copy: ''
+    count: no
+    delete: no
+    format: ''
+    full: no
+    keys: []
+    merge: no
+    move: ''
+    path: no
+    tiebreak: {}
+    strict: no
+    tag: ''
+    remove: no
+

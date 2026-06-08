@@ -6,8 +6,6 @@
 **/result
 **/result-*
 
-**/beets
-
 # Nix temporary/build/cache files
 **/.nix-*
 **/nix-output
