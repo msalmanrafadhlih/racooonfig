@@ -40,6 +40,7 @@ in
               "/nix/store:ro"
               "${home}/.local/share/flatpak/exports/share/icons:ro"
               "${home}/.local/share/flatpak/exports/share/themes:ro"
+              "${home}/.themes:ro"
               "xdg-config/gtk-3.0:ro"
               "xdg-config/gtk-4.0:ro"
             ];
@@ -50,12 +51,11 @@ in
               "fallback-x11"
             ];
 
-            Environment = {
-              XCURSOR_THEME = cursorTheme;
-              XCURSOR_SIZE = cursorSize;
-              XCURSOR_PATH = "${pkgs.cursor-memes}/share/icons";
-              GTK_THEME = "dynamic";
-            };
+            # Environment = {
+            #   XCURSOR_THEME = cursorTheme;
+            #   XCURSOR_SIZE = cursorSize;
+            #   XCURSOR_PATH = "${pkgs.cursor-memes}/share/icons";
+            # };
           };
 
           "com.visualstudio.code".Context = {
