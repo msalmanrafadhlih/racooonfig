@@ -2,17 +2,18 @@ directory: ~/Musics
 library: ~/.config/beets/library.db
 
 import:
-  move: yes               # Memindahkan file dari folder unduhan ke folder koleksi rapi
-  write: yes              # Menulis metadata langsung ke dalam file audio
-  autotag: yes            # WAJIB aktif untuk mencari metadata resmi
-  resume: no              # Ubah ke 'no' agar skrip otomatis tidak macet meminta konfirmasi resume
-  incremental: yes        # Mengabaikan file yang sudah pernah diimpor sebelumnya
-  quiet_fallback: asis    # PENTING: Jika tidak ketemu di internet, gunakan nama dari YouTube (jangan di-skip)
+  move: yes               
+  write: yes              
+  autotag: yes            
+  resume: no              
+  incremental: yes        
+  quiet_fallback: asis    
 
 paths:
   default: $albumartist/$album/$track - $title
 
 plugins:
+  - musicbrainz   # WAJIB ditambahkan agar plugin chroma bisa menarik data metadata resmi
   - fetchart
   - lyrics
   - replaygain
@@ -31,19 +32,19 @@ fetchart:
     enforce_ratio: no
     cautious: true
     cover_names:
-    - cover
-    - front
-    - art
-    - album
-    - folder
+      - cover
+      - front
+      - art
+      - album
+      - folder
     fallback:
     sources:
-    - filesystem
-    - coverart
-    - itunes
-    - amazon
-    - albumart
-    - cover_art_url
+      - filesystem
+      - coverart
+      - itunes
+      - amazon
+      - albumart
+      - cover_art_url
     store_source: no
     high_resolution: no
     deinterlace: no
@@ -58,12 +59,10 @@ lyrics:
   synced: yes
   keep_synced: yes
   force: yes
-
   local: no
   print: no
-
   sources:
-    - lrclib
+    - lrclib     # Diperbaiki format list-nya menggunakan tanda strip baku
 
 replaygain:
     overwrite: yes
@@ -103,4 +102,3 @@ duplicates:
     strict: no
     tag: ''
     remove: no
-
