@@ -43,6 +43,7 @@ in
               "${home}/.themes:ro"
               "xdg-config/gtk-3.0:ro"
               "xdg-config/gtk-4.0:ro"
+              "xdg-run/discord-ipc-0"
             ];
 
             Context.sockets = lib.mkOptionDefault [
