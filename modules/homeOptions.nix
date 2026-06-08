@@ -43,6 +43,7 @@ in
           # Apps configs
           "alacritty"
           "bat"
+          "beets"
           "cava"
           "vscode"
           "fastfetch"
