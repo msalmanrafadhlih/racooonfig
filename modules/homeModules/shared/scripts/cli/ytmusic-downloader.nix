@@ -19,8 +19,10 @@
 
         # PENTING: Pindahkan folder unduhan mentah ke luar folder ~/Musics untuk mencegah konflik pemindahan file
         RANDOM_ID=$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 8)
-        UNTAGGED_DIR="/tmp/dmusic-downloads-$RANDOM_ID"
-        PLAYLIST_DIR="$HOME/Musics/Playlists"
+        MUSIC_DIR="$HOME/Musics"
+
+        UNTAGGED_DIR="$MUSIC_DIR/Untagged/downloads-$RANDOM_ID"
+        PLAYLIST_DIR="$MUSIC_DIR/Playlists"
 
         mkdir -p "$UNTAGGED_DIR"
         mkdir -p "$PLAYLIST_DIR"
@@ -43,11 +45,8 @@
           # Mengunduh lagu playlist ke folder sementara
           yt-dlp \
             --extract-audio \
-            --audio-format m4a \
+            --audio-format mp3 \
             --audio-quality 0 \
-            --embed-thumbnail \
-            --embed-metadata \
-            --parse-metadata 'playlist_index:%(track_number)s' \
             --format 'ba/best' \
             --ignore-errors \
             --retry-sleep 3 \
@@ -59,19 +58,43 @@
             --yes-playlist \
             --windows-filenames \
             "$URL"
+            # --embed-thumbnail \
+            # --embed-metadata \
+            # --parse-metadata 'playlist_index:%(track_number)s' \
+
+
+          echo "[beets] Memulai proses auto-tagging lagu..."
+          beet import "$UNTAGGED_DIR"
         else
 
           URL="$1"
 
           # Mengunduh lagu single ke folder sementara
+          # yt-dlp \
+          #   --no-playlist \
+          #   --extract-audio \
+          #   --audio-format mp3 \
+          #   --audio-quality 0 \
+          #   --embed-thumbnail \
+          #   --embed-metadata \
+          #   --parse-metadata "%(artist)s:%(artist)s" \
+          #   --parse-metadata "%(track)s:%(title)s" \
+          #   --format 'ba/best' \
+          #   --retry-sleep 3 \
+          #   --retries infinite \
+          #   --download-archive "$HOME/Musics/downloaded_archive.txt" \
+          #   --output "$UNTAGGED_DIR/%(title)s.%(ext)s" \
+          #   --extractor-args 'youtube:player_client=android' \
+          #   --restrict-filenames \
+          #   --windows-filenames \
+          #   "$URL"
+
           yt-dlp \
             --no-playlist \
             --extract-audio \
-            --audio-format m4a \
-            --audio-quality 0 \
-            --embed-thumbnail \
-            --embed-metadata \
+            --audio-format mp3 \
             --format 'ba/best' \
+            --audio-quality 0 \
             --retry-sleep 3 \
             --retries infinite \
             --download-archive "$HOME/Musics/downloaded_archive.txt" \
@@ -81,13 +104,15 @@
             --windows-filenames \
             "$URL"
 
-          echo
           echo "[beets] Memulai proses auto-tagging lagu..."
-          beet import -qA "$UNTAGGED_DIR"
+          beet import "$UNTAGGED_DIR"
         fi
 
+
+        beet lyrics -af
+
         # Hapus folder temporary yang sudah kosong setelah dipindahkan oleh beets
-        rmdir "$UNTAGGED_DIR" 2>/dev/null || true
+        # rmdir "$UNTAGGED_DIR" 2>/dev/null || true
         echo "Selesai! File musik Anda telah dirapikan ke dalam folder ~/Musics"
       '';
     })
