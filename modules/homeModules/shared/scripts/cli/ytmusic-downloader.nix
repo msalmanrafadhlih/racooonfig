@@ -13,13 +13,12 @@
         gnugrep
         findutils
       ];
-
       text = ''
         set -euo pipefail
 
-        # PENTING: Pindahkan folder unduhan mentah ke luar folder ~/Musics untuk mencegah konflik pemindahan file
-        UNTAGGED_DIR="/tmp/dmusic-downloads"
-        PLAYLIST_DIR="$HOME/Musics/Playlists"
+        MUSIC_DIR="$HOME/Musics"
+        UNTAGGED_DIR="$MUSIC_DIR/Untaged musics"
+        PLAYLIST_DIR="$MUSIC_DIR/Playlists"
 
         mkdir -p "$UNTAGGED_DIR"
         mkdir -p "$PLAYLIST_DIR"
@@ -31,63 +30,60 @@
           exit 1
         fi
 
-        if [[ "$1" == "playlist" ]]; then
-          [[ $# -lt 2 ]] && {
-            echo "Playlist URL required"
-            exit 1
-          }
+        YTDLP_COMMON=(
+          --extract-audio
+          --audio-format mp3
+          --audio-quality 0
+          --embed-thumbnail
+          --embed-metadata
+          --parse-metadata 'playlist_index:%(track_number)s'
+          --format 'ba/best'
+          --retry-sleep 3
+          --retries infinite
+          --sleep-interval 2
+          --max-sleep-interval 5
+          --download-archive "$HOME/Musics/downloaded_archive.txt"
+          --extractor-args 'youtube:player_client=android,web'
+          --restrict-filenames
+          --windows-filenames
+        )
 
+        if [[ "$1" == "playlist" ]]; then
+          [[ $# -lt 2 ]] && { echo "Playlist URL required"; exit 1; }
           URL="$2"
 
-          # Mengunduh lagu playlist ke folder sementara
-          yt-dlp \
-            --extract-audio \
-            --audio-format opus \
-            --audio-quality 0 \
-            --embed-thumbnail \
-            --embed-metadata \
-            --parse-metadata 'playlist_index:%(track_number)s' \
-            --format 'ba/best' \
-            --ignore-errors \
-            --retry-sleep 3 \
-            --retries infinite \
-            --download-archive "$HOME/Musics/downloaded_archive.txt" \
-            --output "$PLAYLIST_DIR/%(playlist)s/%(title)s.%(ext)s" \
-            --extractor-args 'youtube:player_client=android' \
-            --restrict-filenames \
-            --yes-playlist \
-            --windows-filenames \
-            "$URL"
-        else
+          if ! yt-dlp \
+            "''${YTDLP_COMMON[@]}" \
+            --output "$PLAYLIST_DIR/%(playlist_title)s/%(playlist_index)s_-_%(title)s.%(ext)s" \
+            "$URL"; then
+            echo "[WARNING] Some tracks may have failed, continuing..."
+          fi
 
+          echo "[beets] Importing playlist..."
+          beet import -q "$PLAYLIST_DIR"
+
+        else
           URL="$1"
 
-          # Mengunduh lagu single ke folder sementara
-          yt-dlp \
+          if ! yt-dlp \
+            "''${YTDLP_COMMON[@]}" \
             --no-playlist \
-            --extract-audio \
-            --audio-format opus \
-            --audio-quality 0 \
-            --embed-thumbnail \
-            --embed-metadata \
-            --parse-metadata 'playlist_index:%(track_number)s' \
-            --format 'ba/best' \
-            --retry-sleep 3 \
-            --retries infinite \
-            --download-archive "$HOME/Musics/downloaded_archive.txt" \
             --output "$UNTAGGED_DIR/%(title)s.%(ext)s" \
-            --extractor-args 'youtube:player_client=android' \
-            --restrict-filenames \
-            --windows-filenames \
-            "$URL"
+            "$URL"; then
+            echo "[WARNING] Download may have had issues, continuing..."
+          fi
 
-          echo
-          echo "[beets] Memulai proses auto-tagging lagu..."
-          beet import -qA "$UNTAGGED_DIR"
+          echo "[beets] Importing music..."
+          beet import -q "$UNTAGGED_DIR"
         fi
 
-        echo
-        echo "Selesai! File musik Anda telah dirapikan ke dalam folder ~/Musics"
+        echo "[beets] Fetching artwork..."
+        beet fetchart added:-1d..
+
+        echo "[beets] Fetching lyrics..."
+        beet lyrics added:-1d..
+
+        echo "Done."
       '';
     })
   ];
