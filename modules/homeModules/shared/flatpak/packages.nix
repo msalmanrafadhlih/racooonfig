@@ -35,7 +35,7 @@ in
     origin = "flathub";
   })
 
-  # plasma addons - Music player
+  # plasma addons - Music player GNOME
   (lib.mkIf (builtins.elem "amberol-flatpak" cfg.listConfigurations) {
     appId = "io.bassi.Amberol";
     origin = "flathub";
@@ -62,6 +62,12 @@ in
   # KDE Music streaming
   (lib.mkIf (builtins.elem "audiotube-flatpak" cfg.listConfigurations) {
     appId = "org.kde.audiotube";
+    origin = "flathub";
+  })
+
+  # KDE Elegan Music feature rich
+  (lib.mkIf (builtins.elem "nocturne-flatpak" cfg.listConfigurations) {
+    appId = "com.jeffser.Nocturne";
     origin = "flathub";
   })
 ]
