@@ -54,7 +54,6 @@ in
       # ani-cli # butuh mpv(GUI) untuk streaming
       go-grip # Markdown Preview via http server: butuh browser
       nchat
-      beets
       # spotdl
     ];
   };
