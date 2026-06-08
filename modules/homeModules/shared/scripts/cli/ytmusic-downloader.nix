@@ -32,7 +32,7 @@
 
         YTDLP_COMMON=(
           --extract-audio
-          --audio-format mp3
+          --audio-format m4a
           --audio-quality 0
           --embed-thumbnail
           --embed-metadata
