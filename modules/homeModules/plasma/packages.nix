@@ -24,6 +24,7 @@ in
       kdePackages.kdbusaddons  # kquitapp6
       kdePackages.qttools      # tool lain selain qdbus tetap tersedia
       application-title-bar
+      kde-rounded-corners
 
       # hiPrio memastikan wrapper ini menang atas qdbus dari qttools
       (lib.hiPrio (writeShellScriptBin "qdbus" ''
