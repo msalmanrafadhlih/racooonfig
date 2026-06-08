@@ -63,7 +63,7 @@
             "$URL"
 
           echo "[beets] Memulai proses auto-tagging lagu..."
-          beet import "$UNSTAGGED_DIR"
+          beet import "$UNTAGGED_DIR"
         else
 
           URL="$1"
