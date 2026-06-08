@@ -42,7 +42,7 @@
           echo "[yt-dlp] Mengunduh playlist ke folder sementara..."
           yt-dlp \
             --extract-audio \
-            --audio-format mp3 \
+            --audio-format m4a \
             --audio-quality 0 \
             --format 'ba/best' \
             --ignore-errors \
@@ -62,7 +62,7 @@
 
           echo "[beets] Memulai proses auto-tagging playlist..."
           # Menggunakan flag -g (group/as-is) atau -A (jangan tag sebagai album utuh jika meleset) agar beets berjalan otomatis
-          beet import --flat --autotag "$UNTAGGED_DIR"
+          beet import -q "$UNTAGGED_DIR"
         else
 
           URL="$1"
@@ -71,7 +71,7 @@
           yt-dlp \
             --no-playlist \
             --extract-audio \
-            --audio-format mp3 \
+            --audio-format m4a \
             --audio-quality 0 \
             --embed-thumbnail \
             --embed-metadata \
@@ -86,7 +86,7 @@
             "$URL"
 
           echo "[beets] Memulai proses auto-tagging lagu..."
-          beet import --single --autotag "$UNTAGGED_DIR"
+          beet import -q "$UNTAGGED_DIR"
         fi
 
         echo "[beets] Memperbarui database musik..."
