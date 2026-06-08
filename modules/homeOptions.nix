@@ -79,6 +79,7 @@ in
           "spotube-flatpak"
           "motrix-flatpak"
           "audiotube-flatpak"
+          "nocturne-flatpak"
 
           # enable program
           "gamemode"
