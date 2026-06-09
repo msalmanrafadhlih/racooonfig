@@ -1,17 +1,22 @@
-directory: ~/Musics
+directory: /srv/share/music
 library: ~/.config/beets/library.db
+art_filename: albumart
 
 import:
-  move: yes               
-  write: yes              
-  autotag: yes            
-  resume: no              
-  incremental: yes        
-  quiet_fallback: asis    
+  move: yes              # Memindahkan file dari folder unduhan ke folder koleksi rapi 
+  write: yes             # menulis metadata langsung ke dalam file audio 
+  autotag: yes           # WAJIB aktif untuk mencari metadata resmi
+  resume: no             # update ke 'no' agar skrip otomatis tidak macet untuk meminta konfirmasi resume
+  incremental: yes       # mengabaikan file yang sudah pernah diimport sebelumnya
+  quiet_fallback: asis   # PENTINH: jika tidak ada di internet, gunakan nama dari youtube (jangan di skip)
 
 paths:
-  default: $albumartist/$album/$track - $title
+  default: '%first{$genres}/$albumartist/$album/$track $title'
+  singleton: 'Singletons/$artist - $title'
+  comp: '%first{$genres}/$album/$track $title'
+  albumtype:soundtrack: 'Soundtracks/$album/$track $title'
 
+pluginpath: ~/beets/myplugins
 plugins:
   - musicbrainz   # WAJIB ditambahkan agar plugin chroma bisa menarik data metadata resmi
   - fetchart
@@ -20,6 +25,7 @@ plugins:
   - chroma
   - scrub
   - duplicates
+  - bpd
 
 disabled_plugins: []
 
@@ -102,3 +108,6 @@ duplicates:
     strict: no
     tag: ''
     remove: no
+
+ui:
+    color: yes
