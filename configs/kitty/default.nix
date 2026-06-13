@@ -32,13 +32,6 @@ in
     programs.kitty = {
       enable = true;
 
-      # TWEAK UTAMA: Membungkus binary paket Kitty agar selalu dieksekusi dengan flag --single-instance
-      package = pkgs.kitty.overrideAttrs (oldAttrs: {
-        postInstall = (oldAttrs.postInstall or "") + ''
-          wrapProgram $out/bin/kitty --add-flags "--single-instance"
-        '';
-      });
-
       shellIntegration = {
         enableZshIntegration = true;
         enableBashIntegration = true;
