@@ -17,6 +17,7 @@ in
   config = lib.mkIf (cfg.homeManager && builtins.elem "beets" cfg.listConfigurations) {
     home.packages = with pkgs; [
       beets
+      yt-dlp
       ffmpeg
     ];
 
