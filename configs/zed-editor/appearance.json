@@ -1,18 +1,14 @@
 {
-  "theme": {
-    "mode": "system",
-    "light": "racooonfig dark",
-    "dark": "racooonfig light"
-  },
+  "mouse_wheel_zoom": true,
   "icon_theme": "Material Icon Theme",
   "ui_font_family": ".ZedMono",
-  "ui_font_size": 9.0,
+  "ui_font_size": 16.0,
   "buffer_font_family": ".ZedMono",
-  "buffer_font_size": 8.0,
+  "buffer_font_size": 16.0,
   "buffer_font_weight": 400,
   "buffer_line_height": "standard",
-  "agent_ui_font_size": 8.0,
-  "agent_buffer_font_size": 8.0,
+  "agent_ui_font_size": 16.0,
+  "agent_buffer_font_size": 16.0,
   "active_pane_modifiers": {
     "border_size": 0.1,
     "inactive_opacity": 0.5
@@ -122,7 +118,7 @@
     },
     "default_width": 620.0,
     "cursor_shape": "bar",
-    "font_size": 8.0,
+    "font_size": 16.0,
     "alternate_scroll": "on",
     "blinking": "on",
     "dock": "bottom",
