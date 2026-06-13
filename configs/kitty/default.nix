@@ -37,9 +37,9 @@ in
         mode = "no-title no-cwd";
       };
 
-      extraConfig = ''
-        include themes/racooonfig.conf
-      '';
+      # extraConfig = ''
+      #   include themes/racooonfig.conf
+      # '';
 
       settings = {
         # fonts
