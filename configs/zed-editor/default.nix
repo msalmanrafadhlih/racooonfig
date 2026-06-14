@@ -191,6 +191,17 @@ in
           npm_path = lib.getExe' pkgs.nodejs "npm";
         };
 
+        lsp = {
+          jdtls = {
+            binary = {
+              path = "${pkgs.jdt-language-server}/bin/jdtls";
+            };
+            settings = {
+              java_home = "${pkgs.jdk21}";
+            };
+          };
+        };
+
         terminal = {
           option_as_meta = true;
           copy_on_select = true;
