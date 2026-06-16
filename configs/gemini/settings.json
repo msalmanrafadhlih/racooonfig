@@ -1,14 +1,24 @@
 {
-  "context": { "includeDirectories": ["~/.gemini"] },
+  "context": {
+    "includeDirectories": [
+      "~/.gemini"
+    ]
+  },
   "general": {
-    "disableAutoUpdate": true,
-    "disableUpdateNag": true,
     "enablePromptCompletion": true,
     "preferredEditor": "hx",
-    "vimMode": true
+    "vimMode": true,
+    "enableAutoUpdate": false,
+    "enableAutoUpdateNotification": false
   },
-  "privacy": { "usageStatisticsEnabled": false },
-  "security": { "auth": { "selectedType": "oauth-personal" } },
+  "privacy": {
+    "usageStatisticsEnabled": false
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
   "ui": {
     "footer": {
       "hideCWD": true,
