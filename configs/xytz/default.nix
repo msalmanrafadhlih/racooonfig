@@ -6,7 +6,7 @@ in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "xytz" cfg.listConfigurations) {
     home.packages = [
-      inputs.xytz.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inp.xytz.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
 }
