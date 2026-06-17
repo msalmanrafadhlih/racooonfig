@@ -30,19 +30,15 @@ in
       extensions = [
         "material_icon_theme"
         "nix"
-        "slint"
         "toml"
         "elixir"
         "make"
         "lua"
         "python"
-        "rust"
         "typescript"
         "marksman"
         "css"
         "scss"
-        "kotlin"
-        "java"
         "xml"
         "sql"
         "jsons"
@@ -53,13 +49,15 @@ in
 
         redact_private_values = true;
 
-        completions.lsp = false;
+        completions = {
+          lsp = true;
+        };
         linked_edits = false;
         use_system_path_prompts = false;
         lsp_highlight_debounce = 0;
 
         audio = {
-          "experimental.rodio_audio" = true;
+          # "experimental.rodio_audio" = true;
           "experimental.auto_microphone_volume" = true;
         };
 
@@ -128,13 +126,14 @@ in
 
         agent = {
           show_turn_stats = true;
-          message_editor_min_lines = 4;
+          message_editor_min_lines = 6;
           use_modifier_to_send = true;
-          play_sound_when_agent_done = true;
-          notify_when_agent_waiting = "all_screens";
+          play_sound_when_agent_done = "always";
+          notify_when_agent_waiting = "primary_screen";
           single_file_review = true;
           default_height = 320.0;
           default_width = 500.0;
+          flexible = false;
 
           default_model = {
             provider = "copilot_chat";
@@ -198,6 +197,22 @@ in
             };
             settings = {
               java_home = "${pkgs.jdk21}";
+              lombok_support = true;
+            };
+          };
+          tailwindcss-language-server = {
+            settings = {
+              includeLanguages = {
+                astro = "html";
+              };
+              experimental = {
+                classRegex = [
+                  ''class="([^"]*)"''
+                  "class='([^']*)'"
+                  "class:list=\"{([^}]*)}\""
+                  "class:list='{([^}]*)}'"
+                ];
+              };
             };
           };
         };
