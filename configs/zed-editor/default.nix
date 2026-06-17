@@ -106,7 +106,7 @@ in
         # Completion popup muncul langsung saat mengetik (tanpa Ctrl+Space)
         show_completions_on_input = true;
         show_completion_documentation = true;
-        completion_documentation_secondary_query_debounce = 300;
+        # completion_documentation_secondary_query_debounce = 300;
 
         # Signature help otomatis (tampil parameter saat memanggil fungsi)
         auto_signature_help = true;
@@ -132,7 +132,7 @@ in
 
         inline_code_actions = true;
         code_lens = "on";
-        semantic_tokens = "on";            # Syntax highlight akurat dari LSP
+        semantic_tokens = "combined";            # Syntax highlight akurat dari LSP
         lsp_highlight_debounce = 75;       # ms; 0 = boros CPU tanpa manfaat nyata
 
         # ════════════════════════════════════════════════════════════════════════
@@ -259,20 +259,17 @@ in
           TypeScript = {
             tab_size = 2;
             format_on_save = "on";
-            formatter = { prettier = { }; };
           };
 
           JavaScript = {
             tab_size = 2;
             format_on_save = "on";
-            formatter = { prettier = { }; };
           };
 
           # TSX: React / Solid — Tailwind aktif
           TSX = {
             tab_size = 2;
             format_on_save = "on";
-            formatter = { prettier = { }; };
             language_servers = [
               "vtsls"
               "tailwindcss-language-server"
@@ -283,7 +280,6 @@ in
           JSX = {
             tab_size = 2;
             format_on_save = "on";
-            formatter = { prettier = { }; };
             language_servers = [
               "vtsls"
               "tailwindcss-language-server"
@@ -294,7 +290,6 @@ in
           Astro = {
             tab_size = 2;
             format_on_save = "on";
-            formatter = { prettier = { }; };
             language_servers = [
               "astro-language-server"
               "tailwindcss-language-server"
@@ -305,7 +300,6 @@ in
           CSS = {
             tab_size = 2;
             format_on_save = "on";
-            formatter = { prettier = { }; };
             language_servers = [
               "vscode-css-language-server"
               "tailwindcss-language-server"
@@ -315,7 +309,6 @@ in
           SCSS = {
             tab_size = 2;
             format_on_save = "on";
-            formatter = { prettier = { }; };
             language_servers = [
               "vscode-css-language-server"
               "tailwindcss-language-server"
@@ -326,7 +319,6 @@ in
           HTML = {
             tab_size = 2;
             format_on_save = "on";
-            formatter = { prettier = { }; };
             language_servers = [
               "vscode-html-language-server"
               "tailwindcss-language-server"
@@ -389,7 +381,6 @@ in
           JSON = {
             tab_size = 2;
             format_on_save = "on";
-            formatter = { prettier = { }; };
           };
 
           # ── Markdown ─────────────────────────────────────────────────────────
@@ -397,7 +388,6 @@ in
             tab_size = 2;
             soft_wrap = "editor_width";
             format_on_save = "on";
-            formatter = { prettier = { }; };
           };
 
           # ── Makefile — WAJIB hard tab ─────────────────────────────────────
@@ -635,9 +625,9 @@ in
           };
 
           # ── vscode-json-language-server ───────────────────────────────────────
-          "vscode-json-language-server" = {
-            initialization_options.provideFormatter = true;
-          };
+          # "vscode-json-language-server" = {
+          #   initialization_options.provideFormatter = true;
+          # };
 
           # ── bash-language-server ──────────────────────────────────────────────
           "bash-language-server" = {
@@ -649,7 +639,7 @@ in
           };
 
           # ── taplo: TOML ───────────────────────────────────────────────────────
-          taplo = { };
+          # taplo = { };
 
           # ── marksman: Markdown ────────────────────────────────────────────────
           marksman = { };
