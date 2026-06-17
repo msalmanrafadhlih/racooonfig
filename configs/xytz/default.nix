@@ -1,13 +1,12 @@
-{ inputs, config, lib, ... }:
+{ inputs, config, lib, pkgs, ... }:
 let
   inp = inputs.racooonfig.inputs;
   cfg = config.racooonfig;
 in
 {
-  imports = [ inp.xytz.homeManagerModules.default ];
   config = lib.mkIf (cfg.homeManager && builtins.elem "xytz" cfg.listConfigurations) {
-    programs.xytz = {
-      enable = true;
-    };
+    home.packages = [
+      inputs.xytz.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
   };
 }
