@@ -13,6 +13,16 @@
     "border_size": 0.1,
     "inactive_opacity": 0.5
   },
+  "agent": {
+    "button": true,
+    "default_width": 500.0,
+    "limit_content_width": false,
+    "default_height": 300.0,
+    "max_content_width": 500.0,
+    "flexible": false,
+    "favorite_models": [],
+    "model_parameters": []
+  },
   "centered_layout": {
     "left_padding": 0.2,
     "right_padding": 0.2
@@ -71,7 +81,8 @@
     "show_pinned_tabs_in_separate_row": true
   },
   "tabs": {
-    "close_position": "left",
+    "close_position": "right",
+    "show_close_buttons": "hidden",
     "file_icons": true,
     "git_status": false
   },
