@@ -3,7 +3,7 @@
 {
   home.packages = [
     (pkgs.writeShellApplication {
-      name = "SAVEFLAKE";
+      name = "saveflake";
       runtimeInputs = [
         pkgs.fzf
         pkgs.git
