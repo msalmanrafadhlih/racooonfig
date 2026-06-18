@@ -1,7 +1,7 @@
 [
   {
     "context": "Workspace",
-    "bindings": {
+    "unbind": {
       "space f": "file_finder::Toggle"
     }
   },
@@ -97,6 +97,30 @@
     "context": "Workspace",
     "unbind": {
       "ctrl-alt-b": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-k": "editor::MoveLineUp"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "alt-up": "editor::MoveLineUp"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-j": "editor::MoveLineDown"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "alt-down": "editor::MoveLineDown"
     }
   }
 ]
