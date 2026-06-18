@@ -198,7 +198,7 @@ in
 
         helix_mode = true;
         vim_mode = false;
-        base_keymap = "None";             # FIX: helix_mode konflik dengan "VSCode"
+        base_keymap = "VSCode";
 
         # ════════════════════════════════════════════════════════════════════════
         # EXTENSIONS & UPDATE
