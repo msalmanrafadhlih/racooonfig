@@ -1,42 +1,102 @@
 [
-    {
-        "context": "Workspace",
-        "bindings": {
-            "space f": "file_finder::Toggle"
-        }
-    },
-    {
-        "context": "Editor && vim_mode == insert",
-        "bindings": {
-            "k j": "vim::NormalBefore",
-            "j k": "vim::NormalBefore",
-            "K J": "vim::NormalBefore",
-            "J K": "vim::NormalBefore"
-        }
-    },
-    {
-        "context": "((VimControl && vim_mode == helix_normal) && !menu)",
-        "bindings": {
-            "space w": "workspace::Save",
-            "space q": "workspace::CloseWindow"
-        }
-    },
-    {
-        "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
-        "bindings": {
-            "space m": "editor::SelectAll"
-        }
-    },
-    {
-        "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
-        "bindings": {
-            "space x": "pane::CloseActiveItem"
-        }
-    },
-    {
-        "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
-        "unbind": {
-            "space w q": "pane::CloseActiveItem"
-        }
+  {
+    "context": "Workspace",
+    "bindings": {
+      "space f": "file_finder::Toggle"
     }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "k j": "vim::NormalBefore",
+      "j k": "vim::NormalBefore",
+      "K J": "vim::NormalBefore",
+      "J K": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "((VimControl && vim_mode == helix_normal) && !menu)",
+    "bindings": {
+      "space w": "workspace::Save",
+      "space q": "workspace::CloseWindow"
+    }
+  },
+  {
+    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "bindings": {
+      "space m": "editor::SelectAll"
+    }
+  },
+  {
+    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "bindings": {
+      "space x": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "unbind": {
+      "space w q": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-shift-h": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-b": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-h": "agent::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-?": "agent::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-l": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-shift-e": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "AgentPanel",
+    "bindings": {
+      "alt-l": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "AgentPanel",
+    "unbind": {
+      "ctrl-shift-e": "project_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-shift-l": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-alt-b": "workspace::ToggleRightDock"
+    }
+  }
 ]
