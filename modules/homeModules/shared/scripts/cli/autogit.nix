@@ -39,9 +39,9 @@
         dir="."
         timestamp=$(date "+%Y-%m-%d %H:%M")
 
-        sys_msg="''${"1:-Update" via SAVEFLAKE}"
+        sys_msg="''${1:-Update via Auto Commit}"
         current_branch=$(git -C "$dir" branch --show-current 2> /dev/null)
-        target_branch="${"2:-$current_branch"}"
+        target_branch="''${2:-$current_branch}"
 
         if [[ ! -n "$current_branch" ]]; then
             echo "no git in thios folder"
