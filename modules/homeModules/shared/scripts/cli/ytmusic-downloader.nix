@@ -17,28 +17,45 @@
       text = ''
         set -euo pipefail
 
-        RANDOM_ID=$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 8)
-        MUSIC_DIR="$HOME/Musics"
-        UNTAGGED_DIR="/tmp/dmusics-downloads-$RANDOM_ID"
+        # Default variables
+        COMP_ARGS=()
+        IS_PLAYLIST=0
+        URL=""
 
-        mkdir -p "$UNTAGGED_DIR"
-        mkdir -p "$MUSIC_DIR"
+        # Simple Argument Parser
+        while [[ $# -gt 0 ]]; do
+          case $1 in
+            --comp)
+              COMP_ARGS=(--set comp=1 --noautotag)
+              shift
+              ;;
+            playlist)
+              IS_PLAYLIST=1
+              shift
+              ;;
+            *)
+              URL="$1"
+              shift
+              ;;
+          esac
+        done
 
-        if [[ $# -eq 0 ]]; then
+        if [[ -z "$URL" ]]; then
           echo "Usage:"
-          echo "  dmusic <youtube-url>"
-          echo "  dmusic playlist <playlist-url>"
+          echo "  dmusic [--comp] <youtube-url>"
+          echo "  dmusic [--comp] playlist <playlist-url>"
           exit 1
         fi
 
-        if [[ "$1" == "playlist" ]]; then
-          if [[ $# -lt 2 ]]; then
-            echo "Error: Playlist URL required"
-            exit 1
-          fi
+        MUSIC_DIR="$HOME/Musics"
 
-          URL="$2"
+        UNTAGGED_DIR=$(mktemp -d -t dmusic-XXXXXXX)
 
+        trap 'rm -rf "$UNTAGGED_DIR"' EXIT
+
+        mkdir -p "$MUSIC_DIR"
+
+        if [[ $IS_PLAYLIST -eq 1 ]]; then
           echo "[yt-dlp] Mengunduh playlist ke folder sementara..."
           yt-dlp \
             --extract-audio \
@@ -59,14 +76,7 @@
             --yes-playlist \
             --windows-filenames \
             "$URL"
-
-          echo "[beets] Memulai proses auto-tagging playlist..."
-          # Menggunakan flag -g (group/as-is) atau -A (jangan tag sebagai album utuh jika meleset) agar beets berjalan otomatis
-          beet import -q "$UNTAGGED_DIR"
         else
-
-          URL="$1"
-
           echo "[yt-dlp] Mengunduh lagu tunggal..."
           yt-dlp \
             --no-playlist \
@@ -84,16 +94,14 @@
             --restrict-filenames \
             --windows-filenames \
             "$URL"
-
-          echo "[beets] Memulai proses auto-tagging lagu..."
-          beet import -q "$UNTAGGED_DIR"
         fi
+
+        echo "[beets] Memulai proses auto-tagging..."
+        beet import -q "''${COMP_ARGS[@]}" "$UNTAGGED_DIR"
 
         echo "[beets] Memperbarui database musik..."
         beet update
 
-        # Hapus folder temporary beserta sisa file sampah (seperti sisa gambar thumbnail)
-        rm -rf "$UNTAGGED_DIR"
         echo "Selesai! File musik Anda telah dirapikan ke dalam folder ~/Musics"
       '';
     })
