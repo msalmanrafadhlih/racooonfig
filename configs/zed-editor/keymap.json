@@ -122,5 +122,87 @@
     "unbind": {
       "alt-down": "editor::MoveLineDown"
     }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-shift-j": "terminal_panel::Toggle"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-`": "terminal_panel::Toggle"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-z l": "pane::SplitRight"
+    }
+  },
+  {
+    "context": "Terminal",
+    "unbind": {
+      "ctrl-shift-5": "pane::SplitRight"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-z h": "pane::SplitLeft"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "ctrl-k left": "pane::SplitLeft"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-z j": "pane::SplitDown"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "ctrl-k down": "pane::SplitDown"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-z k": "pane::SplitUp"
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "ctrl-k up": "pane::SplitUp"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-z x": [
+        "pane::CloseCleanItems",
+        {
+          "close_pinned": false
+        }
+      ]
+    }
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "ctrl-k u": [
+        "pane::CloseCleanItems",
+        {
+          "close_pinned": false
+        }
+      ]
+    }
   }
 ]
