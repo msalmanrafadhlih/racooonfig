@@ -11,13 +11,21 @@ import:
   quiet_fallback: asis   # PENTINH: jika tidak ada di internet, gunakan nama dari youtube (jangan di skip)
 
 paths:
-  default: '%first{$genres}/$albumartist/$album/$track $title'
+  'is_youtube_comp:true': 'Compilations/$artist/$title'
+  default: '%first{$albumartist}/$album/$track - $title'
   singleton: 'Singletons/$artist - $title'
-  comp: '%first{$genres}/$album/$track $title'
-  albumtype:soundtrack: 'Soundtracks/$album/$track $title'
+  comp: 'Compilations/$artist/$track - $title'
+  albumtype:soundtrack: 'Soundtracks/$album/$track - $title'
+
+item_fields:
+  is_youtube_comp: |
+    if 'mix' in title.lower() or 'compilation' in title.lower() or length > 1800:
+        return True
+    return False
 
 pluginpath: ~/beets/myplugins
 plugins:
+  - inline
   - musicbrainz   # WAJIB ditambahkan agar plugin chroma bisa menarik data metadata resmi
   - fetchart
   - lyrics
