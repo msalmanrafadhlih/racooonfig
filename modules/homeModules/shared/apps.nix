@@ -19,7 +19,6 @@ in
       # Media # Browser
       # ======================
       vlc
-      whatsie
       # telegram-desktop
       # ungoogled-chromium
       # vivaldi
