@@ -65,7 +65,7 @@ in
         "make"
         "toml"
         # Data Formats
-        "jsons"    # JSON + JSON5
+        "jsons" # JSON + JSON5
         "xml"
         "sql"
         # Docs
@@ -79,11 +79,11 @@ in
         redact_private_values = true;
 
         hard_tabs = false;
-        tab_size = 2;                      # Default web dev; override per-bahasa di bawah
+        tab_size = 2; # Default web dev; override per-bahasa di bawah
 
         hover_popover_enabled = true;
         current_line_highlight = "gutter";
-        linked_edits = true;               # Sinkron tag HTML/JSX berpasangan
+        linked_edits = true; # Sinkron tag HTML/JSX berpasangan
         double_click_in_multibuffer = "select";
         autoscroll_on_clicks = true;
 
@@ -95,7 +95,7 @@ in
         auto_indent_on_paste = true;
 
         use_system_path_prompts = false;
-        load_direnv = "direct";            # Krusial agar devShells terbaca
+        load_direnv = "direct"; # Krusial agar devShells terbaca
 
         image_viewer.unit = "binary";
 
@@ -132,8 +132,8 @@ in
 
         inline_code_actions = true;
         code_lens = "on";
-        semantic_tokens = "combined";            # Syntax highlight akurat dari LSP
-        lsp_highlight_debounce = 75;       # ms; 0 = boros CPU tanpa manfaat nyata
+        semantic_tokens = "combined"; # Syntax highlight akurat dari LSP
+        lsp_highlight_debounce = 75; # ms; 0 = boros CPU tanpa manfaat nyata
 
         # ════════════════════════════════════════════════════════════════════════
         # FORMAT & DIAGNOSTICS
@@ -141,7 +141,7 @@ in
 
         # Global: off — setiap bahasa aktifkan sendiri di blok `languages`
         format_on_save = "off";
-        prettier.allowed = true;           # Izinkan Zed pakai prettier bawaan
+        prettier.allowed = true; # Izinkan Zed pakai prettier bawaan
 
         diagnostics = {
           include_warnings = true;
@@ -174,7 +174,7 @@ in
         search = {
           regex = true;
           include_ignored = true;
-          case_sensitive = false;          # FIX: konflik dengan smartcase jika true
+          case_sensitive = false; # FIX: konflik dengan smartcase jika true
           whole_word = false;
         };
 
@@ -204,7 +204,7 @@ in
         # EXTENSIONS & UPDATE
         # ════════════════════════════════════════════════════════════════════════
 
-        auto_update = false;              # FIX: Nix yang kelola versi Zed
+        auto_update = false; # FIX: Nix yang kelola versi Zed
 
         auto_install_extensions = {
           material_icon_theme = true;
@@ -235,7 +235,12 @@ in
           copy_on_select = true;
           detect_venv.on = {
             activate_script = "default";
-            directories = [ ".venv" "venv" ".env" "env" ];
+            directories = [
+              ".venv"
+              "venv"
+              ".env"
+              "env"
+            ];
           };
           working_directory = "current_project_directory";
         };
@@ -347,7 +352,10 @@ in
                 ];
               };
             };
-            language_servers = [ "pyright" "ruff" ];
+            language_servers = [
+              "pyright"
+              "ruff"
+            ];
           };
 
           # ── Nix ──────────────────────────────────────────────────────────────
@@ -357,7 +365,7 @@ in
             formatter = {
               external = {
                 # Ganti ke pkgs.nixfmt jika lebih suka style lama
-                command = lib.getExe pkgs.nixfmt-rfc-style;
+                command = lib.getExe pkgs.nixfmt;
                 arguments = [ "-" ];
               };
             };
@@ -396,9 +404,15 @@ in
           };
 
           # ── Sisanya ───────────────────────────────────────────────────────────
-          SQL = { tab_size = 2; };
-          Bash = { tab_size = 2; };
-          XML = { tab_size = 2; };
+          SQL = {
+            tab_size = 2;
+          };
+          Bash = {
+            tab_size = 2;
+          };
+          XML = {
+            tab_size = 2;
+          };
         };
 
         # ════════════════════════════════════════════════════════════════════════
@@ -412,7 +426,7 @@ in
             settings = {
               vtsls = {
                 enableMoveToFileCodeAction = true;
-                autoUseWorkspaceTsdk = true;        # Prioritaskan TS di node_modules
+                autoUseWorkspaceTsdk = true; # Prioritaskan TS di node_modules
                 experimental.completion = {
                   enableServerSideFuzzyMatch = true; # Fuzzy match completion lebih akurat
                 };
@@ -579,12 +593,19 @@ in
               lineLength = 88;
               lint = {
                 select = [
-                  "E" "F" "W"   # pycodestyle, pyflakes
-                  "I"           # isort
-                  "N" "UP"      # naming, pyupgrade
-                  "B" "A" "C4"  # bugbear, builtins, comprehensions
-                  "SIM" "RET"   # simplify, return
-                  "PL" "RUF"    # pylint, ruff-specific
+                  "E"
+                  "F"
+                  "W" # pycodestyle, pyflakes
+                  "I" # isort
+                  "N"
+                  "UP" # naming, pyupgrade
+                  "B"
+                  "A"
+                  "C4" # bugbear, builtins, comprehensions
+                  "SIM"
+                  "RET" # simplify, return
+                  "PL"
+                  "RUF" # pylint, ruff-specific
                 ];
                 ignore = [
                   "E501" # line too long — dihandle oleh formatter
@@ -598,7 +619,13 @@ in
             settings.Lua = {
               runtime.version = "LuaJIT";
               # Globals umum: Neovim (vim), Hammerspoon (hs), AwesomeWM
-              diagnostics.globals = [ "vim" "hs" "awesome" "client" "screen" ];
+              diagnostics.globals = [
+                "vim"
+                "hs"
+                "awesome"
+                "client"
+                "screen"
+              ];
               workspace.checkThirdParty = false;
               hint = {
                 enable = true;
