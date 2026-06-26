@@ -9,7 +9,11 @@ import:
   resume: no             # update ke 'no' agar skrip otomatis tidak macet untuk meminta konfirmasi resume
   incremental: yes       # mengabaikan file yang sudah pernah diimport sebelumnya
   quiet_fallback: asis   # PENTINH: jika tidak ada di internet, gunakan nama dari youtube (jangan di skip)
-
+  duplicate_action: merge # keep    -> simpan keduanya di library
+                          # replace -> timpa entry lama dengan yang baru
+                          # merge   -> gabungkan track dari kedua entry
+                          # ask     -> interaktif
+                          # skip
 paths:
   'is_youtube_comp:true': 'Compilations/$artist/$title'
   default: '%first{$albumartist}/$album/$track - $title'
