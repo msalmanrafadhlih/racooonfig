@@ -646,7 +646,7 @@ in
           # ── nixd: Nix Language Server ─────────────────────────────────────────
           nixd = {
             settings.nixd = {
-              formatting.command = [ (lib.getExe pkgs.nixfmt-rfc-style) ];
+              formatting.command = [ (lib.getExe pkgs.nixfmt) ];
               diagnostic.suppress = [ "sema-escaping-with" ];
             };
           };
