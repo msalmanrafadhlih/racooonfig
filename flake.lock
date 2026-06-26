@@ -367,11 +367,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781653432,
-        "narHash": "sha256-hCPcC9KUrJ1UhTvCoj+cIgsI2flejKcmjUxQrNNDYWg=",
+        "lastModified": 1782329511,
+        "narHash": "sha256-WrHc/3/zJtaEBu3Y6h2EkOf3EiKra08hYN+p/IK4KqE=",
         "owner": "TQ-See",
         "repo": "xytz",
-        "rev": "226bd228b544cd06a6583cf59758a0af3fa4c275",
+        "rev": "4068ed8e29d0a9ff4a1f1a6eaaa2daca69457b5a",
         "type": "github"
       },
       "original": {
