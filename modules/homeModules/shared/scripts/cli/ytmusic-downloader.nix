@@ -97,7 +97,7 @@
         fi
 
         echo "[beets] Memulai proses auto-tagging..."
-        beet import -q ''${COMP_ARGS[@]} "$UNTAGGED_DIR"
+        beet import -q "''${COMP_ARGS[@]}" "$UNTAGGED_DIR"
 
         echo "[beets] Memperbarui database musik..."
         beet update
