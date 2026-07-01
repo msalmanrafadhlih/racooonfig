@@ -39,7 +39,7 @@ in
 
         # ── Fitur Dolphin (bisa aktifkan nanti jika dibutuhkan) ────
         # dolphin-plugins # Plugin Git & Dropbox di sidebar Dolphin
-        # baloo-widgets # Panel metadata file di Dolphin
+        baloo-widgets # Panel metadata file di Dolphin
         # ffmpegthumbs # Thumbnail pratinjau video di Dolphin
       ];
     };
