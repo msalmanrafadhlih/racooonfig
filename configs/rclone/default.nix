@@ -1,11 +1,11 @@
 {
-  username,
   config,
   lib,
   ...
 }:
 let
   home = config.home.homeDirectory;
+  username = config.home.username;
   mountdir = "${home}/mnt/gdrive";
   # root_folder_id = "";
   # client_id = "1009718778774-dt220ti1a4qpoo1p0u91umdhonavfn6h.apps.googleusercontent.com";
