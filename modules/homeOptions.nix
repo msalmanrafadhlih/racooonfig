@@ -33,7 +33,6 @@ in
         lib.types.enum [
           # desktop Environment
           "macos-kdeplasma"
-          "macos-kdeplasma-apps"
 
           # window manager Configs
           "bspwm"
