@@ -12,7 +12,7 @@ let
 
   branch = "main";
   home = config.home.homeDirectory;
-  dotfiles_path = "${home}/.dotfiles/racooonfig";
+  dotfiles_path = "${home}/.repos/racooonfig";
   repo_url = "https://github.com/msalmanrafadhlih/racooonfig.git";
 
   mkSymlink = import ../../.lib/mkSymlink.nix {
