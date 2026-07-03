@@ -64,7 +64,7 @@
         ICON="$HOME/.config/Assets/Icons/rebuild.png"
         SOUND="$HOME/.config/Assets/Sounds/notification.wav"
 
-        dir="$HOME/.dotfiles/racooonfig"
+        dir="$HOME/.repos/racooonfig"
         timestamp=$(date "+%Y-%m-%d %H:%M")
 
         sys_msg="''${1:-Update via SAVEFLAKE}"
