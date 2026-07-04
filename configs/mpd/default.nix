@@ -15,8 +15,8 @@ in
     services.mpd = {
       enable = true;
 
-      musicDirectory = "${home}/Music";
-      playlistDirectory = "${home}/Music";
+      musicDirectory = "${home}/Musics";
+      playlistDirectory = "${home}/Musics";
       dataDir = "${local}/dataDir";
 
       # network.listenAddress = "127.0.0.1";
