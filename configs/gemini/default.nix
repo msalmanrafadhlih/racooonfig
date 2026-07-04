@@ -1,5 +1,6 @@
 {
   mkSymlink,
+  pkgs,
   lib,
   config,
   ...
@@ -13,104 +14,218 @@ let
 in
 {
   config = lib.mkIf (cfg.homeManager && builtins.elem "gemini" cfg.listConfigurations) {
-    # home.file = mkSymlink {
-    #   target = "gemini";
-    # } configs;
+    home.file = mkSymlink {
+      target = "gemini";
+    } configs;
 
     programs.antigravity-cli = {
       enable = true;
+      package = pkgs.antigravity-cli;
 
-      # Menentukan default model yang otomatis mengisi environment variable $GEMINI_MODEL
-      defaultModel = "gemini-2.5-flash";
+      # false = pakai path native Antigravity CLI (~/.gemini/antigravity-cli/...)
+      # Set true kalau kamu justru pakai paket "gemini-cli" (biar path legacy dipakai otomatis).
+      useLegacyGeminiConfig = false;
+      defaultModel = "gemini-3.1-pro";
 
-      # Mengaktifkan integrasi dengan konfigurasi programs.mcp.servers (jika kamu menggunakannya)
+      # Ambil MCP servers dari programs.mcp.servers (kalau kamu pakai module MCP terpusat)
       enableMcpIntegration = true;
 
-      # Pengaturan umum UI/UX (disimpan ke ~/.gemini/antigravity-cli/settings.json)
       settings = {
         colorScheme = "tokyo night";
         altScreenMode = "always";
+
+        # "ask-user" lebih aman untuk sehari-hari; ganti ke "proceed-in-sandbox"
+        # kalau kamu mau agent lebih otonom saat ngoding di sandbox/devenv shell.
         toolPermission = "ask-user";
         artifactReviewPolicy = "agent-decides";
+
         context = {
-          # Menyesuaikan nama file konteks yang akan dibaca
           fileName = [
+            "AGENTS.md"
             "GEMINI.md"
             "WORKSPACE.md"
           ];
         };
       };
 
-      # Konfigurasi server MCP untuk kapabilitas tambahan
+      # ============================================================
+      # MCP SERVERS — kapabilitas tambahan buat ngoding
+      # ============================================================
       mcpServers = {
         github = {
           serverUrl = "https://api.githubcopilot.com/mcp/";
         };
+
         filesystem = {
           command = "npx";
           args = [
             "-y"
             "@modelcontextprotocol/server-filesystem"
-            "${home}/.repos" # Ganti dengan path direktori proyekmu
+            "/etc/nixos"
+            "${home}/.repos"
+            "${home}/.config"
+          ];
+        };
+
+        git = {
+          command = "uvx";
+          args = [
+            "mcp-server-git"
+            "--repository"
+            "${home}/repos"
+          ];
+        };
+
+        nixos = {
+          command = "nix";
+          args = [
+            "run"
+            "github:utensils/mcp-nixos"
+            "--"
           ];
         };
       };
 
-      # Mengatur perizinan spesifik untuk command sandbox/eksekusi
       permissions = {
         allow = [
           "command(git status)"
-          "command(ls)"
+          "command(git diff *)"
+          "command(git log *)"
+          "command(ls *)"
           "command(cat *)"
+          "command(rg *)"
+          "command(fd *)"
+          "command(cargo check)"
+          "command(cargo build)"
+          "command(cargo test)"
+          "command(bun install)"
+          "command(bun run *)"
+          "command(nix flake check)"
+          "command(nix build)"
         ];
-        deny = [ "command(rm -rf *)" ];
-        ask = [ "command(*)" ]; # Akan selalu bertanya sebelum menjalankan command lain
+        deny = [
+          "command(rm -rf *)"
+          "command(git push --force*)"
+          "command(sudo *)"
+          "command(dd *)"
+        ];
+        ask = [
+          "command(*)"
+        ];
       };
 
-      # Perintah kustom (akan di-generate menjadi struktur skill global)
+      # ============================================================
+      # COMMANDS KUSTOM — jadi skill global "/nama-perintah"
+      # ============================================================
       commands = {
         "git/fix" = {
-          description = "Menganalisis perubahan git dan memberikan perbaikan kode.";
-          prompt = "Tolong analisis perubahan yang di-stage dan berikan perbaikan untuk: {{args}}.";
+          description = "Analisis perubahan staged git & berikan perbaikan kode.";
+          prompt = "Tolong analisis perubahan yang di-stage (git diff --staged) dan berikan perbaikan untuk masalah ini: {{args}}.";
         };
+
         "review" = {
-          description = "Melakukan code review cepat.";
-          prompt = "Tolong lakukan code review pada kode berikut dan berikan saran optimasi: {{args}}";
+          description = "Code review cepat dengan fokus pada bug & performa.";
+          prompt = ''
+            Lakukan code review terhadap kode berikut. Fokus pada:
+            1. Bug atau edge case yang terlewat
+            2. Masalah performa
+            3. Konsistensi gaya kode
+            Berikan saran singkat dan konkret, sertakan contoh perbaikan bila perlu.
+
+            Target/konteks: {{args}}
+          '';
+        };
+
+        "test/gen" = {
+          description = "Generate unit test untuk file/fungsi tertentu.";
+          prompt = "Buatkan unit test yang mencakup happy path dan edge case untuk: {{args}}. Gunakan framework testing yang sudah dipakai di proyek ini.";
+        };
+
+        "nix/module" = {
+          description = "Buatkan skeleton NixOS/home-manager module baru.";
+          prompt = "Buatkan skeleton module Nix (NixOS atau home-manager, sesuaikan konteks) dengan options + config yang idiomatik untuk: {{args}}.";
+        };
+
+        "refactor" = {
+          description = "Refactor kode tanpa mengubah perilaku (behavior-preserving).";
+          prompt = "Refactor kode berikut agar lebih bersih dan idiomatik TANPA mengubah perilaku/behavior-nya. Jelaskan perubahan yang dilakukan: {{args}}.";
         };
       };
 
       # Konteks sistem global (disimpan sebagai file .md di ~/.gemini/)
       context = {
-        GEMINI = ''
-          # Global Context
-          Kamu adalah asisten pengembang perangkat lunak yang ahli dalam NixOS.
-          Gunakan gaya bahasa yang ringkas, padat, dan teknis. 
-          Pastikan setiap baris kode Nix yang kamu hasilkan sudah sesuai standar.
+        AGENTS = ''
+          # Global Agent Context
+
+          Kamu adalah asisten pengembang perangkat lunak yang membantu Moch.
+          Stack yang sering dipakai: Nix (flakes + devenv + home-manager), Rust (fenix + crane),
+          Astro + Bun + Tailwind + SolidJS + DaisyUI, Android/Tauri mobile.
+
+          ## Gaya Respons
+          - Ringkas, padat, teknis. Hindari basa-basi.
+          - Jika ragu antara beberapa pendekatan, sebutkan trade-off singkat, jangan bertele-tele.
+          - Untuk kode Nix: ikuti gaya `nixpkgs-fmt` / `nixfmt`, hindari `with lib;` global di scope besar.
+
+          ## Sebelum Membuat Perubahan
+          - Selalu cek `flake.nix` / `flake.lock` sebelum menyarankan perubahan dependency.
+          - Jangan asumsikan versi paket; cek dulu kalau memungkinkan.
         '';
 
         WORKSPACE = ''
           # Panduan Workspace
-          Selalu periksa file `flake.nix` sebelum menyarankan perubahan konfigurasi.
-        '';
 
-        # Bisa juga menggunakan path ke file eksternal:
-        # AGENTS = ./path/to/agents.md;
+          - Proyek Nix template ada di monorepo `nix.templates` (Rust, Bun, Node.js, Flutter, Tauri).
+          - Selalu pisahkan devShell module dari devenv module (hindari scoping bug `devenvModules`).
+          - Untuk Rust: pakai `fenix` + `crane`, bukan `rustPlatform` bawaan kecuali diminta eksplisit.
+        '';
       };
 
-      # Keahlian khusus/Custom Skills
       skills = {
-        data-analyst = ''
+        nix-flakes = ''
           ---
-          name: data-analyst
-          description: Ahli dalam memanipulasi data dengan Python dan Pandas.
+          name: nix-flakes
+          description: Ahli dalam Nix flakes, devenv, dan home-manager modules. Gunakan saat membuat/mengedit flake.nix, devShell, atau module home-manager.
           ---
-          Gunakan pustaka `pandas` untuk membaca file CSV yang diberikan pengguna. 
-          Selalu tampilkan `df.head()` dan `df.describe()` sebagai langkah awal.
+
+          # Nix Flakes & devenv Expert
+
+          - Pisahkan `devenvModules` dari `devShells` untuk menghindari scoping bug.
+          - Gunakan `flake-parts` bila proyek makin kompleks (multi-system, multi-output).
+          - Untuk `devenv.lib.mkShell`, pastikan signature sesuai versi devenv yang dipakai —
+            cek changelog devenv kalau ada error signature mismatch.
+          - Selalu jalankan `nix flake check` sebelum menganggap konfigurasi selesai.
         '';
 
-        # Bisa menggunakan path ke file markdown atau direktori penuh
-        # nix-expert = ./skills/nix-expert/SKILL.md;
-        # sysadmin = ./skills/sysadmin-dir;
+        rust-fenix-crane = ''
+          ---
+          name: rust-fenix-crane
+          description: Membantu setup Rust build dengan fenix (toolchain) dan crane (incremental cargo build). Gunakan untuk proyek Rust/Tauri.
+          ---
+
+          # Rust dengan fenix + crane
+
+          - `fenix` dipakai untuk pin toolchain Rust (stable/nightly/versi spesifik).
+          - `crane` dipakai untuk build cargo project secara incremental & cached di Nix.
+          - Untuk target Android (Tauri mobile), pastikan target triple (mis. `aarch64-linux-android`)
+            sudah ditambahkan lewat fenix combine, dan NDK sudah tersedia di devShell.
+        '';
+
+        frontend-astro-solid = ''
+          ---
+          name: frontend-astro-solid
+          description: Membantu development stack Astro + Bun + Tailwind + SolidJS + DaisyUI. Gunakan untuk komponen web, styling, dan integrasi island.
+          ---
+
+          # Astro + SolidJS Stack
+
+          - Perhatikan boundary serialization antara Astro island dan komponen SolidJS
+            (props harus serializable, hindari passing function langsung tanpa client directive yang tepat).
+          - Gunakan Tailwind v4 + DaisyUI, cek `tailwind.config` untuk path alias yang benar.
+          - Untuk deploy: target Cloudflare Pages, pastikan build output sesuai adapter yang dipakai.
+        '';
+
+        # Alternatif: pakai direktori skill penuh (dengan referensi/script tambahan)
+        # data-analyst = ./skills/data-analyst;
       };
     };
   };
