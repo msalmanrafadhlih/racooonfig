@@ -58,7 +58,6 @@ in
           "nwg-drawer"
           "nix-search"
           "mpd"
-          "rclone"
           "rmpc"
           "st"
           "vesktop"
