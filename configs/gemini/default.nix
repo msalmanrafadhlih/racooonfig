@@ -36,7 +36,7 @@ in
 
         # "ask-user" lebih aman untuk sehari-hari; ganti ke "proceed-in-sandbox"
         # kalau kamu mau agent lebih otonom saat ngoding di sandbox/devenv shell.
-        toolPermission = "ask-user";
+        toolPermission = "proceed-in-sandbox";
         artifactReviewPolicy = "agent-decides";
 
         context = {
