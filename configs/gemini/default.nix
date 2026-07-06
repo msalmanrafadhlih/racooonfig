@@ -13,9 +13,11 @@ let
   };
 in
 {
-  home.file.".gemini/antigravity-cli/settings.json".force = true;
   config = lib.mkIf (cfg.homeManager && builtins.elem "gemini" cfg.listConfigurations) {
-    home.file = mkSymlink {
+    home.file = {
+      ".gemini/antigravity-cli/settings.json".force = true;
+    }
+    // mkSymlink {
       target = "gemini";
     } configs;
 
