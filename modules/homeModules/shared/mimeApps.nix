@@ -4,6 +4,7 @@ let
 in
 {
   config = lib.mkIf cfg.homeManager {
+    home.file.".config/mimeapps.list".force = true;
     xdg.mimeApps = {
       enable = true;
 
