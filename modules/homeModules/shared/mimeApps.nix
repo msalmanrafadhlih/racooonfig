@@ -43,14 +43,16 @@ in
 
           audioPlayer = [
             "org.kde.elisa.desktop"
+            "vlc.desktop"
             "mpv.desktop"
             "audacity.desktop"
           ];
 
           videoPlayer = [
+            "vlc.desktop"
+            "mpv.desktop"
             "org.kde.haruna.desktop"
             "org.kde.dragonplayer.desktop"
-            "mpv.desktop"
             "org.kde.kdenlive.desktop"
           ];
 
