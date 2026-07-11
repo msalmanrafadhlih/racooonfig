@@ -1,15 +1,21 @@
 [Desktop Entry]
-StartupWMClass=chromium-browser
-Version=1.0
-Name=ClaudeAi
-GenericName=Chat OpenAi
-Exec=openapp --cloude
-StartupNotify=true
-Terminal=false
-Icon=~/.config/Assets/Icons/claude.png
-Type=Application
-Categories=Network;WebBrowser;
-MimeType=application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/webcal;x-scheme-handler/mailto;x-scheme-handler/about;x-scheme-handler/unknown
 Actions=new-window;new-private-window;
+Categories=Network;WebBrowser;
+Comment[en_US]=
+Comment=
+Exec=openapp --cloude
+GenericName[en_US]=Chat OpenAi
+GenericName=Chat OpenAi
+Icon=claude
+MimeType=text/html;image/webp;image/png;image/jpeg;image/gif;application/xml;application/xml;application/xhtml+xml;application/rss+xml;application/rdf+xml;application/pdf;
+Name[en_US]=ClaudeAi
+Name=ClaudeAi
 Path=
-
+StartupNotify=true
+StartupWMClass=chromium-browser
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.0
+X-KDE-SubstituteUID=false
+X-KDE-Username=
