@@ -204,5 +204,22 @@
         }
       ]
     }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-k ctrl-k": "zed::OpenKeymap"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-k ctrl-s": "zed::OpenKeymap"
+    }
+  },
+  {
+    "bindings": {
+      "ctrl-k ctrl-u": "git::Clone"
+    }
   }
 ]
