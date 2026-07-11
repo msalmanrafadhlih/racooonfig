@@ -94,7 +94,7 @@ in
         auto_indent = "syntax_aware";
         auto_indent_on_paste = true;
 
-        use_system_path_prompts = false;
+        use_system_path_prompts = true;
         load_direnv = "direct"; # Krusial agar devShells terbaca
 
         image_viewer.unit = "binary";
@@ -182,7 +182,7 @@ in
         # SESSION & STARTUP
         # ════════════════════════════════════════════════════════════════════════
 
-        restore_on_startup = "last_session";
+        restore_on_startup = "launchpad";
         autosave = "off";
         confirm_quit = true;
         close_on_file_delete = false;
