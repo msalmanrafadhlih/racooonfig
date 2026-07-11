@@ -28,7 +28,7 @@
     "right_padding": 0.2
   },
   "collaboration_panel": {
-    "default_width": 200.0,
+    "default_width": 250.0,
     "dock": "right"
   },
   "git_panel": {
@@ -40,13 +40,13 @@
     "sort_by_path": true,
     "status_style": "icon",
     "dock": "right",
-    "default_width": 200.0
+    "default_width": 300.0
   },
   "outline_panel": {
     "auto_fold_dirs": true,
     "auto_reveal_entries": true,
     "indent_size": 10.0,
-    "default_width": 200.0,
+    "default_width": 300.0,
     "dock": "right"
   },
   "project_panel": {
@@ -63,7 +63,7 @@
     "indent_size": 15.0,
     "entry_spacing": "standard",
     "hide_gitignore": false,
-    "default_width": 200.0,
+    "default_width": 300.0,
     "dock": "right",
     "button": true
   },
