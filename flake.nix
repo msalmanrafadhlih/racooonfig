@@ -49,11 +49,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    matugen = {
-      url = "github:/InioX/Matugen";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ## ---- Home-Manager Packages
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
