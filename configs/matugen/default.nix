@@ -1,4 +1,10 @@
-{ mkSymlink, lib, config, ... }:
+{
+  mkSymlink,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.racooonfig;
   configs = {
@@ -10,6 +16,10 @@ let
 in
 {
   config = lib.mkIf cfg.homeManager {
+    home.packages = with pkgs; [
+      matugen
+    ];
+
     # Symlink path to ~./config/*
     xdg.configFile = mkSymlink {
       target = "matugen";
