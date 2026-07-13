@@ -38,7 +38,7 @@ in
         mode = "no-title no-cwd";
       };
 
-      extraConfig = ''
+      extraConfig = lib.mkIf builtins.elem "bspwm" cfg.listConfigurations ''
         include themes/racooonfig.conf
       '';
 
@@ -50,6 +50,7 @@ in
         font_size = "9.0";
 
         background_opacity = lib.mkForce "0.5";
+        background_blur = 1;
         placement_strategy = "center";
         confirm_os_window_close = 0;
         tab_bar_style = "powerline";
