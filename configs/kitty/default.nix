@@ -52,7 +52,7 @@ in
         background_opacity = lib.mkForce "0.5";
         background_blur = 1;
         placement_strategy = "center";
-        confirm_os_window_close = 0;
+        confirm_os_window_close = 1;
         tab_bar_style = "powerline";
         window_padding_width = "10";
         window_border_width = "3pt";
@@ -68,7 +68,7 @@ in
         sync_to_monitor = true;
 
         # MENONAKTIFKAN ANIMASI YANG MEMAKAN RESOURCE
-        cursor_trail = 0;       # Mematikan jejak kursor (Sangat hemat resource GPU)
+        cursor_trail = 1;       # Mematikan jejak kursor (Sangat hemat resource GPU)
         cursor_blink_interval = 0; # Kursor statis mencegah background render loop
         enable_audio_bell = false;
         window_alert_on_bell = false;
@@ -78,7 +78,7 @@ in
         x11_hide_window_decorations = true;
         hide_window_decorations = true;
         draw_minimal_borders = true;
-        remember_window_size = false;
+        remember_window_size = true;
         allow_remote_control = false; # Set false jika kontrol eksternal tidak digunakan
         # listen_on = "unix:/tmp/kitty";
 
