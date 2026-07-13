@@ -49,7 +49,7 @@ in
         bold_italic_font = "VictorMono Nerd Font";
         font_size = "9.0";
 
-        background_opacity = lib.mkForce "0.5";
+        background_opacity = lib.mkForce "0.7";
         background_blur = 1;
         placement_strategy = "center";
         confirm_os_window_close = 1;
