@@ -38,7 +38,7 @@ in
         mode = "no-title no-cwd";
       };
 
-      extraConfig = lib.mkIf builtins.elem "bspwm" cfg.listConfigurations ''
+      extraConfig = lib.mkIf (builtins.elem "bspwm" cfg.listConfigurations) ''
         include themes/racooonfig.conf
       '';
 
