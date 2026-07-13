@@ -35,6 +35,7 @@ in
         khelpcenter # Dokumentasi offline KDE (ada di internet)
         krdp # Server Remote Desktop (KDE ≥ 6.1)
         kate # text editor
+        konsole # terminal
         # aurorae # Engine tema dekorasi window kustom
 
         # ── Fitur Dolphin (bisa aktifkan nanti jika dibutuhkan) ────
@@ -85,7 +86,6 @@ in
     #
     # Serta paket-paket ini sudah ikut tanpa kamu minta:
     #   ✓ gwenview   (image viewer)
-    #   ✓ konsole    (terminal)
     #   ✓ dolphin    (filemanager)
     #   ✓ okular     (PDF/document viewer)
     #   ✓ ark        (archive manager)
