@@ -42,6 +42,9 @@ in
         # dolphin-plugins # Plugin Git & Dropbox di sidebar Dolphin
         baloo-widgets # Panel metadata file di Dolphin
         # ffmpegthumbs # Thumbnail pratinjau video di Dolphin
+        kwallet
+        kwalletmanager
+        kwallet-pam
       ];
     };
 
