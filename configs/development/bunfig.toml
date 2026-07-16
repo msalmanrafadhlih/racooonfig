@@ -1,0 +1,138 @@
+# ================================================================
+# GLOBAL bunfig.toml — referensi LENGKAP semua opsi + nilai default
+#
+# Taruh file ini sebagai salah satu dari:
+#   $HOME/.bunfig.toml
+#   $XDG_CONFIG_HOME/.bunfig.toml
+#
+# Kalau ada bunfig.toml lokal di sebuah project, Bun akan shallow-merge
+# global + local, dengan LOCAL menang saat bentrok. CLI flag menang
+# di atas keduanya.
+#
+# Baris yang di-comment (#) berarti: itu bukan default yang benar-benar
+# di-set oleh Bun (opsional / kosong / dinamis) — ditulis di sini
+# supaya kamu tahu opsinya ada dan bentuk syntax-nya.
+# ================================================================
+
+# ---------------- Runtime (top-level) ----------------
+
+preload = []                        # default: [] — script/plugin dijalankan sebelum run
+
+# jsx*, tidak punya default baku di bunfig — mengikuti compilerOptions
+# di tsconfig.json kalau tidak diisi di sini. Contoh nilai umum React:
+jsx = "react"
+jsxFactory = "h"
+jsxFragment = "Fragment"
+jsxImportSource = "react"
+
+smol = false                        # default: false — mode hemat memori (korban performa)
+
+logLevel = "warn"                   # "debug" | "warn" | "error" — tidak ada default tertulis eksplisit di doc, umumnya "warn"
+
+telemetry = true                    # default: true — hanya crash report anonim (bukan analytics penuh)
+
+env = true                          # default: true (perilaku aktif) — auto-load file .env
+# Bentuk object, kalau mau lebih spesifik:
+# [env]
+# file = false
+
+[console]
+depth = 2                           # default: 2 — kedalaman inspeksi object di console.log()
+
+# [define]
+# tidak ada default (kosong). Contoh:
+# "process.env.bagel" = "'lox'"
+
+# [loader]
+# tidak ada default (kosong). Contoh:
+# ".bagel" = "tsx"
+
+# ---------------- Serve ----------------
+
+[serve]
+port = 3000                         # default: 3000 (override: BUN_PORT / PORT / --port)
+
+# ---------------- Test runner ----------------
+
+[test]
+root = "."                          # default: "."
+preload = []                        # default: []
+pathIgnorePatterns = []             # default: [] (glob, dipangkas saat scanning)
+smol = false                        # default: false
+coverage = false                    # default: false
+# coverageThreshold = 0.9           # default: tidak diset (tanpa threshold)
+coverageSkipTestFiles = false       # default: false
+coverageIgnoreSourcemaps = false    # default: false
+# coveragePathIgnorePatterns = []   # default: tidak diset
+coverageReporter = ["text"]         # default: ["text"]
+coverageDir = "coverage"            # default: "coverage"
+randomize = false                   # default: false
+# seed = 2444615283                 # tidak ada default, hanya berlaku jika randomize = true
+rerunEach = 0                       # default: 0 (jalan sekali)
+retry = 0                           # default: 0 (tanpa retry)
+# concurrentTestGlob = "**/*.test.ts"  # default: tidak diset
+onlyFailures = false                # default: false
+
+[test.reporter]
+dots = false                        # default: false
+# junit = "test-results.xml"        # default: tidak diset
+
+# ---------------- Package manager (bun install) ----------------
+
+[install]
+optional = true                     # default: true
+dev = true                          # default: true
+peer = true                         # default: true
+production = false                  # default: false
+exact = false                       # default: false
+ignoreScripts = false               # default: false
+# concurrentScripts =               # default: 2x jumlah core CPU (dinamis, tidak fixed)
+saveTextLockfile = true             # default: true (sejak Bun v1.2)
+auto = "auto"                       # default: "auto" ("auto" | "force" | "disable" | "fallback")
+prefer = "online"                   # default: "online" ("online" | "offline" | "latest")
+frozenLockfile = false              # default: false
+dryRun = false                      # default: false
+globalDir = "~/.bun/install/global" # default
+globalBinDir = "~/.bun/bin"         # default
+registry = "https://registry.npmjs.org/"  # default
+linkWorkspacePackages = true        # default: true
+logLevel = "warn"                   # "debug" | "warn" | "error" — tidak dinyatakan eksplisit, umumnya "warn"
+
+# linker: default "isolated" utk workspace/monorepo BARU,
+#         default "hoisted" utk single-package baru & project Bun lama (pre-v1.3.2)
+linker = "hoisted"
+globalStore = false                 # default: false — hanya berlaku saat linker = "isolated"
+publicHoistPattern = []             # default: [] — hanya berlaku saat linker = "isolated"
+hoistPattern = []                   # default: [] — hanya berlaku saat linker = "isolated"
+
+minimumReleaseAge = 0               # default: null (nonaktif) — 0/kosong = nonaktif
+minimumReleaseAgeExcludes = []      # default: []
+
+# [install.scopes]
+# tidak ada default (kosong). Contoh:
+# myorg = { token = "$npm_token", url = "https://registry.myorg.com/" }
+
+# install.ca / install.cafile — tidak ada default. Contoh:
+# ca = "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----"
+# cafile = "path/to/cafile"
+
+[install.cache]
+dir = "~/.bun/install/cache"        # default
+disable = false                     # default: false
+disableManifest = false             # default: false
+
+[install.lockfile]
+save = true                         # default: true
+# print = "yarn"                    # opsional, tidak ada default
+
+# [install.security]
+# scanner = "@your-org/bun-security-scanner"  # tidak ada default (kosong = nonaktif)
+
+# ---------------- bun run ----------------
+
+[run]
+shell = "system"                    # default: "system" (non-Windows) | "bun" (Windows)
+# bun =                             # default: true HANYA jika `node` TIDAK ada di $PATH, selain itu false (kondisional)
+silent = false                      # default: false (perintah yang dijalankan tetap dicetak)
+elide-lines = 10                    # default: 10 (jumlah baris output --filter yang ditampilkan, 0 = semua)
+noOrphans = false                   # default: false — Linux/macOS saja, no-op di Windows
