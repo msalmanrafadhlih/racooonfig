@@ -51,7 +51,7 @@ in
 
         background_opacity = lib.mkForce "0.7";
         background_blur = 1;
-        placement_strategy = "center";
+        # placement_strategy = "center";
         confirm_os_window_close = 1;
         tab_bar_style = "powerline";
         window_padding_width = "10";
