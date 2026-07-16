@@ -1,4 +1,4 @@
-directory: /srv/share/music
+directory: ~/Musics
 library: ~/.config/beets/library.db
 art_filename: albumart
 
