@@ -78,7 +78,7 @@ let
     }
   '';
 
-  meta-sha = pkgs.stdenv.mkDerivation {
+ meta-hash = pkgs.stdenv.mkDerivation {
     name = "meta-sha";
     src = rustSrc;
 
@@ -102,5 +102,5 @@ let
 
 in
 {
-  home.packages = [ meta-sha ];
+  home.packages = [ meta-hash ];
 }
