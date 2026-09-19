@@ -10,6 +10,10 @@ let
   configs = {
     "zed/themes/racooonfig.json" = "themes/racooonfig.json";
     "zed/keymap.json" = "./keymap.json";
+    "zed/snippets/rust.json" = "./snippets/rust.json";
+    "zed/snippets/typescript.json" = "./snippets/typescript.json";
+    "zed/snippets/tsx.json" = "./snippets/tsx.json";
+    "zed/snippets/astro.json" = "./snippets/astro.json";
   };
   cfg = config.racooonfig;
 
@@ -44,6 +48,13 @@ in
       mutableUserDebug = true;
       mutableUserTasks = true;
 
+      # Binary tambahan yang harus tersedia di PATH Zed. LSP masing-masing sudah
+      # bawa binary-nya sendiri lewat extension; ini khusus untuk MCP/context
+      # server yang butuh binary terpisah (lihat context_servers di bawah).
+      extraPackages = [
+        pkgs.github-mcp-server
+      ];
+
       # ── Extensions ──────────────────────────────────────────────────────────
       extensions = [
         "material_icon_theme"
@@ -64,12 +75,18 @@ in
         "bash"
         "make"
         "toml"
+        "dockerfile"
+        "docker-compose"
+        "env" # syntax highlight file .env
+        "just" # justfile — task runner umum di proyek Rust
         # Data Formats
         "jsons" # JSON + JSON5
         "xml"
         "sql"
         # Docs
         "marksman" # Markdown + LSP
+        # Agent / MCP
+        "mcp-server-context7" # context server dokumentasi library/crate terkini
       ];
 
       userSettings = lib.recursiveUpdate {
@@ -117,14 +134,16 @@ in
           enabled = true;
           show_type_hints = true;
           show_parameter_hints = true;
+          show_value_hints = true;
           show_other_hints = true;
           edit_debounce_ms = 700;
           scroll_debounce_ms = 50;
         };
 
-        # Inline completion (Copilot-style ghost text)
-        # Opsi: "copilot" | "supermaven" | "zed" | "none"
-        features.inline_completion_provider = "copilot";
+        # Edit Predictions (dulu "inline completion" — key lama
+        # `features.inline_completion_provider` sudah deprecated & dipindah ke sini).
+        # Opsi provider: "zed" (Zeta, gratis+sign-in) | "copilot" | "supermaven" | "none"
+        edit_predictions.provider = "copilot";
 
         # ════════════════════════════════════════════════════════════════════════
         # CODE INTELLIGENCE
@@ -145,14 +164,11 @@ in
 
         diagnostics = {
           include_warnings = true;
-          lsp_pull_diagnostics = {
-            enabled = true;
-            debounce_ms = 150;
-          };
           inline = {
             enabled = true;
             min_column = 0;
             padding = 4;
+            update_debounce_ms = 150; # ganti nama `lsp_pull_diagnostics.debounce_ms` (sudah tidak ada di skema saat ini)
           };
         };
 
@@ -161,7 +177,6 @@ in
         # ════════════════════════════════════════════════════════════════════════
 
         git = {
-          path_style = "file_name_first";
           blame.show_avatar = true;
           inline_blame.show_commit_summary = true;
         };
@@ -201,6 +216,83 @@ in
         base_keymap = "VSCode";
 
         # ════════════════════════════════════════════════════════════════════════
+        # AGENT & MCP
+        # ════════════════════════════════════════════════════════════════════════
+
+        agent = {
+          # Profil default: "write" (boleh edit file & jalankan command),
+          # "ask" (read-only), atau "minimal" (tanpa tool sama sekali).
+          default_profile = "write";
+
+          # Pakai akun GitHub Copilot yang sama dengan edit_predictions di atas,
+          # jadi tidak perlu langganan/API key terpisah. Nama model yang tersedia
+          # sering berubah — cek & sesuaikan lewat Agent Panel > model picker.
+          default_model = {
+            provider = "copilot_chat";
+            model = "claude-sonnet-4.5";
+          };
+          # Alternatif kalau lebih suka pakai langganan Zed sendiri (bukan Copilot):
+          # default_model = {
+          #   provider = "zed.dev";
+          #   model = "claude-sonnet-4-5";
+          # };
+
+          # Kontrol izin tool per-aksi — pengganti setting lama
+          # `always_allow_tool_actions` (boolean) yang deprecated sejak Zed v0.224.
+          tool_permissions = {
+            default = "confirm";
+            tools = {
+              terminal = {
+                default = "confirm";
+                always_allow = [
+                  { pattern = "^cargo\\s+(build|check|test|clippy|fmt)\\b"; }
+                  { pattern = "^(npm|pnpm|bun)\\s+(install|run|test)\\b"; }
+                ];
+              };
+              edit_file = {
+                always_deny = [
+                  { pattern = "\\.env"; }
+                  { pattern = "secrets?/"; }
+                  { pattern = "\\.(pem|key)$"; }
+                ];
+              };
+            };
+          };
+        };
+
+        context_servers = {
+          # Context7 — dokumentasi library/crate terkini. Berguna untuk crate Rust
+          # atau paket npm yang berubah lebih cepat dari data training model AI.
+          "mcp-server-context7" = {
+            settings = {
+              context7_api_key = ""; # opsional; isi kalau mau rate limit lebih tinggi
+            };
+          };
+
+          # GitHub MCP resmi dari github/github-mcp-server (BUKAN paket npm
+          # @modelcontextprotocol/server-github — sudah tidak disupport sejak
+          # April 2025). Untuk baca/kelola issue, PR, dan repo langsung dari agent.
+          "github-mcp-server" = {
+            command = lib.getExe pkgs.github-mcp-server;
+            args = [ "stdio" ];
+            env = {
+              # Isi Personal Access Token di sini. Karena file ini biasanya ikut
+              # ke-commit ke git, pertimbangkan sops-nix/agenix daripada menulis
+              # token asli langsung di sini.
+              GITHUB_PERSONAL_ACCESS_TOKEN = "";
+            };
+          };
+
+          # Aktifkan kalau kerja dengan Postgres (tambahkan juga extension
+          # "postgres-context-server" ke daftar `extensions` di atas):
+          # "postgres-context-server" = {
+          #   settings = {
+          #     database_url = "postgresql://postgres@localhost/nama_database";
+          #   };
+          # };
+        };
+
+        # ════════════════════════════════════════════════════════════════════════
         # EXTENSIONS & UPDATE
         # ════════════════════════════════════════════════════════════════════════
 
@@ -221,10 +313,15 @@ in
           bash = true;
           make = true;
           toml = true;
+          dockerfile = true;
+          "docker-compose" = true;
+          env = true;
+          just = true;
           jsons = true;
           xml = true;
           sql = true;
           marksman = true;
+          "mcp-server-context7" = true;
         };
 
         # ════════════════════════════════════════════════════════════════════════
@@ -513,8 +610,7 @@ in
 
               cargo = {
                 allFeatures = true;
-                loadOutDirsFromCheck = true;
-                buildScripts.enable = true;
+                buildScripts.enable = true; # ganti nama `loadOutDirsFromCheck` (alias lama, sudah deprecated di rust-analyzer)
               };
 
               procMacro.enable = true;
