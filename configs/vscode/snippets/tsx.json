@@ -1,0 +1,37 @@
+{
+  "React functional component": {
+    "prefix": "rfc",
+    "body": [
+      "export function ${1:ComponentName}($2) {",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\t$0",
+      "\t\t</div>",
+      "\t);",
+      "}"
+    ],
+    "description": "Komponen fungsional React"
+  },
+  "React useState": {
+    "prefix": "usest",
+    "body": [
+      "const [${1:value}, ${2:setValue}] = useState(${3:initialValue});"
+    ],
+    "description": "useState hook"
+  },
+  "Solid component": {
+    "prefix": "solidc",
+    "body": [
+      "export function ${1:ComponentName}($2) {",
+      "\tconst [${3:value}, ${4:setValue}] = createSignal(${5:initialValue});",
+      "",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\t$0",
+      "\t\t</div>",
+      "\t);",
+      "}"
+    ],
+    "description": "Komponen Solid dengan createSignal"
+  }
+}
