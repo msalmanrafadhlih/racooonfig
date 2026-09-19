@@ -58,6 +58,7 @@ in
       # ── Extensions ──────────────────────────────────────────────────────────
       extensions = [
         "material_icon_theme"
+
         # Web Dev
         "html"
         "astro"
@@ -65,11 +66,14 @@ in
         "css"
         "scss"
         "tailwindcss"
+
         # Systems
         "rust"
+
         # Scripting / Data
         "python"
         "lua"
+
         # DevOps / Config
         "nix"
         "bash"
@@ -79,12 +83,15 @@ in
         "docker-compose"
         "env" # syntax highlight file .env
         "just" # justfile — task runner umum di proyek Rust
+
         # Data Formats
         "jsons" # JSON + JSON5
         "xml"
         "sql"
+
         # Docs
         "marksman" # Markdown + LSP
+
         # Agent / MCP
         "mcp-server-context7" # context server dokumentasi library/crate terkini
       ];
@@ -297,32 +304,6 @@ in
         # ════════════════════════════════════════════════════════════════════════
 
         auto_update = false; # FIX: Nix yang kelola versi Zed
-
-        auto_install_extensions = {
-          material_icon_theme = true;
-          html = true;
-          astro = true;
-          typescript = true;
-          css = true;
-          scss = true;
-          tailwindcss = true;
-          rust = true;
-          python = true;
-          lua = true;
-          nix = true;
-          bash = true;
-          make = true;
-          toml = true;
-          dockerfile = true;
-          "docker-compose" = true;
-          env = true;
-          just = true;
-          jsons = true;
-          xml = true;
-          sql = true;
-          marksman = true;
-          "mcp-server-context7" = true;
-        };
 
         # ════════════════════════════════════════════════════════════════════════
         # TERMINAL
