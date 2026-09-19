@@ -42,10 +42,6 @@ in
       enable = true;
 
       profiles.default = {
-        # Sama seperti mutableUserSettings di Zed: baseline dari Nix, tapi file
-        # settings.json tetap boleh diubah langsung dari dalam VSCode di antara
-        # `home-manager switch` (di-merge, bukan ditimpa read-only).
-        mutableUserSettings = true;
 
         # Nix yang kelola versi VSCode & daftar extension → matikan pengecekan
         # update bawaan (setara `auto_update = false;` punya Zed).
