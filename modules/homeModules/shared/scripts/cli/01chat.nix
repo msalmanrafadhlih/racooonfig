@@ -12,7 +12,7 @@ let
   # Runtime tools (curl, jq, mdcat) tetap dipakai
   # dan di-inject ke PATH via makeWrapper.
   # ──────────────────────────────────────────────
-  apikey = config.sops.secrets."gemini/api_1".path;
+  apikey = config.sops.secrets."gemini/api1".path;
   rustSrc = pkgs.writeText "ai-chat-main.rs" ''
     use std::fs;
     use std::io::{self, BufRead, Write};
@@ -271,7 +271,7 @@ let
 in
 {
   config = lib.mkIf (config.home.username == "tquilla") {
-    sops.secrets."gemini/api_1" = { };
+    sops.secrets."gemini/api1" = { };
     home.packages = [ ai-chat ];
   };
 }
