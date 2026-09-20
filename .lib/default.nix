@@ -3,6 +3,7 @@ let
   lib            = inputs.nixpkgs.lib;
   forAllSystem   = lib.genAttrs lib.systems.flakeExposed;
 
+  jsonc          = import ./jsonc.nix          lib;
   configs        = import ./configs.nix        args;
   mapping        = import ./map-lib.nix        args;
   overlays       = import ./overlays.nix       args;
@@ -26,6 +27,7 @@ let
 in
 {
   inherit
+    jsonc
     mapping
     configs
     overlays
