@@ -750,6 +750,6 @@ in
 
         }; # end lsp
       } (builtins.fromJSON (builtins.readFile ./appearance.json)); # end userSettings
-    }; # end programs.zed-editor
-  }; # end config
+    }; 
+  }; 
 }
