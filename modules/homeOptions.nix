@@ -60,7 +60,6 @@ in
           "mpd"
           "rmpc"
           "st"
-          "vscode"
           "vesktop"
           "wezterm"
           "xytz"
