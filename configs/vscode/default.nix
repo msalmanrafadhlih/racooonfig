@@ -9,7 +9,7 @@
 }:
 
 let
-  cfg = config.racooonfig.vscode;
+  cfg = config.racooonfig;
   jsonc = inputs.racooonfig.jsonc;
   mapFile = inputs.racooonfig.mapFile;
 
@@ -23,14 +23,14 @@ let
     "Code/User/keybindings.json" = "./preferences/keymaps.json";
     "Code/User/snippets" = "./snippets";
   }
-  // lib.optionalAttrs cfg.mutable {
+  // lib.optionalAttrs cfg.vscode.mutable {
     "Code/User/settings.json" = "./preferences/settings.json";
   };
 in
 {
   imports = mapFile ./languages [ ] { };
 
-  config = lib.mkIf (cfg.homeManager && cfg.enable) {
+  config = lib.mkIf (cfg.homeManager && cfg.vscode.enable) {
     xdg.configFile = mkSymlink { target = "vscode"; } configs;
 
     programs.vscode = {
