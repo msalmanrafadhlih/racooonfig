@@ -11,7 +11,8 @@ with pkgs.vscode-extensions;
   astro-build.astro-vscode
   bradlc.vscode-tailwindcss
   esbenp.prettier-vscode
-  formulahendry.auto-complete-tag
+  formulahendry.auto-close-tag
+  formulahendry.auto-rename-tag
   pranaygp.vscode-css-peek
   sporiley.css-auto-prefix
   wix.vscode-import-cost
