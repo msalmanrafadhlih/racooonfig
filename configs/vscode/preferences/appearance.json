@@ -10,7 +10,7 @@
   "window.doubleClickIconToClose": true,
 
   // ── Tema & ikon ──────────────────────────────────────────────────
-  "workbench.colorTheme": "Red",
+  "workbench.colorTheme": "Monokai Dimmed",
   "workbench.preferredDarkColorTheme": "Visual Studio Dark",
   "workbench.iconTheme": "vscode-icons",
   "vsicons.dontShowNewVersionMessage": true,
@@ -71,7 +71,7 @@
   "explorer.compactFolders": false,
   "explorer.decorations.badges": true,
   "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrops": true,
+  "explorer.confirmDragAndDrop": true,
   "workbench.tree.enableStickyScroll": true,
   "workbench.tree.indent": 10,
   "workbench.tree.renderIndentGuides": "always",
