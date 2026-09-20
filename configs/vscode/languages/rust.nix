@@ -8,7 +8,7 @@
   programs.vscode.profiles.default.userSettings = {
     "rust-analyzer.server.path" = lib.getExe pkgs.rust-analyzer;
     "rust-analyzer.check.command" = "clippy";
-    "rust-analyzer.cargo.allFeatures" = true;
+    "rust-analyzer.cargo.features" = "all";
     "rust-analyzer.cargo.buildScripts.enable" = true;
     "rust-analyzer.procMacro.enable" = true;
 
