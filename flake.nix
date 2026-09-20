@@ -13,6 +13,7 @@
     in
     {
       inherit (myLibs.mapping) mapAll mapDir mapFile;
+      inherit (myLibs) jsonc;
 
       configs        = myLibs.configs;
       mapping        = myLibs.mapping;
