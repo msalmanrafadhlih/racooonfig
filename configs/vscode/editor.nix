@@ -30,7 +30,7 @@
   # ── Format ───────────────────────────────────────────────────────
   "editor.defaultFormatter" = "esbenp.prettier-vscode";
   # Global: off — tiap bahasa aktifkan sendiri di blok "[bahasa]" (languages/)
-  "editor.formatOnSave" = false;
+  "editor.formatOnSave" = true;
   "editor.formatOnPaste" = true;
 
   # ── Diff ─────────────────────────────────────────────────────────
