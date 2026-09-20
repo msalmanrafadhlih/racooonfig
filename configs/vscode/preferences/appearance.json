@@ -1,129 +1,140 @@
 {
-  "programs.vscode.profiles.default.userSettings": {
-    // ── Window ───────────────────────────────────────────────────────
-    "window.zoomLevel": 0,
-    "window.titleBarStyle": "native",
-    "window.customTitleBarVisibility": "never",
-    "window.commandCenter": false,
-    "window.menuBarVisibility": "toggle",
-    "window.doubleClickIconToClose": true,
+  // Dibaca default.nix lewat jsonc.nix, jadi komentar & trailing comma boleh.
+  // Isinya langsung objek setting VSCode (tanpa key pembungkus).
+  // ── Window ───────────────────────────────────────────────────────
+  "window.zoomLevel": 0,
+  "window.titleBarStyle": "native",
+  "window.customTitleBarVisibility": "never",
+  "window.commandCenter": false,
+  "window.menuBarVisibility": "toggle",
+  "window.doubleClickIconToClose": true,
 
-    // ── Tema & ikon ──────────────────────────────────────────────────
-    "workbench.colorTheme": "Red",
-    "workbench.preferredDarkColorTheme": "Visual Studio Dark",
-    "workbench.iconTheme": "vscode-icons",
-    "vsicons.dontShowNewVersionMessage": true,
-    "workbench.colorCustomizations": {
-      "editorCursor.background": "#00ffff",
-      "editorSuggestWidget.selectedBackground": "#3A334B"
-      // "[Red]": {
-      //   "sideBar.background": "#c80e15",
-      // },
-    },
-    "editor.tokenColorCustomizations": {
-      "[*Light*],textMateRules": [
-          {
-            "scope": "ref.matchtext",
-            "settings.foreground": "#000"
-          },
-          {
-            "scope" : "comment",
-            "settings.fontStyle" : "italic"
-          }
-        ],
-
-      "[*Dark*].textMateRules" : [
+  // ── Tema & ikon ──────────────────────────────────────────────────
+  "workbench.colorTheme": "Red",
+  "workbench.preferredDarkColorTheme": "Visual Studio Dark",
+  "workbench.iconTheme": "vscode-icons",
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.colorCustomizations": {
+    "editorCursor.background": "#00ffff",
+    "editorSuggestWidget.selectedBackground": "#3A334B"
+    // "[Red]": {
+    //   "sideBar.background": "#c80e15",
+    // },
+  },
+  "editor.tokenColorCustomizations": {
+    "[*Light*]": {
+      "textMateRules": [
         {
-          "scope" : "ref.matchtext",
-          "settings.foreground" : "#fff"
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#000"
+          }
         },
         {
-          "scope" : "comment",
-          "settings.fontStyle" : "italic"
+          "scope": "comment",
+          "settings": {
+            "fontStyle": "italic"
+          }
         }
       ]
     },
+    "[*Dark*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#fff"
+          }
+        },
+        {
+          "scope": "comment",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    }
+  },
 
-    // ── Layout workbench ─────────────────────────────────────────────
-    "workbench.sideBar.location": "right",
-    "workbench.secondarySideBar.defaultVisibility": "hidden",
-    "workbench.activityBar.location": "hidden",
-    "workbench.statusBar.visible": true,
-    "workbench.layoutControl.enabled": false,
-    "workbench.navigationControl.enabled": false,
-    "workbench.editor.showTabs": "multiple",
-    "zenMode.showTabs": "single",
-    "breadcrumbs.enabled": false,
+  // ── Layout workbench ─────────────────────────────────────────────
+  "workbench.sideBar.location": "right",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "workbench.activityBar.location": "hidden",
+  "workbench.statusBar.visible": true,
+  "workbench.layoutControl.enabled": false,
+  "workbench.navigationControl.enabled": false,
+  "workbench.editor.showTabs": "multiple",
+  "zenMode.showTabs": "single",
+  "breadcrumbs.enabled": false,
 
-    // ── Explorer & tree ──────────────────────────────────────────────
-    "explorer.compactFolders": false,
-    "explorer.decorations.badges": true,
-    "explorer.confirmDelete": false,
-    "explorer.confirmDragAndDrops": true,
-    "workbench.tree.enableStickyScroll": true,
-    "workbench.tree.indent": 10,
-    "workbench.tree.renderIndentGuides": "always",
+  // ── Explorer & tree ──────────────────────────────────────────────
+  "explorer.compactFolders": false,
+  "explorer.decorations.badges": true,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrops": true,
+  "workbench.tree.enableStickyScroll": true,
+  "workbench.tree.indent": 10,
+  "workbench.tree.renderIndentGuides": "always",
 
-    // ── Font ─────────────────────────────────────────────────────────
-    "editor.fontFamily": "JetBrains Mono ML, Fira Code, 'Droid Sans Mono', 'monospace', monospace",
-    "editor.fontLigatures": true,
-    "editor.lineHeight": 1.5,
-    "editor.mouseWheelZoom": true,
+  // ── Font ─────────────────────────────────────────────────────────
+  "editor.fontFamily": "JetBrains Mono ML, Fira Code, 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 1.5,
+  "editor.mouseWheelZoom": true,
 
-    // ── Kursor ───────────────────────────────────────────────────────
-    "editor.cursorStyle": "block",
-    "editor.cursorBlinking": "phase",
-    "editor.cursorSurroundingLines": 1,
-    "editor.hideCursorInOverviewRuler": true,
+  // ── Kursor ───────────────────────────────────────────────────────
+  "editor.cursorStyle": "block",
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSurroundingLines": 1,
+  "editor.hideCursorInOverviewRuler": true,
 
-    // ── Gutter & garis bantu ─────────────────────────────────────────
-    "editor.lineNumbers": "relative",
-    "editor.renderLineHighlight": "gutter",
-    "editor.renderWhitespace": "none",
-    "editor.guides.indentation": false,
-    "editor.showFoldingControls": "always",
-    "editor.matchBrackets": "always",
-    "editor.colorDecorators": true,
+  // ── Gutter & garis bantu ─────────────────────────────────────────
+  "editor.lineNumbers": "relative",
+  "editor.renderLineHighlight": "gutter",
+  "editor.renderWhitespace": "none",
+  "editor.guides.indentation": false,
+  "editor.showFoldingControls": "always",
+  "editor.matchBrackets": "always",
+  "editor.colorDecorators": true,
 
-    // ── Highlight ────────────────────────────────────────────────────
-    "editor.occurrencesHighlight": "off",
-    "editor.selectionHighlight": false,
+  // ── Highlight ────────────────────────────────────────────────────
+  "editor.occurrencesHighlight": "off",
+  "editor.selectionHighlight": false,
 
-    // ── Minimap, scrollbar, sticky scroll ────────────────────────────
-    "editor.minimap.enabled": false,
-    "editor.stickyScroll.enabled": true,
-    "editor.overviewRulerBorder": false,
-    "editor.scrollbar.horizontal": "hidden",
-    "editor.scrollbar.vertical": "auto",
-    "editor.scrollbar.verticalScrollbarSize": 10
+  // ── Minimap, scrollbar, sticky scroll ────────────────────────────
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": true,
+  "editor.overviewRulerBorder": false,
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "auto",
+  "editor.scrollbar.verticalScrollbarSize": 10
 
-    // ── Dinonaktifkan: bukan setting VSCode ──────────────────────────
-    // Tidak ditemukan di source VSCode, jadi selama ini diabaikan.
-    // "window.titleBar.enabled": false,
-    // "workbench.sideBar.visible": false,
+  // ── Dinonaktifkan: bukan setting VSCode ──────────────────────────
+  // Tidak ditemukan di source VSCode, jadi selama ini diabaikan.
+  // "window.titleBar.enabled": false,
+  // "workbench.sideBar.visible": false,
 
-    // ── Dinonaktifkan: Custom UI Style ───────────────────────────────
-    // "custom-ui-style.electron": {
-    //   titleBarStyle: "hiddenInset",
-    //   trafficLightPosition: {
-    //     x: 20,
-    //     y: 16,
-    //   },
-    // },
-    // "custom-ui-style.stylesheet": {
-    //   ".notification-toast": "box-shadow: none !important",
-    //   ".quick-input-widget.show-file-icons": "box-shadow: none !important",
-    //   ".quick-input-widget": "top: 25vh !important",
-    //   ".quick-input-list .scrollbar": "display: none",
-    //   ".monaco-action-bar.quick-input-inline-action-bar": "display: none",
-    //   ".editor-widget.find-widget": "box-shadow: none, border-radius: 4px",
-    //   ".quick-input-titlebar": "background: #100B15 !important",
-    //   ".monaco-scrollable-element > .shadow.top": "display: none",
-    //   ".sidebar .title-label": "padding: 0 !important",
-    //   ".sidebar": "border: none !important",
-    //   ".monaco-list-row.focused": "outline: none !important",
-    //   ".title .monaco-icon-label.file-icon": "margin: 0 60px",
-    //   ".monaco-editor .scroll-deccoration": "display: none",
-    // }
-  }
+  // ── Dinonaktifkan: Custom UI Style ───────────────────────────────
+  // "custom-ui-style.electron": {
+  //   "titleBarStyle": "hiddenInset",
+  //   "trafficLightPosition": {
+  //     "x": 20,
+  //     "y": 16
+  //   }
+  // },
+  // "custom-ui-style.stylesheet": {
+  //   ".notification-toast": "box-shadow: none !important",
+  //   ".quick-input-widget.show-file-icons": "box-shadow: none !important",
+  //   ".quick-input-widget": "top: 25vh !important",
+  //   ".quick-input-list .scrollbar": "display: none",
+  //   ".monaco-action-bar.quick-input-inline-action-bar": "display: none",
+  //   ".editor-widget.find-widget": "box-shadow: none; border-radius: 4px",
+  //   ".quick-input-titlebar": "background: #100B15 !important",
+  //   ".monaco-scrollable-element > .shadow.top": "display: none",
+  //   ".sidebar .title-label": "padding: 0 !important",
+  //   ".sidebar": "border: none !important",
+  //   ".monaco-list-row.focused": "outline: none !important",
+  //   ".title .monaco-icon-label.file-icon": "margin: 0 60px",
+  //   ".monaco-editor .scroll-deccoration": "display: none"
+  // }
 }
