@@ -17,7 +17,7 @@
     "python.analysis.diagnosticMode" = "workspace";
     "python.analysis.inlayHints.variableTypes" = true;
     "python.analysis.inlayHints.functionReturnTypes" = true;
-    "python.analysis.inlayHints.callArgumentNames" = true;
+    "python.analysis.inlayHints.callArgumentNames" = "all";
     "python.analysis.inlayHints.pytestParameters" = true;
 
     "python.terminal.activateEnvironment" = true; # setara terminal.detect_venv
