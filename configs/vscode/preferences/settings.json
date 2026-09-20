@@ -1,0 +1,391 @@
+{
+  "Lua.completion.callSnippet": "Replace",
+  "Lua.completion.enable": true,
+  "Lua.completion.showParams": true,
+  "Lua.diagnostics.globals": [
+    "vim",
+    "hs",
+    "awesome",
+    "client",
+    "screen"
+  ],
+  "Lua.hint.arrayIndex": "Enable",
+  "Lua.hint.enable": true,
+  "Lua.hint.paramName": "All",
+  "Lua.hint.paramType": true,
+  "Lua.hint.setType": true,
+  "Lua.runtime.version": "LuaJIT",
+  "Lua.workspace.checkThirdParty": false,
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[lua]": {
+    "editor.defaultFormatter": "sumneko.lua",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[makefile]": {
+    "editor.insertSpaces": false
+  },
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on"
+  },
+  "[nix]": {
+    "editor.defaultFormatter": "jnoortheen.nix-ide",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[shellscript]": {
+    "editor.tabSize": 2
+  },
+  "[sql]": {
+    "editor.tabSize": 2
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[xml]": {
+    "editor.tabSize": 2
+  },
+  "bashIde.globPattern": "**/*@(.sh|.inc|.bash|.command|.zsh)",
+  "bashIde.shellcheckPath": "/nix/store/ixvpvkr2s92pbi6si1ki8yk3fs1gvlf2-shellcheck-0.11.0-bin/bin/shellcheck",
+  "breadcrumbs.enabled": false,
+  "chat.agent.enabled": true,
+  "chat.checkpoints.enabled": false,
+  "chat.checkpoints.showFileChanges": true,
+  "chat.tools.terminal.autoApprove": {
+    "/^(npm|pnpm|bun)\\s+(install|run|test)\\b/": true,
+    "/^cargo\\s+(build|check|test|clippy|fmt)\\b/": true
+  },
+  "chat.tools.terminal.enableAutoApprove": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.autoIndent": "advanced",
+  "editor.codeLens": true,
+  "editor.colorDecorators": true,
+  "editor.cursorBlinking": "phase",
+  "editor.cursorStyle": "block",
+  "editor.cursorSurroundingLines": 1,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.detectIndentation": true,
+  "editor.fontFamily": "JetBrains Mono ML, Fira Code, 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": false,
+  "editor.guides.indentation": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.hover.above": true,
+  "editor.inlayHints.enabled": "on",
+  "editor.insertSpaces": true,
+  "editor.lightbulb.enabled": "onCode",
+  "editor.lineHeight": 1.5,
+  "editor.lineNumbers": "relative",
+  "editor.linkedEditing": true,
+  "editor.links": true,
+  "editor.matchBrackets": "always",
+  "editor.minimap.enabled": false,
+  "editor.mouseWheelZoom": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.occurrencesHighlight": "off",
+  "editor.overviewRulerBorder": false,
+  "editor.parameterHints.enabled": true,
+  "editor.quickSuggestions": {
+    "comments": false,
+    "other": true,
+    "strings": true
+  },
+  "editor.renderLineHighlight": "gutter",
+  "editor.renderWhitespace": "none",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "auto",
+  "editor.scrollbar.verticalScrollbarSize": 10,
+  "editor.selectionHighlight": false,
+  "editor.semanticHighlighting.enabled": true,
+  "editor.showFoldingControls": "always",
+  "editor.snippetSuggestions": "top",
+  "editor.stickyScroll.enabled": true,
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "editor.tokenColorCustomizations": {
+    "[*Dark*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#fff"
+          }
+        },
+        {
+          "scope": "comment",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    },
+    "[*Light*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#000"
+          }
+        },
+        {
+          "scope": "comment",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        }
+      ]
+    }
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "errorLens.enabledDiagnosticLevels": [
+    "error",
+    "warning",
+    "info"
+  ],
+  "explorer.compactFolders": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": true,
+  "explorer.decorations.badges": true,
+  "extensions.autoCheckUpdates": false,
+  "extensions.ignoreRecommendations": false,
+  "files.autoGuessEncoding": true,
+  "files.autoSave": "off",
+  "files.hotExit": "onExitAndWindowClose",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "git.blame.editorDecoration.enabled": true,
+  "git.blame.statusBarItem.enabled": true,
+  "git.decorations.enabled": true,
+  "git.openRepositoryInParentFolders": "always",
+  "github.copilot.chat.terminalChatLocation": "terminal",
+  "github.copilot.enable": {
+    "*": true
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "js/ts.implementationsCodeLens.enabled": true,
+  "js/ts.inlayHints.enumMemberValues.enabled": true,
+  "js/ts.inlayHints.functionLikeReturnTypes.enabled": true,
+  "js/ts.inlayHints.parameterNames.enabled": "all",
+  "js/ts.inlayHints.parameterNames.suppressWhenArgumentMatchesName": false,
+  "js/ts.inlayHints.parameterTypes.enabled": true,
+  "js/ts.inlayHints.propertyDeclarationTypes.enabled": true,
+  "js/ts.inlayHints.variableTypes.enabled": true,
+  "js/ts.inlayHints.variableTypes.suppressWhenTypeMatchesName": false,
+  "js/ts.preferences.includePackageJsonAutoImports": "auto",
+  "js/ts.referencesCodeLens.enabled": true,
+  "js/ts.referencesCodeLens.showOnAllFunctions": true,
+  "js/ts.suggest.completeFunctionCalls": true,
+  "js/ts.tsdk.path": "/nix/store/3dqddf8p7vxrynviiaasayl3iqyh923p-typescript-5.9.3/lib/node_modules/typescript/lib",
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "multiCommand.commands": [
+    {
+      "command": "multiCommand.toggleFocusEditor",
+      "sequence": [
+        "workbench.action.closeSidebar",
+        "workbench.action.activityBarLocation.hide",
+        "workbench.action.closePanel",
+        "workbench.action.focusActiveEditorGroup"
+      ]
+    },
+    {
+      "command": "multiCommand.focusFromSearch",
+      "sequence": [
+        "workbench.action.focusActiveEditorGroup",
+        "workbench.view.search.toggleVisibility"
+      ]
+    },
+    {
+      "command": "multiCommand.cursorDown5",
+      "sequence": [
+        "cursorDown",
+        "cursorDown",
+        "cursorDown",
+        "cursorDown",
+        "cursorDown"
+      ]
+    },
+    {
+      "command": "multiCommand.cursorUp5",
+      "sequence": [
+        "cursorUp",
+        "cursorUp",
+        "cursorUp",
+        "cursorUp",
+        "cursorUp"
+      ]
+    }
+  ],
+  "nix.enableLanguageServer": true,
+  "nix.formatterPath": "/nix/store/4lxamzz2nrw3890xfvhwylx05d4n3i01-nixfmt-1.4.0/bin/nixfmt",
+  "nix.serverPath": "/nix/store/lbakhfvkdlg6ha360giwiwwjicpr4jjx-nixd-2.9.1/bin/nixd",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.inlayHints.callArgumentNames": "all",
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.pytestParameters": true,
+  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.typeCheckingMode": "standard",
+  "python.analysis.useLibraryCodeForTypes": true,
+  "python.terminal.activateEnvironment": true,
+  "rust-analyzer.cargo.buildScripts.enable": true,
+  "rust-analyzer.cargo.features": "all",
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.completion.callable.snippets": "fill_arguments",
+  "rust-analyzer.completion.fullFunctionSignatures.enable": true,
+  "rust-analyzer.completion.postfix.enable": true,
+  "rust-analyzer.hover.actions.debug.enable": true,
+  "rust-analyzer.hover.actions.references.enable": true,
+  "rust-analyzer.hover.actions.run.enable": true,
+  "rust-analyzer.inlayHints.bindingModeHints.enable": true,
+  "rust-analyzer.inlayHints.chainingHints.enable": true,
+  "rust-analyzer.inlayHints.closingBraceHints.enable": true,
+  "rust-analyzer.inlayHints.closingBraceHints.minLines": 10,
+  "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "with_block",
+  "rust-analyzer.inlayHints.discriminantHints.enable": "fieldless",
+  "rust-analyzer.inlayHints.expressionAdjustmentHints.enable": "reborrow",
+  "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "skip_trivial",
+  "rust-analyzer.inlayHints.lifetimeElisionHints.useParameterNames": true,
+  "rust-analyzer.inlayHints.maxLength": 30,
+  "rust-analyzer.inlayHints.parameterHints.enable": true,
+  "rust-analyzer.inlayHints.reborrowHints.enable": "mutable",
+  "rust-analyzer.inlayHints.renderColons": true,
+  "rust-analyzer.inlayHints.typeHints.enable": true,
+  "rust-analyzer.inlayHints.typeHints.hideClosureInitialization": false,
+  "rust-analyzer.inlayHints.typeHints.hideNamedConstructor": false,
+  "rust-analyzer.lens.enable": true,
+  "rust-analyzer.lens.references.adt.enable": true,
+  "rust-analyzer.lens.references.enumVariant.enable": true,
+  "rust-analyzer.lens.references.method.enable": true,
+  "rust-analyzer.lens.references.trait.enable": true,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.server.path": "/nix/store/5x0z7lf4wmnjwkfk6n19cp804l0f76fg-rust-analyzer-2026-06-15/bin/rust-analyzer",
+  "search.smartCase": true,
+  "search.useIgnoreFiles": false,
+  "security.workspace.trust.enabled": false,
+  "shellcheck.executablePath": "/nix/store/ixvpvkr2s92pbi6si1ki8yk3fs1gvlf2-shellcheck-0.11.0-bin/bin/shellcheck",
+  "tailwindCSS.classFunctions": [
+    "cva",
+    "cx",
+    "clsx",
+    "cn",
+    "twMerge",
+    "tv",
+    "ctl"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    "className=\"([^\"]*)\"",
+    "className=\\{`([^`]*)`\\}",
+    "class=\"([^\"]*)\"",
+    "class:list=\\[([^\\]]*)\\]",
+    "\\bcva\\(([^)]*)\\)",
+    "\\bclsx\\(([^)]*)\\)",
+    "\\bcn\\(([^)]*)\\)",
+    "\\bcx\\(([^)]*)\\)",
+    "\\btv\\(([^)]*)\\)",
+    "\\btwMerge\\(([^)]*)\\)"
+  ],
+  "tailwindCSS.includeLanguages": {
+    "astro": "html",
+    "javascript": "javascript",
+    "typescript": "javascript",
+    "typescriptreact": "html",
+    "vue": "html"
+  },
+  "update.mode": "none",
+  "vsicons.dontShowNewVersionMessage": true,
+  "window.commandCenter": false,
+  "window.confirmBeforeClose": "always",
+  "window.customTitleBarVisibility": "never",
+  "window.doubleClickIconToClose": true,
+  "window.menuBarVisibility": "toggle",
+  "window.restoreWindows": "none",
+  "window.titleBarStyle": "native",
+  "window.zoomLevel": 0,
+  "workbench.activityBar.location": "hidden",
+  "workbench.colorCustomizations": {
+    "editorCursor.background": "#00ffff",
+    "editorSuggestWidget.selectedBackground": "#3A334B"
+  },
+  "workbench.colorTheme": "Monokai Dimmed",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.layoutControl.enabled": false,
+  "workbench.navigationControl.enabled": false,
+  "workbench.preferredDarkColorTheme": "Visual Studio Dark",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "workbench.sideBar.location": "right",
+  "workbench.startupEditor": "welcomePage",
+  "workbench.statusBar.visible": true,
+  "workbench.tree.enableStickyScroll": true,
+  "workbench.tree.indent": 10,
+  "workbench.tree.renderIndentGuides": "always",
+  "zenMode.showTabs": "single"
+}
