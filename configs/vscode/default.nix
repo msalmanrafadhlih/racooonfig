@@ -13,11 +13,15 @@ let
     "Code/User/snippets" = "./snippets";
   };
 
-  mapFile = inputs.racooonfig.mapFile;
-  workspace = import ./workspace.nix;
-  editor = import ./editor.nix;
-  agents = import ./agent.nix;
-  cfg = config.racooonfig;
+
+  cfg        = config.racooonfig;
+  agents     = import ./agent.nix;
+  editor     = import ./editor.nix;
+  keymap     = import ./keymap.nix;
+  workspace  = import ./workspace.nix;
+  jsonc      = inputs.racooonfig.jsonc;
+  mapFile    = inputs.racooonfig.mapFile;
+  appearance = jsonc.readFile ./preferences/appearance.json;
 in
 
 {
@@ -34,15 +38,14 @@ in
       profiles.default = {
         enableUpdateCheck = false;
         enableExtensionUpdateCheck = false;
-
         extensions = import ./extensions.nix { inherit pkgs; };
-
-        userSettings =
-          lib.recursiveUpdate { }
-          // (lib.mapAttrs' (k: v: lib.nameValuePair "${k}" v) agents.aichat)
-          // (lib.mapAttrs' (k: v: lib.nameValuePair "${k}" v) editor)
-          // (lib.mapAttrs' (k: v: lib.nameValuePair "${k}" v) workspace)
-          // (builtins.fromJSON (builtins.readFile ./preferences/appearance.json));
+        userSettings = lib.mkMerge [
+          agents.aichat
+          editor
+          keymap
+          workspace
+          appearance
+        ];
       };
     };
 
