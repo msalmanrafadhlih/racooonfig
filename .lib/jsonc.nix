@@ -1,3 +1,4 @@
+{ lib, ... }:
 # Baca JSON berkomentar (JSONC) — format yang sama dengan settings.json VSCode.
 #
 # builtins.fromJSON menolak `// ...`, `/* ... */`, dan trailing comma, jadi file
@@ -8,7 +9,6 @@
 #
 #   jsonc = import ./jsonc.nix { inherit lib; };
 #   jsonc.readFile ./preferences/appearance.json
-{ lib }:
 let
   isSpace = c: c == " " || c == "\t" || c == "\n" || c == "\r";
 
