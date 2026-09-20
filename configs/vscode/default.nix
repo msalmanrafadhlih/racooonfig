@@ -1,3 +1,4 @@
+# vscode.nix
 {
   lib,
   pkgs,
@@ -8,32 +9,32 @@
 }:
 
 let
+  cfg = config.racooonfig.vscode;
+  jsonc = inputs.racooonfig.jsonc;
+  mapFile = inputs.racooonfig.mapFile;
+
+  agents = import ./agent.nix;
+  editor = import ./editor.nix;
+  keymap = import ./keymap.nix;
+  workspace = import ./workspace.nix;
+  appearance = jsonc.readFile ./preferences/appearance.json;
+
   configs = {
     "Code/User/keybindings.json" = "./preferences/keymaps.json";
     "Code/User/snippets" = "./snippets";
+  }
+  // lib.optionalAttrs cfg.mutable {
+    "Code/User/settings.json" = "./preferences/settings.json";
   };
-
-
-  cfg        = config.racooonfig;
-  agents     = import ./agent.nix;
-  editor     = import ./editor.nix;
-  keymap     = import ./keymap.nix;
-  workspace  = import ./workspace.nix;
-  jsonc      = inputs.racooonfig.jsonc;
-  mapFile    = inputs.racooonfig.mapFile;
-  appearance = jsonc.readFile ./preferences/appearance.json;
 in
-
 {
   imports = mapFile ./languages [ ] { };
 
-  config = lib.mkIf (cfg.homeManager && builtins.elem "vscode" cfg.listConfigurations) {
-    xdg.configFile = mkSymlink {
-      target = "vscode";
-    } configs;
+  config = lib.mkIf (cfg.homeManager && cfg.enable) {
+    xdg.configFile = mkSymlink { target = "vscode"; } configs;
 
     programs.vscode = {
-      enable = true;
+      enable = !cfg.mutable;
 
       profiles.default = {
         enableUpdateCheck = false;
@@ -48,14 +49,5 @@ in
         ];
       };
     };
-
-    home.packages = [
-      pkgs.nixd
-      pkgs.nixfmt
-      pkgs.shellcheck
-      pkgs.rust-analyzer
-      pkgs.typescript
-      pkgs.github-mcp-server
-    ];
   };
 }
