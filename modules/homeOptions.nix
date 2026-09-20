@@ -3,13 +3,15 @@ let
   mapAll = inputs.racooonfig.mapDir;
 in
 {
-  imports = [ ./homeModules ]
-    ++ mapAll ../configs [
-      "bspwm"
-      "hyprland"
-      "niri"
-      "zen-browser"
-    ] { };
+  imports = [
+    ./homeModules
+  ]
+  ++ mapAll ../configs [
+    "bspwm"
+    "hyprland"
+    "niri"
+    "zen-browser"
+  ] { };
 
   options.racooonfig = {
     homeManager = lib.mkOption {
@@ -38,16 +40,15 @@ in
             default = false;
             description = "Enable vscode";
           };
-          mutable = {
-            enable = lib.mkOption {
-              type = lib.types.bool;
-              default = false;
-              description = ''
-                true: settings.json di-symlink dari repo (mutable, bisa diedit dari VS Code).
-                HM tidak lagi mengelola paket dan extensions VS Code.
-                false: settings.json dibuat oleh programs.vscode dari Nix (immutable).
-                '';
-            };
+
+          mutable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = ''
+              true: settings.json di-symlink dari repo (mutable, bisa diedit dari VS Code).
+              HM tidak lagi mengelola paket dan extensions VS Code.
+              false: settings.json dibuat oleh programs.vscode dari Nix (immutable).
+            '';
           };
         };
       };
