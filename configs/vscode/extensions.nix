@@ -14,13 +14,12 @@ with pkgs.vscode-extensions;
   formulahendry.auto-close-tag
   formulahendry.auto-rename-tag
   pranaygp.vscode-css-peek
-  sporiley.css-auto-prefix
   wix.vscode-import-cost
 
   # ── Bahasa & LSP ─────────────────────────────────────────────────
   rust-lang.rust-analyzer
   ms-python.python
-  ms-python.vscode-pylance # ⚠ unfree — pastikan allowUnfree aktif
+  ms-python.vscode-pylance
   charliermarsh.ruff
   sumneko.lua
   jnoortheen.nix-ide
@@ -28,8 +27,8 @@ with pkgs.vscode-extensions;
   timonwong.shellcheck
 
   # ── DevOps / Config ──────────────────────────────────────────────
-  mkhl.direnv # setara `load_direnv = "direct"` punya Zed
-  ms-azuretools.vscode-docker # handle Dockerfile + docker-compose; default bawaannya sudah nyaman
+  mkhl.direnv 
+  ms-azuretools.vscode-docker 
   ms-vscode.makefile-tools
   tamasfe.even-better-toml
   mikestead.dotenv
