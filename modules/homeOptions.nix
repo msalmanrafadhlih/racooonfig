@@ -28,6 +28,31 @@ in
       '';
     };
 
+    vscode = lib.mkOption {
+      default = { };
+      description = "vscode configuration";
+      type = lib.types.submodule {
+        options = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable vscode";
+          };
+          mutable = {
+            enable = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+              description = ''
+                true: settings.json di-symlink dari repo (mutable, bisa diedit dari VS Code).
+                HM tidak lagi mengelola paket dan extensions VS Code.
+                false: settings.json dibuat oleh programs.vscode dari Nix (immutable).
+                '';
+            };
+          };
+        };
+      };
+    };
+
     listConfigurations = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
@@ -44,7 +69,6 @@ in
           "bat"
           "beets"
           "cava"
-          "vscode"
           "fastfetch"
           "firefox"
           "geany"
