@@ -1,0 +1,47 @@
+{
+  "Async function (try/catch)": {
+    "prefix": "afn",
+    "body": [
+      "async function ${1:name}($2) {",
+      "\ttry {",
+      "\t\t$0",
+      "\t} catch (error) {",
+      "\t\tconsole.error(error);",
+      "\t\tthrow error;",
+      "\t}",
+      "}"
+    ],
+    "description": "Async function dengan try/catch"
+  },
+  "Zod schema": {
+    "prefix": "zod",
+    "body": [
+      "const ${1:name}Schema = z.object({",
+      "\t$0",
+      "});",
+      "",
+      "type ${2:Name} = z.infer<typeof ${1:name}Schema>;"
+    ],
+    "description": "Schema zod + type inference"
+  },
+  "Type-safe fetch": {
+    "prefix": "fetcher",
+    "body": [
+      "async function ${1:getData}(url: string): Promise<${2:unknown}> {",
+      "\tconst res = await fetch(url);",
+      "\tif (!res.ok) throw new Error(`Request failed: \\${res.status}`);",
+      "\treturn res.json();",
+      "}"
+    ],
+    "description": "Fetch dengan pengecekan status response"
+  },
+  "Discriminated union": {
+    "prefix": "duni",
+    "body": [
+      "type ${1:Result} =",
+      "\t| { status: \"${2:success}\"; ${3:data: unknown} }",
+      "\t| { status: \"${4:error}\"; ${5:message: string} };"
+    ],
+    "description": "Discriminated union type"
+  }
+}
