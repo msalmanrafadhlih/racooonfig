@@ -34,7 +34,7 @@ in
     xdg.configFile = mkSymlink { target = "vscode"; } configs;
 
     programs.vscode = {
-      enable = !cfg.mutable;
+      enable = !cfg.vscode.mutable;
 
       profiles.default = {
         enableUpdateCheck = false;
