@@ -31,6 +31,7 @@ in
   imports = mapFile ./languages [ ] { };
 
   config = lib.mkIf (cfg.homeManager && cfg.vscode.enable) {
+    home.packages = if cfg.vscode.mutable then [ pkgs.vscode ] else [ ];
     xdg.configFile = mkSymlink { target = "vscode"; } configs;
 
     programs.vscode = {
