@@ -362,7 +362,6 @@
   "update.mode": "none",
   "vsicons.dontShowNewVersionMessage": true,
   "window.commandCenter": false,
-  "window.confirmBeforeClose": "always",
   "window.customTitleBarVisibility": "never",
   "window.doubleClickIconToClose": true,
   "window.menuBarVisibility": "toggle",
