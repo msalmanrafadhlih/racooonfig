@@ -1,4 +1,4 @@
-# waydroid-launcher — CLI wrapper yang otomatis init/start Waydroid lalu
+# launchdroid — CLI wrapper yang otomatis init/start Waydroid lalu
 # langsung launch CloudStream, tanpa perlu jalanin manual satu-satu:
 #   sudo waydroid init
 #   sudo systemctl start waydroid-container
@@ -9,23 +9,23 @@
 # semuanya udah nyala, jalanin ini nggak perlu sudo/password sama sekali).
 #
 # Pemakaian setelah terpasang:
-#   waydroid-launcher              -> init (kalau perlu) + start + launch CloudStream
-#   waydroid-launcher --ui         -> buka full Android UI, bukan CloudStream
-#   waydroid-launcher --app <id>   -> launch app lain (application id)
-#   waydroid-launcher --gapps      -> sertakan GAPPS saat init pertama kali
-#   waydroid-launcher status       -> tampilkan 'waydroid status' apa adanya
-#   waydroid-launcher stop         -> stop session + container
+#   launchdroid              -> init (kalau perlu) + start + launch CloudStream
+#   launchdroid --ui         -> buka full Android UI, bukan CloudStream
+#   launchdroid --app <id>   -> launch app lain (application id)
+#   launchdroid --gapps      -> sertakan GAPPS saat init pertama kali
+#   launchdroid status       -> tampilkan 'waydroid status' apa adanya
+#   launchdroid stop         -> stop session + container
 #
 # Cara pasang (pilih salah satu):
 #   environment.systemPackages = [ (pkgs.callPackage ./script-waydroid.nix { }) ];
 #   home.packages               = [ (pkgs.callPackage ./script-waydroid.nix { }) ];
 #   # atau sebagai flake app:
-#   apps.default = { type = "app"; program = "${pkgs.callPackage ./script-waydroid.nix {}}/bin/waydroid-launcher"; };
+#   apps.default = { type = "app"; program = "${pkgs.callPackage ./script-waydroid.nix {}}/bin/launchdroid"; };
 
 { pkgs, ... }:
 
 pkgs.writeShellApplication {
-  name = "waydroid-launcher";
+  name = "launchdroid";
 
   runtimeInputs = with pkgs; [
     waydroid
@@ -40,10 +40,10 @@ pkgs.writeShellApplication {
     DEFAULT_APP="com.lagradost.cloudstream3" # CloudStream
     CONTAINER_TIMEOUT=15
     SESSION_TIMEOUT=30
-    SESSION_LOG="''${XDG_RUNTIME_DIR:-/tmp}/waydroid-launcher-session.log"
+    SESSION_LOG="''${XDG_RUNTIME_DIR:-/tmp}/launchdroid-session.log"
 
-    log() { printf '\033[1;36m[waydroid-launcher]\033[0m %s\n' "$*"; }
-    err() { printf '\033[1;31m[waydroid-launcher]\033[0m %s\n' "$*" >&2; }
+    log() { printf '\033[1;36m[launchdroid]\033[0m %s\n' "$*"; }
+    err() { printf '\033[1;31m[launchdroid]\033[0m %s\n' "$*" >&2; }
 
     is_initialized() {
       [[ -f "$WAYDROID_CFG" ]]
@@ -175,7 +175,7 @@ pkgs.writeShellApplication {
     case "$ACTION" in
       help)
         cat <<'USAGE'
-Pemakaian: waydroid-launcher [stop|status] [--ui] [--app <package>] [--gapps]
+Pemakaian: launchdroid [stop|status] [--ui] [--app <package>] [--gapps]
 
   (tanpa argumen)   init (kalau belum pernah) -> start container -> start session -> launch CloudStream
   --ui              buka full Android UI, bukan langsung launch CloudStream
