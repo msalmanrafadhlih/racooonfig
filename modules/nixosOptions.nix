@@ -1,4 +1,5 @@
 { lib, ... }:
+
 {
   imports = [ ./nixosModules ];
 
@@ -10,18 +11,19 @@
     };
 
     displayManager = lib.mkOption {
-      type = lib.types.enum [
-        "sddm"
-        "lightdm"
-      ];
-      default = "";
-      description = "Which display manager to use";
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "sddm"
+          "lightdm"
+        ]
+      );
+      default = null;
+      description = "Display manager to use";
     };
 
     windowManager = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
-          # Window Manager
           "hyprland"
           "bspwm"
           "niri"
@@ -35,28 +37,27 @@
     desktopManager = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
-          # deskop Environment
           "plasma"
           "gnome"
         ]
       );
       default = [ ];
-      description = "List of enabled window managers";
+      description = "List of enabled desktop managers";
     };
 
     fileManager = lib.mkOption {
-      type = lib.types.enum [
-        "nautilus"
-        "dolphin"
-        "thunar"
-      ];
-      default = "";
-      description = "Which display manager to use";
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "nautilus"
+          "dolphin"
+          "thunar"
+        ]
+      );
+      default = null;
+      description = "File manager to use";
     };
 
     gamemode = lib.mkOption {
-      default = { };
-      description = "Gamemode configuration";
       type = lib.types.submodule {
         options = {
           enable = lib.mkOption {
@@ -64,10 +65,12 @@
             default = false;
             description = "Enable gamemode";
           };
+
           programs = lib.mkOption {
             type = lib.types.listOf (
               lib.types.enum [
                 "steam"
+                "waydroid"
               ]
             );
             default = [ ];
@@ -75,6 +78,9 @@
           };
         };
       };
+
+      default = { };
+      description = "Gamemode configuration";
     };
   };
 }
