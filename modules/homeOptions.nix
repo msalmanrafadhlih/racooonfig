@@ -87,7 +87,6 @@ in
           "st"
           "vesktop"
           "wezterm"
-          "xytz"
           "zathura"
           "zed-editor"
           "zen-browser"
