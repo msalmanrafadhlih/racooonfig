@@ -35,11 +35,6 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     ## ---- System Packages
-    xytz = {
-      url = "github:TQ-See/xytz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     st-nix = {
       url = "github:TQ-See/st-flexipatch";
       inputs.nixpkgs.follows = "nixpkgs";
