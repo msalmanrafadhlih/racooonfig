@@ -33,7 +33,7 @@ in
       # ======================
       # gimp
       # evince # Document Viewer
-      libreoffice-qt-still
+      libreoffice-qt-stable
       obsidian
       # kdePackages.kdenlive
       # audacity
@@ -42,7 +42,7 @@ in
       # =====================
       # TOOLS
       # ====================
-      kando # Pie-Menu
+      # kando # Pie-Menu
       # xarchiver
       # gparted # Manage Disk Partition
       # pavucontrol
