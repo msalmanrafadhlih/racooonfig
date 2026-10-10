@@ -16,7 +16,7 @@ buildGo126Module {
     owner = "TQ-See";
     repo = "xytz";
     rev = "201a6b1c0262f3b6880663b48f97625fa049cbef";
-    hash = "sha256-Aixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=";
+    hash = "sha256-c0aj9KL++dxweAFl+FWM5ii5kWgAaSxzBeex1r1wf3g=";
   };
 
 
